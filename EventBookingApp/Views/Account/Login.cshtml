@@ -1,0 +1,76 @@
+﻿@model DataAcessLayer.ApplicationUser
+
+@{
+    ViewData["Title"] = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>EMS | Log in</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/dist/css/adminlte.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo"><a href="#"><b>Event Management System</b></a></div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+                @using (Html.BeginForm(new { id = "form" }))
+                {
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="input-group mb-3">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Your User Name", @Autocomplete = "off" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Your Password" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="row">
+
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" id="btnsub" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                }
+                <!-- /.social-auth-links -->
+                <p class="mb-1">
+                    <a href='@Url.Action("ForgotPassword","Account")'> Forgot password</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <p class="mb-1">
+        <a href='@Url.Action("Registration","Account")'>Create Account</a>
+    </p>
+    <!-- /.login-box -->
+</body>
+</html>
