@@ -5,72 +5,70 @@
     Layout = null;
 }
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>EMS | Log in</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/dist/css/adminlte.min.css" rel="stylesheet" />
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <title>EMS| Log in</title>
+
     <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link href="~/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- icheck bootstrap -->
+    <link href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/dist/css/adminlte.min.css" rel="stylesheet" />
 </head>
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="login-logo"><a href="#"><b>Event Management System</b></a></div>
+        <div class="login-logo">
+           <b>Event Management System</b>
+        </div>
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-                @using (Html.BeginForm(new { id = "form" }))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+                <form asp-action="Login" method="post">
                     <div class="input-group mb-3">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Your User Name", @Autocomplete = "off" })
+                        <input asp-for="Email" class="form-control" placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+                                <span class="fas fa-envelope"></span>
                             </div>
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="input-group mb-3">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Your Password" })
+                        <input type="password" asp-for="Password" class="form-control" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                    </div>
                     <div class="row">
-
                         <!-- /.col -->
                         <div class="col-4">
-                            <button type="submit" id="btnsub" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                         <!-- /.col -->
                     </div>
-                }
-                <!-- /.social-auth-links -->
+                </form>
                 <p class="mb-1">
-                    <a href='@Url.Action("ForgotPassword","Account")'> Forgot password</a>
+                    <a href="forgot-password.html">I forgot my password</a>
                 </p>
             </div>
             <!-- /.login-card-body -->
         </div>
     </div>
-    <p class="mb-1">
-        <a href='@Url.Action("Registration","Account")'>Create Account</a>
+    <p class="mb-0">
+        <a href='@Url.Action("Registration","Account")'>Register a new membership</</a>
     </p>
-    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/js/adminlte.min.js"></script>
 </body>
 </html>

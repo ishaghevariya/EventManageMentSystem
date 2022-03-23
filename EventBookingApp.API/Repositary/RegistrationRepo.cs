@@ -22,11 +22,11 @@ namespace EventBookingApp.API.Repositary
             return await _context.ApplicationUsers.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
 
-        public Task<ApplicationUser> Login(string email, string password)
+        public int SignInMethod(string email, string password)
         {
-            throw new NotImplementedException();
+            var result = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).Count();
+            return result;
         }
-
         public async Task<ApplicationUser> UserRegistration(ApplicationUser applicationUser)
         {
             ApplicationUser user = new ApplicationUser()

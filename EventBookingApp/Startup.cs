@@ -23,6 +23,7 @@ namespace EventBookingApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllersWithViews();
         }
 
@@ -48,9 +49,19 @@ namespace EventBookingApp
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                      name: "Admin",
+                      areaName: "Admin",
+                      pattern: "Admin/{controller=Admin}/{action=AdminLogin}/{id?}");
+
                 endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Account}/{action=Login}/{id?}");
+                     name: "areas",
+                     pattern: "{area:exists}/{controller}/{action}/{id?}");
+
+                endpoints.MapControllerRoute(
+                     name: "default",
+                     pattern: "{controller=Account}/{action=Login}/{id?}");
+
             });
         }
     }

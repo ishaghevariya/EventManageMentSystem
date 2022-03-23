@@ -21,8 +21,25 @@ namespace EventBookingApp.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
+            return View();
+        }
+ 
+        public async Task<IActionResult> Login(string email,string password)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("https://localhost:44362/");
+            var response = await client.GetAsync($"api/Account/Login?email={email}&password={password}");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                if (result == "true") {
+                    return RedirectToAction("Index");   
+                }
+                return RedirectToAction("Login");
+            }
             return View();
         }
         [HttpGet]
@@ -35,14 +52,19 @@ namespace EventBookingApp.Controllers
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44362/");
-            var response = await client.PostAsJsonAsync<ApplicationUser>($"api/Account/",applicationUser);
+            var response = await client.PostAsJsonAsync<ApplicationUser>($"api/Account/Registration",applicationUser);
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Login");
+
+                return RedirectToAction("Index");
             }
             return View();
         }
 
+        public IActionResult Index()
+        {
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();

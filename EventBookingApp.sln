@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBookingApp.Web", "EventBookingApp\EventBookingApp.Web.csproj", "{712AB165-B919-4A65-897B-DC7C23B30E1A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBookingApp.API", "EventBookingApp.API\EventBookingApp.API.csproj", "{7FC63429-792F-4136-8CED-30B6510FB638}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBookingApp.API", "EventBookingApp.API\EventBookingApp.API.csproj", "{7FC63429-792F-4136-8CED-30B6510FB638}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAcessLayer", "DataAcessLayer\DataAcessLayer.csproj", "{0EBA16CE-A8FD-45A8-958E-8E3BFD57866D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAcessLayer", "DataAcessLayer\DataAcessLayer.csproj", "{0EBA16CE-A8FD-45A8-958E-8E3BFD57866D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

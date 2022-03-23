@@ -4,96 +4,89 @@
     ViewData["Title"] = "Registration";
     Layout = null;
 }
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>EMS | Log in</title>
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/dist/css/adminlte.min.css" rel="stylesheet" />
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Google Font: Source Sans Pro -->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-</head>
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo"><a href="#"><b>Registration</b></a></div>
-        <!-- /.login-logo -->
-        <div class="card">
-            <div class="card-body login-card-body">
-                
-                @using (Html.BeginForm(new { id = "form" }))
-                {
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <title>Registration Page</title>
 
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">UserName</label>
-                            @Html.TextBoxFor(m => m.UserName, new { @*@class = "form-control form-control-sm",*@ @placeholder = "Enter UserName", @Autocomplete = "off" })
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link href="~/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- icheck bootstrap -->
+    <link href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="~/dist/css/adminlte.min.css" rel="stylesheet" />
+</head>
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <b>Event Management System</b>
+        </div>
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Register a new membership</p>
+                <form asp-action="Registration" method="post">
+                    <div class="input-group mb-3">
+                        <input asp-for="UserName" class="form-control" placeholder="Enter Full Name">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
                         </div>
-                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">Password</label>
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control form-control-sm", @placeholder = "Enter Password", @Autocomplete = "off" })
+                    <div class="input-group mb-3">
+                        <input asp-for="Password" class="form-control" placeholder="Password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
                         </div>
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">Email</label>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-sm", @placeholder = "Enter Email", @Autocomplete = "off" })
+                    <div class="input-group mb-3">
+                        <input asp-for="Email" class="form-control" placeholder="Email">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
                         </div>
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">ContactNo</label>
-                            @Html.TextBoxFor(m => m.ContactNo, new { @class = "form-control form-control-sm", @placeholder = "Enter ContactNo", @Autocomplete = "off" })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.ContactNo, "", new { @class = "text-danger" })
+                    <div class="input-group mb-3">
+                        <textarea asp-for="Address" class="form-control" placeholder="Enter Your Address"></textarea>
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">Email</label>
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control form-control-sm", @placeholder = "Enter Email", @Autocomplete = "off" })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    <div class="input-group mb-3">
+                        <label asp-for="Gender" class="control-label"></label><br />&nbsp;<br />
+                        <input type="radio" value="Male" id="Gender" name="Gender" />Male&nbsp;&nbsp;
+                        <input type="radio" value="Female" id="Gender" name="Gender" />Female
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">City</label>
-                            @Html.TextBoxFor(m => m.City, new { @class = "form-control form-control-sm", @placeholder = "Enter City", @Autocomplete = "off" })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.City, "", new { @class = "text-danger" })
+                    <div class="input-group mb-3">
+                        <input asp-for="City" class="form-control" placeholder="Enter Your City">
                     </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label class="control-label">State</label>
-                            @Html.TextBoxFor(m => m.State, new { @class = "form-control form-control-sm", @placeholder = "Enter State", @Autocomplete = "off" })
-                        </div>
-                        @Html.ValidationMessageFor(m => m.State, "", new { @class = "text-danger" })
+                    <div class="input-group mb-3">
+                        <input asp-for="State" class="form-control" placeholder="Enter Your state">
                     </div>
                     <div class="row">
-
-                        <!-- /.col -->
+                        @*/.col*@
                         <div class="col-4">
-                            <button type="submit" id="btnsub" class="btn btn-primary btn-block">Sign In</button>
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
                         </div>
-                        <!-- /.col -->
+                        @*/.col*@
                     </div>
-                }
-                
+                </form>
             </div>
-           
-        </div>
+            <!-- /.form-box -->
+        </div><!-- /.card -->
     </div>
-    
+    <a href='@Url.Action("Login","Account")'>I already have a membership</a>
+    <!-- /.register-box -->
+    <!-- jQuery -->
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/plugins/bootstrap/js/bootstrap.bundle.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/dist/js/adminlte.min.js"></script>
+
 </body>
 </html>
-

@@ -18,7 +18,7 @@ namespace EventBookingApp.API.Controllers
         {
             _registrationRepo = registrationRepo;
         }
-        [HttpGet("{id:int}")]
+        [HttpGet("GetUser/{id:int}")]
         public async Task<ActionResult<ApplicationUser>> GetUser(int id)
         {
             try
@@ -35,7 +35,7 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
             }
         }
-        [HttpPost]
+        [HttpPost("Registration")]
         public async Task<ActionResult<ApplicationUser>> Registration(ApplicationUser applicationUser)
         {
             try
@@ -52,6 +52,20 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when post data to database");
 
             }
+        }
+
+        [HttpGet("{email,password}")]
+        public string Login(string email, string password)
+        {
+            var user = _registrationRepo.SignInMethod(email, password);
+            string result = "false";
+            if (user != 0)
+            {
+                result = "true";
+            }
+            return result;
+
+
         }
     }
 }
