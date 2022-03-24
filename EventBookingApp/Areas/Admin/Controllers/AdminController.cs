@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataAcessLayer;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,9 +34,11 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View();
         }
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
+      
     }
 }

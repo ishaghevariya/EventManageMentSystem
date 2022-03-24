@@ -55,8 +55,7 @@ namespace EventBookingApp.Controllers
             var response = await client.PostAsJsonAsync<ApplicationUser>($"api/Account/Registration",applicationUser);
             if (response.IsSuccessStatusCode)
             {
-
-                return RedirectToAction("Index");
+                return RedirectToAction("Login");
             }
             return View();
         }

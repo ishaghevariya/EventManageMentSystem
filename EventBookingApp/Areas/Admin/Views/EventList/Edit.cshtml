@@ -1,0 +1,44 @@
+﻿@model DataAcessLayer.Event
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Edit";
+}
+<div class="card">
+    <div class="card-header">Add Event</div>
+    <div class="card-body">
+        @using (Html.BeginForm("Edit", "EventList", FormMethod.Post, new { id = "form" }))
+        {
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">EventType</label>
+                        @Html.TextBoxFor(m => m.EventTypes, new { @class = "form-control", placeholder = "Enter Event Type", @Autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    @Html.ValidationMessageFor(m => m.EventTypes, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">Images</label>
+                        @Html.TextBoxFor(m => m.Images, new { @class = "form-control", placeholder = "Enter Images", @Autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    @Html.ValidationMessageFor(m => m.Images, "", new { @class = "text-danger" })
+                </div>
+                <div class="card-footer ">
+                    <div class="fa-pull-right ">
+                        <button type="submit" class="btn btn-primary" value="save">Save</button>
+                        <a href='@Url.Action("Index","EventList")' class="btn btn-danger">Close</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+
+

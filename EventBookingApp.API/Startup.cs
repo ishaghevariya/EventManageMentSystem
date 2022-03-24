@@ -38,8 +38,10 @@ namespace EventBookingApp.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EventBookingApp.API", Version = "v1" });
             });
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-         //   services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+       //     services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             services.AddTransient<IRegistrationRepo, RegistrationRepo>();
+            services.AddTransient<IEventRepo, EventRepo>();
+            services.AddTransient<IEquipmentRepo, EquipmentRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
