@@ -1,4 +1,5 @@
 ﻿using DataAcessLayer;
+using EventBookingApp.API.Data;
 using EventBookingApp.API.Repositary;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -48,7 +49,7 @@ namespace EventBookingApp.API.Controllers
             }
         }
         [HttpPost("AddData")]
-        public async Task<ActionResult<Event>> AddData(Event evetmodel)
+        public async Task<ActionResult<EventViewModel>> AddData(EventViewModel evetmodel)
         {
             try
             {

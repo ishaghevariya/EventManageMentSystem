@@ -152,3 +152,9 @@ C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Shared\_Adm
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\EventList\Index.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\EventList\Create.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\EventList\Edit.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Equipment\Index.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Equipment\Create.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Equipment\Edit.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Food\Create.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Food\Edit.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Food\Index.cshtml.g.cs

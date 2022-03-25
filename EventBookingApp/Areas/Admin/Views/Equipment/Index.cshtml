@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DataAcessLayer.Equipment>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "List";
+}
+<div class="card">
+    <div class="card-header">
+        <div class="pull-left" style="font-weight:bold;font-size:medium">Available Equipment</div>
+        <div style="float:right">
+            <a href='@Url.Action("Create","Equipment")' class="btn btn-primary float-right"><i class="fa fa-plus"></i>AddEquipment</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.EquipmentId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EquipmentType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EquipmentCost)
+                </th>
+
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EquipmentId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EquipmentType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EquipmentCost)
+                    </td>
+                    <td>
+                        <a href='@Url.Action("Edit","Equipment" , new { id = item.EquipmentId})' class="btn btn-success">Edit</a>
+                        <a href='@Url.Action("Delete","Equipment" , new { id = item.EquipmentId})' class="btn btn-danger" onclick="return confirm('Are you sure you want to delete Equipment:@item.EquipmentId')">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

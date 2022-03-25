@@ -11,7 +11,7 @@ namespace EventBookingApp.API.Repositary
     {
         Task<Event> GetEvent(int id);
         Task<IEnumerable<Event>> GetEvents();
-        Task<Event> AddEvent(Event eventmodel);
+        Task<Event> AddEvent(EventViewModel eventmodel);
         Task<Event> UpdateEvent(Event eventmodel);
         Task<Event> DeleteEvent(int id);
 //public string UploadImage(EventViewModel eventmodel);

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<DataAcessLayer.Food>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "List";
+}
+<div class="card">
+    <div class="card-header">
+        <div class="pull-left" style="font-weight:bold;font-size:medium">Available Food</div>
+        <div style="float:right">
+            <a href='@Url.Action("Create","Food")' class="btn btn-primary float-right"><i class="fa fa-plus"></i>AddFood</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FoodId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FoodType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FoodCost)
+                </th>
+
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FoodId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FoodType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FoodCost)
+                    </td>
+                    <td>
+                        <a href='@Url.Action("Edit","Food" , new { id = item.FoodId})' class="btn btn-success">Edit</a>
+                        <a href='@Url.Action("Delete","Food" , new { id = item.FoodId})' class="btn btn-danger" onclick="return confirm('Are you sure you want to delete food:@item.FoodId')">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

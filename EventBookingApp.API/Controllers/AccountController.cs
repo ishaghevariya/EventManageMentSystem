@@ -61,11 +61,10 @@ namespace EventBookingApp.API.Controllers
             string result = "false";
             if (user != 0)
             {
+                HttpContext.Session.SetString("Name",email);
                 result = "true";
             }
             return result;
-
-
         }
     }
 }

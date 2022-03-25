@@ -40,11 +40,23 @@
                         @Html.DisplayFor(modelItem => item.Images)
                     </td>
                     <td>
-                        <a href='@Url.Action("Delete","EventList" , new { id = item.Id})' class="btn btn-danger">Delete</a>
-                        <a href='@Url.Action("Edit","EventList" , new { id = item.Id})' class="btn btn-success">Update</a>
+                        <a href='@Url.Action("Edit","EventList" , new { id = item.Id})' class="btn btn-success">Edit</a>
+                        <a href='@Url.Action("Delete","EventList" , new { id = item.Id})' class="btn btn-danger" onclick="return confirm('Are you sure You want to Delete Event:@item.Id')">Delete</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
+@*@section scripts{
+<script>
+    $(".btndelete").on("click", function () {
+        var deleteId = $(this).data("id");
+        deleteRecord(function (result) {
+            if (result) {
+                location.href = '/EventList/Delete?id=' + deleteId;
+            }
+        });
+    });
+</script>
+ }*@

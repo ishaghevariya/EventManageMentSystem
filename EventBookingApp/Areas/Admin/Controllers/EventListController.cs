@@ -1,4 +1,5 @@
 ﻿using DataAcessLayer;
+using EventBookingApp.API.Data;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -33,11 +34,11 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async  Task<IActionResult> Create(Event eventmodel)
+        public async  Task<IActionResult> Create(EventViewModel eventmodel)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44362/");
-            var response = await client.PostAsJsonAsync<Event>($"api/AddEvent/AddData", eventmodel);
+            var response = await client.PostAsJsonAsync<EventViewModel>($"api/AddEvent/AddData", eventmodel);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

@@ -1,4 +1,5 @@
 ﻿using DataAcessLayer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -28,15 +29,21 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                 var result = response.Content.ReadAsStringAsync().Result;
                 if (result == "true")
                 {
+                  
                     return RedirectToAction("Index");
                 }
                 return RedirectToAction("AdminLogin");
             }
             return View();
         }
+        public IActionResult LogOut()
+        {
+            return RedirectToAction("AdminLogin");
+        }
         [HttpGet]
         public IActionResult Index()
         {
+           // ViewData["Name"] = HttpContext.Session.GetString("Name");
             return View();
         }
       

@@ -19,12 +19,24 @@ namespace EventBookingApp.API.Repositary
         public EventRepo(ApplicationDbContext context)
         {
             _context = context;
-        }   
-        public async Task<Event> AddEvent(Event eventmodel)
+        }
+        //public async Task<Event> AddEvent(Event eventmodel)
+        //{
+        //    var result = await _context.AddAsync(eventmodel);
+        //    await _context.SaveChangesAsync();
+        //    return result.Entity;
+        //}
+        public async Task<Event> AddEvent(EventViewModel eventmodel)
         {
-            var result = await _context.AddAsync(eventmodel);
+            string uniqueFileName = UploadImage(eventmodel);
+            Event events = new Event
+            {
+                EventTypes = eventmodel.EventTypes,
+                Images = uniqueFileName
+            };
+            _context.Add(events);
             await _context.SaveChangesAsync();
-            return result.Entity;
+            return events;
         }
         public async Task<Event> DeleteEvent(int id)
         {
@@ -61,22 +73,22 @@ namespace EventBookingApp.API.Repositary
 
 
 
-        //public string UploadImage(EventViewModel eventmodel)
-        //{
-        //    string uniqueFileName = null;
+        private string UploadImage(EventViewModel eventmodel)
+        {
+            string uniqueFileName = null;
 
-        //    if (eventmodel.Images != null)
-        //    {
-        //        string uploadsFolder = Path.Combine("Resources", "images");
-        //        uniqueFileName = Guid.NewGuid().ToString() + "_" + eventmodel.Images.FileName;
-        //        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-        //        using (var fileStream = new FileStream(filePath, FileMode.Create))
-        //        {
-        //            eventmodel.Images.CopyTo(fileStream);
-        //        }
-        //    }
-        //    return uniqueFileName;
-        //}
+            if (eventmodel.Images != null)
+            {
+                string uploadsFolder = Path.Combine("Resources", "Images");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + eventmodel.Images.FileName;
+                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    eventmodel.Images.CopyTo(fileStream);
+                }
+            }
+            return uniqueFileName;
+        }
 
 
     }

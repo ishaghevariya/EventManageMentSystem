@@ -5,10 +5,11 @@
     ViewData["Title"] = "Edit";
 }
 <div class="card">
-    <div class="card-header">Add Event</div>
+    <div class="card-header">Edit Event</div>
     <div class="card-body">
         @using (Html.BeginForm("Edit", "EventList", FormMethod.Post, new { id = "form" }))
         {
+            @Html.HiddenFor(m => m.Id, new { @class = "eventid" })
             <div class="row">
                 <div class="col-sm-4">
                     <div class="form-group">
@@ -39,6 +40,9 @@
     </div>
 </div>
 
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 
 
 

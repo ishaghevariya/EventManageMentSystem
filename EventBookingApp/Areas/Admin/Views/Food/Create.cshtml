@@ -1,0 +1,46 @@
+﻿@model DataAcessLayer.Food
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Create";
+}
+<div class="card">
+    <div class="card-header">Add Equipment</div>
+    <div class="card-body">
+        @using (Html.BeginForm("Create", "Food", FormMethod.Post, new { id = "form" }))
+        {
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">FoodType</label>
+                        @Html.TextBoxFor(m => m.FoodType, new { @class = "form-control", placeholder = "Enter Food Type", @Autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    @Html.ValidationMessageFor(m => m.FoodType, "", new { @class = "text-danger" })
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label class="control-label">FoodCost</label>
+                        @Html.TextBoxFor(m => m.FoodCost, new { @class = "form-control", placeholder = "Enter FoodCost", @Autocomplete = "off" })
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    @Html.ValidationMessageFor(m => m.FoodCost, "", new { @class = "text-danger" })
+                </div>
+                <div class="card-footer ">
+                    <div class="fa-pull-right ">
+                        <button type="submit" class="btn btn-primary" value="save">Save</button>
+                        <a href='@Url.Action("Index","Food")' class="btn btn-danger">Close</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+
