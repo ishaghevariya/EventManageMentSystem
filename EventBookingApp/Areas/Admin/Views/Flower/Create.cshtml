@@ -1,0 +1,48 @@
+﻿@model DataAcessLayer.ViewModel.FlowerViewModel
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Create";
+}
+<div class="card">
+    <div class="card-header">Add Flowers</div>
+    <div class="card-body">
+        <form asp-action="Create" method="post" , enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label asp-for="FlowerType" class="control-label"></label>
+                        <input asp-for="FlowerType" class="form-control" />
+                        <span asp-validation-for="FlowerType" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label asp-for="FlowerImage" class="control-label"></label>
+                        <input asp-for="FlowerImage" class="form-control" />
+                        <span asp-validation-for="FlowerImage" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label asp-for="FlowerCost" class="control-label"></label>
+                        <input asp-for="FlowerCost" class="form-control" />
+                        <span asp-validation-for="FlowerCost" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="card-footer ">
+                    <div class="fa-pull-right ">
+                        <button type="submit" class="btn btn-primary" value="Create">Save</button>
+                        <a href='@Url.Action("Index","Flower")' class="btn btn-danger">Close</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+

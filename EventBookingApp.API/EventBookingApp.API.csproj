@@ -24,7 +24,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Images\" />
+    <None Include="wwwroot\Images\6b221b92-5130-4cae-acfc-fd075d25f2eb_Bi1.jpg" />
+    <None Include="wwwroot\Images\af5fe778-c50d-496d-820b-7c176f0decb9_Bi1.jpg" />
   </ItemGroup>
 
 </Project>

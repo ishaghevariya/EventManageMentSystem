@@ -6,26 +6,23 @@
 <div class="card">
     <div class="card-header">Add Equipment</div>
     <div class="card-body">
-        @using (Html.BeginForm("Create", "Food", FormMethod.Post, new { id = "form" }))
-        {
+        <form asp-action="Create" method="post">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="control-label">FoodType</label>
-                        @Html.TextBoxFor(m => m.FoodType, new { @class = "form-control", placeholder = "Enter Food Type", @Autocomplete = "off" })
+                        <label asp-for="FoodType" class="control-label"></label>
+                        <input asp-for="FoodType" class="form-control" />
+                        <span asp-validation-for="FoodType" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    @Html.ValidationMessageFor(m => m.FoodType, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="control-label">FoodCost</label>
-                        @Html.TextBoxFor(m => m.FoodCost, new { @class = "form-control", placeholder = "Enter FoodCost", @Autocomplete = "off" })
+                        <div class="form-group">
+                            <label asp-for="FoodCost" class="control-label"></label>
+                            <input asp-for="FoodCost" class="form-control" />
+                            <span asp-validation-for="FoodCost" class="text-danger"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="input-group mb-3">
-                    @Html.ValidationMessageFor(m => m.FoodCost, "", new { @class = "text-danger" })
                 </div>
                 <div class="card-footer ">
                     <div class="fa-pull-right ">
@@ -34,7 +31,7 @@
                     </div>
                 </div>
             </div>
-        }
+        </form>
     </div>
 </div>
 @section Scripts {

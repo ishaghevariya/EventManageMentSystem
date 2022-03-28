@@ -1,6 +1,8 @@
 ﻿using DataAcessLayer;
+using DataAcessLayer.ViewModel;
 using EventBookingApp.API.Data;
 using EventBookingApp.API.Repositary;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace EventBookingApp.API.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class AddEventController : ControllerBase
@@ -48,8 +51,10 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
             }
         }
+
         [HttpPost("AddData")]
-        public async Task<ActionResult<EventViewModel>> AddData(EventViewModel evetmodel)
+       
+        public async Task<ActionResult<EventViewModel>> AddData([FromForm] EventViewModel evetmodel)
         {
             try
             {

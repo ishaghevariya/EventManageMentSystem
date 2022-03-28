@@ -1,11 +1,9 @@
 ﻿@model DataAcessLayer.ApplicationUser
-
 @{
     ViewData["Title"] = "AdminLogin";
     Layout = null;
    
 }
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,31 +29,26 @@
             </div>
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
-                @using (Html.BeginForm(new { id = "form" }))
-                {
+                <form asp-action="AdminLogin" method="post">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
+                  
                     <div class="input-group mb-3">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Your User Name", @Autocomplete = "off" })
+                        <input asp-for="Email" class="form-control" placeholder="Email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
                             </div>
                         </div>
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="input-group mb-3">
-                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="input-group mb-3">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Your Password" })
+                        <input type="password" asp-for="Password" class="form-control" placeholder="Password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="row">
                         <!-- /.col -->
@@ -64,12 +57,12 @@
                         </div>
                         <!-- /.col -->
                     </div>
-                }
-                <!-- /.social-auth-links -->
-                <p class="mb-1">
-                    @*<a href="forgot-password.html">I forgot my password</a>*@
-                    <a href='@Url.Action("ForgotPassword","Account")'>I Forgot my password</a>
-                </p>
+                </form>
+                    <!-- /.social-auth-links -->
+                    <p class="mb-1">
+                        @*<a href="forgot-password.html">I forgot my password</a>*@
+                        <a href='@Url.Action("ForgotPassword","Account")'>I Forgot my password</a>
+                    </p>
             </div>
             <!-- /.login-card-body -->
         </div>
@@ -80,6 +73,8 @@
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.js"></script>
     <!-- AdminLTE App -->
     <script src="~/dist/js/adminlte.min.js"></script>
+
+   
 </body>
 </html>
 @section Scripts {

@@ -1,4 +1,5 @@
 ﻿using DataAcessLayer;
+using DataAcessLayer.ViewModel;
 using EventBookingApp.API.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -14,11 +15,12 @@ namespace EventBookingApp.API.Repositary
     {
         private readonly ApplicationDbContext _context;
         //private readonly string uniqueFileName;
-        //  private readonly IWebHostEnvironment _webHostEnvironment;
+         private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public EventRepo(ApplicationDbContext context)
+        public EventRepo(ApplicationDbContext context,IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
         //public async Task<Event> AddEvent(Event eventmodel)
         //{
@@ -53,9 +55,8 @@ namespace EventBookingApp.API.Repositary
         {
             return await _context.Events.FirstOrDefaultAsync(x => x.Id == id);
         }
-
         public async Task<IEnumerable<Event>> GetEvents()
-        {
+         {
             return await _context.Events.ToListAsync();
         }
         public async Task<Event> UpdateEvent(Event eventmodel)
@@ -79,7 +80,7 @@ namespace EventBookingApp.API.Repositary
 
             if (eventmodel.Images != null)
             {
-                string uploadsFolder = Path.Combine("Resources", "Images");
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + eventmodel.Images.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))

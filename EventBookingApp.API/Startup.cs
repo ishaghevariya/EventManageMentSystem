@@ -43,9 +43,10 @@ namespace EventBookingApp.API
             services.AddTransient<IEventRepo, EventRepo>();
             services.AddTransient<IEquipmentRepo, EquipmentRepo>();
             services.AddTransient<IFoodRepo, FoodRepo>();
+            services.AddTransient<IFlowerRepo, FlowerRepo>();
             services.AddRazorPages();
             services.AddHttpClient();
-            services.AddSession();
+   
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,7 +65,7 @@ namespace EventBookingApp.API
             app.UseAuthentication();
 
             app.UseAuthorization();
-             app.UseSession();
+      
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -12,7 +12,22 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
+#nullable restore
+#line 1 "C:\isha\EventBookingApp\EventBookingApp\Areas\Admin\Views\_ViewImports.cshtml"
+using EventBookingApp;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\isha\EventBookingApp\EventBookingApp\Areas\Admin\Views\_ViewImports.cshtml"
+using EventBookingApp.Models;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c68086e5838b73b6a88d8d728c3d78268db3eae7", @"/Areas/Admin/Views/EventList/Edit.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"42218ab629f0e661b70decfaecaeb9556b7ef511", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_EventList_Edit : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<DataAcessLayer.Event>
     {
         #pragma warning disable 1998

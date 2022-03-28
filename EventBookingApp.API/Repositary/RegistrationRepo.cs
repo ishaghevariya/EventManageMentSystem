@@ -1,4 +1,5 @@
 ﻿using DataAcessLayer;
+using DataAcessLayer.ViewModel;
 using EventBookingApp.API.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -12,14 +13,25 @@ namespace EventBookingApp.API.Repositary
     public class RegistrationRepo : IRegistrationRepo
     {
         private readonly ApplicationDbContext _context;
+
         public RegistrationRepo(ApplicationDbContext context)
         {
             _context = context;
         }
-
         public async Task<ApplicationUser> GetUser(int id)
         {
             return await _context.ApplicationUsers.Where(x => x.Id == id).FirstOrDefaultAsync();
+        }
+        public async Task<ApplicationUser> changePassword(ChangePasswordModel chagePassword)
+        {
+            var user = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Email == chagePassword.Email);
+            if (user != null)
+            {
+                user.Password = chagePassword.NewPassword;
+                await _context.SaveChangesAsync();
+                return user;
+            }
+            return null;
         }
 
         public int SignInMethod(string email, string password)
@@ -44,6 +56,11 @@ namespace EventBookingApp.API.Repositary
             var result = await _context.ApplicationUsers.AddAsync(user);
             await _context.SaveChangesAsync();
             return result.Entity;
+        }
+
+        public async Task<ApplicationUser> GetUserByEmail(string email)
+        {
+            return await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Email == email);
         }
     }
 }

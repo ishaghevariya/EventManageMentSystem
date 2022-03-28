@@ -8,27 +8,24 @@
 <div class="card">
     <div class="card-header">Edit Equipment</div>
     <div class="card-body">
-        @using (Html.BeginForm("Edit", "Equipment", FormMethod.Post, new { id = "form" }))
-        {
+        <form asp-action="Edit" method="post">
             @Html.HiddenFor(m => m.EquipmentId, new { @class = "equipmentid" })
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="control-label">EquipmentType</label>
-                        @Html.TextBoxFor(m => m.EquipmentType, new { @class = "form-control", placeholder = "Enter Equipment Type", @Autocomplete = "off" })
+                        <label asp-for="EquipmentType" class="control-label"></label>
+                        <input asp-for="EquipmentType" class="form-control" />
+                        <span asp-validation-for="EquipmentType" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="input-group mb-3">
-                    @Html.ValidationMessageFor(m => m.EquipmentType, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label class="control-label">EquipmentCost</label>
-                        @Html.TextBoxFor(m => m.EquipmentCost, new { @class = "form-control", placeholder = "Enter Equipment Cost", @Autocomplete = "off" })
+                        <div class="form-group">
+                            <label asp-for="EquipmentCost" class="control-label"></label>
+                            <input asp-for="EquipmentCost" class="form-control" />
+                            <span asp-validation-for="EquipmentCost" class="text-danger"></span>
+                        </div>
                     </div>
-                </div>
-                <div class="input-group mb-3">
-                    @Html.ValidationMessageFor(m => m.EquipmentCost, "", new { @class = "text-danger" })
                 </div>
                 <div class="card-footer ">
                     <div class="fa-pull-right ">
@@ -37,7 +34,7 @@
                     </div>
                 </div>
             </div>
-        }
+        </form>
     </div>
 </div>
 

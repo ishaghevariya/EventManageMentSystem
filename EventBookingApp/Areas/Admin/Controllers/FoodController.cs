@@ -1,4 +1,5 @@
 ﻿using DataAcessLayer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 namespace EventBookingApp.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+  
     public class FoodController : Controller
     {
         [HttpGet]

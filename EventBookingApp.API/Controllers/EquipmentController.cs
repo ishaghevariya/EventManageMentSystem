@@ -1,5 +1,6 @@
 ﻿using DataAcessLayer;
 using EventBookingApp.API.Repositary;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace EventBookingApp.API.Controllers
 {
+
     [Route("api/[controller]")]
     [ApiController]
     public class EquipmentController : ControllerBase

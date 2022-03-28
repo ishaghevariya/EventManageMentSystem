@@ -29,6 +29,8 @@
         <tbody>
             @foreach (var item in Model)
             {
+                var tm = "#myModal" + item.Id;
+                var mid = "myModal" + item.Id;
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Id)
@@ -37,11 +39,32 @@
                         @Html.DisplayFor(modelItem => item.EventTypes)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Images)
+                        <img src="@item.Images" class="img-thumbnail" height="100" width="100" asp-append-version="true" />
                     </td>
                     <td>
-                        <a href='@Url.Action("Edit","EventList" , new { id = item.Id})' class="btn btn-success">Edit</a>
-                        <a href='@Url.Action("Delete","EventList" , new { id = item.Id})' class="btn btn-danger" onclick="return confirm('Are you sure You want to Delete Event:@item.Id')">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a> |
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
+                            Delete
+                        </button>
+
+                        <div class="modal fade" id="@mid"  role="dialog"  aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Delete Confirmation</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure want to delete this item?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a asp-action="Delete" asp-route-Id="@item.Id" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </td>
                 </tr>
             }

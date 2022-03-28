@@ -1,4 +1,4 @@
-﻿@model DataAcessLayer.Event
+﻿@model DataAcessLayer.ViewModel.EventViewModel
 
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -7,28 +7,21 @@
 <div class="card">
     <div class="card-header">Add Event</div>
     <div class="card-body">
-        @using (Html.BeginForm("Create", "EventList", FormMethod.Post, new { id = "form" }))
-        {
+        <form asp-action="Create" method="post" , enctype="multipart/form-data">
             <div class="row">
-                <div class="col-sm-4">
-                    <div class="form-group">
-                        <label class="control-label">EventType</label>
-                        @Html.TextBoxFor(m => m.EventTypes, new { @class = "form-control", placeholder = "Enter Event Type", @Autocomplete = "off" })
-                    </div>
+                <div class="col-sm-6">
+                    <label asp-for="EventTypes" class="control-label"></label>
+                    <input asp-for="EventTypes" class="form-control" />
+                    <span asp-validation-for="EventTypes" class="text-danger"></span>
                 </div>
-                <div class="input-group mb-3">
-                    @Html.ValidationMessageFor(m => m.EventTypes, "", new { @class = "text-danger" })
-                </div>
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="form-group">
-                        @Html.LabelFor(m => m.Images, htmlAttributes: new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            <input type="file" name="ImageFile" required />
+                        <div class="form-group">
+                            <label asp-for="Images" class="control-label"></label>
+                            <input asp-for="Images" class="form-control" />
+                            <span asp-validation-for="Images" class="text-danger"></span>
                         </div>
                     </div>
-                </div>
-                <div class="input-group mb-3">
-                    @Html.ValidationMessageFor(m => m.Images, "", new { @class = "text-danger" })
                 </div>
                 <div class="card-footer ">
                     <div class="fa-pull-right ">
@@ -37,7 +30,7 @@
                     </div>
                 </div>
             </div>
-        }
+        </form>
     </div>
 </div>
 
