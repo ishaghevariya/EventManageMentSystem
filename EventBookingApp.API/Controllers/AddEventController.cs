@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace EventBookingApp.API.Controllers
 {
-
+ 
     [Route("api/[controller]")]
     [ApiController]
     public class AddEventController : ControllerBase
@@ -53,7 +53,6 @@ namespace EventBookingApp.API.Controllers
         }
 
         [HttpPost("AddData")]
-       
         public async Task<ActionResult<EventViewModel>> AddData([FromForm] EventViewModel evetmodel)
         {
             try

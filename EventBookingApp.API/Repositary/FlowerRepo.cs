@@ -45,7 +45,6 @@ namespace EventBookingApp.API.Repositary
             }
             return null;
         }
-
         public async Task<Flower> GetFlower(int id)
         {
             return await _context.Flowers.FirstOrDefaultAsync(x=>x.FlowerId == id);

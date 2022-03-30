@@ -40,19 +40,19 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View();
         }
-        private static async Task<ApplicationUser> GetUserByEmail(string email)
-        {
-            ApplicationUser user = new ApplicationUser();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
-            HttpResponseMessage response = await client.GetAsync($"api/Account/{email}");
-            if (response.IsSuccessStatusCode)
-            {
-                var result = response.Content.ReadAsStringAsync().Result;
-                user = JsonConvert.DeserializeObject<ApplicationUser>(result);
-            }
-            return user;
-        }
+        //private static async Task<ApplicationUser> GetUserByEmail(string email)
+        //{
+        //    ApplicationUser user = new ApplicationUser();
+        //    HttpClient client = new HttpClient();
+        //    client.BaseAddress = new Uri("https://localhost:44362/");
+        //    HttpResponseMessage response = await client.GetAsync($"api/Account/{email}");
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var result = response.Content.ReadAsStringAsync().Result;
+        //        user = JsonConvert.DeserializeObject<ApplicationUser>(result);
+        //    }
+        //    return user;
+        //}
         [HttpGet]
         public IActionResult ChangePassword()
         {
@@ -78,7 +78,6 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-           // ViewData["Name"] = HttpContext.Session.GetString("Name");
             return View();
         }
       

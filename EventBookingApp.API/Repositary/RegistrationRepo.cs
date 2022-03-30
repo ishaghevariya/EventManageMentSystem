@@ -37,6 +37,7 @@ namespace EventBookingApp.API.Repositary
         public int SignInMethod(string email, string password)
         {
             var result = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).Count();
+           
             return result;
         }
         public async Task<ApplicationUser> UserRegistration(ApplicationUser applicationUser)
@@ -58,9 +59,9 @@ namespace EventBookingApp.API.Repositary
             return result.Entity;
         }
 
-        public async Task<ApplicationUser> GetUserByEmail(string email)
-        {
-            return await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Email == email);
-        }
+        //public async Task<ApplicationUser> GetUserByEmail(string email)
+        //{
+        //    return await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Email == email);
+        //}
     }
 }

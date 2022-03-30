@@ -28,7 +28,7 @@ namespace EventBookingApp.API.Repositary
         //    await _context.SaveChangesAsync();
         //    return result.Entity;
         //}
-        public async Task<Event> AddEvent(EventViewModel eventmodel)
+        public async Task<Event>AddEvent(EventViewModel eventmodel)
         {
             string uniqueFileName = UploadImage(eventmodel);
             Event events = new Event
@@ -36,7 +36,7 @@ namespace EventBookingApp.API.Repositary
                 EventTypes = eventmodel.EventTypes,
                 Images = uniqueFileName
             };
-            _context.Add(events);
+            await _context.AddAsync(events);
             await _context.SaveChangesAsync();
             return events;
         }

@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewData["Title"] = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <title>Events a Wedding Category Bootstrap Responsive website Template | Home :: w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Events Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/plugins/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/plugins/css/font-awesome.css" rel="stylesheet">		<!-- font-awesome icons -->
+    <!-- //Custom Theme files -->
+    <!-- js -->
+    <script src="~/plugins/js/jquery-2.2.3.min.js"></script>
+    <!-- //js -->
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+<body>
+    <div class="w3ls-banner-1">
+         @*banner-text 
+         //banner 
+         header*@ 
+        <div class="header-w3layouts">
+             @*Navigation*@ 
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header page-scroll">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                            <span class="sr-only">Events</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <h1><a class="navbar-brand" href="@Url.Action("Events","Account")">Events</a></h1>
+                    </div>
+                     @*Collect the nav links, forms, and other content for toggling*@ 
+                    <div class="collapse navbar-collapse navbar-ex1-collapse">
+                        <ul class="nav navbar-nav navbar-right">
+                             @*Hidden li included to remove active class from about link when scrolled up past about section*@ 
+                            <li class="hidden"><a class="page-scroll" href="#page-top"></a>	</li>
+                            <li><a class="hvr-sweep-to-right" href="@Url.Action("Index","Account")">Home</a></li>
+                            <li><a class="hvr-sweep-to-right" href="@Url.Action("About","Account")">About</a></li>
+                            <li><a class="hvr-sweep-to-right" href="@Url.Action("Events","Account")">Events</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle hvr-sweep-to-right" data-hover="Pages" data-toggle="dropdown">Pages <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="hvr-sweep-to-right" href="icons.html">Icons</a></li>
+                                    <li><a class="hvr-sweep-to-right" href="typography.html">Short Codes</a></li>
+                                </ul>
+                            </li>
+                            <li><a class="hvr-sweep-to-right" href="@Url.Action("Gallery","Account")">Gallery</a></li>
+                            <li><a class="hvr-sweep-to-right" href="@Url.Action("Contact","Account")">Contact</a></li>
+                        </ul>
+                    </div>
+                     @*/.navbar-collapse*@ 
+                </div>
+                 @*/.container*@ 
+            </nav>
+        </div>
+         @*//header*@ 
+    </div>
+    <!-- about -->
+    <div class="about">
+        <div class="container">
+            <h2 class="heading-agileinfo">About Us<span>Events is a professionally managed Event</span></h2>
+            <div class="about-grids-1">
+                <div class="col-md-5 wthree-about-left">
+                    <div class="wthree-about-left-info">
+                        <img src="~/plugins/images/g3.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="col-md-7 agileits-about-right">
+                    <h5>Cras ac pellentesque diam. Mauris eu purus eu lectus fermentum dictum at ut dolor. Fusce id sodales turpis. Mauris facilisis tristique tincidunt. Phasellus hendrerit ligula dui, quis elementum mi condimentum at.</h5>
+                    <p>
+                        In hac habitasse platea dictumst. Aenean quis orci a erat convallis tincidunt. Curabitur blandit efficitur quam sit amet sagittis. Mauris aliquam, dui nec semper pellentesque, ex erat fringilla purus, ut placerat ante urna in nulla. Nullam est nunc, dictum dictum blandit sit amet, gravida et elit. Suspendisse ultricies mauris eu tortor blandit gravida.
+                        <span>Nullam eget viverra mi. Etiam eget posuere eros, id vulputate neque. Etiam interdum consequat erat, sed auctor neque ullamcorper a. Integer commodo eget risus vitae gravida. Nullam libero mi, condimentum quis finibus ut, consequat ac quam.</span>
+                    </p>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- //about -->
+    <!-- offers -->
+</body>

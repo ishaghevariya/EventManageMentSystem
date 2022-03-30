@@ -11,7 +11,7 @@ namespace EventBookingApp.API.Repositary
     {
         Task<ApplicationUser> UserRegistration(ApplicationUser applicationUser);
         Task<ApplicationUser> GetUser(int id);
-        Task<ApplicationUser> GetUserByEmail(string email);
+        //Task<ApplicationUser> GetUserByEmail(string email);
         public int SignInMethod(string email, string password);
         Task<ApplicationUser> changePassword(ChangePasswordModel chagePassword);
 

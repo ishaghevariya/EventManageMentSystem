@@ -15,12 +15,10 @@ namespace EventBookingApp.Controllers
     public class AccountController : Controller
     {
         private readonly ILogger<AccountController> _logger;
-
         public AccountController(ILogger<AccountController> logger)
         {
             _logger = logger;
         }
-
         [HttpGet]
         public IActionResult Login()
         {
@@ -64,7 +62,23 @@ namespace EventBookingApp.Controllers
         {
             return View();
         }
+        public IActionResult About()
+        {
+            return View();
+        }
+        public IActionResult Contact()
+        {
+            return View();
+        }
+        public IActionResult Events()
+        {
+            return View();
+        }
         public IActionResult Privacy()
+        {
+            return View();
+        }
+        public IActionResult Gallery()
         {
             return View();
         }

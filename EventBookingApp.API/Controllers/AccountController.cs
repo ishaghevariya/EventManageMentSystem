@@ -39,23 +39,23 @@ namespace EventBookingApp.API.Controllers
             }
         }
 
-        [HttpGet("GetUserByEmail/{email}")]
-        public async Task<ActionResult<ApplicationUser>> GetUserByEmail(string email)
-        {
-            try
-            {
-                var result = await _registrationRepo.GetUserByEmail(email);
-                if (result == null)
-                {
-                    return NotFound();
-                }
-                return result;
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving email from database");
-            }
-        }
+        //[HttpGet("GetUserByEmail/{email}")]
+        //public async Task<ActionResult<ApplicationUser>> GetUserByEmail(string email)
+        //{
+        //    try
+        //    {
+        //        var result = await _registrationRepo.GetUserByEmail(email);
+        //        if (result == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        return result;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving email from database");
+        //    }
+        //}
         [HttpPost("Registration")]
         public async Task<ActionResult<ApplicationUser>> Registration(ApplicationUser applicationUser)
         {
@@ -95,7 +95,6 @@ namespace EventBookingApp.API.Controllers
             string result = "false";
             if (user != 0)
             {
-
                 result = "true";
             }
             return result;

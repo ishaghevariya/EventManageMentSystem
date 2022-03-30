@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -158,11 +159,13 @@
                         </a>
                     </li>*@
                 <li>
-                   
+
                     <div class="dropdown" style="padding-right:2.5em">
                         <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                           @{ var x = Context.Session.GetString("Name");}
-                           @x
+                            @{ var x = Context.Session.GetString("Name");}
+                            @x
+                           
+                           
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="padding-right:10em">
                             <a class="dropdown-item" href="@Url.Action("LogOut","Admin")">LogOut</a>
