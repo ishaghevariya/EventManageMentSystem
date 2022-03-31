@@ -6,87 +6,111 @@
 }
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registration Page</title>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link href="~/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
-    <!-- icheck bootstrap -->
-    <link href="~/plugins/icheck-bootstrap/icheck-bootstrap.min.css" rel="stylesheet" />
-    <!-- Theme style -->
-    <link href="~/dist/css/adminlte.min.css" rel="stylesheet" />
+    <!-- Title Page-->
+    <title>Au Register Forms by Colorlib</title>
+
+    <!-- Icons font CSS-->
+    <link href="~/plugins/vendor/mdi-font/css/material-design-iconic-font.css" rel="stylesheet" />
+    <link href="~/plugins/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" />
+
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="~/plugins/css/main.css" rel="stylesheet" />
+
 </head>
-<body class="hold-transition register-page">
-    <div class="register-box">
-        <div class="register-logo">
-            <b>Event Management System</b>
-        </div>
-        <div class="card">
-            <div class="card-body register-card-body">
-                <p class="login-box-msg">Register a new membership</p>
-                <form asp-action="Registration" method="post">
-                    <div class="input-group mb-3">
-                        <input asp-for="UserName" class="form-control" placeholder="Enter Full Name">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
+<body>
+    <div class="page-wrapper bg-gra-02 p-t-130 p-b-100 font-poppins">
+        <div class="wrapper wrapper--w680">
+            <div class="card card-4">
+                <div class="card-body">
+                    <h2 class="title">Registration Form</h2>
+                    <form asp-action="Registration" method="post">
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="UserName">UserName</label>
+                                    <input asp-for="UserName" class="input--style-4" type="text" name="UserName">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="Password">Password</label>
+                                    <input type="password" asp-for="Password" class="input--style-4" name="password">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input asp-for="Password" class="form-control" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="Email">Email</label>
+                                    <input asp-for="Email" class="input--style-4" type="email" name="email">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="Gender">Gender</label>
+                                    <div class="p-t-10">
+                                        <label class="radio-container m-r-45">
+                                            Male
+                                            <input type="radio" checked="checked" name="Gender" value="male">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label class="radio-container">
+                                            Female
+                                            <input type="radio" name="Gender" value="female">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input asp-for="Email" class="form-control" placeholder="Email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="ContactNo">Phone Number</label>
+                                    <input asp-for="ContactNo" class="input--style-4" type="text" name="contactno">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="Address">Address</label>
+                                    <textarea asp-for="Address" class="input--style-4" name="address"></textarea>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <textarea asp-for="Address" class="form-control" placeholder="Enter Your Address"></textarea>
-                    </div>
-                    <div class="input-group mb-3">
-                        <label asp-for="Gender" class="control-label"></label><br />&nbsp;<br />
-                        <input type="radio" value="Male" id="Gender" name="Gender" />Male&nbsp;&nbsp;
-                        <input type="radio" value="Female" id="Gender" name="Gender" />Female
-                    </div>
-                    <div class="input-group mb-3">
-                        <input asp-for="City" class="form-control" placeholder="Enter Your City">
-                    </div>
-                    <div class="input-group mb-3">
-                        <input asp-for="State" class="form-control" placeholder="Enter Your state">
-                    </div>
-                    <div class="row">
-                        @*/.col*@
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        <div class="row row-space">
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="City">City</label>
+                                    <input asp-for="City" class="input--style-4" type="text" name="city">
+                                </div>
+                            </div>
+                            <div class="col-2">
+                                <div class="input-group">
+                                    <label asp-for="State" >State</label>
+                                    <input asp-for="State" class="input--style-4" type="text" name="state">
+                                </div>
+                            </div>
                         </div>
-                        @*/.col*@
-                    </div>
-                </form>
-            </div>
-            <!-- /.form-box -->
-        </div><!-- /.card -->
-    </div>
-    <a href='@Url.Action("Login","Account")'>I already have a membership</a>
-    <!-- /.register-box -->
-    <!-- jQuery -->
-    <script src="~/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="~/plugins/bootstrap/js/bootstrap.bundle.js"></script>
-    <!-- AdminLTE App -->
-    <script src="~/dist/js/adminlte.min.js"></script>
+                        <div class="p-t-15">
+                            <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
+                        </div>
 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/plugins/js/global.js"></script>
+    <script src="~/plugins/vendor/jquery/jquery.min.js"></script>
 </body>
 </html>
