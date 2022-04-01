@@ -1,11 +1,13 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DataAcessLayer
 {
     public class ApplicationUser
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required(ErrorMessage ="UserName is Required")]
         public string UserName { get; set; }

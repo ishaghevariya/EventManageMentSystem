@@ -2,6 +2,7 @@
 using DataAcessLayer.ViewModel;
 using EventBookingApp.API.Repositary;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,9 +15,11 @@ namespace EventBookingApp.API.Controllers
     
     [Route("api/[controller]")]
     [ApiController]
+
     public class FlowersController : ControllerBase
     {
         private readonly IFlowerRepo _flowerRepo;
+      
         public FlowersController(IFlowerRepo flowerRepo)
         {
             _flowerRepo = flowerRepo;
@@ -52,7 +55,7 @@ namespace EventBookingApp.API.Controllers
             }
         }
         [HttpPost("AddFlower")]
-        public async Task<ActionResult<FlowerViewModel>> AddFlower([FromForm] FlowerViewModel flowermodel)
+        public async Task<ActionResult<FlowerViewModel>> AddFlower( FlowerViewModel flowermodel)
         {
             try
             {
@@ -86,11 +89,11 @@ namespace EventBookingApp.API.Controllers
             }
         }
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<Flower>> UpdateFlower(Flower flower, int id)
+        public async Task<ActionResult<Flower>> UpdateFlower(FlowerViewModel flower, int id)
         {
             try
             {
-                if (id != flower.FlowerId)
+                if (id != flower.Id)
                 {
                     return BadRequest("Id Mismatch");
                 }

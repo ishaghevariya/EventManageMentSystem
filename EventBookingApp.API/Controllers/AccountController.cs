@@ -80,7 +80,7 @@ namespace EventBookingApp.API.Controllers
         {
             try
             {
-                return await _registrationRepo.changePassword(model);
+                return await _registrationRepo.ChangePassword(model);
             }
             catch (Exception)
             {

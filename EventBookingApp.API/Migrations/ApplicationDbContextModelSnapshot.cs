@@ -36,6 +36,7 @@ namespace EventBookingApp.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
@@ -48,6 +49,7 @@ namespace EventBookingApp.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserRole")
@@ -161,6 +163,7 @@ namespace EventBookingApp.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("EquipmentType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EquipmentId");
@@ -176,6 +179,7 @@ namespace EventBookingApp.API.Migrations
                         .UseIdentityColumn();
 
                     b.Property<string>("EventTypes")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Images")
@@ -200,6 +204,7 @@ namespace EventBookingApp.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FlowerType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FlowerId");
@@ -218,6 +223,7 @@ namespace EventBookingApp.API.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("FoodType")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("FoodId");

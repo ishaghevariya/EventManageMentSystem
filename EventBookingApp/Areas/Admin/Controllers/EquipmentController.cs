@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace EventBookingApp.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class EquipmentController : Controller
     {
         [HttpGet]

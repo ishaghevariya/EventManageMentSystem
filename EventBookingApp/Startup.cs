@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,6 +26,11 @@ namespace EventBookingApp
         {
 
             services.AddControllersWithViews();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => {
+                  //  options.LoginPath = "/Area/Admin/Admin/AdminLogin";
+                    options.Cookie.Name = "Adminareacokkie";
+                });
             services.AddSession();
             
         }
@@ -46,8 +52,9 @@ namespace EventBookingApp
             app.UseStaticFiles();
             
             app.UseRouting();
-            app.UseStaticFiles();
+            app.UseAuthentication();
             app.UseAuthorization();
+            app.UseCookiePolicy();
             app.UseSession();
             app.UseEndpoints(endpoints =>
             {
@@ -63,7 +70,6 @@ namespace EventBookingApp
                 endpoints.MapControllerRoute(
                      name: "default",
                      pattern: "{controller=Account}/{action=Index}/{id?}");
-
             });
         }
     }

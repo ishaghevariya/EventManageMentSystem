@@ -15,12 +15,12 @@ namespace EventBookingApp.API.Repositary
     {
         private readonly ApplicationDbContext _context;
         //private readonly string uniqueFileName;
-         private readonly IWebHostEnvironment _webHostEnvironment;
+         //private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public EventRepo(ApplicationDbContext context,IWebHostEnvironment webHostEnvironment)
+        public EventRepo(ApplicationDbContext context)
         {
             _context = context;
-            _webHostEnvironment = webHostEnvironment;
+           
         }
         //public async Task<Event> AddEvent(Event eventmodel)
         //{
@@ -30,15 +30,15 @@ namespace EventBookingApp.API.Repositary
         //}
         public async Task<Event>AddEvent(EventViewModel eventmodel)
         {
-            string uniqueFileName = UploadImage(eventmodel);
+            //string uniqueFileName = UploadImage(eventmodel);
             Event events = new Event
             {
                 EventTypes = eventmodel.EventTypes,
-                Images = uniqueFileName
+                Images = eventmodel.FileName
             };
-            await _context.AddAsync(events);
+            var result = await _context.AddAsync(events);
             await _context.SaveChangesAsync();
-            return events;
+            return result.Entity;
         }
         public async Task<Event> DeleteEvent(int id)
         {
@@ -54,42 +54,41 @@ namespace EventBookingApp.API.Repositary
         public async Task<Event> GetEvent(int id)
         {
             return await _context.Events.FirstOrDefaultAsync(x => x.Id == id);
+           
         }
         public async Task<IEnumerable<Event>> GetEvents()
          {
             return await _context.Events.ToListAsync();
         }
-        public async Task<Event> UpdateEvent(Event eventmodel)
+        public async Task<Event> UpdateEvent(EventViewModel eventmodel)
         {
             var result = await _context.Events.FirstOrDefaultAsync(x => x.Id == eventmodel.Id);
             if (result != null)
             {
                 result.EventTypes = eventmodel.EventTypes;
-                result.Images = eventmodel.Images;
+                result.Images = eventmodel.FileName;
                 await _context.SaveChangesAsync();
                 return result;
             }
             return null;
         }
 
+        //private string UploadImage(EventViewModel eventmodel)
+        //{
+        //    string uniqueFileName = null;
 
-
-        private string UploadImage(EventViewModel eventmodel)
-        {
-            string uniqueFileName = null;
-
-            if (eventmodel.Images != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + eventmodel.Images.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    eventmodel.Images.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
-        }
+        //    if (eventmodel.Images != null)
+        //    {
+        //        string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
+        //        uniqueFileName = Guid.NewGuid().ToString() + "_" + eventmodel.Images.FileName;
+        //        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
+        //        using (var fileStream = new FileStream(filePath, FileMode.Create))
+        //        {
+        //            eventmodel.Images.CopyTo(fileStream);
+        //        }
+        //    }
+        //    return uniqueFileName;
+        //}
 
 
     }

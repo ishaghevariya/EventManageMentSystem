@@ -22,7 +22,7 @@ namespace EventBookingApp.API.Repositary
         {
             return await _context.ApplicationUsers.Where(x => x.Id == id).FirstOrDefaultAsync();
         }
-        public async Task<ApplicationUser> changePassword(ChangePasswordModel chagePassword)
+        public async Task<ApplicationUser> ChangePassword(ChangePasswordModel chagePassword)
         {
             var user = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Email == chagePassword.Email);
             if (user != null)

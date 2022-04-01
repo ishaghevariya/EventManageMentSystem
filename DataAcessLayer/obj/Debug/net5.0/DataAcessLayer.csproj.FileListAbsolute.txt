@@ -9,4 +9,3 @@ C:\isha\EventBookingApp\DataAcessLayer\obj\Debug\net5.0\DataAcessLayer.csproj.Co
 C:\isha\EventBookingApp\DataAcessLayer\obj\Debug\net5.0\DataAcessLayer.dll
 C:\isha\EventBookingApp\DataAcessLayer\obj\Debug\net5.0\ref\DataAcessLayer.dll
 C:\isha\EventBookingApp\DataAcessLayer\obj\Debug\net5.0\DataAcessLayer.pdb
-C:\isha\EventBookingApp\DataAcessLayer\obj\Debug\net5.0\DataAcessLayer.csproj.AssemblyReference.cache

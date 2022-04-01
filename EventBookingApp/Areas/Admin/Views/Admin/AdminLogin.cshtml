@@ -29,8 +29,7 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
                 <form asp-action="AdminLogin" method="post">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                  
+                  @*  @Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
                     <div class="input-group mb-3">
                         <input asp-for="Email" class="form-control" placeholder="Email">
                         <div class="input-group-append">
@@ -72,8 +71,6 @@
     <script src="~/plugins/bootstrap/js/bootstrap.bundle.js"></script>
     <!-- AdminLTE App -->
     <script src="~/dist/js/adminlte.min.js"></script>
-
-   
 </body>
 </html>
 @section Scripts {

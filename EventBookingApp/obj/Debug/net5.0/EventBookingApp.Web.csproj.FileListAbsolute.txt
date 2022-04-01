@@ -166,3 +166,5 @@ C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Account\Abo
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Account\Contact.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Account\Events.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Account\Gallery.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Flower\Edit.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Shared\_LoginPartial.cshtml.g.cs

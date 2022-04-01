@@ -12,9 +12,10 @@ using System.Threading.Tasks;
 
 namespace EventBookingApp.API.Controllers
 {
- 
+
     [Route("api/[controller]")]
     [ApiController]
+   
     public class AddEventController : ControllerBase
     {
         private readonly IEventRepo _eventRepo;
@@ -53,7 +54,7 @@ namespace EventBookingApp.API.Controllers
         }
 
         [HttpPost("AddData")]
-        public async Task<ActionResult<EventViewModel>> AddData([FromForm] EventViewModel evetmodel)
+        public async Task<ActionResult<EventViewModel>> AddData(EventViewModel evetmodel)
         {
             try
             {
@@ -87,7 +88,7 @@ namespace EventBookingApp.API.Controllers
             }
         }
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<Event>> UpdateEvent(Event eventmodel, int id)
+        public async Task<ActionResult<Event>> UpdateEvent(EventViewModel eventmodel, int id)
         {
             try
             {

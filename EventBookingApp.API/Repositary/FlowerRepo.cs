@@ -14,24 +14,24 @@ namespace EventBookingApp.API.Repositary
     public class FlowerRepo : IFlowerRepo
     {
         private readonly ApplicationDbContext _context;
-        private readonly IWebHostEnvironment _webHostEnvironment;
-        public FlowerRepo(ApplicationDbContext context,IWebHostEnvironment webHostEnvironment)
+    
+        public FlowerRepo(ApplicationDbContext context)
         {
             _context = context;
-            _webHostEnvironment = webHostEnvironment;
+          
         }
         public async Task<Flower> AddFlower(FlowerViewModel flower)
         {
-            string uniqueFileName = UploadImage(flower); 
+          
             Flower flowers = new Flower
             {
                FlowerType = flower.FlowerType,
-               FlowerImage = uniqueFileName,
+               FlowerImage = flower.FileName,
                FlowerCost = flower.FlowerCost
             };
-            _context.Add(flowers);
+           var result= await _context.AddAsync(flowers);
             await _context.SaveChangesAsync();
-            return flowers;
+            return result.Entity;
         }
 
         public async Task<Flower> DeleteFlower(int id)
@@ -54,35 +54,20 @@ namespace EventBookingApp.API.Repositary
         {
             return await _context.Flowers.ToListAsync();
         }
-        public async Task<Flower> UpdateFlower(Flower flower)
+        public async Task<Flower> UpdateFlower(FlowerViewModel flower)
         {
-            var result = await _context.Flowers.FirstOrDefaultAsync(x => x.FlowerId == flower.FlowerId);
+            var result = await _context.Flowers.FirstOrDefaultAsync(x => x.FlowerId == flower.Id);
             if (result != null)
             {
                 result.FlowerType = flower.FlowerType;
-                result.FlowerImage = flower.FlowerImage;
+                result.FlowerImage = flower.FileName;
                 result.FlowerCost = flower.FlowerCost;
                 await _context.SaveChangesAsync();
                 return result;
             }
             return null;
         }
-        private string UploadImage(FlowerViewModel flower)
-        {
-            string uniqueFileName = null;
-
-            if (flower.FlowerImage != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + flower.FlowerImage.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    flower.FlowerImage.CopyTo(fileStream);
-                }
-            }
-            return uniqueFileName;
-        }
+       
 
     }
 }

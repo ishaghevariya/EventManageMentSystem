@@ -1,6 +1,7 @@
 using DataAcessLayer;
 using EventBookingApp.API.Data;
 using EventBookingApp.API.Repositary;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -45,6 +46,7 @@ namespace EventBookingApp.API
             services.AddTransient<IEquipmentRepo, EquipmentRepo>();
             services.AddTransient<IFoodRepo, FoodRepo>();
             services.AddTransient<IFlowerRepo, FlowerRepo>();
+         
             services.AddRazorPages();
             services.AddHttpClient();
    
@@ -63,8 +65,8 @@ namespace EventBookingApp.API
             app.UseHttpsRedirection();
          
             app.UseRouting();
-            
 
+           
             app.UseAuthorization();
       
             app.UseEndpoints(endpoints =>

@@ -12,7 +12,7 @@ namespace EventBookingApp.API.Repositary
         Task<Flower> GetFlower(int id);
         Task<IEnumerable<Flower>> GetFlowers();
         Task<Flower> AddFlower(FlowerViewModel flower);
-        Task<Flower> UpdateFlower(Flower flower);
+        Task<Flower> UpdateFlower(FlowerViewModel flower);
         Task<Flower> DeleteFlower(int id);
     }
 }
