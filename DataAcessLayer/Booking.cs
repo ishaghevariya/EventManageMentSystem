@@ -9,7 +9,8 @@ namespace DataAcessLayer
     public class Booking
     {
         public int Id{ get; set; }
-        public int EventId { get; set; }
+        public int? EventId { get; set; }
+       
         public int NumberOfDays { get; set; }
         public DateTime EventDate { get; set; }
         public int BookingStatusId { get; set; }
@@ -17,8 +18,8 @@ namespace DataAcessLayer
         public int AreapinCode { get; set; }
         public int NumberOfPerson { get; set; }
         public string VenuType { get; set; }
+        public ApplicationUser User { get; set; }
         public Event Event { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
         public BookingStatus BookingStatus { get; set; }
         public ICollection<BookingDetalis> BookingDetalis { get; set; } = new HashSet<BookingDetalis>();
     }

@@ -16,7 +16,7 @@
     <meta name="keywords" content="Colorlib Templates">
 
     <!-- Title Page-->
-    <title>Au Register Forms by Colorlib</title>
+    @*<title>Au Register Forms by Colorlib</title>*@
 
     <!-- Icons font CSS-->
     <link href="~/plugins/vendor/mdi-font/css/material-design-iconic-font.css" rel="stylesheet" />
@@ -39,12 +39,14 @@
                                 <div class="input-group">
                                     <label asp-for="UserName">UserName</label>
                                     <input asp-for="UserName" class="input--style-4" type="text" name="UserName">
+                                    <span asp-validation-for="UserName" style="color:red"></span>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label asp-for="Password">Password</label>
                                     <input type="password" asp-for="Password" class="input--style-4" name="password">
+                                    <span asp-validation-for="Password" style="color:red"></span>
                                 </div>
                             </div>
                         </div>
@@ -53,6 +55,7 @@
                                 <div class="input-group">
                                     <label asp-for="Email">Email</label>
                                     <input asp-for="Email" class="input--style-4" type="email" name="email">
+                                    <span asp-validation-for="Email" style="color:red"></span>
                                 </div>
                             </div>
                             <div class="col-2">
@@ -78,12 +81,14 @@
                                 <div class="input-group">
                                     <label asp-for="ContactNo">Phone Number</label>
                                     <input asp-for="ContactNo" class="input--style-4" type="text" name="contactno">
+                                    <span asp-validation-for="ContactNo" style="color:red"></span>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label asp-for="Address">Address</label>
                                     <textarea asp-for="Address" class="input--style-4" name="address"></textarea>
+                                    <span asp-validation-for="Address" style="color:red"></span>
                                 </div>
                             </div>
                         </div>
@@ -92,28 +97,33 @@
                                 <div class="input-group">
                                     <label asp-for="City">City</label>
                                     <input asp-for="City" class="input--style-4" type="text" name="city">
+                                    <span asp-validation-for="City" style="color:red"></span>
                                 </div>
                             </div>
                             <div class="col-2">
                                 <div class="input-group">
                                     <label asp-for="State">State</label>
                                     <input asp-for="State" class="input--style-4" type="text" name="state">
+                                    <span asp-validation-for="State" style="color:red"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="p-t-15">
                             <button class="btn btn--radius-2 btn--blue" type="submit">Submit</button>
                         </div>
-                    </form><br/>
-                           <div class="card-footer">
-                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href='@Url.Action("Login","Account")'>If You have already membership?</</a>
-                           </div>
+                    </form><br />
+                    <div class="card-footer">
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <a href='@Url.Action("Login","Account")'>If You have already membership?</</a>
+                    </div>
                 </div>
             </div>
         </div>
-       
+
     </div>
     <script src="~/plugins/js/global.js"></script>
     <script src="~/plugins/vendor/jquery/jquery.min.js"></script>
 </body>
 </html>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

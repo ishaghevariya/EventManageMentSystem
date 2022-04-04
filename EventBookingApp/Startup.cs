@@ -1,3 +1,4 @@
+using EventBookingApp.API.Repositary;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,12 +28,14 @@ namespace EventBookingApp
 
             services.AddControllersWithViews();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options => {
-                  //  options.LoginPath = "/Area/Admin/Admin/AdminLogin";
+                .AddCookie(options =>
+                {
+                    //  options.LoginPath = "/Area/Admin/Admin/AdminLogin";
                     options.Cookie.Name = "Adminareacokkie";
                 });
+     
             services.AddSession();
-            
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -50,11 +53,12 @@ namespace EventBookingApp
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            
+
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseCookiePolicy();
+
             app.UseSession();
             app.UseEndpoints(endpoints =>
             {

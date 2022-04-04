@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace EventBookingApp.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+
     public class FlowerController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;

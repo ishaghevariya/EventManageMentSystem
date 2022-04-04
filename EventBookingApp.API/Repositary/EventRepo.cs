@@ -22,12 +22,7 @@ namespace EventBookingApp.API.Repositary
             _context = context;
            
         }
-        //public async Task<Event> AddEvent(Event eventmodel)
-        //{
-        //    var result = await _context.AddAsync(eventmodel);
-        //    await _context.SaveChangesAsync();
-        //    return result.Entity;
-        //}
+     
         public async Task<Event>AddEvent(EventViewModel eventmodel)
         {
             //string uniqueFileName = UploadImage(eventmodel);
@@ -56,9 +51,9 @@ namespace EventBookingApp.API.Repositary
             return await _context.Events.FirstOrDefaultAsync(x => x.Id == id);
            
         }
-        public async Task<IEnumerable<Event>> GetEvents()
+        public IEnumerable<Event> GetEvents()
          {
-            return await _context.Events.ToListAsync();
+            return _context.Events.ToList();
         }
         public async Task<Event> UpdateEvent(EventViewModel eventmodel)
         {

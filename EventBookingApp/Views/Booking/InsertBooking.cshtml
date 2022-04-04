@@ -1,0 +1,147 @@
+﻿@model EventBookingApp.API.ViewModel.BookingViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //var id = ViewBag.EventId;
+    //var Uid = ViewBag.UserId;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<title>InsertBooking</title>*@
+</head>
+<body>
+
+    @*<h4>BookingViewModel</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="InsertBooking" asp-controller="Booking" method="post">
+                    <input type="hidden" asp-for="EventId" value="@id" />
+                    <input type="hidden" asp-for="UserId" value="@Uid" />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="EventDate" class="control-label"></label>
+                        <input asp-for="EventDate" class="form-control" />
+                        <span asp-validation-for="EventDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address" class="control-label"></label>
+                        <input asp-for="Address" class="form-control" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PinCode" class="control-label"></label>
+                        <input asp-for="PinCode" class="form-control" />
+                        <span asp-validation-for="PinCode" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="VenueType" class="control-label"></label>
+                        <input asp-for="VenueType" class="form-control" />
+                        <span asp-validation-for="VenueType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NumberOfPerson" class="control-label"></label>
+                        <input asp-for="NumberOfPerson" class="form-control" />
+                        <span asp-validation-for="NumberOfPerson" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="NumberOfDays" class="control-label"></label>
+                        <input asp-for="NumberOfDays" class="form-control" />
+                        <span asp-validation-for="NumberOfDays" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>*@
+    <section class="about_agile">
+        <div class="container">
+            <h3 class="heading-agileinfo white-w3ls">Event Booking<span class="black-w3ls">Events is a professionally managed Event</span></h3>
+            <div class="about-grids">
+
+                <div class="abt-rt-grid">
+                    <div class="w3ls-grid-head text-center">
+                        <h3>online event booking </h3>
+                    </div>
+                    <div class="abt-form text-center">
+                        <form asp-action="InsertBooking" asp-controller="Booking" method="post">
+                            @*<input type="hidden" asp-for="EventId" value="@id" />
+                            <input type="hidden" asp-for="UserId" value="@Uid" />*@
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="col-sm-4 col-xs-4 w3ls-lt-form">
+                                <div class="w3ls-pr">
+                                    <select class="sel" asp-for="EventId" asp-items="@(new SelectList(string.Empty, "Id", "EventTypes"))"></select>
+                                    <input asp-for="Address" type="text" name="Address" placeholder="Address">
+                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-4 w3ls-lt-form">
+                                <div class="w3ls-pr">
+                                    <input asp-for="EventDate" type="date" name="date" required="required">
+                                    <span asp-validation-for="EventDate" class="text-danger"></span>
+                                    <input asp-for="AreapinCode" name="Pincode" type="text" placeholder="pincode" required="required" value="">
+                                    <span asp-validation-for="AreapinCode" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-4 col-xs-4 w3ls-lt-form">
+                                <div class="w3ls-pr">
+                                    <select class="sel" required="" asp-for="VenuType">
+                                        <option value="">Venue Type</option>
+                                        <option value="Hall">Hole</option>
+                                        <option value="OutDoor">OutDoor</option>
+                                        <option value="">location4</option>
+                                        <option value="">location5</option>
+                                    </select>
+                                    <input asp-for="NumberOfPerson" type="text" name="NumberOfPerson" placeholder="NumberOfPerson" value="" required="required">
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-xs-12 w3ls-lt-form">
+                                <div class="w3ls-pr">
+                                    <input asp-for="NumberOfDays" type="text"  name="NumberOfDays" placeholder="NumberOfDays" value="" required="required">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <input type="submit" value="Book Now">
+                            @*<input type="submit" value="Create">*@
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+
+@section scripts{ 
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $.getJSON('https://localhost:44362/api/AddEvent' , function (data)
+        {
+           var items = '';
+           items += "<option value='" + "" + "'>" + "----Select----" + "</option>";
+            $("#EventId").empty();
+            $.each(data, function (i, subcategory)
+            {
+                items += "<option value='" + subcategory.Id + "'>" + subcategory.EventTypes + "</option>";
+           });
+            $('#EventId').html(items);
+
+           if ('@Model.EventId' !='')
+           {
+                   $('#EventId').val('@Model.EventId');
+           }
+       });
+    });
+</script>
+}

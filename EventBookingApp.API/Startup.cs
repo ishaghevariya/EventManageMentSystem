@@ -35,10 +35,10 @@ namespace EventBookingApp.API
 
             services.AddControllers();
           
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "EventBookingApp.API", Version = "v1" });
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "EventBookingApp.API", Version = "v1" });
+            //});
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
        //   services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             services.AddTransient<IRegistrationRepo, RegistrationRepo>();
@@ -46,7 +46,7 @@ namespace EventBookingApp.API
             services.AddTransient<IEquipmentRepo, EquipmentRepo>();
             services.AddTransient<IFoodRepo, FoodRepo>();
             services.AddTransient<IFlowerRepo, FlowerRepo>();
-         
+            services.AddTransient<IBookingRepo, BookingRepo>();
             services.AddRazorPages();
             services.AddHttpClient();
    
@@ -55,18 +55,18 @@ namespace EventBookingApp.API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EventBookingApp.API v1"));
-            }
+            //if (env.IsDevelopment())
+            //{
+            //    app.UseDeveloperExceptionPage();
+            //    app.UseSwagger();
+            //    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EventBookingApp.API v1"));
+            //}
             
             app.UseHttpsRedirection();
          
             app.UseRouting();
 
-           
+            app.UseCors(option =>option.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthorization();
       
             app.UseEndpoints(endpoints =>

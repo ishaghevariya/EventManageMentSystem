@@ -9,11 +9,11 @@ namespace DataAcessLayer.ViewModel
 {
     public class ChangePasswordModel
     {
-        [Required(ErrorMessage = "Email Is required")]
+        [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Password Is required")]
+        [Required(ErrorMessage = "Password is required")]
         public string NewPassword { get; set; }
-        [Required(ErrorMessage ="Confirm Password Is required")]
+        [Required(ErrorMessage ="Confirm Password is required")]
         [Compare("NewPassword", ErrorMessage = "NewPassword And ConfirmPassword Must be Same")]
         public string ConfirmPassword { get; set; }
 

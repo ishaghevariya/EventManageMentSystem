@@ -4,8 +4,7 @@
     <title>Events Booking Website</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Events Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+  
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Custom Theme files -->
     <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
@@ -52,7 +51,7 @@
                         </li>
                         <li><a class="hvr-sweep-to-right" href="@Url.Action("Gallery","Account")">Gallery</a></li>
                         <li><a class="hvr-sweep-to-right" href="@Url.Action("Contact","Account")">Contact</a></li>
-                        <li><a class="hvr-sweep-to-right" href="@Url.Action("Registration","Account")">SignUp</a></li>
+                        <li><partial name="_LoginPartial.cshtml" /></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -268,7 +267,9 @@
             $().UItoTop({ easingType: 'easeOutQuart' });
 
         });
+
     </script>
     <!-- //here ends scrolling icon -->
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -76,10 +76,14 @@ namespace EventBookingApp.API.Controllers
         }
 
         [HttpPut("ChangePassword")]
-        public async Task<ActionResult<ApplicationUser>> ChangePassword(ChangePasswordModel model)
+        public async Task<ActionResult<ApplicationUser>> ChangePassword(ChangePasswordModel model,string email)
         {
             try
             {
+                if(email != model.Email)
+                {
+                    return BadRequest("Email is Not Matched");
+                }
                 return await _registrationRepo.ChangePassword(model);
             }
             catch (Exception)
@@ -92,6 +96,7 @@ namespace EventBookingApp.API.Controllers
         public string Login(string email, string password)
         {
             var user = _registrationRepo.SignInMethod(email, password);
+           
             string result = "false";
             if (user != 0)
             {

@@ -1,5 +1,6 @@
 ﻿using DataAcessLayer;
 using EventBookingApp.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -27,13 +28,17 @@ namespace EventBookingApp.Controllers
  
         public async Task<IActionResult> Login(string email,string password)
         {
+           
             HttpClient client = new HttpClient();
+            ApplicationUser user = new ApplicationUser();
+
             client.BaseAddress = new Uri("https://localhost:44362/");
             var response = await client.GetAsync($"api/Account/Login?email={email}&password={password}");
             if (response.IsSuccessStatusCode)
             {
                 var result = response.Content.ReadAsStringAsync().Result;
                 if (result == "true") {
+                    HttpContext.Session.SetString("Name", email);
                     return RedirectToAction("Index");   
                 }
                 return RedirectToAction("Login");
@@ -82,7 +87,11 @@ namespace EventBookingApp.Controllers
         {
             return View();
         }
-
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Remove("Name");
+            return RedirectToAction("Index");
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

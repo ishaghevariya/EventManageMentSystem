@@ -24,15 +24,15 @@ namespace EventBookingApp.API.Controllers
             _eventRepo = eventRepo;
         }
         [HttpGet]
-        public async Task<ActionResult> GetEvents()
+        public IEnumerable<Event> GetEvents()
         {
             try
-            {
-                return Ok(await _eventRepo.GetEvents());
+             {
+                return _eventRepo.GetEvents();
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
+                throw;
             }
         }
         [HttpGet("{id:int}")]

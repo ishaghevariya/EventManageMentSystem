@@ -1,5 +1,6 @@
 ﻿using DataAcessLayer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 namespace EventBookingApp.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    
     public class EquipmentController : Controller
     {
         [HttpGet]
@@ -53,13 +54,13 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44362/");
             var response = await client.PostAsJsonAsync<Equipment>($"/api/Equipment", equipment);
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
             return View();
         }
-     
+
         public async Task<IActionResult> Delete(int id)
         {
             HttpClient client = new HttpClient();
