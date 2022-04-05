@@ -34,11 +34,12 @@ namespace EventBookingApp.API
         {
 
             services.AddControllers();
-          
+
             //services.AddSwaggerGen(c =>
             //{
             //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "EventBookingApp.API", Version = "v1" });
             //});
+            services.AddSession();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
        //   services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
             services.AddTransient<IRegistrationRepo, RegistrationRepo>();
@@ -47,6 +48,7 @@ namespace EventBookingApp.API
             services.AddTransient<IFoodRepo, FoodRepo>();
             services.AddTransient<IFlowerRepo, FlowerRepo>();
             services.AddTransient<IBookingRepo, BookingRepo>();
+       //     services.AddTransient<IUserService, UserService>();
             services.AddRazorPages();
             services.AddHttpClient();
    
@@ -63,7 +65,7 @@ namespace EventBookingApp.API
             //}
             
             app.UseHttpsRedirection();
-         
+            app.UseSession();
             app.UseRouting();
 
             app.UseCors(option =>option.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());

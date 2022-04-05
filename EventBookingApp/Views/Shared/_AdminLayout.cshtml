@@ -160,20 +160,23 @@
                     </li>*@
                 <li>
 
-                    <div class="dropdown" style="padding-right:2.5em">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
-                            @{ var username = Context.Session.GetString("Name");}
-                            @username
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="padding-right:10em">
-                            <a class="dropdown-item" href="@Url.Action("LogOut", "Admin")">LogOut</a>
-                            <a class="dropdown-item" href="@Url.Action("ChangePassword", "Admin")">ChangePassword</a>
-                            <a class="dropdown-item" href="@Url.Action("Profile", "Admin")">Profile</a>
-                        </div>
+                  
+                <div class="dropdown" style="padding-right:2.5em">
+                    <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
+                        @*@{ var username = Context.Session.GetString("Name");}
+                        @username*@
+                        @User.Identity.Name
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="padding-right:10em">
+                        <a class="dropdown-item" href="@Url.Action("LogOut", "Admin")">LogOut</a>
+                        <a class="dropdown-item" href="@Url.Action("ChangePassword", "Admin")">ChangePassword</a>
+                        <a class="dropdown-item" href="@Url.Action("Profile", "Admin")">Profile</a>
                     </div>
-                </li>
+                </div>
+                            </li>
             </ul>
         </nav>
+
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -241,7 +244,8 @@
                                     </li>
                                 </ul>*@
                         </li>
-                        @if (@username != null)
+                         @if (User.Identity.IsAuthenticated)
+                    
                         {
                         <li class="nav-item">
                             <a href="@Url.Action("Index", "EventList", new { area = "Admin" })" data-name="/Admin/EventList" class="nav-link">

@@ -2,9 +2,11 @@
 using DataAcessLayer.ViewModel;
 using EventBookingApp.API.Data;
 using EventBookingApp.API.Repositary;
+using EventBookingApp.API.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +26,24 @@ namespace EventBookingApp.API.Controllers
             _eventRepo = eventRepo;
         }
         [HttpGet]
-        public IEnumerable<Event> GetEvents()
-        {
+        public async Task<ActionResult> GetEvents()
+         {
             try
              {
-                return _eventRepo.GetEvents();
+                return Ok(await _eventRepo.GetEvents());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
+            }
+        }
+        [HttpGet("GetEventByTypes")]
+        public IEnumerable<eventTypeViewModel> GetEventByTypes()
+        {
+            try
+            {
+                var result = _eventRepo.GetEventsType();
+                return result;
             }
             catch (Exception)
             {
@@ -102,6 +117,24 @@ namespace EventBookingApp.API.Controllers
                     return NotFound($"Event Id={id} not found");
                 }
                 return await _eventRepo.UpdateEvent(eventmodel);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
+            }
+        }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<IEnumerable<Event>>> search(string EventTypes)
+        {
+            try
+            {
+                var result = await _eventRepo.search(EventTypes);
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+                return NotFound();
             }
             catch (Exception)
             {

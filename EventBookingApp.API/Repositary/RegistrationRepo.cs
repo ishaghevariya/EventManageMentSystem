@@ -34,11 +34,17 @@ namespace EventBookingApp.API.Repositary
             return null;
         }
 
-        public int SignInMethod(string email, string password)
+        //public int SignInMethod(string email, string password)
+        //{
+        //    var result = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).Count();
+
+        //    return result;
+        //}
+
+        public ApplicationUser SignInMethod(string email, string password)
         {
-            var result = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).Count();
-           
-            return result;
+            var user = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).SingleOrDefault();
+            return user;
         }
         public async Task<ApplicationUser> UserRegistration(ApplicationUser applicationUser)
         {

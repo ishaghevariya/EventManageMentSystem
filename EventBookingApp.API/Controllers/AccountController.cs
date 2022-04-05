@@ -1,6 +1,7 @@
 ﻿using DataAcessLayer;
 using DataAcessLayer.ViewModel;
 using EventBookingApp.API.Repositary;
+using EventBookingApp.API.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -93,17 +94,31 @@ namespace EventBookingApp.API.Controllers
         }
 
         [HttpGet("{email,password}")]
-        public string Login(string email, string password)
+        public string Login(string email,string password)
         {
             var user = _registrationRepo.SignInMethod(email, password);
-           
             string result = "false";
-            if (user != 0)
+            if (user != null)
             {
                 result = "true";
+                HttpContext.Session.SetString("UserId", Convert.ToString(user.Id));
             }
             return result;
         }
+
+
+        //[HttpGet("{email,password}")]
+        //public string Login(string email, string password)
+        //{
+        //    var user = _registrationRepo.SignInMethod(email, password);
+
+        //    string result = "false";
+        //    if (user != 0)
+        //    {
+        //        result = "true";
+        //    }
+        //    return result;
+        //}
 
     }
 }

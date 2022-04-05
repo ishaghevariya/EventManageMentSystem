@@ -16,8 +16,6 @@ namespace EventBookingApp.API.Repositary
         {
             _context = context;
         }
-
-
         public async Task<Booking> AddBooking(BookingViewModel booking)
         {
             Booking Book = new Booking
@@ -29,6 +27,7 @@ namespace EventBookingApp.API.Repositary
                 Address = booking.Address,
                 AreapinCode = booking.AreapinCode,
                 NumberOfPerson = booking.NumberOfPerson,
+                UserId = booking.UserId,
                 VenuType = booking.VenuType,
             };
             var result = await _context.AddAsync(Book);

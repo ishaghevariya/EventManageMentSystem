@@ -35,6 +35,7 @@
         "dependencies": {
           "DataAcessLayer": "1.0.0",
           "EventBookingApp.API": "1.0.0",
+          "Microsoft.AspNetCore.Authentication.Cookies": "2.2.0",
           "Microsoft.EntityFrameworkCore.Design": "5.0.0",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",

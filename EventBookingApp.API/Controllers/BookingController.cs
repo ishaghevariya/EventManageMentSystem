@@ -36,7 +36,7 @@ namespace EventBookingApp.API.Controllers
             }
         }
         [HttpPost("AddBooking")]
-        public async Task<ActionResult<BookingViewModel>> AddBooking(BookingViewModel booking)
+        public async Task<ActionResult<Booking>> AddBooking(BookingViewModel booking)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace EventBookingApp.API.Controllers
                     return BadRequest();
                 }
                 var userCreate = await _bookingRepo.AddBooking(booking);
-                return CreatedAtAction(nameof(userCreate), new { id = userCreate.Id }, userCreate);
+                return CreatedAtAction(nameof(GetBookingById), new { id = userCreate.Id }, userCreate);
             }
             catch (Exception)
             {

@@ -28,23 +28,29 @@ namespace EventBookingApp.Web.Controllers
             return View();
         }
 
-        public  IActionResult InsertBooking()
+        public async Task<IActionResult> InsertBooking()
         {
-            //ViewBag.EventId = id;
-            //ViewBag.UserId = 2;
-            //List<Event> events = new List<Event>();
-             
-            //cl.Insert(0, new Country { Cid = 0, Cname = "--Select Country Name--" });
-            //ViewBag.message = cl;
-            
-            return View(new BookingViewModel());
+            List<eventTypeViewModel> vm1 = new List<eventTypeViewModel>();
+            HttpClient client1 = new HttpClient();
+            client1.BaseAddress = new Uri("https://localhost:44362/");
+            var response1 = await client1.GetAsync($"api/AddEvent/GetEventByTypes");
+            if (response1.IsSuccessStatusCode)
+            {
+                var result = response1.Content.ReadAsStringAsync().Result;
+                vm1 = JsonConvert.DeserializeObject<List<eventTypeViewModel>>(result);
+                ViewBag.type = vm1;
+
+            }
+            return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertBooking(BookingViewModel vm)
+        public async Task<IActionResult> InsertBooking(BookingViewModel vm,int TypeName)
         {
+            
 
             HttpClient client = new HttpClient();
+            vm.EventId = TypeName;
             client.BaseAddress = new Uri("https://localhost:44362/");
             var response = await client.PostAsJsonAsync<BookingViewModel>($"api/Booking/AddBooking", vm);
             if (response.IsSuccessStatusCode)

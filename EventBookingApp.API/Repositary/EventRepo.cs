@@ -1,7 +1,9 @@
 ﻿using DataAcessLayer;
 using DataAcessLayer.ViewModel;
 using EventBookingApp.API.Data;
+using EventBookingApp.API.ViewModel;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -51,10 +53,41 @@ namespace EventBookingApp.API.Repositary
             return await _context.Events.FirstOrDefaultAsync(x => x.Id == id);
            
         }
-        public IEnumerable<Event> GetEvents()
+        public async Task<IEnumerable<Event>> GetEvents()
          {
-            return _context.Events.ToList();
+            return await _context.Events.ToListAsync();
         }
+        public IEnumerable<eventTypeViewModel> GetEventsType()
+        {
+            List<eventTypeViewModel> vm = new List<eventTypeViewModel>();
+            var data = _context.Events.Select(x => new
+            {
+                x.Id,
+                x.EventTypes
+            }).ToList();
+            foreach (var item in data)
+            {
+                eventTypeViewModel e = new eventTypeViewModel();
+                e.Id = item.Id;
+                e.EventTypes = item.EventTypes;
+
+                vm.Add(e);
+               
+            }
+
+            return vm;
+        }
+
+        public async Task<IEnumerable<Event>> search(string EventTypes)
+        {
+            IQueryable<Event> query = _context.Events;
+            if (!string.IsNullOrEmpty(EventTypes))
+            {
+                query = query.Where(a => a.EventTypes.Contains(EventTypes));
+            }
+            return await query.ToListAsync();
+        }
+
         public async Task<Event> UpdateEvent(EventViewModel eventmodel)
         {
             var result = await _context.Events.FirstOrDefaultAsync(x => x.Id == eventmodel.Id);

@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     //var id = ViewBag.EventId;
     //var Uid = ViewBag.UserId;
+    var data = ViewBag.type;
 }
 
 <!DOCTYPE html>
@@ -80,7 +81,12 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <select class="sel" asp-for="EventId" asp-items="@(new SelectList(string.Empty, "Id", "EventTypes"))"></select>
+                                    <select class="sel" name="TypeName" >
+                                        @foreach (var item in data)
+                                        {
+                                            <option value="@item.Id"> @item.EventTypes</option>
+                                        }
+                                    </select>
                                     <input asp-for="Address" type="text" name="Address" placeholder="Address">
                                     <span asp-validation-for="Address" class="text-danger"></span>
                                 </div>
@@ -89,7 +95,7 @@
                                 <div class="w3ls-pr">
                                     <input asp-for="EventDate" type="date" name="date" required="required">
                                     <span asp-validation-for="EventDate" class="text-danger"></span>
-                                    <input asp-for="AreapinCode" name="Pincode" type="text" placeholder="pincode" required="required" value="">
+                                    <input asp-for="AreapinCode" name="Areapincode" type="text" placeholder="pincode" required="required" value="">
                                     <span asp-validation-for="AreapinCode" class="text-danger"></span>
                                 </div>
                             </div>
@@ -97,10 +103,11 @@
                                 <div class="w3ls-pr">
                                     <select class="sel" required="" asp-for="VenuType">
                                         <option value="">Venue Type</option>
-                                        <option value="Hall">Hole</option>
+                                        <option value="Hall">Hall</option>
                                         <option value="OutDoor">OutDoor</option>
-                                        <option value="">location4</option>
-                                        <option value="">location5</option>
+                                        <option value="Open terrace">Open terrace</option>
+                                        <option value="Lake Terrace">Lake Terrace</option>
+                                        <option value="The Village Venue">The Village Venue</option>  
                                     </select>
                                     <input asp-for="NumberOfPerson" type="text" name="NumberOfPerson" placeholder="NumberOfPerson" value="" required="required">
                                 </div>
@@ -123,7 +130,7 @@
 </html>
 
 @section scripts{ 
-<script type="text/javascript">
+@*<script type="text/javascript">
     $(document).ready(function ()
     {
         $.getJSON('https://localhost:44362/api/AddEvent' , function (data)
@@ -143,5 +150,5 @@
            }
        });
     });
-</script>
+</script>*@
 }

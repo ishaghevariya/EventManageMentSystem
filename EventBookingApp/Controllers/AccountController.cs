@@ -1,5 +1,8 @@
 ﻿using DataAcessLayer;
+using EventBookingApp.API.ViewModel;
 using EventBookingApp.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,6 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Json;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace EventBookingApp.Controllers
@@ -25,10 +29,10 @@ namespace EventBookingApp.Controllers
         {
             return View();
         }
- 
-        public async Task<IActionResult> Login(string email,string password)
+
+        public async Task<IActionResult> Login(string email, string password)
         {
-           
+
             HttpClient client = new HttpClient();
             ApplicationUser user = new ApplicationUser();
 
@@ -37,14 +41,27 @@ namespace EventBookingApp.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var result = response.Content.ReadAsStringAsync().Result;
-                if (result == "true") {
-                    HttpContext.Session.SetString("Name", email);
-                    return RedirectToAction("Index");   
+                if (result == "true")
+                {
+                    var cliams = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name,email)
+                    };
+                    var identity = new ClaimsIdentity(
+                        cliams, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(identity);
+                    var props = new AuthenticationProperties();
+                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
+                  //  HttpContext.Session.SetString("Name", email);
+                    return RedirectToAction("Index");
                 }
                 return RedirectToAction("Login");
             }
             return View();
         }
+
+
+
         [HttpGet]
         public IActionResult Registration()
         {
@@ -89,7 +106,8 @@ namespace EventBookingApp.Controllers
         }
         public IActionResult LogOut()
         {
-            HttpContext.Session.Remove("Name");
+               HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+           // HttpContext.Session.Remove("Name");
             return RedirectToAction("Index");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

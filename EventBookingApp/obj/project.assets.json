@@ -8137,6 +8137,7 @@
     "net5.0": [
       "DataAcessLayer >= 1.0.0",
       "EventBookingApp.API >= 1.0.0",
+      "Microsoft.AspNetCore.Authentication.Cookies >= 2.2.0",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.0",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.0",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2",
@@ -8194,6 +8195,10 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Microsoft.AspNetCore.Authentication.Cookies": {
+            "target": "Package",
+            "version": "[2.2.0, )"
+          },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",

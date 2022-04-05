@@ -25,33 +25,51 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string EventTypes = null)
         {
-            List<Event> events = new List<Event>();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
-            HttpResponseMessage response = await client.GetAsync("/api/AddEvent");
-            if (response.IsSuccessStatusCode)
+            if (!string.IsNullOrEmpty(EventTypes))
             {
-                var result = response.Content.ReadAsStringAsync().Result;
-                events = JsonConvert.DeserializeObject<List<Event>>(result);
+                List<Event> events = new List<Event>();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("https://localhost:44362/");
+                HttpResponseMessage response = await client.GetAsync($"/api/AddEvent/search/{EventTypes}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    events = JsonConvert.DeserializeObject<List<Event>>(result);
+                }
+                return View(events);
             }
-            return View(events);
+            else
+            {
+                List<Event> events = new List<Event>();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("https://localhost:44362/");
+                HttpResponseMessage response = await client.GetAsync("/api/AddEvent");
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    events = JsonConvert.DeserializeObject<List<Event>>(result);
+                }
+                return View(events);
+            }
         }
+
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public async  Task<IActionResult> Create(EventViewModel eventmodel)
+        public async Task<IActionResult> Create(EventViewModel eventmodel)
         {
             string uniqueFileName = UploadImage(eventmodel);
             eventmodel.FileName = uniqueFileName;
             eventmodel.Images = null;
-            HttpClient client = new HttpClient();           
+            HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("https://localhost:44362/");
-            var response = await client.PostAsJsonAsync<EventViewModel>($"/api/AddEvent/AddData",eventmodel);
+            var response = await client.PostAsJsonAsync<EventViewModel>($"/api/AddEvent/AddData", eventmodel);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -82,7 +100,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return events;
         }
-        
+
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -91,7 +109,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             vm.Id = events.Id;
             vm.EventTypes = events.EventTypes;
             vm.FileName = events.Images;
-     
+
             return View(vm);
         }
         [HttpPost]

@@ -1,18 +1,18 @@
-﻿@using Microsoft.AspNetCore.Http
-@{ var name = Context.Session.GetString("Name");}
+﻿@*@using Microsoft.AspNetCore.Http
+@{ var name = Context.Session.GetString("Name");}*@
 <head>
     <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
     <link href="~/plugins/css/style.css" type="text/css" rel="stylesheet" media="all">
     <link href="~/plugins/css/font-awesome.css" rel="stylesheet">
 </head>
 
-@if (name != null)
+@if (User.Identity.IsAuthenticated)
 {
     <li class="nav-item">
         <a class="hvr-sweep-to-right" href="@Url.Action("InsertBooking","Booking")">BookEvent</a>
     </li>
     <li class="nav-item">
-        <a class="hvr-sweep-to-right" href="@Url.Action("Index","Account")">Hello @name</a>
+        <a class="hvr-sweep-to-right" href="@Url.Action("Index","Account")">Hello @User.Identity.Name</a>
     </li>
     <li class="nav-item">
         <a class="hvr-sweep-to-right" href="@Url.Action("LogOut","Account")">LogOut</a>

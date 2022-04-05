@@ -36,16 +36,16 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                 var result = response.Content.ReadAsStringAsync().Result;
                 if (result == "true")
                 {
-                    //var cliams = new List<Claim>
-                    //{
-                    //    new Claim(ClaimTypes.Name,email)
-                    //};
-                    //var identity = new ClaimsIdentity(
-                    //    cliams, CookieAuthenticationDefaults.AuthenticationScheme);
-                    //var principal = new ClaimsPrincipal(identity);
-                    //var props = new AuthenticationProperties();
-                    //HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,principal,props).Wait();
-                    HttpContext.Session.SetString("Name", email);
+                    var cliams = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name,email)
+                    };
+                    var identity = new ClaimsIdentity(
+                        cliams, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var principal = new ClaimsPrincipal(identity);
+                    var props = new AuthenticationProperties();
+                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
+                //    HttpContext.Session.SetString("Name", email);
                     return RedirectToAction("Index");
                 }
                 return RedirectToAction("AdminLogin");
@@ -85,7 +85,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         public IActionResult LogOut()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            HttpContext.Session.Remove("Name");
+         //   HttpContext.Session.Remove("Name");
             return RedirectToAction("AdminLogin");
         }
         [HttpGet]

@@ -3,83 +3,101 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "List";
 }
-<div class="card">
-    <div class="card-header">
-        <div class="pull-left" style="font-weight:bold;font-size:medium">Available Event</div>
-        <div style="float:right">
-            <a href='@Url.Action("Create","EventList")' class="btn btn-primary float-right"><i class="fa fa-plus"></i>AddEvent</a>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <form asp-action="Index">
+        <div>
+            <span>Event Name:</span><input type="text" name="EventTypes" />
+            <input type="submit" value="Search" />
+            <br />
+            <br />
         </div>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Id)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.EventTypes)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Images)
-                </th>
+        <div class="card">
+            <div class="card-header">
+                <div class="pull-left" style="font-weight:bold;font-size:medium">Available Event</div>
+                <div style="float:right">
+                    <a href='@Url.Action("Create","EventList")' class="btn btn-primary float-right"><i class="fa fa-plus"></i>AddEvent</a>
+                </div>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EventTypes)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Images)
+                        </th>
 
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                var tm = "#myModal" + item.Id;
-                var mid = "myModal" + item.Id;
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Id)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.EventTypes)
-                    </td>
-                    <td>
-                        <img src="~/Images/@item.Images" height="100" width="150" asp-append-version="true" />
-                    </td>
-                    <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a> |
-                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
-                            Delete
-                        </button>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var tm = "#myModal" + item.Id;
+                        var mid = "myModal" + item.Id;
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EventTypes)
+                            </td>
+                            <td>
+                                <img src="~/Images/@item.Images" height="100" width="150" asp-append-version="true" />
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a> |
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
+                                    Delete
+                                </button>
 
-                        <div class="modal fade" id="@mid"  role="dialog"  aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title">Delete Confirmation</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        Are you sure want to delete this item?
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a asp-action="Delete" asp-route-Id="@item.Id" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Delete Confirmation</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure want to delete this item?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a asp-action="Delete" asp-route-Id="@item.Id" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
-@*@section scripts{
-<script>
-    $(".btndelete").on("click", function () {
-        var deleteId = $(this).data("id");
-        deleteRecord(function (result) {
-            if (result) {
-                location.href = '/EventList/Delete?id=' + deleteId;
-            }
-        });
-    });
-</script>
- }*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @*@section scripts{
+            <script>
+                $(".btndelete").on("click", function () {
+                    var deleteId = $(this).data("id");
+                    deleteRecord(function (result) {
+                        if (result) {
+                            location.href = '/EventList/Delete?id=' + deleteId;
+                        }
+                    });
+                });
+            </script>
+             }*@
+        </form>
+      </body>
+</html>

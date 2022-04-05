@@ -28,11 +28,7 @@ namespace EventBookingApp
 
             services.AddControllersWithViews();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(options =>
-                {
-                    //  options.LoginPath = "/Area/Admin/Admin/AdminLogin";
-                    options.Cookie.Name = "Adminareacokkie";
-                });
+                .AddCookie();
      
             services.AddSession();
             services.AddMvc();
