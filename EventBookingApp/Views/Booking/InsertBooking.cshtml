@@ -76,19 +76,18 @@
                     </div>
                     <div class="abt-form text-center">
                         <form asp-action="InsertBooking" asp-controller="Booking" method="post">
-                            @*<input type="hidden" asp-for="EventId" value="@id" />
-                            <input type="hidden" asp-for="UserId" value="@Uid" />*@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <select class="sel" name="TypeName" >
+                                    <select class="sel" name="TypeName">
+                                        <option value="">--Select--</option>
                                         @foreach (var item in data)
                                         {
                                             <option value="@item.Id"> @item.EventTypes</option>
                                         }
                                     </select>
                                     <input asp-for="Address" type="text" name="Address" placeholder="Address">
-                                    <span asp-validation-for="Address" class="text-danger"></span>
+                                    <span asp-validation-for="Address" style="color:red"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
@@ -96,7 +95,7 @@
                                     <input asp-for="EventDate" type="date" name="date" required="required">
                                     <span asp-validation-for="EventDate" class="text-danger"></span>
                                     <input asp-for="AreapinCode" name="Areapincode" type="text" placeholder="pincode" required="required" value="">
-                                    <span asp-validation-for="AreapinCode" class="text-danger"></span>
+                                    <span asp-validation-for="AreapinCode" style="color:red"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
@@ -107,19 +106,20 @@
                                         <option value="OutDoor">OutDoor</option>
                                         <option value="Open terrace">Open terrace</option>
                                         <option value="Lake Terrace">Lake Terrace</option>
-                                        <option value="The Village Venue">The Village Venue</option>  
+                                        <option value="The Village Venue">The Village Venue</option>
                                     </select>
                                     <input asp-for="NumberOfPerson" type="text" name="NumberOfPerson" placeholder="NumberOfPerson" value="" required="required">
+                                    <span asp-validation-for="NumberOfPerson" style="color:red"></span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-xs-12 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <input asp-for="NumberOfDays" type="text"  name="NumberOfDays" placeholder="NumberOfDays" value="" required="required">
+                                    <input asp-for="NumberOfDays" type="text" name="NumberOfDays" placeholder="NumberOfDays" value="" required="required">
+                                    <span asp-validation-for="NumberOfDays" style="color:red"></span>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                             <input type="submit" value="Book Now">
-                            @*<input type="submit" value="Create">*@
                         </form>
                     </div>
                 </div>

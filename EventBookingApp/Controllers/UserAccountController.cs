@@ -1,10 +1,12 @@
 ﻿using DataAcessLayer;
+using EmailServices;
 using EventBookingApp.API.ViewModel;
 using EventBookingApp.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -17,12 +19,18 @@ using System.Threading.Tasks;
 
 namespace EventBookingApp.Controllers
 {
-    public class AccountController : Controller
+    public class UserAccountController : Controller
     {
-        private readonly ILogger<AccountController> _logger;
-        public AccountController(ILogger<AccountController> logger)
+        private readonly ILogger<UserAccountController> _logger;
+        private readonly IConfiguration _configuration;
+        private readonly IEmailSender _emailSender;
+        public string AdminApiString;
+        public UserAccountController(ILogger<UserAccountController> logger, IConfiguration configuration,IEmailSender emailSender)
         {
             _logger = logger;
+            _configuration = configuration;
+            _emailSender = emailSender;
+            AdminApiString = _configuration.GetValue<string>("APISTRING");
         }
         [HttpGet]
         public IActionResult Login()
@@ -36,7 +44,7 @@ namespace EventBookingApp.Controllers
             HttpClient client = new HttpClient();
             ApplicationUser user = new ApplicationUser();
 
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             var response = await client.GetAsync($"api/Account/Login?email={email}&password={password}");
             if (response.IsSuccessStatusCode)
             {
@@ -71,10 +79,13 @@ namespace EventBookingApp.Controllers
         public async Task<IActionResult> Registration(ApplicationUser applicationUser)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             var response = await client.PostAsJsonAsync<ApplicationUser>($"api/Account/Registration",applicationUser);
             if (response.IsSuccessStatusCode)
             {
+                var MsgBody = "Hello  We have registred you on our portal sucessfully,Thank you.";
+                var message = new Message(applicationUser.Email, "No Reply", MsgBody);
+                _emailSender.SendEmail(message);
                 return RedirectToAction("Login");
             }
             return View();

@@ -104,5 +104,22 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when update data to database");
             }
         }
+        [HttpGet("Search/{FoodType}")]
+        public async Task<ActionResult<IEnumerable<Food>>> Search(string FoodType)
+        {
+            try
+            {
+                var result = await _foodRepo.Search(FoodType);
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
+            }
+        }
     }
 }

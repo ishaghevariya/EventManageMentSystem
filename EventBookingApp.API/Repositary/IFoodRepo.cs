@@ -8,6 +8,7 @@ namespace EventBookingApp.API.Repositary
 {
     public interface IFoodRepo
     {
+        Task<IEnumerable<Food>> Search(string FoodType);
         Task<Food> GetFood(int id);
         Task<IEnumerable<Food>> GetFoods();
         Task<Food> AddFood(Food food);

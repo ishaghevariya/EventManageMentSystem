@@ -1,6 +1,7 @@
 ﻿using DataAcessLayer;
 using EventBookingApp.API.ViewModel;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,13 @@ namespace EventBookingApp.Web.Controllers
 {
     public class BookingController : Controller
     {
+        private readonly IConfiguration _configuration;
+        public string AdminApiString;
+        public BookingController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            AdminApiString = _configuration.GetValue<string>("APISTRING");
+        }
         [HttpGet]
         public IActionResult Index()
         {
@@ -32,7 +40,7 @@ namespace EventBookingApp.Web.Controllers
         {
             List<eventTypeViewModel> vm1 = new List<eventTypeViewModel>();
             HttpClient client1 = new HttpClient();
-            client1.BaseAddress = new Uri("https://localhost:44362/");
+            client1.BaseAddress = new Uri(AdminApiString);
             var response1 = await client1.GetAsync($"api/AddEvent/GetEventByTypes");
             if (response1.IsSuccessStatusCode)
             {
@@ -51,7 +59,7 @@ namespace EventBookingApp.Web.Controllers
 
             HttpClient client = new HttpClient();
             vm.EventId = TypeName;
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             var response = await client.PostAsJsonAsync<BookingViewModel>($"api/Booking/AddBooking", vm);
             if (response.IsSuccessStatusCode)
             {

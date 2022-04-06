@@ -1,3 +1,4 @@
+using EmailServices;
 using EventBookingApp.API.Repositary;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -25,11 +26,11 @@ namespace EventBookingApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+            services.AddScoped<IEmailSender, EmailSender>();
             services.AddControllersWithViews();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
-     
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
             services.AddSession();
             services.AddMvc();
         }
@@ -69,7 +70,7 @@ namespace EventBookingApp
 
                 endpoints.MapControllerRoute(
                      name: "default",
-                     pattern: "{controller=Account}/{action=Index}/{id?}");
+                     pattern: "{controller=UserAccount}/{action=Index}/{id?}");
             });
         }
     }

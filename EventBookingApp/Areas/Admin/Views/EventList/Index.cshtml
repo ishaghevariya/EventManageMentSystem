@@ -11,13 +11,8 @@
     <title>Index</title>
 </head>
 <body>
-    <form asp-action="Index">
-        <div>
-            <span>Event Name:</span><input type="text" name="EventTypes" />
-            <input type="submit" value="Search" />
-            <br />
-            <br />
-        </div>
+    <form method="post">
+        
         <div class="card">
             <div class="card-header">
                 <div class="pull-left" style="font-weight:bold;font-size:medium">Available Event</div>
@@ -25,6 +20,16 @@
                     <a href='@Url.Action("Create","EventList")' class="btn btn-primary float-right"><i class="fa fa-plus"></i>AddEvent</a>
                 </div>
             </div>
+            <table class="table">
+                <tr>
+                    <td>
+                        <input type="text" value="" name="EventTypes" class="form-control" id="Name" placeholder="EventType" />
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-outline-primary text-dark form-control" id="btnSearch" value="Search">Search</button>
+                    </td>
+                </tr>
+            </table>
             <table class="table">
                 <thead>
                     <tr>
@@ -87,17 +92,17 @@
             </table>
         </div>
         @*@section scripts{
-            <script>
-                $(".btndelete").on("click", function () {
-                    var deleteId = $(this).data("id");
-                    deleteRecord(function (result) {
-                        if (result) {
-                            location.href = '/EventList/Delete?id=' + deleteId;
-                        }
-                    });
+        <script>
+            $(".btndelete").on("click", function () {
+                var deleteId = $(this).data("id");
+                deleteRecord(function (result) {
+                    if (result) {
+                        location.href = '/EventList/Delete?id=' + deleteId;
+                    }
                 });
-            </script>
-             }*@
-        </form>
-      </body>
+            });
+        </script>
+         }*@
+    </form>
+</body>
 </html>

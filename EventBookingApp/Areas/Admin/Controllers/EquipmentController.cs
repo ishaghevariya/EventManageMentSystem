@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -16,13 +17,36 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
     
     public class EquipmentController : Controller
     {
+
+        private readonly IConfiguration _configuration;
+        public string AdminApiString;
+
+        public EquipmentController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            AdminApiString = _configuration.GetValue<string>("APISTRING");
+        }
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             List<Equipment> equipment = new List<Equipment>();
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.GetAsync("/api/Equipment");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                equipment = JsonConvert.DeserializeObject<List<Equipment>>(result);
+            }
+            return View(equipment);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(string EquipmentType)
+        {
+            List<Equipment> equipment = new List<Equipment>();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.GetAsync($"/api/Equipment/Search/{EquipmentType}");
             if (response.IsSuccessStatusCode)
             {
                 var result = response.Content.ReadAsStringAsync().Result;
@@ -52,7 +76,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Create(Equipment equipment)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             var response = await client.PostAsJsonAsync<Equipment>($"/api/Equipment", equipment);
             if (response.IsSuccessStatusCode)
             {
@@ -64,7 +88,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.DeleteAsync($"api/Equipment/{id}");
             if (response.IsSuccessStatusCode)
             {
@@ -82,7 +106,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Edit(Equipment equipment)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.PutAsJsonAsync($"api/Equipment/{equipment.EquipmentId}", equipment);
             if (response.IsSuccessStatusCode)
             {

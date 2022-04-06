@@ -1,0 +1,12 @@
+C:\isha\EventBookingApp\EmailServices\obj\Debug\net5.0\EmailServices.csproj.AssemblyReference.cache
+C:\isha\EventBookingApp\EmailServices\obj\Debug\net5.0\EmailServices.GeneratedMSBuildEditorConfig.editorconfig
+C:\isha\EventBookingApp\EmailServices\obj\Debug\net5.0\EmailServices.AssemblyInfoInputs.cache
+C:\isha\EventBookingApp\EmailServices\obj\Debug\net5.0\EmailServices.AssemblyInfo.cs
+C:\isha\EventBookingApp\EmailServices\obj\Debug\net5.0\EmailServices.csproj.CoreCompileInputs.cache
+C:\isha\EventBookingApp\EmailServices\bin\Debug\net5.0\EmailServices.deps.json
+C:\isha\EventBookingApp\EmailServices\bin\Debug\net5.0\EmailServices.dll
+C:\isha\EventBookingApp\EmailServices\bin\Debug\net5.0\ref\EmailServices.dll
+C:\isha\EventBookingApp\EmailServices\bin\Debug\net5.0\EmailServices.pdb
+C:\isha\EventBookingApp\EmailServices\obj\Debug\net5.0\EmailServices.dll
+C:\isha\EventBookingApp\EmailServices\obj\Debug\net5.0\ref\EmailServices.dll
+C:\isha\EventBookingApp\EmailServices\obj\Debug\net5.0\EmailServices.pdb

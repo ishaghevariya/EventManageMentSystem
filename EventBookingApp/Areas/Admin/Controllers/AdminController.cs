@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,14 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
 
     public class AdminController : Controller
     {
+        private readonly IConfiguration _configuration;
+        public string AdminApiString;
+
+        public AdminController(IConfiguration configuration)
+        {
+            _configuration = configuration;
+            AdminApiString = _configuration.GetValue<string>("APISTRING");
+        }
         [HttpGet]
         public IActionResult AdminLogin()
         {
@@ -29,7 +38,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         public async Task<IActionResult> AdminLogin(string email, string password)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             var response = await client.GetAsync($"api/Account/Login?email={email}&password={password}");
             if (response.IsSuccessStatusCode)
             {
@@ -74,7 +83,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         public async Task<IActionResult> ChangePassword(ChangePasswordModel user)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.PutAsJsonAsync($"api/Account/ChangePassword", user);
             if (response.IsSuccessStatusCode)
             {

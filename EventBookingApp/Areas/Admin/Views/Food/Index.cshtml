@@ -3,71 +3,93 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "List";
 }
-<div class="card">
-    <div class="card-header">
-        <div class="pull-left" style="font-weight:bold;font-size:medium">Available Food</div>
-        <div style="float:right">
-            <a href='@Url.Action("Create","Food")' class="btn btn-primary float-right"><i class="fa fa-plus"></i>AddFood</a>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <form method="post">
+        <div class="card">
+            <div class="card-header">
+                <div class="pull-left" style="font-weight:bold;font-size:medium">Available Food</div>
+                <div style="float:right">
+                    <a href='@Url.Action("Create","Food")' class="btn btn-primary float-right"><i class="fa fa-plus"></i>AddFood</a>
+                </div>
+            </div>
+            <table class="table">
+                <tr>
+                    <td>
+                        <input type="text" value="" name="FoodType" class="form-control" id="Name" placeholder="EquipmentType" />
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-outline-primary text-dark form-control" id="btnSearch" value="Search">Search</button>
+                    </td>
+                </tr>
+            </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FoodId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FoodType)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FoodCost)
+                        </th>
+
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var tm = "#myModal" + item.FoodId;
+                        var mid = "myModal" + item.FoodId;
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FoodId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FoodType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FoodCost)
+                            </td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.FoodId" class="btn btn-success">Edit</a> |
+                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
+                                    Delete
+                                </button>
+
+                                <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title">Delete Confirmation</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure want to delete this item?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <a asp-action="Delete" asp-route-Id="@item.FoodId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
-    </div>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.FoodId)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FoodType)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.FoodCost)
-                </th>
-
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                var tm = "#myModal" + item.FoodId;
-                var mid = "myModal" + item.FoodId;
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FoodId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FoodType)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FoodCost)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.FoodId" class="btn btn-success">Edit</a> |
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
-                        Delete
-                    </button>
-
-                    <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                    <h4 class="modal-title">Delete Confirmation</h4>
-                                </div>
-                                <div class="modal-body">
-                                    Are you sure want to delete this item?
-                                </div>
-                                <div class="modal-footer">
-                                    <a asp-action="Delete" asp-route-Id="@item.FoodId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-</div>
+    </form>
+</body>
+</html>

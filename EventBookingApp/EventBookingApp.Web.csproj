@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAcessLayer\DataAcessLayer.csproj" />
+    <ProjectReference Include="..\EmailServices\EmailServices.csproj" />
     <ProjectReference Include="..\EventBookingApp.API\EventBookingApp.API.csproj" />
   </ItemGroup>
 

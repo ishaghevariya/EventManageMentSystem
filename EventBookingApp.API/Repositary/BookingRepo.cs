@@ -18,6 +18,8 @@ namespace EventBookingApp.API.Repositary
         }
         public async Task<Booking> AddBooking(BookingViewModel booking)
         {
+            var user = await _context.ApplicationUsers.ToListAsync();
+            
             Booking Book = new Booking
             {
                 EventId = booking.EventId,

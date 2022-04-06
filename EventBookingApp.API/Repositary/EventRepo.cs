@@ -100,7 +100,7 @@ namespace EventBookingApp.API.Repositary
             }
             return null;
         }
-
+       
         //private string UploadImage(EventViewModel eventmodel)
         //{
         //    string uniqueFileName = null;

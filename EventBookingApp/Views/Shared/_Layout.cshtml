@@ -31,7 +31,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <h1><a class="navbar-brand" href="@Url.Action("Events","Account")">Events</a></h1>
+                    <h1><a class="navbar-brand" href="@Url.Action("Events","UserAccount")">Events</a></h1>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -39,9 +39,9 @@
                         <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                         <li class="hidden"><a class="page-scroll" href="#page-top"></a>	</li>
 
-                        <li><a class="hvr-sweep-to-right" href="@Url.Action("Index","Account")">Home</a></li>
-                        <li><a class="hvr-sweep-to-right" href="@Url.Action("About","Account")">About</a></li>
-                        <li><a class="hvr-sweep-to-right" href="@Url.Action("Events","Account")">Events</a></li>
+                        <li><a class="hvr-sweep-to-right" href="@Url.Action("Index","UserAccount")">Home</a></li>
+                        <li><a class="hvr-sweep-to-right" href="@Url.Action("About","UserAccount")">About</a></li>
+                        <li><a class="hvr-sweep-to-right" href="@Url.Action("Events","UserAccount")">Events</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle hvr-sweep-to-right" data-hover="Pages" data-toggle="dropdown">Pages <b class="caret"></b></a>
                             <ul class="dropdown-menu">
@@ -49,8 +49,8 @@
                                 <li><a class="hvr-sweep-to-right" href="typography.html">Short Codes</a></li>
                             </ul>
                         </li>
-                        <li><a class="hvr-sweep-to-right" href="@Url.Action("Gallery","Account")">Gallery</a></li>
-                        <li><a class="hvr-sweep-to-right" href="@Url.Action("Contact","Account")">Contact</a></li>
+                        <li><a class="hvr-sweep-to-right" href="@Url.Action("Gallery","UserAccount")">Gallery</a></li>
+                        <li><a class="hvr-sweep-to-right" href="@Url.Action("Contact","UserAccount")">Contact</a></li>
                         <li><partial name="_LoginPartial.cshtml" /></li>
                     </ul>
                 </div>
@@ -89,10 +89,10 @@
             <div class="col-md-3 foot-left">
                 <h3>Latest Events</h3>
                 <ul>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal"><img src="images/g1.jpg" alt="" class="img-responsive"></a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal"><img src="images/g2.jpg" alt="" class="img-responsive"></a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal"><img src="images/g3.jpg" alt="" class="img-responsive"></a></li>
-                    <li><a href="#" data-toggle="modal" data-target="#myModal"><img src="images/g4.jpg" alt="" class="img-responsive"></a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal"><img src="~/plugins/images/g1.jpg" alt="" class="img-responsive"></a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal"><img src="~/plugins/images/g2.jpg" alt="" class="img-responsive"></a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal"><img src="~/plugins/images/g3.jpg" alt="" class="img-responsive"></a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModal"><img src="~/plugins/images/g4.jpg" alt="" class="img-responsive"></a></li>
                 </ul>
                 <div class="clearfix"></div>
             </div>

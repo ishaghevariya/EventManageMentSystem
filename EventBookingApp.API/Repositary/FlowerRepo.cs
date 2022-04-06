@@ -49,6 +49,15 @@ namespace EventBookingApp.API.Repositary
         {
             return await _context.Flowers.FirstOrDefaultAsync(x=>x.FlowerId == id);
         }
+        public async Task<IEnumerable<Flower>> Search(string FlowerType)
+        {
+            IQueryable<Flower> query = _context.Flowers;
+            if (!string.IsNullOrEmpty(FlowerType))
+            {
+                query = query.Where(a => a.FlowerType.Contains(FlowerType));
+            }
+            return await query.ToListAsync();
+        }
 
         public async Task<IEnumerable<Flower>> GetFlowers()
         {

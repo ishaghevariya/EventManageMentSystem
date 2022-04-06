@@ -38,16 +38,16 @@
                             <div class="col-12">
                                 <div class="input-group">
                                     <label asp-for="Email">Email</label>
-                                    <input asp-for="Email" class="input--style-4" type="email" name="email">
+                                    <input asp-for="Email" class="input--style-4" type="email" name="email" required>
                                     <span asp-validation-for="Email" style="color:red"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="row row-space">
-                            <div class="col-10">
+                            <div class="col-12">
                                 <div class="input-group">
                                     <label asp-for="Password">Password</label>
-                                    <input asp-for="Password" class="input--style-4" type="password">
+                                    <input asp-for="Password" class="input--style-4" type="password" name="password" required>
                                     <span asp-validation-for="Password" style="color:red"></span>
                                 </div>
                             </div>
@@ -58,7 +58,7 @@
                     </form>
                     <div class="card-footer">
                         <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href='@Url.Action("Registration","Account")'>If You haven't membership?</</a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href='@Url.Action("Registration","UserAccount")'>If You haven't membership?</</a>
                     </div>
                 </div>
             </div>

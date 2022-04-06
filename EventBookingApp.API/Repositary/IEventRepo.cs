@@ -12,7 +12,7 @@ namespace EventBookingApp.API.Repositary
 {
     public interface IEventRepo
     {
-        Task<IEnumerable<Event>> search(string name);
+        Task<IEnumerable<Event>> search(string EventTypes);
         IEnumerable<eventTypeViewModel> GetEventsType();
         Task<Event> GetEvent(int id);
         Task<IEnumerable<Event>> GetEvents();

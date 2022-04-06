@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EventBookingApp.API", "Even
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAcessLayer", "DataAcessLayer\DataAcessLayer.csproj", "{0EBA16CE-A8FD-45A8-958E-8E3BFD57866D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmailServices", "EmailServices\EmailServices.csproj", "{5F72AF3B-FEA5-4F43-AB40-632DA1A9BAFB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0EBA16CE-A8FD-45A8-958E-8E3BFD57866D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EBA16CE-A8FD-45A8-958E-8E3BFD57866D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EBA16CE-A8FD-45A8-958E-8E3BFD57866D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F72AF3B-FEA5-4F43-AB40-632DA1A9BAFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F72AF3B-FEA5-4F43-AB40-632DA1A9BAFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F72AF3B-FEA5-4F43-AB40-632DA1A9BAFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F72AF3B-FEA5-4F43-AB40-632DA1A9BAFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

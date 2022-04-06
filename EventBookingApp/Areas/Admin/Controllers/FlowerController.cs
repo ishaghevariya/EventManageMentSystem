@@ -3,6 +3,7 @@ using DataAcessLayer.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,18 +19,36 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
 
     public class FlowerController : Controller
     {
+        private readonly IConfiguration _configuration;
+        public string AdminApiString;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public FlowerController(IWebHostEnvironment  webHostEnvironment)
+        public FlowerController(IWebHostEnvironment  webHostEnvironment, IConfiguration configuration)
         {
             _webHostEnvironment = webHostEnvironment;
+            _configuration = configuration;
+            AdminApiString = _configuration.GetValue<string>("APISTRING");
         }
         [HttpGet]
         public async Task<IActionResult> Index()
         {
             List<Flower> flower = new List<Flower>();
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.GetAsync("/api/Flowers");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                flower = JsonConvert.DeserializeObject<List<Flower>>(result);
+            }
+            return View(flower);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Index(string FlowerType)
+        {
+            List<Flower> flower = new List<Flower>();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.GetAsync($"/api/Flowers/Search/{FlowerType}");
             if (response.IsSuccessStatusCode)
             {
                 var result = response.Content.ReadAsStringAsync().Result;
@@ -50,7 +69,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             flowermodel.FileName = uniqueFileName;
             flowermodel.FlowerImage = null;
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             var response = await client.PostAsJsonAsync<FlowerViewModel>($"api/Flowers/AddFlower", flowermodel);
             if (response.IsSuccessStatusCode)
             {
@@ -62,7 +81,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.DeleteAsync($"api/Flowers/{id}");
             if (response.IsSuccessStatusCode)
             {
@@ -106,7 +125,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                 flowerViewModel.FileName = uniqueFileName;
                 flowerViewModel.FlowerImage = null;
             }
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.PutAsJsonAsync($"api/Flowers/{flowerViewModel.Id}", flowerViewModel);
             if (response.IsSuccessStatusCode)
             {
@@ -114,6 +133,8 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View(flowerViewModel);
         }
+
+       
         private string UploadImage(FlowerViewModel flower)
         {
             string uniqueFileName = null;

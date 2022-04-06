@@ -124,8 +124,8 @@ namespace EventBookingApp.API.Controllers
             }
         }
 
-        [HttpGet("search")]
-        public async Task<ActionResult<IEnumerable<Event>>> search(string EventTypes)
+        [HttpGet("Search/{EventTypes}")]
+        public async Task<ActionResult<IEnumerable<Event>>> Search(string EventTypes)
         {
             try
             {
