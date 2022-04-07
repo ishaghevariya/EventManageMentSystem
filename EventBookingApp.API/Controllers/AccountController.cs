@@ -39,24 +39,31 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
             }
         }
-
-        //[HttpGet("GetUserByEmail/{email}")]
-        //public async Task<ActionResult<ApplicationUser>> GetUserByEmail(string email)
-        //{
-        //    try
-        //    {
-        //        var result = await _registrationRepo.GetUserByEmail(email);
-        //        if (result == null)
-        //        {
-        //            return NotFound();
-        //        }
-        //        return result;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving email from database");
-        //    }
-        //}
+        [HttpGet("GetUsers")]
+        public async Task<ActionResult> GetUsers()
+        {
+            try
+            {
+                return Ok(await _registrationRepo.GetUsers());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
+            }
+        }
+        [HttpGet("GetUserByEmail/{email}")]
+        public bool GetUserByEmail(string email)
+        {
+            try
+            {
+                var result = _registrationRepo.GetUserByEmail(email);
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         [HttpPost("Registration")]
         public async Task<ActionResult<ApplicationUser>> Registration(ApplicationUser applicationUser)
         {
@@ -66,6 +73,10 @@ namespace EventBookingApp.API.Controllers
                 {
                     return BadRequest();
                 }
+                if (_registrationRepo.GetUserByEmail(applicationUser.Email)) 
+                {
+                    return StatusCode(409, $"User '{applicationUser.Email}' already exists.");
+                }
                 var userCreate = await _registrationRepo.UserRegistration(applicationUser);
                 return CreatedAtAction(nameof(GetUser), new { id = userCreate.Id }, userCreate);
             }
@@ -73,6 +84,23 @@ namespace EventBookingApp.API.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when post data to database");
 
+            }
+        }
+        [HttpDelete("DeleteUser/{id:int}")]
+        public async Task<ActionResult<ApplicationUser>> DeleteUser(int id)
+        {
+            try
+            {
+                var UserDelete = await _registrationRepo.GetUser(id);
+                if (UserDelete == null)
+                {
+                    return NotFound($"User Id={id} not found");
+                }
+                return await _registrationRepo.DeleteUser(id);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when Delete data from database");
             }
         }
 
@@ -106,7 +134,23 @@ namespace EventBookingApp.API.Controllers
             return result;
         }
 
-
+        [HttpGet("Search/{name}")]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>> Search(string name)
+        {
+            try
+            {
+                var result = await _registrationRepo.Search(name);
+                if (result.Any())
+                {
+                    return Ok(result);
+                }
+                return NotFound();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
+            }
+        }
         //[HttpGet("{email,password}")]
         //public string Login(string email, string password)
         //{

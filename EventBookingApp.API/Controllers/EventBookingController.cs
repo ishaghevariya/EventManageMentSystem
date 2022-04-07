@@ -12,10 +12,10 @@ namespace EventBookingApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BookingController : ControllerBase
+    public class EventBookingController : ControllerBase
     {
         private readonly IBookingRepo _bookingRepo;
-        public BookingController(IBookingRepo bookingRepo)
+        public EventBookingController(IBookingRepo bookingRepo)
         {
             _bookingRepo = bookingRepo;
         }

@@ -2,6 +2,7 @@
 using EventBookingApp.API.Data;
 using EventBookingApp.API.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,27 +13,27 @@ namespace EventBookingApp.API.Repositary
     public class BookingRepo : IBookingRepo
     {
         private readonly ApplicationDbContext _context;
+      
         public BookingRepo(ApplicationDbContext context)
         {
             _context = context;
+           
         }
         public async Task<Booking> AddBooking(BookingViewModel booking)
         {
-            var user = await _context.ApplicationUsers.ToListAsync();
-            
             Booking Book = new Booking
             {
                 EventId = booking.EventId,
                 NumberOfDays = booking.NumberOfDays,
                 EventDate = booking.EventDate,
-                BookingStatusId = 1,
+                BookingStatusId = 2,
                 Address = booking.Address,
                 AreapinCode = booking.AreapinCode,
                 NumberOfPerson = booking.NumberOfPerson,
                 UserId = booking.UserId,
                 VenuType = booking.VenuType,
             };
-            var result = await _context.AddAsync(Book);
+            var result = await _context.Bookings.AddAsync(Book);
             await _context.SaveChangesAsync();
             return result.Entity;
         }

@@ -68,8 +68,6 @@ namespace EventBookingApp.Controllers
             return View();
         }
 
-
-
         [HttpGet]
         public IActionResult Registration()
         {
@@ -90,6 +88,21 @@ namespace EventBookingApp.Controllers
             }
             return View();
         }
+        //[HttpPost]
+        //public async Task<JsonResult> GetEmail(string email)
+        //{
+
+        //    HttpClient client = new HttpClient();
+        //    client.BaseAddress = new Uri("https://localhost:44362/");
+        //    HttpResponseMessage response = await client.GetAsync($"api/Account/{email}");
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var result = response.Content.ReadAsStringAsync().Result;
+        //        return Json(result == null);
+        //    }
+        //    return null;
+        //}
+
 
         public IActionResult Index()
         {

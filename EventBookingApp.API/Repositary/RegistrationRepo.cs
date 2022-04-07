@@ -48,6 +48,8 @@ namespace EventBookingApp.API.Repositary
         }
         public async Task<ApplicationUser> UserRegistration(ApplicationUser applicationUser)
         {
+            
+           
             ApplicationUser user = new ApplicationUser()
             {
                 UserName = applicationUser.UserName,
@@ -60,14 +62,48 @@ namespace EventBookingApp.API.Repositary
                 City = applicationUser.City,
                 State = applicationUser.State
             };
-            var result = await _context.ApplicationUsers.AddAsync(user);
-            await _context.SaveChangesAsync();
-            return result.Entity;
+           
+                var result = await _context.ApplicationUsers.AddAsync(user);
+                await _context.SaveChangesAsync();
+                return result.Entity;
         }
 
-        //public async Task<ApplicationUser> GetUserByEmail(string email)
-        //{
-        //    return await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Email == email);
-        //}
+        public async Task<IEnumerable<ApplicationUser>> GetUsers()
+        {
+            //ApplicationUser user = new ApplicationUser();
+            //if(user.UserRole == "User")
+            //{
+            var result = await _context.ApplicationUsers.ToListAsync();
+                return result;
+            //}
+            //return null;
+        }
+
+        public async Task<ApplicationUser> DeleteUser(int id)
+        {
+            var result = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Id == id);
+            if (result != null)
+            {
+                _context.ApplicationUsers.Remove(result);
+                await _context.SaveChangesAsync();
+                return result;
+            }
+            return null;
+        }
+        public bool GetUserByEmail(string email)
+        {
+            var isEmaliExist = _context.ApplicationUsers.Any(x => x.Email == email);
+            return isEmaliExist;
+        }
+
+        public async Task<IEnumerable<ApplicationUser>> Search(string name)
+        {
+            IQueryable<ApplicationUser> query = _context.ApplicationUsers;
+            if (!string.IsNullOrEmpty(name))
+            {
+                query = query.Where(o => o.UserName.ToLower().Contains(name.Trim().ToLower()));
+            }
+            return await query.ToListAsync();
+        }
     }
 }

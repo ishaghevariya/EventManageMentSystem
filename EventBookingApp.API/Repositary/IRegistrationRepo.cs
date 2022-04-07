@@ -11,10 +11,13 @@ namespace EventBookingApp.API.Repositary
     {
         Task<ApplicationUser> UserRegistration(ApplicationUser applicationUser);
         Task<ApplicationUser> GetUser(int id);
-        //Task<ApplicationUser> GetUserByEmail(string email);
-       // public int SignInMethod(string email, string password);
+        bool GetUserByEmail(string email);
+        // public int SignInMethod(string email, string password);
         public ApplicationUser SignInMethod(string email, string password);
         Task<ApplicationUser> ChangePassword(ChangePasswordModel chagePassword);
+        Task<IEnumerable<ApplicationUser>> GetUsers();
+        Task<ApplicationUser> DeleteUser(int id);
+        Task<IEnumerable<ApplicationUser>> Search(string name);
 
     }
 }

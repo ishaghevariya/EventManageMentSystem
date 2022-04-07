@@ -55,18 +55,15 @@ namespace EventBookingApp.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertBooking(BookingViewModel vm,int TypeName)
         {
-            
-
             HttpClient client = new HttpClient();
             vm.EventId = TypeName;
             client.BaseAddress = new Uri(AdminApiString);
-            var response = await client.PostAsJsonAsync<BookingViewModel>($"api/Booking/AddBooking", vm);
+            var response = await client.PostAsJsonAsync<BookingViewModel>($"api/EventBooking/AddBooking", vm);
             if (response.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
             }
             return View();
         }
-
     }
 }

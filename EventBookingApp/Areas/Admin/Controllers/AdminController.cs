@@ -54,26 +54,14 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                     var principal = new ClaimsPrincipal(identity);
                     var props = new AuthenticationProperties();
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
-                //    HttpContext.Session.SetString("Name", email);
+                    //    HttpContext.Session.SetString("Name", email);
                     return RedirectToAction("Index");
                 }
                 return RedirectToAction("AdminLogin");
             }
             return View();
         }
-        //private static async Task<ApplicationUser> GetUserByEmail(string email)
-        //{
-        //    ApplicationUser user = new ApplicationUser();
-        //    HttpClient client = new HttpClient();
-        //    client.BaseAddress = new Uri("https://localhost:44362/");
-        //    HttpResponseMessage response = await client.GetAsync($"api/Account/{email}");
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        var result = response.Content.ReadAsStringAsync().Result;
-        //        user = JsonConvert.DeserializeObject<ApplicationUser>(result);
-        //    }
-        //    return user;
-        //}
+      
         [HttpGet]
         public IActionResult ChangePassword()
         {
@@ -94,7 +82,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         public IActionResult LogOut()
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-         //   HttpContext.Session.Remove("Name");
+            //   HttpContext.Session.Remove("Name");
             return RedirectToAction("AdminLogin");
         }
         [HttpGet]
@@ -102,6 +90,45 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         {
             return View();
         }
-      
+        public async Task<IActionResult> Delete(int id)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.DeleteAsync($"api/Account/DeleteUser/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("UserDetalis");
+            }
+            return View();
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UserDetalis()
+        {
+            List<ApplicationUser> users = new List<ApplicationUser>();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.GetAsync("api/Account/GetUsers");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                users = JsonConvert.DeserializeObject<List<ApplicationUser>>(result);
+            }
+            return View(users);
+        }
+        [HttpPost]
+        public async Task<IActionResult> UserDetalis(string name)
+        {
+            List<ApplicationUser> users = new List<ApplicationUser>();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.GetAsync($"api/Account/Search/{name}");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                users = JsonConvert.DeserializeObject<List<ApplicationUser>>(result);
+            }
+            return View(users);
+        }
     }
 }

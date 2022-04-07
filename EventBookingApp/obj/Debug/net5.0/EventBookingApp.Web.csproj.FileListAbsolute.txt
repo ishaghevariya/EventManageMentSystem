@@ -189,3 +189,4 @@ C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\UserAccount
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\UserAccount\Index.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\UserAccount\Login.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\UserAccount\Registration.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Admin\UserDetalis.cshtml.g.cs
