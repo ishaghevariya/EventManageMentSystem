@@ -1,5 +1,7 @@
 ﻿using DataAcessLayer;
+using DataAcessLayer.ViewModel;
 using EventBookingApp.API.ViewModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -55,8 +57,11 @@ namespace EventBookingApp.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertBooking(BookingViewModel vm,int TypeName)
         {
+           
             HttpClient client = new HttpClient();
+            var data = HttpContext.Session.GetString("UserId");
             vm.EventId = TypeName;
+            vm.UserId = Convert.ToInt32(data);
             client.BaseAddress = new Uri(AdminApiString);
             var response = await client.PostAsJsonAsync<BookingViewModel>($"api/EventBooking/AddBooking", vm);
             if (response.IsSuccessStatusCode)

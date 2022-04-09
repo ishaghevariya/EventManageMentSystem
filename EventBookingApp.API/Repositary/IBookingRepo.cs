@@ -1,4 +1,5 @@
 ﻿using DataAcessLayer;
+using DataAcessLayer.ViewModel;
 using EventBookingApp.API.ViewModel;
 using System;
 using System.Collections.Generic;

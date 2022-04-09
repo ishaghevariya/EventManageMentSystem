@@ -1,8 +1,8 @@
-﻿@model IEnumerable<DataAcessLayer.Event>
+﻿@model IEnumerable<DataAcessLayer.Booking>
 
 @{
     ViewData["Title"] = "Index";
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -17,32 +17,62 @@
                 @Html.DisplayNameFor(model => model.Id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.EventTypes)
+                @Html.DisplayNameFor(model => model.EventId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Images)
+                @Html.DisplayNameFor(model => model.EventDate)
             </th>
-            <th></th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookingStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AreapinCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VenuType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberOfPerson)
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        @foreach (var item in Model)
+        {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EventTypes)
+                @Html.DisplayFor(modelItem => item.EventId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Images)
+                @Html.DisplayFor(modelItem => item.EventDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) 
-                @Html.ActionLink("Details", "InsertBooking", new { id = item.Id }) 
+                @Html.DisplayFor(modelItem => item.BookingStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AreapinCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VenuType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberOfPerson)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Details", "InsertBooking", new { id = item.Id })
                 @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
             </td>
         </tr>
-}
+        }
     </tbody>
 </table>

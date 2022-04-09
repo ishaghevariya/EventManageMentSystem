@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
-namespace EventBookingApp.API.ViewModel
+namespace DataAcessLayer.ViewModel
 {
-    public class BookingViewModel
+   public class BookingViewModel
     {
-        [Required(ErrorMessage ="Please Select EventDate")]
+        [Required(ErrorMessage = "Please Select EventDate")]
         public DateTime EventDate { get; set; }
         [Required(ErrorMessage = "Please Enter Address")]
         public string Address { get; set; }

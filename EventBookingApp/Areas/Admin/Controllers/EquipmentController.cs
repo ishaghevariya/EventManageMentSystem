@@ -14,7 +14,6 @@ using System.Threading.Tasks;
 namespace EventBookingApp.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    
     public class EquipmentController : Controller
     {
 

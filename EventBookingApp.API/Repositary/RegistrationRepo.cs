@@ -24,7 +24,7 @@ namespace EventBookingApp.API.Repositary
         }
         public async Task<ApplicationUser> ChangePassword(ChangePasswordModel chagePassword)
         {
-            var user = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Email == chagePassword.Email);
+            var user = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Email == chagePassword.CurrentPassword);
             if (user != null)
             {
                 user.Password = chagePassword.NewPassword;
@@ -41,9 +41,9 @@ namespace EventBookingApp.API.Repositary
         //    return result;
         //}
 
-        public ApplicationUser SignInMethod(string email, string password)
+        public int SignInMethod(string email, string password)
         {
-            var user = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).SingleOrDefault();
+            var user = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).Select(x=>x.Id).SingleOrDefault();
             return user;
         }
         public async Task<ApplicationUser> UserRegistration(ApplicationUser applicationUser)
@@ -96,14 +96,31 @@ namespace EventBookingApp.API.Repositary
             return isEmaliExist;
         }
 
-        public async Task<IEnumerable<ApplicationUser>> Search(string name)
+        public async Task<IEnumerable<ApplicationUser>> Search(string UserName)
         {
             IQueryable<ApplicationUser> query = _context.ApplicationUsers;
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(UserName))
             {
-                query = query.Where(o => o.UserName.ToLower().Contains(name.Trim().ToLower()));
+                query = query.Where(o => o.UserName.ToLower().Contains(UserName.Trim().ToLower()));
             }
             return await query.ToListAsync();
+        }
+
+        public async Task<ApplicationUser> Profile(ApplicationUser User)
+        {
+            var result = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Id == User.Id);
+            if (result != null)
+            {
+                result.UserName = User.UserName;
+                result.Email = User.Email;
+                result.ContactNo = User.ContactNo;
+                result.Address = User.Address;
+                result.City = User.City;
+                result.State = User.State;
+                await _context.SaveChangesAsync();
+                return result;
+            }
+            return null;
         }
     }
 }

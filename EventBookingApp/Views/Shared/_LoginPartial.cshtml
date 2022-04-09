@@ -4,69 +4,8 @@
     <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
     <link href="~/plugins/css/style.css" type="text/css" rel="stylesheet" media="all">
     <link href="~/plugins/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
-
-        .myNav_navbar {
-            overflow: hidden;
-            background-color: #333;
-        }
-
-            .myNav_navbar a {
-                float: left;
-                font-size: 16px;
-                color: white;
-                text-align: center;
-                padding: 14px 16px;
-                text-decoration: none;
-            }
-
-        .myNav_dropdown {
-            float: left;
-            overflow: hidden;
-        }
-
-            .myNav_dropdown .dropbtn {
-                font-size: 16px;
-                border: none;
-                outline: none;
-                color: white;
-                padding: 14px 16px;
-                background-color: inherit;
-                font-family: inherit;
-                margin: 0;
-            }
-
-            .myNav_navbar a:hover, .myNav_dropdown:hover .dropbtn {
-                background-color: red;
-            }
-
-        .myNav_dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-
-            .myNav_dropdown-content a {
-                float: none;
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                text-align: left;
-            }
-
-                .myNav_dropdown-content a:hover {
-                    background-color: #ddd;
-                }
-
-        .myNav_dropdown:hover .myNav_dropdown-content {
-            display: block;
-        }
-    </style>
+    <script src="~/plugins/js/jquery-2.2.3.min.js"></script>
+    <script src="~/plugins/js/bootstrap.js"></script>
 </head>
 
 @if (User.Identity.IsAuthenticated)
@@ -84,11 +23,11 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle hvr-sweep-to-right" data-toggle="dropdown">Hello @User.Identity.Name <b class="caret"></b></a>
         <ul class="dropdown-menu">
+            <li><a class="hvr-sweep-to-right" href="@Url.Action("Profile","UserAccount")">Profile</a></li>
             <li><a class="hvr-sweep-to-right" href="@Url.Action("LogOut","UserAccount")">LogOut</a></li>
-            <li><a class="hvr-sweep-to-right" href="typography.html">Short Codes</a></li>
         </ul>
     </li>
-    <li class="nav-item"><a class="hvr-sweep-to-right" href="@Url.Action("LogOut","UserAccount")">LogOut</a></li>
+    @*<li class="nav-item"><a class="hvr-sweep-to-right" href="@Url.Action("LogOut","UserAccount")">LogOut</a></li>*@
 }
 else
 {

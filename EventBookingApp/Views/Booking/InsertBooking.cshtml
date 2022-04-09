@@ -1,9 +1,7 @@
-﻿@model EventBookingApp.API.ViewModel.BookingViewModel
+﻿@model DataAcessLayer.ViewModel.BookingViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
-    //var id = ViewBag.EventId;
-    //var Uid = ViewBag.UserId;
     var data = ViewBag.type;
 }
 
@@ -11,60 +9,11 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    @*<title>InsertBooking</title>*@
+    <title>Online Booking</title>
+    <script src="~/plugins/js/jquery-2.2.3.min.js"></script>
+    <script src="~/plugins/js/bootstrap.js"></script>
 </head>
 <body>
-
-    @*<h4>BookingViewModel</h4>
-        <hr />
-        <div class="row">
-            <div class="col-md-4">
-                <form asp-action="InsertBooking" asp-controller="Booking" method="post">
-                    <input type="hidden" asp-for="EventId" value="@id" />
-                    <input type="hidden" asp-for="UserId" value="@Uid" />
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="EventDate" class="control-label"></label>
-                        <input asp-for="EventDate" class="form-control" />
-                        <span asp-validation-for="EventDate" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Address" class="control-label"></label>
-                        <input asp-for="Address" class="form-control" />
-                        <span asp-validation-for="Address" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="PinCode" class="control-label"></label>
-                        <input asp-for="PinCode" class="form-control" />
-                        <span asp-validation-for="PinCode" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="VenueType" class="control-label"></label>
-                        <input asp-for="VenueType" class="form-control" />
-                        <span asp-validation-for="VenueType" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="NumberOfPerson" class="control-label"></label>
-                        <input asp-for="NumberOfPerson" class="form-control" />
-                        <span asp-validation-for="NumberOfPerson" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="NumberOfDays" class="control-label"></label>
-                        <input asp-for="NumberOfDays" class="form-control" />
-                        <span asp-validation-for="NumberOfDays" class="text-danger"></span>
-                    </div>
-
-
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div>
-            <a asp-action="Index">Back to List</a>
-        </div>*@
     <section class="about_agile">
         <div class="container">
             <h3 class="heading-agileinfo white-w3ls">Event Booking<span class="black-w3ls">Events is a professionally managed Event</span></h3>
@@ -86,13 +35,13 @@
                                             <option value="@item.Id"> @item.EventTypes</option>
                                         }
                                     </select>
-                                    <input asp-for="Address" type="text" name="Address" placeholder="Address">
+                                    <input asp-for="Address" type="text" name="Address" placeholder="Address" value="">
                                     <span asp-validation-for="Address" style="color:red"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <input asp-for="EventDate" type="date" name="date" required="required">
+                                    <input asp-for="EventDate" type="date" name="date" value="" required="required">
                                     <span asp-validation-for="EventDate" class="text-danger"></span>
                                     <input asp-for="AreapinCode" name="Areapincode" type="text" placeholder="pincode" required="required" value="">
                                     <span asp-validation-for="AreapinCode" style="color:red"></span>
@@ -129,26 +78,6 @@
 </body>
 </html>
 
-@section scripts{ 
-@*<script type="text/javascript">
-    $(document).ready(function ()
-    {
-        $.getJSON('https://localhost:44362/api/AddEvent' , function (data)
-        {
-           var items = '';
-           items += "<option value='" + "" + "'>" + "----Select----" + "</option>";
-            $("#EventId").empty();
-            $.each(data, function (i, subcategory)
-            {
-                items += "<option value='" + subcategory.Id + "'>" + subcategory.EventTypes + "</option>";
-           });
-            $('#EventId').html(items);
-
-           if ('@Model.EventId' !='')
-           {
-                   $('#EventId').val('@Model.EventId');
-           }
-       });
-    });
-</script>*@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

@@ -21,6 +21,7 @@ namespace EventBookingApp.API.Controllers
         public AccountController(IRegistrationRepo registrationRepo)
         {
             _registrationRepo = registrationRepo;
+           
         }
         [HttpGet("GetUser/{id:int}")]
         public async Task<ActionResult<ApplicationUser>> GetUser(int id)
@@ -64,6 +65,28 @@ namespace EventBookingApp.API.Controllers
                 throw;
             }
         }
+
+        [HttpPut("UpdateProfile/{id:int}")]
+        public async Task<ActionResult<ApplicationUser>> UpdateProfile(ApplicationUser User, int id)
+        {
+            try
+            {
+                if (id != User.Id)
+                {
+                    return BadRequest("Id Mismathch");
+                }
+                var Update = await _registrationRepo.GetUser(id);
+                if (Update == null)
+                {
+                    return NotFound($"User Id={id} not found ");
+                }
+                return await _registrationRepo.Profile(User);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when update data to database");
+            }
+        }
         [HttpPost("Registration")]
         public async Task<ActionResult<ApplicationUser>> Registration(ApplicationUser applicationUser)
         {
@@ -105,13 +128,13 @@ namespace EventBookingApp.API.Controllers
         }
 
         [HttpPut("ChangePassword")]
-        public async Task<ActionResult<ApplicationUser>> ChangePassword(ChangePasswordModel model,string email)
+        public async Task<ActionResult<ApplicationUser>> ChangePassword(ChangePasswordModel model,string password)
         {
             try
             {
-                if(email != model.Email)
+                if(password != model.CurrentPassword)
                 {
-                    return BadRequest("Email is Not Matched");
+                    return BadRequest("Password is Not Matched");
                 }
                 return await _registrationRepo.ChangePassword(model);
             }
@@ -122,24 +145,25 @@ namespace EventBookingApp.API.Controllers
         }
 
         [HttpGet("{email,password}")]
-        public string Login(string email,string password)
+        public int Login(string email,string password)
         {
             var user = _registrationRepo.SignInMethod(email, password);
-            string result = "false";
-            if (user != null)
-            {
-                result = "true";
-                HttpContext.Session.SetString("UserId", Convert.ToString(user.Id));
-            }
-            return result;
+            //string result = "false";
+            //if (user != null)
+            //{
+            //    result = "true";
+            //    HttpContext.Session.SetString("UserId", Convert.ToString(user.Id));
+            //    var data = HttpContext.Session.GetString("UserId");
+            //}
+            return user;
         }
 
-        [HttpGet("Search/{name}")]
-        public async Task<ActionResult<IEnumerable<ApplicationUser>>> Search(string name)
+        [HttpGet("Search/{UserName}")]
+        public async Task<ActionResult<IEnumerable<ApplicationUser>>>Search(string UserName)
         {
             try
             {
-                var result = await _registrationRepo.Search(name);
+                var result = await _registrationRepo.Search(UserName);
                 if (result.Any())
                 {
                     return Ok(result);
@@ -151,6 +175,7 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
             }
         }
+
         //[HttpGet("{email,password}")]
         //public string Login(string email, string password)
         //{
@@ -163,6 +188,6 @@ namespace EventBookingApp.API.Controllers
         //    }
         //    return result;
         //}
-
+     
     }
 }

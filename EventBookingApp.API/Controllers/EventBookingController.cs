@@ -1,4 +1,5 @@
 ﻿using DataAcessLayer;
+using DataAcessLayer.ViewModel;
 using EventBookingApp.API.Repositary;
 using EventBookingApp.API.ViewModel;
 using Microsoft.AspNetCore.Http;
@@ -15,9 +16,11 @@ namespace EventBookingApp.API.Controllers
     public class EventBookingController : ControllerBase
     {
         private readonly IBookingRepo _bookingRepo;
+     
         public EventBookingController(IBookingRepo bookingRepo)
         {
             _bookingRepo = bookingRepo;
+        
         }
         public async Task<ActionResult<Booking>> GetBookingById(int id)
         {

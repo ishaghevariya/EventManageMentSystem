@@ -1,6 +1,8 @@
 ﻿using DataAcessLayer;
+using DataAcessLayer.ViewModel;
 using EventBookingApp.API.Data;
 using EventBookingApp.API.ViewModel;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -31,7 +33,7 @@ namespace EventBookingApp.API.Repositary
                 AreapinCode = booking.AreapinCode,
                 NumberOfPerson = booking.NumberOfPerson,
                 UserId = booking.UserId,
-                VenuType = booking.VenuType,
+            VenuType = booking.VenuType,
             };
             var result = await _context.Bookings.AddAsync(Book);
             await _context.SaveChangesAsync();

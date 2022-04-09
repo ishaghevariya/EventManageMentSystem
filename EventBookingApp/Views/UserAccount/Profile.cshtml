@@ -1,0 +1,89 @@
+﻿@model DataAcessLayer.ApplicationUser
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>User Profile</title>
+    <script src="~/plugins/js/jquery-2.2.3.min.js"></script>
+    <script src="~/plugins/js/bootstrap.js"></script>
+</head>
+<body>
+    <br />
+    <br />
+
+    <div class="container">
+        <div class="about-grids">
+            <div class="abt-rt-grid">
+                <div class="w3ls-grid-head text-center">
+                    <h3>Profile </h3>
+                </div>
+                <div class="abt-form text-center">
+
+                    <form asp-action="Profile" asp-controller="UserAccount" method="post">
+                        <input type="hidden" asp-for="Id" />
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-6 w3ls-lt-form">
+                                <div class="w3ls-pr">
+                                    <label asp-for="UserName"></label>
+                                    <input asp-for="UserName" type="text" name="UserName" placeholder="UserName">
+                                    <span asp-validation-for="UserName" style="color:red"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xs-6 w3ls-lt-form">
+                                <div class="w3ls-pr">
+                                    <label asp-for="Email" class="control-label"></label>
+                                    <input asp-for="Email" type="email" name="Email" placeholder="Email">
+                                    <span asp-validation-for="Email" style="color:red"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xs-6 w3ls-lt-form">
+                                <div class="w3ls-pr">
+                                    <label asp-for="ContactNo" class="control-label"></label>
+                                    <input asp-for="ContactNo" type="text" name="ContactNo" placeholder="ContactNo">
+                                    <span asp-validation-for="ContactNo" style="color:red"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xs-6 w3ls-lt-form">
+                                <div class="w3ls-pr">
+                                    <label asp-for="Address" class="control-label"></label>
+                                    <input asp-for="Address" type="text" name="Address" placeholder="Address">
+                                    <span asp-validation-for="Address" style="color:red"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xs-6 w3ls-lt-form">
+                                <div class="w3ls-pr">
+                                    <div class="w3ls-pr">
+                                        <label asp-for="City" class="control-label"></label>
+                                        <input asp-for="City" type="text" name="City" placeholder="City">
+                                        <span asp-validation-for="City" style="color:red"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-xs-6 w3ls-lt-form">
+                                <div class="w3ls-pr">
+                                    <div class="w3ls-pr">
+                                        <label asp-for="State" class="control-label"></label>
+                                        <input asp-for="State" type="text" name="State" placeholder="State">
+                                        <span asp-validation-for="State" style="color:red"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <input type="submit" value="Update Profile">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

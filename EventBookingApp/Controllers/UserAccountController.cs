@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -25,7 +26,7 @@ namespace EventBookingApp.Controllers
         private readonly IConfiguration _configuration;
         private readonly IEmailSender _emailSender;
         public string AdminApiString;
-        public UserAccountController(ILogger<UserAccountController> logger, IConfiguration configuration,IEmailSender emailSender)
+        public UserAccountController(ILogger<UserAccountController> logger, IConfiguration configuration, IEmailSender emailSender)
         {
             _logger = logger;
             _configuration = configuration;
@@ -42,14 +43,12 @@ namespace EventBookingApp.Controllers
         {
 
             HttpClient client = new HttpClient();
-            ApplicationUser user = new ApplicationUser();
-
             client.BaseAddress = new Uri(AdminApiString);
             var response = await client.GetAsync($"api/Account/Login?email={email}&password={password}");
             if (response.IsSuccessStatusCode)
             {
                 var result = response.Content.ReadAsStringAsync().Result;
-                if (result == "true")
+                if (Convert.ToInt32(result) > 0)
                 {
                     var cliams = new List<Claim>
                     {
@@ -60,7 +59,7 @@ namespace EventBookingApp.Controllers
                     var principal = new ClaimsPrincipal(identity);
                     var props = new AuthenticationProperties();
                     HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
-                  //  HttpContext.Session.SetString("Name", email);
+                    HttpContext.Session.SetString("UserId", result);
                     return RedirectToAction("Index");
                 }
                 return RedirectToAction("Login");
@@ -78,7 +77,7 @@ namespace EventBookingApp.Controllers
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
-            var response = await client.PostAsJsonAsync<ApplicationUser>($"api/Account/Registration",applicationUser);
+            var response = await client.PostAsJsonAsync<ApplicationUser>($"api/Account/Registration", applicationUser);
             if (response.IsSuccessStatusCode)
             {
                 var MsgBody = "Hello  We have registred you on our portal sucessfully,Thank you.";
@@ -86,6 +85,45 @@ namespace EventBookingApp.Controllers
                 _emailSender.SendEmail(message);
                 return RedirectToAction("Login");
             }
+            return View();
+        }
+        private async Task<ApplicationUser> GetUserById(int id)
+        {
+            var data = HttpContext.Session.GetString("UserId");
+            id = Convert.ToInt32(data);
+            ApplicationUser user = new ApplicationUser();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.GetAsync($"api/Account/GetUser/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                user = JsonConvert.DeserializeObject<ApplicationUser>(result);
+            }
+            return user;
+        }
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+            var data = HttpContext.Session.GetString("UserId");
+            int id = Convert.ToInt32(data);
+            ApplicationUser user = await GetUserById(id);
+            return View(user);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Profile(ApplicationUser user)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.PutAsJsonAsync($"api/Account/UpdateProfile/{user.Id}", user);
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View(user);
+        }
+        public IActionResult ChangePassword()
+        {
             return View();
         }
         //[HttpPost]
@@ -130,8 +168,7 @@ namespace EventBookingApp.Controllers
         }
         public IActionResult LogOut()
         {
-               HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-           // HttpContext.Session.Remove("Name");
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index");
         }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
