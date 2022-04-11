@@ -62,7 +62,7 @@ namespace EventBookingApp.API.Repositary
             IQueryable<Equipment> query = _context.Equipments;
             if (!string.IsNullOrEmpty(EquipmentType))
             {
-                query = query.Where(a => a.EquipmentType.Contains(EquipmentType));
+                query = query.Where(o => o.EquipmentType.ToLower().Contains(EquipmentType.Trim().ToLower()));
             }
             return await query.ToListAsync();
         }

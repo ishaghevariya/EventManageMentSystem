@@ -49,7 +49,8 @@ namespace EventBookingApp.API.Repositary
             IQueryable<Food> query = _context.Foods;
             if (!string.IsNullOrEmpty(FoodType))
             {
-                query = query.Where(a => a.FoodType.Contains(FoodType));
+                
+                query = query.Where(o => o.FoodType.ToLower().Contains(FoodType.Trim().ToLower()));
             }
             return await query.ToListAsync();
         }

@@ -141,7 +141,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
 
             if (flower.FlowerImage != null)
             {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "FlowerImages");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + flower.FlowerImage.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))

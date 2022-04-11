@@ -23,7 +23,8 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="wwwroot\Images\" />
+    <Folder Include="wwwroot\EventImages\" />
+    <Folder Include="wwwroot\FlowerImages\" />
   </ItemGroup>
 
 </Project>

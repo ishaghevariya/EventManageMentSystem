@@ -1,4 +1,5 @@
 ﻿using DataAcessLayer;
+using DataAcessLayer.ViewModel;
 using EmailServices;
 using EventBookingApp.API.ViewModel;
 using EventBookingApp.Models;
@@ -85,8 +86,13 @@ namespace EventBookingApp.Controllers
                 _emailSender.SendEmail(message);
                 return RedirectToAction("Login");
             }
+            else
+            {
+                ModelState.AddModelError("", "Email is already registor please use another email.");
+            }
             return View();
         }
+       
         private async Task<ApplicationUser> GetUserById(int id)
         {
             var data = HttpContext.Session.GetString("UserId");
@@ -122,9 +128,39 @@ namespace EventBookingApp.Controllers
             }
             return View(user);
         }
-        public IActionResult ChangePassword()
+        [HttpGet]
+        public IActionResult UserChangePassword()
         {
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> UserChangePassword(ChangePasswordModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                var data = HttpContext.Session.GetString("UserId");
+                user.id = Convert.ToInt32(data);
+
+                if (user.id != 0)
+                {
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(AdminApiString);
+                    HttpResponseMessage response = await client.PutAsJsonAsync($"api/Account/ChangePassword", user);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Login");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Current password is not valid.");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Login");
+                }
+            }
+            return View(user);
         }
         //[HttpPost]
         //public async Task<JsonResult> GetEmail(string email)

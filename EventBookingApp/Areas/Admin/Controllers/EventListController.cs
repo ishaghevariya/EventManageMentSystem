@@ -42,11 +42,12 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             {
                 var result = response.Content.ReadAsStringAsync().Result;
                 events = JsonConvert.DeserializeObject<List<Event>>(result);
+                ViewBag.Images = events;
             }
             return View(events);
         }
         [HttpPost]
-        public async Task<IActionResult>Index(string EventTypes)
+        public async Task<IActionResult> Index(string EventTypes)
         {
             List<Event> events = new List<Event>();
             HttpClient client = new HttpClient();
@@ -67,9 +68,13 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(EventViewModel eventmodel)
         {
-            string uniqueFileName = UploadImage(eventmodel);
-            eventmodel.FileName = uniqueFileName;
-            eventmodel.Images = null;
+            foreach (var item in eventmodel.Images)
+            {
+                string uniqueFileName = UploadImage(item);
+
+                eventmodel.FileName = uniqueFileName;
+                eventmodel.Images = null;
+            }
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
             var response = await client.PostAsJsonAsync<EventViewModel>($"/api/AddEvent/AddData", eventmodel);
@@ -77,6 +82,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             {
                 return RedirectToAction("Index");
             }
+
             return View();
         }
         public async Task<IActionResult> Delete(int id)
@@ -112,7 +118,6 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             vm.Id = events.Id;
             vm.EventTypes = events.EventTypes;
             vm.FileName = events.Images;
-
             return View(vm);
         }
         [HttpPost]
@@ -121,9 +126,15 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             HttpClient client = new HttpClient();
             if (eventmodel.Images != null)
             {
-                string uniqueFileName = UploadImage(eventmodel);
-                eventmodel.FileName = uniqueFileName;
-                eventmodel.Images = null;
+                foreach (var item in eventmodel.Images)
+                {
+                    string uniqueFileName = UploadImage(item);
+                    eventmodel.FileName = uniqueFileName;
+                    eventmodel.Images = null;
+                }
+                //string uniqueFileName = UploadImage(eventmodel);
+                //eventmodel.FileName = uniqueFileName;
+                //eventmodel.Images = null;
             }
             client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.PutAsJsonAsync($"api/AddEvent/{eventmodel.Id}", eventmodel);
@@ -133,20 +144,20 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View(eventmodel);
         }
-        private string UploadImage(EventViewModel eventmodel)
+        private string UploadImage(IFormFile file)
         {
             string uniqueFileName = null;
-
-            if (eventmodel.Images != null)
+            if (file != null)
             {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + eventmodel.Images.FileName;
+                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "EventImages");
+                uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                 using (var fileStream = new FileStream(filePath, FileMode.Create))
                 {
-                    eventmodel.Images.CopyTo(fileStream);
+                    file.CopyTo(fileStream);
                 }
             }
+
             return uniqueFileName;
         }
     }

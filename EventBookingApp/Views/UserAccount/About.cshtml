@@ -8,8 +8,8 @@
     <title>About Us</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @*<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Events Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />*@
+        <meta name="keywords" content="Events Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+        SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />*@
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Custom Theme files -->
     <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
@@ -19,6 +19,7 @@
     <!-- js -->
     <script src="~/plugins/js/jquery-2.2.3.min.js"></script>
     <script src="~/plugins/js/bootstrap.js"></script>
+  
     <!-- //js -->
     <!-- web-fonts -->
     <link href="//fonts.googleapis.com/css?family=Josefin+Sans:300,400,600,700" rel="stylesheet">
@@ -26,49 +27,43 @@
 </head>
 <body>
     <!--<div class="w3ls-banner-1">-->
-         @*banner-text 
-         //banner 
-         header*@ 
-        <!--<div class="header-w3layouts">-->
-             @*Navigation*@ 
-            <!--<nav class="navbar navbar-default navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header page-scroll">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                            <span class="sr-only">Events</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <h1><a class="navbar-brand" href="@Url.Action("Events","UserAccount")">Events</a></h1>
-                    </div>-->
-                     @*Collect the nav links, forms, and other content for toggling*@ 
-                    <!--<div class="collapse navbar-collapse navbar-ex1-collapse">
-                        <ul class="nav navbar-nav navbar-right">-->
-                             @*Hidden li included to remove active class from about link when scrolled up past about section*@ 
-                            <!--<li class="hidden"><a class="page-scroll" href="#page-top"></a>	</li>
-                            <li><a class="hvr-sweep-to-right" href="@Url.Action("Index","Account")">Home</a></li>
-                            <li><a class="hvr-sweep-to-right" href="@Url.Action("About","Account")">About</a></li>
-                            <li><a class="hvr-sweep-to-right" href="@Url.Action("Events","Account")">Events</a></li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle hvr-sweep-to-right" data-hover="Pages" data-toggle="dropdown">Pages <b class="caret"></b></a>
-                                <ul class="dropdown-menu">
-                                    <li><a class="hvr-sweep-to-right" href="icons.html">Icons</a></li>
-                                    <li><a class="hvr-sweep-to-right" href="typography.html">Short Codes</a></li>
-                                </ul>
-                            </li>
-                            <li><a class="hvr-sweep-to-right" href="@Url.Action("Gallery","Account")">Gallery</a></li>
-                            <li><a class="hvr-sweep-to-right" href="@Url.Action("Contact","Account")">Contact</a></li>
-                        </ul>
-                    </div>-->
-                     @*/.navbar-collapse*@ 
-                <!--</div>-->
-                 @*/.container*@ 
-            <!--</nav>
-        </div>-->
-         @*//header*@ 
+    @*banner-text
+        //banner
+        header*@
+    <!--<div class="header-w3layouts">-->
+    @*Navigation*@
+    <!--<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Events</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <h1><a class="navbar-brand" href="@Url.Action("Events","UserAccount")">Events</a></h1>
+            </div>-->
+    @*Collect the nav links, forms, and other content for toggling*@
+    <!--<div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            Hidden li included to remove active class from about link when scrolled up past about section
+            <li class="hidden"><a class="page-scroll" href="#page-top"></a>	</li>
+            <li><a class="hvr-sweep-to-right" href="@Url.Action("Index","UserAccount")">Home</a></li>
+            <li><a class="hvr-sweep-to-right" href="@Url.Action("About","UserAccount")">About</a></li>
+            <li><a class="hvr-sweep-to-right" href="@Url.Action("Events","UserAccount")">Events</a></li>
+            <li><a class="hvr-sweep-to-right" href="@Url.Action("Gallery","UserAccount")">Gallery</a></li>
+            <li><a class="hvr-sweep-to-right" href="@Url.Action("Contact","UserAccount")">Contact</a></li>
+            <li><partial name="_LoginPartial.cshtml" /></li>
+        </ul>
+    </div>-->
+    @*/.navbar-collapse*@
     <!--</div>-->
-    <!-- about --><br/>
+    @*/.container*@
+    <!--</nav>-->
+    @*   </div>*@
+    @*//header*@
+    <!--</div>-->
+    <!-- about --><br />
     <div class="about">
         <div class="container">
             <h2 class="heading-agileinfo">About Us<span>Events is a professionally managed Event</span></h2>
@@ -91,4 +86,6 @@
     </div>
     <!-- //about -->
     <!-- offers -->
+    @*<script src="~/plugins/js/jquery-2.2.3.min.js"></script>
+    <script src="~/plugins/js/bootstrap.js"></script>*@
 </body>

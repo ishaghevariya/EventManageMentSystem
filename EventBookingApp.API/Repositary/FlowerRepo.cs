@@ -54,7 +54,7 @@ namespace EventBookingApp.API.Repositary
             IQueryable<Flower> query = _context.Flowers;
             if (!string.IsNullOrEmpty(FlowerType))
             {
-                query = query.Where(a => a.FlowerType.Contains(FlowerType));
+                query = query.Where(o => o.FlowerType.ToLower().Contains(FlowerType.Trim().ToLower()));
             }
             return await query.ToListAsync();
         }

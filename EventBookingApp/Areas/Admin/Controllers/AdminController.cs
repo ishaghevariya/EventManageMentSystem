@@ -70,14 +70,26 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordModel user)
         {
-            var data = HttpContext.Session.GetString("UserId");
-            int id = Convert.ToInt32(data);
-            if (id != 0)
+            if (ModelState.IsValid)
             {
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(AdminApiString);
-                HttpResponseMessage response = await client.PutAsJsonAsync($"api/Account/ChangePassword", user);
-                if (response.IsSuccessStatusCode)
+                var data = HttpContext.Session.GetString("UserId");
+                user.id = Convert.ToInt32(data);
+
+                if (user.id != 0)
+                {
+                    HttpClient client = new HttpClient();
+                    client.BaseAddress = new Uri(AdminApiString);
+                    HttpResponseMessage response = await client.PutAsJsonAsync($"api/Account/ChangePassword", user);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("AdminLogin");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Current password is not valid.");
+                    }
+                }
+                else
                 {
                     return RedirectToAction("AdminLogin");
                 }

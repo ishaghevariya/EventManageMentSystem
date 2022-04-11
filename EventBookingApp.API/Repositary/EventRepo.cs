@@ -83,7 +83,7 @@ namespace EventBookingApp.API.Repositary
             IQueryable<Event> query = _context.Events;
             if (!string.IsNullOrEmpty(EventTypes))
             {
-                query = query.Where(a => a.EventTypes.Contains(EventTypes));
+                query = query.Where(o => o.EventTypes.ToLower().Contains(EventTypes.Trim().ToLower()));
             }
             return await query.ToListAsync();
         }

@@ -12,7 +12,7 @@
 </head>
 <body>
     <form method="post">
-        
+
         <div class="card">
             <div class="card-header">
                 <div class="pull-left" style="font-weight:bold;font-size:medium">Available Event</div>
@@ -59,8 +59,34 @@
                                 @Html.DisplayFor(modelItem => item.EventTypes)
                             </td>
                             <td>
-                                <img src="~/Images/@item.Images" height="100" width="150" asp-append-version="true" />
+                                <img src="~/EventImages/@item.Images" height="100" width="150" asp-append-version="true" />
                             </td>
+                            @*<td>
+                                    <div class="col-xs-offset-0 col-xs-6">
+                                        <div id="wrap">
+                                            <div id="slider-holder">
+                                                @{ var data = (List<DataAcessLayer.ViewModel.EventViewModel>)ViewBag.Images;
+
+                                                    for (int i = 0; i < (data.Count()); i++)
+                                                    {
+                                                        <div class="slide">
+                                                            <div style="background-color:black">@data[i].EventTypes</div>
+                                                            <img src="/@data[i].FileName" width="400" height="300" alt="@data[i].EventTypes">
+                                                        </div>
+                                                        <div id="btn-nav-holder">
+                                                            @if (i == 0)
+                                                            {
+                                                                <img src="~/EventImages/1fca0be2-6a3c-4a6e-89b1-142bba6d2e2a_c1.jpg" width="8" height="8" alt="" /> }
+                                                            else
+                                                            {
+                                                                <img src="~/EventImages/27b16dd9-ee9a-4780-8fd6-26c598c888e6_b1.jpg" width="8" height="8" alt="" />}
+                                                        </div> }
+                                                    }
+                                            </div>
+                                            <div style="clear: both;"></div>
+                                        </div>
+                                    </div>
+                                </td>*@
                             <td>
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a> |
                                 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
@@ -92,17 +118,19 @@
             </table>
         </div>
         @*@section scripts{
-        <script>
-            $(".btndelete").on("click", function () {
-                var deleteId = $(this).data("id");
-                deleteRecord(function (result) {
-                    if (result) {
-                        location.href = '/EventList/Delete?id=' + deleteId;
-                    }
+            <script>
+                $(".btndelete").on("click", function () {
+                    var deleteId = $(this).data("id");
+                    deleteRecord(function (result) {
+                        if (result) {
+                            location.href = '/EventList/Delete?id=' + deleteId;
+                        }
+                    });
                 });
-            });
-        </script>
-         }*@
+            </script>
+             }*@
     </form>
+    <script src="~/plugins/js/jquery-2.2.3.min.js"></script>
+    <script src="~/plugins/js/bootstrap.js"></script>
 </body>
 </html>

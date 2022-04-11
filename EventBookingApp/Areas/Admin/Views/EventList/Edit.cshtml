@@ -17,11 +17,15 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <div class="form-group">
+
                             <label asp-for="Images" class="control-label"></label>
-                            <input asp-for="Images" class="form-control" />
+                            <input asp-for="Images" class="form-control" multiple />
                             <span asp-validation-for="Images" class="text-danger"></span>
-                            <input type="hidden" asp-for="@Model.FileName" value="@Model.FileName" />
-                            <img src="~/Images/@Model.FileName" height="100" width="150" /><br />
+                            @foreach (var image in Model.Images)
+                            {
+                                <input type="hidden" asp-for="@image.FileName" value="@image.FileName" />
+                                <img src="~/EventImages/@image.FileName" height="100" width="150" /><br />
+                            }
                         </div>
                     </div>
                 </div>

@@ -46,7 +46,26 @@
                         <li><a class="hvr-sweep-to-right" href="@Url.Action("Events","UserAccount")">Events</a></li>
                         <li><a class="hvr-sweep-to-right" href="@Url.Action("Gallery","UserAccount")">Gallery</a></li>
                         <li><a class="hvr-sweep-to-right" href="@Url.Action("Contact","UserAccount")">Contact</a></li>
-                        <li><partial name="_LoginPartial.cshtml" /></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                <a class="hvr-sweep-to-right" href="@Url.Action("InsertBooking","Booking")">BookEvent</a>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle hvr-sweep-to-right" data-toggle="dropdown">Hello @User.Identity.Name <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="hvr-sweep-to-right" href="@Url.Action("Profile","UserAccount")">Profile</a></li>
+                                    <li><a class="hvr-sweep-to-right" href="@Url.Action("UserChangePassword","UserAccount")">Change Password</a></li>
+                                    <li><a class="hvr-sweep-to-right" href="@Url.Action("LogOut","UserAccount")">LogOut</a></li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a class="hvr-sweep-to-right" href="@Url.Action("Login","UserAccount")">SignIn</a>
+                            </li>
+                        }
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -201,7 +220,7 @@
 
     <!-- start-smoth-scrolling -->
     <!-- OnScroll-Number-Increase-JavaScript -->
-   @* <script type="text/javascript" src="~/plugins/js/numscroller-1.0.js"></script>*@
+    @* <script type="text/javascript" src="~/plugins/js/numscroller-1.0.js"></script>*@
     <!-- //OnScroll-Number-Increase-JavaScript -->
     <!--flexiselDemo1 -->
     <script type="text/javascript">
@@ -265,6 +284,8 @@
 
     </script>
     <!-- //here ends scrolling icon -->
+    @*<script src="~/plugins/js/jquery-2.2.3.min.js"></script>
+    <script src="~/plugins/js/bootstrap.js"></script>*@
     @RenderSection("Scripts", required: false)
 </body>
 </html>

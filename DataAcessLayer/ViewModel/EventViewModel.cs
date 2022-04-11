@@ -14,7 +14,7 @@ namespace DataAcessLayer.ViewModel
         [Required(ErrorMessage ="EventType is Required")]
         public string EventTypes { get; set; }
         public string FileName { get; set; }
-        public IFormFile Images { get; set; }
+        public List<IFormFile> Images { get; set; }
     //    public string Images { get; set; }
     }
 }

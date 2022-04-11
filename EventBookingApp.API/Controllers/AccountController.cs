@@ -128,19 +128,20 @@ namespace EventBookingApp.API.Controllers
         }
 
         [HttpPut("ChangePassword")]
-        public async Task<ActionResult<ApplicationUser>> ChangePassword(ChangePasswordModel model,string password)
+        public async Task<ActionResult<ApplicationUser>> ChangePassword(ChangePasswordModel model)
         {
             try
             {
-                if(password != model.CurrentPassword)
+                ApplicationUser user = await _registrationRepo.GetUser(model.id);
+                if(user.Password != model.CurrentPassword)
                 {
-                    return BadRequest("Password is Not Matched");
+                    return BadRequest("Current Password is not valid");
                 }
                 return await _registrationRepo.ChangePassword(model);
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error when post data to database");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when change password");
             }
         }
 

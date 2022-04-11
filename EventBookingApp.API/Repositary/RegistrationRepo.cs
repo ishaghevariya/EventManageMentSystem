@@ -24,12 +24,19 @@ namespace EventBookingApp.API.Repositary
         }
         public async Task<ApplicationUser> ChangePassword(ChangePasswordModel chagePassword)
         {
-            var user = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Email == chagePassword.CurrentPassword);
+            var user = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Id == chagePassword.id);
             if (user != null)
             {
-                user.Password = chagePassword.NewPassword;
-                await _context.SaveChangesAsync();
-                return user;
+                if (user.Password == chagePassword.CurrentPassword)
+                {
+                    user.Password = chagePassword.NewPassword;
+                    await _context.SaveChangesAsync();
+                    return user;
+                }
+                else
+                {
+                    return null;
+                }
             }
             return null;
         }
@@ -95,7 +102,6 @@ namespace EventBookingApp.API.Repositary
             var isEmaliExist = _context.ApplicationUsers.Any(x => x.Email == email);
             return isEmaliExist;
         }
-
         public async Task<IEnumerable<ApplicationUser>> Search(string UserName)
         {
             IQueryable<ApplicationUser> query = _context.ApplicationUsers;
