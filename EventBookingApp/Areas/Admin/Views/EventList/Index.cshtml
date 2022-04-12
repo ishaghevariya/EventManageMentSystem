@@ -40,7 +40,10 @@
                             @Html.DisplayNameFor(model => model.EventTypes)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Images)
+                            @Html.DisplayNameFor(model => model.EventCost)
+                        </th>
+                        <th>
+                         @*   @Html.DisplayNameFor(model => model.Images)*@
                         </th>
 
                         <th>Action</th>
@@ -51,68 +54,72 @@
                     {
                         var tm = "#myModal" + item.Id;
                         var mid = "myModal" + item.Id;
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Id)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.EventTypes)
-                            </td>
-                            <td>
-                                <img src="~/EventImages/@item.Images" height="100" width="150" asp-append-version="true" />
-                            </td>
-                            @*<td>
-                                    <div class="col-xs-offset-0 col-xs-6">
-                                        <div id="wrap">
-                                            <div id="slider-holder">
-                                                @{ var data = (List<DataAcessLayer.ViewModel.EventViewModel>)ViewBag.Images;
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EventTypes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EventCost)
+                        </td>
+                        <td>
+                            @*<img src="~/EventImages/@item.Images" height="100" width="150" asp-append-version="true" />*@
+                        </td>
 
-                                                    for (int i = 0; i < (data.Count()); i++)
-                                                    {
-                                                        <div class="slide">
-                                                            <div style="background-color:black">@data[i].EventTypes</div>
-                                                            <img src="/@data[i].FileName" width="400" height="300" alt="@data[i].EventTypes">
-                                                        </div>
-                                                        <div id="btn-nav-holder">
-                                                            @if (i == 0)
-                                                            {
-                                                                <img src="~/EventImages/1fca0be2-6a3c-4a6e-89b1-142bba6d2e2a_c1.jpg" width="8" height="8" alt="" /> }
-                                                            else
-                                                            {
-                                                                <img src="~/EventImages/27b16dd9-ee9a-4780-8fd6-26c598c888e6_b1.jpg" width="8" height="8" alt="" />}
-                                                        </div> }
-                                                    }
-                                            </div>
-                                            <div style="clear: both;"></div>
+                        @*<td>
+            <div class="col-xs-offset-0 col-xs-6">
+                <div id="wrap">
+                    <div id="slider-holder">
+                        @{ var data = (List<DataAcessLayer.ViewModel.EventViewModel>)ViewBag.Images;
+
+                            for (int i = 0; i < (data.Count()); i++)
+                            {
+                                <div class="slide">
+                                    <div style="background-color:black">@data[i].EventTypes</div>
+                                    <img src="/@data[i].FileName" width="400" height="300" alt="@data[i].EventTypes">
+                                </div>
+                                <div id="btn-nav-holder">
+                                    @if (i == 0)
+                                    {
+                                        <img src="~/EventImages/1fca0be2-6a3c-4a6e-89b1-142bba6d2e2a_c1.jpg" width="8" height="8" alt="" /> }
+                                    else
+                                    {
+                                        <img src="~/EventImages/27b16dd9-ee9a-4780-8fd6-26c598c888e6_b1.jpg" width="8" height="8" alt="" />}
+                                </div> }
+                            }
+                    </div>
+                    <div style="clear: both;"></div>
+                </div>
+            </div>
+        </td>*@
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a> |
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
+                                Delete
+                            </button>
+
+                            <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Delete Confirmation</h4>
                                         </div>
-                                    </div>
-                                </td>*@
-                            <td>
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a> |
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
-                                    Delete
-                                </button>
-
-                                <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title">Delete Confirmation</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure want to delete this item?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a asp-action="Delete" asp-route-Id="@item.Id" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
+                                        <div class="modal-body">
+                                            Are you sure want to delete this item?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a asp-action="Delete" asp-route-Id="@item.Id" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                            </td>
-                        </tr>
+                        </td>
+                    </tr>
                     }
                 </tbody>
             </table>

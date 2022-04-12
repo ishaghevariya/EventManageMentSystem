@@ -1,4 +1,4 @@
-﻿@model DataAcessLayer.ViewModel.EventViewModel
+﻿@model EventBookingApp.Web.Areas.Admin.ViewModel.EventViewModels
 
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -9,19 +9,20 @@
     <div class="card-body">
         <form asp-action="Create" method="post" enctype="multipart/form-data">
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <label asp-for="EventTypes" class="control-label"></label>
                     <input asp-for="EventTypes" class="form-control" />
                     <span asp-validation-for="EventTypes" class="text-danger"></span>
                 </div>
-                <div class="col-sm-6">
-                    <div class="form-group">
-                        <div class="form-group">
-                            <label asp-for="Images" class="control-label"></label>
-                            <input asp-for="Images" class="form-control" multiple/>
-                            <span asp-validation-for="Images" class="text-danger"></span>
-                        </div>
-                    </div>
+                <div class="col-sm-12">
+                    <label asp-for="EventCost" class="control-label"></label>
+                    <input asp-for="EventCost" class="form-control" />
+                    <span asp-validation-for="EventCost" class="text-danger"></span>
+                </div>
+                <div class="col-sm-12">
+                    <label asp-for="images" class="control-label"></label>
+                    <input asp-for="images" class="form-control" multiple />
+                    <span asp-validation-for="images" class="text-danger"></span>
                 </div>
                 <div class="card-footer ">
                     <div class="fa-pull-right ">

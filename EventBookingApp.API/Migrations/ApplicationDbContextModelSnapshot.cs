@@ -45,7 +45,6 @@ namespace EventBookingApp.API.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("State")
@@ -182,16 +181,39 @@ namespace EventBookingApp.API.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("EventCost")
+                        .HasColumnType("int");
+
                     b.Property<string>("EventTypes")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Images")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Events");
+                });
+
+            modelBuilder.Entity("DataAcessLayer.EventGallery", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("URL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("EventGalleries");
                 });
 
             modelBuilder.Entity("DataAcessLayer.Flower", b =>
@@ -285,6 +307,17 @@ namespace EventBookingApp.API.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("DataAcessLayer.EventGallery", b =>
+                {
+                    b.HasOne("DataAcessLayer.Event", "Event")
+                        .WithMany("EventGallery")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+                });
+
             modelBuilder.Entity("DataAcessLayer.ApplicationUser", b =>
                 {
                     b.Navigation("Bookings");
@@ -308,6 +341,8 @@ namespace EventBookingApp.API.Migrations
             modelBuilder.Entity("DataAcessLayer.Event", b =>
                 {
                     b.Navigation("Bookings");
+
+                    b.Navigation("EventGallery");
                 });
 
             modelBuilder.Entity("DataAcessLayer.Flower", b =>

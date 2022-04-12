@@ -1,5 +1,7 @@
 ﻿using DataAcessLayer;
 using DataAcessLayer.ViewModel;
+using EventBookingApp.API.ViewModel;
+using EventBookingApp.Web.Areas.Admin.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -66,24 +68,79 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Create(EventViewModel eventmodel)
+        public async Task<IActionResult> Create(EventViewModels eventmodel)
         {
-            foreach (var item in eventmodel.Images)
+            if (ModelState.IsValid)
             {
-                string uniqueFileName = UploadImage(item);
-
-                eventmodel.FileName = uniqueFileName;
-                eventmodel.Images = null;
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(AdminApiString);
+                var response = await client.PostAsJsonAsync($"/api/AddEvent/AddData", eventmodel);
+                if (response.IsSuccessStatusCode)
+                {
+                    //Get Current EventId
+                    HttpClient client2 = new HttpClient();
+                    client2.BaseAddress = new Uri(AdminApiString);
+                    HttpResponseMessage httpResponse = await client2.GetAsync($"/api/AddEvent/GetCurrentRecordId");
+                    string eventid = null;
+                    if (httpResponse.IsSuccessStatusCode)
+                    {
+                        eventid = httpResponse.Content.ReadAsStringAsync().Result;
+                    }
+                    foreach (var item in eventmodel.images)
+                    {
+                        EventGalleryViewModel model = new EventGalleryViewModel();
+                        var file = item;
+                        FileStream fs = null;
+                        var guid = Guid.NewGuid().ToString();
+                        var uniqueFileName = guid + '_' + file.FileName;
+                        model.ImageName = uniqueFileName;
+                        model.EventId = Convert.ToInt32(eventid);
+                        string folderName = "EventImages/";
+                        model.URL = await UploadImage(folderName, item);
+                        HttpClient client3 = new HttpClient();
+                        client3.BaseAddress = new Uri(AdminApiString);
+                        HttpResponseMessage httpResponse1 = await client3.PostAsJsonAsync($"/api/AddEvent/StoringImage", model);
+                        if (httpResponse1.IsSuccessStatusCode)
+                        {
+                            string path = Path.Combine(_webHostEnvironment.WebRootPath, "EventImages");
+                            if (Directory.Exists(path))
+                            {
+                                using (fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Create))
+                                {
+                                    await file.CopyToAsync(fs);
+                                }
+                                fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Open);
+                            }
+                            model.URL =await UploadImage(folderName, item);
+                            HttpClient client4 = new HttpClient();
+                            client4.BaseAddress = new Uri(AdminApiString);
+                            HttpResponseMessage httpResponse2 = await client4.PutAsJsonAsync($"/api/AddEvent/imgLink/{uniqueFileName}",model);
+                            if (httpResponse2.IsSuccessStatusCode)
+                            {
+                                var result = httpResponse2.Content.ReadAsStringAsync().Result;
+                            }
+                            ViewBag.Link = await UploadImage(folderName,item);
+                        }
+                       
+                    }
+                    return RedirectToAction("Index");
+                }
             }
+            return View();
+        }
+
+        public async Task<IActionResult> UpdateImages(int Eventid)
+        {
+            List<ImageViewModels> imagemodel = new List<ImageViewModels>();
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
-            var response = await client.PostAsJsonAsync<EventViewModel>($"/api/AddEvent/AddData", eventmodel);
+            HttpResponseMessage response = await client.GetAsync($"api/AddEvent/UpdateImage/{Eventid}");
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                var result = response.Content.ReadAsStringAsync().Result;
+                imagemodel = JsonConvert.DeserializeObject<List<ImageViewModels>>(result);
             }
-
-            return View();
+            return View(imagemodel);
         }
         public async Task<IActionResult> Delete(int id)
         {
@@ -117,25 +174,14 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             EventViewModel vm = new EventViewModel();
             vm.Id = events.Id;
             vm.EventTypes = events.EventTypes;
-            vm.FileName = events.Images;
+            vm.EventCost = events.EventCost;
+            //vm.FileName = events.Images;
             return View(vm);
         }
         [HttpPost]
         public async Task<IActionResult> Edit(EventViewModel eventmodel)
         {
             HttpClient client = new HttpClient();
-            if (eventmodel.Images != null)
-            {
-                foreach (var item in eventmodel.Images)
-                {
-                    string uniqueFileName = UploadImage(item);
-                    eventmodel.FileName = uniqueFileName;
-                    eventmodel.Images = null;
-                }
-                //string uniqueFileName = UploadImage(eventmodel);
-                //eventmodel.FileName = uniqueFileName;
-                //eventmodel.Images = null;
-            }
             client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.PutAsJsonAsync($"api/AddEvent/{eventmodel.Id}", eventmodel);
             if (response.IsSuccessStatusCode)
@@ -144,21 +190,12 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View(eventmodel);
         }
-        private string UploadImage(IFormFile file)
+        private async Task<string> UploadImage(string folderPath,IFormFile file)
         {
-            string uniqueFileName = null;
-            if (file != null)
-            {
-                string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "EventImages");
-                uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
-                string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    file.CopyTo(fileStream);
-                }
-            }
-
-            return uniqueFileName;
+            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
+            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            return "/" + folderPath;
         }
     }
 }

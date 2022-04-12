@@ -17,26 +17,35 @@ namespace EventBookingApp.API.Repositary
     {
         private readonly ApplicationDbContext _context;
         //private readonly string uniqueFileName;
-         //private readonly IWebHostEnvironment _webHostEnvironment;
+        //private readonly IWebHostEnvironment _webHostEnvironment;
 
         public EventRepo(ApplicationDbContext context)
         {
             _context = context;
-           
+
         }
-     
-        public async Task<Event>AddEvent(EventViewModel eventmodel)
+
+        public async Task<Event> AddEvent(EventViewModel eventmodel)
         {
             //string uniqueFileName = UploadImage(eventmodel);
             Event events = new Event
             {
                 EventTypes = eventmodel.EventTypes,
-                Images = eventmodel.FileName
+                EventCost = eventmodel.EventCost
             };
             var result = await _context.AddAsync(events);
             await _context.SaveChangesAsync();
             return result.Entity;
         }
+
+        public string AddImgLink(string imgName, EventGalleryModel pvm)
+        {
+            var data = _context.EventGalleries.Where(x => x.ImageName == imgName).FirstOrDefault();
+            data.URL = pvm.URL;
+            _context.SaveChanges();
+            return "true";
+        }
+
         public async Task<Event> DeleteEvent(int id)
         {
             var result = await _context.Events.Where(x => x.Id == id).FirstOrDefaultAsync();
@@ -48,13 +57,20 @@ namespace EventBookingApp.API.Repositary
             }
             return null;
         }
+
+        public async Task<int> GetCurrentRecordId()
+        {
+            var data = await _context.Events.OrderByDescending(x => x.Id).Take(1).Select(x => x.Id).FirstOrDefaultAsync();
+            return data;
+        }
+
         public async Task<Event> GetEvent(int id)
         {
             return await _context.Events.FirstOrDefaultAsync(x => x.Id == id);
-           
+
         }
         public async Task<IEnumerable<Event>> GetEvents()
-         {
+        {
             return await _context.Events.ToListAsync();
         }
         public IEnumerable<eventTypeViewModel> GetEventsType()
@@ -72,9 +88,8 @@ namespace EventBookingApp.API.Repositary
                 e.EventTypes = item.EventTypes;
 
                 vm.Add(e);
-               
-            }
 
+            }
             return vm;
         }
 
@@ -88,36 +103,44 @@ namespace EventBookingApp.API.Repositary
             return await query.ToListAsync();
         }
 
+        public async Task<int> StoringImages(EventGalleryModel pm)
+        {
+            EventGallery eventGallery = new EventGallery();
+            eventGallery.ImageName = pm.ImageName;
+            eventGallery.EventId = pm.EventId;
+            eventGallery.URL = pm.URL;
+            await _context.EventGalleries.AddAsync(eventGallery);
+            await _context.SaveChangesAsync();
+            return 1;
+        }
+
         public async Task<Event> UpdateEvent(EventViewModel eventmodel)
         {
             var result = await _context.Events.FirstOrDefaultAsync(x => x.Id == eventmodel.Id);
             if (result != null)
             {
                 result.EventTypes = eventmodel.EventTypes;
-                result.Images = eventmodel.FileName;
+                result.EventCost = eventmodel.EventCost;
                 await _context.SaveChangesAsync();
                 return result;
             }
             return null;
         }
-       
-        //private string UploadImage(EventViewModel eventmodel)
-        //{
-        //    string uniqueFileName = null;
 
-        //    if (eventmodel.Images != null)
-        //    {
-        //        string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "Images");
-        //        uniqueFileName = Guid.NewGuid().ToString() + "_" + eventmodel.Images.FileName;
-        //        string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-        //        using (var fileStream = new FileStream(filePath, FileMode.Create))
-        //        {
-        //            eventmodel.Images.CopyTo(fileStream);
-        //        }
-        //    }
-        //    return uniqueFileName;
-        //}
-
-
+        public async Task<IEnumerable<ImageViewModel>> UpdateImage(int Eventid)
+        {
+            List<ImageViewModel> model = new List<ImageViewModel>();
+            var data = await _context.EventGalleries.Where(x => x.EventId == Eventid).ToListAsync();
+            foreach(var item in data)
+            {
+                ImageViewModel imagemodel = new ImageViewModel();
+                imagemodel.ImageName = item.ImageName;
+                imagemodel.Id = item.Id;
+                imagemodel.EventId = item.EventId;
+                imagemodel.URL = item.URL;
+                model.Add(imagemodel);
+            }
+            return model;
+        }
     }
 }

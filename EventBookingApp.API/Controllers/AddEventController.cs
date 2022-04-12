@@ -69,7 +69,7 @@ namespace EventBookingApp.API.Controllers
         }
 
         [HttpPost("AddData")]
-        public async Task<ActionResult<EventViewModel>> AddData(EventViewModel evetmodel)
+        public async Task<ActionResult<Event>> AddData(EventViewModel evetmodel)
         {
             try
             {
@@ -85,6 +85,34 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error in post data to database");
             }
         }
+        [HttpPost("StoringImage")]
+        public async Task<int> StoringImage(EventGalleryModel vm)
+        {
+            var data = await _eventRepo.StoringImages(vm);
+            return data;
+        }
+
+        [HttpPut("imgLink/{uniqueName}")]
+        public string imgLink(string uniqueName, EventGalleryModel pvm)
+        {
+            var data = _eventRepo.AddImgLink(uniqueName, pvm);
+            return "true";
+        }
+
+        [HttpGet("GetCurrentRecordId")]
+        public async Task<int> GetCurrentRecordId()
+        {
+            var data = await _eventRepo.GetCurrentRecordId();
+            return data;
+        }
+
+        [HttpGet("UpdateImage/{id}")]
+        public async Task<IEnumerable<ImageViewModel>> UpdateImage(int id)
+        {
+            var data = await _eventRepo.UpdateImage(id);
+            return data;
+        }
+
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<Event>> DeleteEvent(int id)
         {

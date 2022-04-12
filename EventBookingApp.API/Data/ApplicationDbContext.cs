@@ -16,6 +16,7 @@ namespace EventBookingApp.API.Data
         }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Event> Events { get; set; }
+        public DbSet<EventGallery> EventGalleries { get; set; }
         public DbSet<Flower> Flowers { get; set; }
         public DbSet<Food> Foods { get; set; }
         public DbSet<Equipment> Equipments { get; set; }
