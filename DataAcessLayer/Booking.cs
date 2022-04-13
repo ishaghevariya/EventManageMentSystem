@@ -9,12 +9,12 @@ namespace DataAcessLayer
     public class Booking
     {
         public int Id{ get; set; }
-        public int? EventId { get; set; }
+        public int EventId { get; set; }
         public int? UserId { get; set; }
         public int NumberOfDays { get; set; }
         public DateTime EventDate { get; set; }
-        public int BookingStatusId { get; set; }
         public string Address { get; set; }
+        public int BookingStatusId { get; set; }
         public int AreapinCode { get; set; }
         public int NumberOfPerson { get; set; }
         public string VenuType { get; set; }

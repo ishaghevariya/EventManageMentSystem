@@ -24,18 +24,38 @@ namespace EventBookingApp.Web.Controllers
             AdminApiString = _configuration.GetValue<string>("APISTRING");
         }
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            //List<Event> events = new List<Event>();
-            //HttpClient client = new HttpClient();
-            //client.BaseAddress = new Uri("https://localhost:44362/");
-            //HttpResponseMessage response = await client.GetAsync("/api/AddEvent");
-            //if (response.IsSuccessStatusCode)
-            //{
-            //    var result = response.Content.ReadAsStringAsync().Result;
-            //    events = JsonConvert.DeserializeObject<List<Event>>(result);
-            //}
-            return View();
+            //GetEventId
+            HttpClient client1 = new HttpClient();
+            client1.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage httpResponse = await client1.GetAsync($"api/EventBooking/GetCurrentRecordId");
+            string eventid = null;
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                eventid = httpResponse.Content.ReadAsStringAsync().Result;
+                HttpClient client2 = new HttpClient();
+                client2.BaseAddress = new Uri(AdminApiString);
+                HttpResponseMessage httpResponse1 = await client2.GetAsync($"api/EventBooking/GetEventName/{eventid}");
+                if (httpResponse1.IsSuccessStatusCode)
+                {
+                    var result = httpResponse1.Content.ReadAsStringAsync().Result;
+                    ViewBag.EventType = result;
+                }
+            }
+            var data = HttpContext.Session.GetString("UserId");
+            int id = Convert.ToInt32(data);
+            List<Booking> bookings = new List<Booking>();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.GetAsync($"api/EventBooking/GetBookings/{id}");
+            if(response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                bookings = JsonConvert.DeserializeObject<List<Booking>>(result);
+                
+            }
+            return View(bookings);
         }
 
         public async Task<IActionResult> InsertBooking()

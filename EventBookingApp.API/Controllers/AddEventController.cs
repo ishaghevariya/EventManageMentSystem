@@ -17,7 +17,7 @@ namespace EventBookingApp.API.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-   
+
     public class AddEventController : ControllerBase
     {
         private readonly IEventRepo _eventRepo;
@@ -27,9 +27,9 @@ namespace EventBookingApp.API.Controllers
         }
         [HttpGet]
         public async Task<ActionResult> GetEvents()
-         {
+        {
             try
-             {
+            {
                 return Ok(await _eventRepo.GetEvents());
             }
             catch (Exception)
@@ -88,9 +88,21 @@ namespace EventBookingApp.API.Controllers
         [HttpPost("StoringImage")]
         public async Task<int> StoringImage(EventGalleryModel vm)
         {
-            var data = await _eventRepo.StoringImages(vm);
-            return data;
+            try
+            {
+                if (vm == null)
+                {
+                    return 0;
+                }
+                var data = await _eventRepo.StoringImages(vm);
+                return data;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
+
 
         [HttpPut("imgLink/{uniqueName}")]
         public string imgLink(string uniqueName, EventGalleryModel pvm)
@@ -112,7 +124,12 @@ namespace EventBookingApp.API.Controllers
             var data = await _eventRepo.UpdateImage(id);
             return data;
         }
+        [HttpGet("DeleteImage/{id}")]
+        public void DeleteImage(string id)
+        {
+            _eventRepo.DeleteImage(id);
 
+        }
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<Event>> DeleteEvent(int id)
         {

@@ -22,6 +22,7 @@ namespace EventBookingApp.API.Repositary
         public Task<int> StoringImages(EventGalleryModel pm);
         public string AddImgLink(string imgName, EventGalleryModel pvm);
         public Task<int> GetCurrentRecordId();
+        public void DeleteImage(string id);
         public Task<IEnumerable<ImageViewModel>> UpdateImage(int Eventid);
 
     }

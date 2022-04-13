@@ -20,7 +20,6 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
 
-
     public class EventListController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -131,16 +130,80 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> UpdateImages(int Eventid)
         {
-            List<ImageViewModels> imagemodel = new List<ImageViewModels>();
+            List<ImageViewModel> imagemodel = new List<ImageViewModel>();
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.GetAsync($"api/AddEvent/UpdateImage/{Eventid}");
             if (response.IsSuccessStatusCode)
             {
                 var result = response.Content.ReadAsStringAsync().Result;
-                imagemodel = JsonConvert.DeserializeObject<List<ImageViewModels>>(result);
+                imagemodel = JsonConvert.DeserializeObject<List<ImageViewModel>>(result);
             }
             return View(imagemodel);
+        }
+        [HttpGet]
+        public IActionResult AddImage(int Eventid)
+        {
+            EventGalleryViewModel model = new EventGalleryViewModel();
+            model.EventId = Eventid;
+            return View(model);
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddImage(EventGalleryViewModel gmodel)
+        {
+            EventGalleryViewModel model = new EventGalleryViewModel();
+            foreach (var item in gmodel.Images)
+            {
+                var file = item;
+                FileStream fs = null;
+                var guid = Guid.NewGuid().ToString();
+                var uniqueFileName = guid + '_' + file.FileName;
+                model.ImageName = uniqueFileName;
+                model.EventId = gmodel.EventId;
+                string folderName = "EventImages/";
+                model.URL = await UploadImage(folderName, item);
+                HttpClient client3 = new HttpClient();
+                client3.BaseAddress = new Uri(AdminApiString);
+                HttpResponseMessage httpResponse1 = await client3.PostAsJsonAsync($"api/AddEvent/StoringImage", model);
+                if (httpResponse1.IsSuccessStatusCode)
+                {
+                    string path = Path.Combine(_webHostEnvironment.WebRootPath, "EventImages");
+                    if (Directory.Exists(path))
+                    {
+                        using (fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Create))
+                        {
+                            await file.CopyToAsync(fs);
+                        }
+                        fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Open);
+                    }
+                    model.URL = await UploadImage(folderName, item);
+                    HttpClient client4 = new HttpClient();
+                    client4.BaseAddress = new Uri(AdminApiString);
+                    HttpResponseMessage httpResponse2 = await client4.PutAsJsonAsync($"api/AddEvent/imgLink/{uniqueFileName}", model);
+                    if (httpResponse2.IsSuccessStatusCode)
+                    {
+                        var result = httpResponse2.Content.ReadAsStringAsync().Result;
+                    }
+                    ViewBag.Link = await UploadImage(folderName, item);
+                }
+
+            }
+            return LocalRedirect($"~/Admin/EventList/UpdateImages?Eventid={model.EventId}");
+        }
+
+        [HttpPost]
+        public async Task<string> DeleteImage(string Id)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage httpResponse = await client.GetAsync($"/api/AddEvent/DeleteImage/{Id}");
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                return "null";
+            }
+            return "null";
+
+
         }
         public async Task<IActionResult> Delete(int id)
         {

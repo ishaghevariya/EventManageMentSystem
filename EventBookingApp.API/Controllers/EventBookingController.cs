@@ -56,5 +56,49 @@ namespace EventBookingApp.API.Controllers
             }
         }
 
+        [HttpGet("GetBookings/{id:int}")]
+        public async Task<ActionResult<IEnumerable<Booking>>> GetBookings(int id)
+        {
+            try
+            {
+                return Ok(await _bookingRepo.GetBookings(id));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
+            }
+        }
+
+        [HttpGet("GetEventName/{id:int}")]
+        public async Task<string> GetEventName(int id)
+        {
+            try
+            {
+                var data = await _bookingRepo.GetEventName(id);
+                return data;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpGet("GetCurrentRecordId")]
+        public async Task<int> GetCurrentRecordId()
+        {
+            var data = await _bookingRepo.GetCurrentRecordId();
+            return data;
+        }
+        [HttpGet("AllBooking")]
+        public async Task<ActionResult> AllBooking()
+        {
+            try
+            {
+                return Ok(await _bookingRepo.AllBookings());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
+            }
+        }
     }
 }

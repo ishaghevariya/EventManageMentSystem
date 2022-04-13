@@ -3,76 +3,92 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var data = ViewBag.EventType;
 }
-
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EventDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.BookingStatus)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AreapinCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VenuType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NumberOfPerson)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EventDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookingStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.AreapinCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VenuType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NumberOfPerson)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ })
-                @Html.ActionLink("Details", "InsertBooking", new { id = item.Id })
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-        }
-    </tbody>
-</table>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MyBooking</title>
+    <script src="~/plugins/js/jquery-2.2.3.min.js"></script>
+    <script src="~/plugins/js/bootstrap.js"></script>
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead style="border:groove;border-color:black">
+                    <tr style="border:groove;border-color:black">
+                        @*<th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>*@
+                        <th class="font-weight-bold">
+                            EventType
+                        </th >
+                        <th class="font-weight-bold">
+                            @Html.DisplayNameFor(model => model.EventDate)
+                        </th>
+                        <th class="font-weight-bold">
+                            @Html.DisplayNameFor(model => model.Address)
+                        </th>
+                        <th class="font-weight-bold">
+                            @Html.DisplayNameFor(model => model.AreapinCode)
+                        </th>
+                        <th class="font-weight-bold">
+                            @Html.DisplayNameFor(model => model.VenuType)
+                        </th>
+                        <th class="font-weight-bold">
+                            @Html.DisplayNameFor(model => model.NumberOfPerson)
+                        </th>
+                        <th class="font-weight-bold">Action</th>
+                    </tr>
+                </thead>
+                <tbody style="border:groove;border-color:black">
+                    @foreach (var item in Model)
+                    {
+                        <tr style="border:groove;border-color:black">
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>*@
+                            <td class="font-weight-bold">
+                                @data
+                            </td>
+                            <td class="font-weight-bold">
+                                @Html.DisplayFor(modelItem => item.EventDate)
+                            </td>
+                            <td class="font-weight-bold">
+                                @Html.DisplayFor(modelItem => item.Address)
+                            </td>
+                            <td class="font-weight-bold">
+                                @Html.DisplayFor(modelItem => item.AreapinCode)
+                            </td>
+                            <td class="font-weight-bold">
+                                @Html.DisplayFor(modelItem => item.VenuType)
+                            </td>
+                            <td class="font-weight-bold">
+                                @Html.DisplayFor(modelItem => item.NumberOfPerson)
+                            </td>
+                            <td class="font-weight-bold">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Book Decoration</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+    </div>
+</body>
+</html>

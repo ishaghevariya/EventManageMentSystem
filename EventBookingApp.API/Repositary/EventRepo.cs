@@ -58,6 +58,14 @@ namespace EventBookingApp.API.Repositary
             return null;
         }
 
+        public void DeleteImage(string id)
+        {
+            var Id = Convert.ToInt32(id);
+            var data = _context.EventGalleries.Where(x => x.Id == Id).FirstOrDefault();
+            _context.EventGalleries.Remove(data);
+            _context.SaveChanges();
+        }
+
         public async Task<int> GetCurrentRecordId()
         {
             var data = await _context.Events.OrderByDescending(x => x.Id).Take(1).Select(x => x.Id).FirstOrDefaultAsync();

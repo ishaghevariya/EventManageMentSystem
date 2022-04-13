@@ -44,5 +44,26 @@ namespace EventBookingApp.API.Repositary
         {
             return await _context.Bookings.FirstOrDefaultAsync(x => x.Id == id);
         }
+
+        public async Task<IEnumerable<Booking>> GetBookings(int userid)
+        {
+            return await _context.Bookings.Where(x=>x.UserId == userid).ToListAsync();
+        }
+
+        public async Task<string> GetEventName(int id)
+        {
+           var query = await _context.Bookings.Where(x => x.EventId == id).Include("Event").Select(x => x.Event.EventTypes).FirstOrDefaultAsync();
+           return query;   
+        }
+        public async Task<int> GetCurrentRecordId()
+        {
+            var data = await _context.Bookings.OrderByDescending(x => x.EventId).Take(1).Select(x => x.EventId).FirstOrDefaultAsync();
+            return data;
+        }
+
+        public async Task<IEnumerable<Booking>> AllBookings()
+        {
+            return await _context.Bookings.ToListAsync();
+        }
     }
 }

@@ -12,5 +12,9 @@ namespace EventBookingApp.API.Repositary
     {
         Task<Booking> AddBooking(BookingViewModel booking);
         Task<Booking> GetBooking(int id);
+        Task<IEnumerable<Booking>> GetBookings(int userid);
+        Task<string> GetEventName(int id);
+        Task<int> GetCurrentRecordId();
+        Task<IEnumerable<Booking>> AllBookings();
     }
 }

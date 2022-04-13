@@ -183,5 +183,19 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View(users);
         }
+        [HttpGet]
+        public async Task<IActionResult> AllBookings()
+        {
+            List<Booking> Booking = new List<Booking>();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.GetAsync($"api/EventBooking/AllBooking");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                Booking = JsonConvert.DeserializeObject<List<Booking>>(result);
+            }
+            return View(Booking);
+        }
     }
 }
