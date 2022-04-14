@@ -25,11 +25,11 @@
                 <thead style="border:groove;border-color:black">
                     <tr style="border:groove;border-color:black">
                         @*<th>
-                            @Html.DisplayNameFor(model => model.Id)
-                        </th>*@
+                                @Html.DisplayNameFor(model => model.Id)
+                            </th>*@
                         <th class="font-weight-bold">
                             EventType
-                        </th >
+                        </th>
                         <th class="font-weight-bold">
                             @Html.DisplayNameFor(model => model.EventDate)
                         </th>
@@ -53,10 +53,13 @@
                     {
                         <tr style="border:groove;border-color:black">
                             @*<td>
-                                @Html.DisplayFor(modelItem => item.Id)
-                            </td>*@
+                                    @Html.DisplayFor(modelItem => item.Id)
+                                </td>*@
                             <td class="font-weight-bold">
-                                @data
+                                @foreach (var i in data)
+                                {
+                                    @i
+                                }
                             </td>
                             <td class="font-weight-bold">
                                 @Html.DisplayFor(modelItem => item.EventDate)
@@ -74,8 +77,10 @@
                                 @Html.DisplayFor(modelItem => item.NumberOfPerson)
                             </td>
                             <td class="font-weight-bold">
+
                                 <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a>
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Book Decoration</button>
+                                @*<a onclick="showInPopup('@Url.Action("InsertBooklingDetalis","Booking",null,Context.Request.Scheme)', 'Book Decoration')" asp-route-id="@item.Id" class="btn btn-success">BookDecoration</a>*@
+                                <a asp-action="InsertBooklingDetalis" asp-route-id="@item.Id" class="btn btn-success">BookDecoration</a>
                             </td>
                         </tr>
                     }

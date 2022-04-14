@@ -28,7 +28,7 @@
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
                                 <div class="w3ls-pr">
                                     <select class="sel" name="TypeName">
-                                        <option value="">--Select--</option>
+                                        <option value="">--Select Event Type--</option>
                                         @foreach (var item in data)
                                         {
                                             <option value="@item.Id"> @item.EventTypes</option>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <input asp-for="EventDate" type="date" name="date" value="" required="required">
+                                    <input asp-for="EventDate" type="datetime" name="EventDate" value="" required="required">
                                     <span asp-validation-for="EventDate" class="text-danger"></span>
                                     <input asp-for="AreapinCode" name="Areapincode" type="text" placeholder="pincode" required="required" value="">
                                     <span asp-validation-for="AreapinCode" style="color:red"></span>

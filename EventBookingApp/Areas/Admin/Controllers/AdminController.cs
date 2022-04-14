@@ -186,6 +186,23 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> AllBookings()
         {
+            //getEventid
+            HttpClient client1 = new HttpClient();
+            client1.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage httpResponse = await client1.GetAsync($"api/EventBooking/GetCurrentRecordId");
+            string eventid = null;
+            if (httpResponse.IsSuccessStatusCode)
+            {
+                eventid = httpResponse.Content.ReadAsStringAsync().Result;
+                HttpClient client2 = new HttpClient();
+                client2.BaseAddress = new Uri(AdminApiString);
+                HttpResponseMessage httpResponse1 = await client2.GetAsync($"api/EventBooking/GetEventName/{eventid}");
+                if (httpResponse1.IsSuccessStatusCode)
+                {
+                    var result = httpResponse1.Content.ReadAsStringAsync().Result;
+                    ViewBag.EventType = result;
+                }
+            }
             List<Booking> Booking = new List<Booking>();
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);

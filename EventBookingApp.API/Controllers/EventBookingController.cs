@@ -88,6 +88,12 @@ namespace EventBookingApp.API.Controllers
             var data = await _bookingRepo.GetCurrentRecordId();
             return data;
         }
+        [HttpGet("GetCurrentBookingId")]
+        public async Task<int> GetCurrentBookingId()
+        {
+            var data = await _bookingRepo.GetCurrentBookingId();
+            return data;
+        }
         [HttpGet("AllBooking")]
         public async Task<ActionResult> AllBooking()
         {
@@ -98,6 +104,91 @@ namespace EventBookingApp.API.Controllers
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
+            }
+        }
+        public async Task<ActionResult<BookingDetalis>> GetBookingDetalisById(int id)
+        {
+            try
+            {
+                var result = await _bookingRepo.AddBookingId(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error retrveing data from database ");
+            }
+        }
+        [HttpPost("AddBookingDetalis")]
+        public async Task<ActionResult<BookingDetalis>> AddBookingDetalis(BookingDetalis booking)
+        {
+            try
+            {
+                if (booking == null)
+                {
+                    return BadRequest();
+                }
+                var BookingDetalisCreate = await _bookingRepo.AddBookingDetalis(booking);
+                return CreatedAtAction(nameof(GetBookingDetalisById), new { id = BookingDetalisCreate.BookingDetalisId }, BookingDetalisCreate);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when post data to database ");
+            }
+        }
+        [HttpGet("GetFlowerByTypes")]
+        public IEnumerable<FlowerTypeViewModel> GetFlowerByTypes()
+        {
+            try
+            {
+                var result = _bookingRepo.GetFlowerType();
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpGet("GetEquipmentByTypes")]
+        public IEnumerable<EquipmentTypeViewModel> GetEquipmentByTypes()
+        {
+            try
+            {
+                var result = _bookingRepo.GetEquipmentType();
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpGet("GetFoodByTypes")]
+        public IEnumerable<FoodTypeViewModel> GetFoodByTypes()
+        {
+            try
+            {
+                var result = _bookingRepo.GetFoodType();
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpGet("GetAllEventId/{userid:int}")]
+        public async Task<IEnumerable<int>> GetAllEventId(int userid)
+        {
+            try
+            {
+                var result = await _bookingRepo.GetAllEventId(userid);
+                return result;
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
     }

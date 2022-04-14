@@ -196,3 +196,4 @@ C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\UserAccount
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\EventList\UpdateImages.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\EventList\AddImage.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Admin\AllBookings.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Booking\InsertBooklingDetalis.cshtml.g.cs
