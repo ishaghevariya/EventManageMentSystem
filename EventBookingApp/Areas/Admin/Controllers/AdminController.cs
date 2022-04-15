@@ -186,33 +186,39 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> AllBookings()
         {
-            //getEventid
+            List<BookingStatus> vm1 = new List<BookingStatus>();
             HttpClient client1 = new HttpClient();
             client1.BaseAddress = new Uri(AdminApiString);
-            HttpResponseMessage httpResponse = await client1.GetAsync($"api/EventBooking/GetCurrentRecordId");
-            string eventid = null;
-            if (httpResponse.IsSuccessStatusCode)
+            var response1 = await client1.GetAsync($"api/EventBooking/GetBookingStatus");
+            if (response1.IsSuccessStatusCode)
             {
-                eventid = httpResponse.Content.ReadAsStringAsync().Result;
-                HttpClient client2 = new HttpClient();
-                client2.BaseAddress = new Uri(AdminApiString);
-                HttpResponseMessage httpResponse1 = await client2.GetAsync($"api/EventBooking/GetEventName/{eventid}");
-                if (httpResponse1.IsSuccessStatusCode)
-                {
-                    var result = httpResponse1.Content.ReadAsStringAsync().Result;
-                    ViewBag.EventType = result;
-                }
+                var result = response1.Content.ReadAsStringAsync().Result;
+                vm1 = JsonConvert.DeserializeObject<List<BookingStatus>>(result);
+                ViewBag.BookingStatus = vm1;
             }
-            List<Booking> Booking = new List<Booking>();
+            List<BookingViewModel> Booking = new List<BookingViewModel>();
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.GetAsync($"api/EventBooking/AllBooking");
             if (response.IsSuccessStatusCode)
             {
                 var result = response.Content.ReadAsStringAsync().Result;
-                Booking = JsonConvert.DeserializeObject<List<Booking>>(result);
+                Booking = JsonConvert.DeserializeObject<List<BookingViewModel>>(result);
             }
             return View(Booking);
+        }
+        [HttpPost]
+        public async Task<JsonResult> AllBookings(int StatusId,int Id)
+        {
+            HttpClient client1 = new HttpClient();
+            client1.BaseAddress = new Uri(AdminApiString);
+            var response1 = await client1.GetAsync($"api/EventBooking/UpdateBookingStatus/{Id}/{StatusId}");
+            if (response1.IsSuccessStatusCode)
+            {
+                var result = response1.Content.ReadAsStringAsync().Result;
+                return Json("true");
+            }
+            return Json("false");
         }
     }
 }

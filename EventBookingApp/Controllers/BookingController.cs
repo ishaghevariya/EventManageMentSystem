@@ -28,41 +28,14 @@ namespace EventBookingApp.Web.Controllers
         {
             var data = HttpContext.Session.GetString("UserId");
             int id = Convert.ToInt32(data);
-            List<int> Eventid = new List<int>();
-            HttpClient client1 = new HttpClient();
-            client1.BaseAddress = new Uri(AdminApiString);
-            HttpResponseMessage httpResponse = await client1.GetAsync($"api/EventBooking/GetAllEventId/{id}");
-            //string eventid = null;
-            //GetEventId
-            //HttpClient client1 = new HttpClient();
-            //client1.BaseAddress = new Uri(AdminApiString);
-            //HttpResponseMessage httpResponse = await client1.GetAsync($"api/EventBooking/GetCurrentRecordId");
-            //string eventid = null;
-            if (httpResponse.IsSuccessStatusCode)
-            {
-                var result2 = httpResponse.Content.ReadAsStringAsync().Result;
-                Eventid = JsonConvert.DeserializeObject<List<int>>(result2);
-                //eventid = httpResponse.Content.ReadAsStringAsync().Result;
-                foreach (var eventid in Eventid)
-                {
-                    HttpClient client2 = new HttpClient();
-                    client2.BaseAddress = new Uri(AdminApiString);
-                    HttpResponseMessage httpResponse1 = await client2.GetAsync($"api/EventBooking/GetEventName/{eventid}");
-                    if (httpResponse1.IsSuccessStatusCode)
-                    {
-                        var result = httpResponse1.Content.ReadAsStringAsync().Result;
-                        ViewBag.EventType += result;
-                    }
-                }
-            }
-            List<Booking> bookings = new List<Booking>();
+            List<BookingViewModel> bookings = new List<BookingViewModel>();
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.GetAsync($"api/EventBooking/GetBookings/{id}");
             if (response.IsSuccessStatusCode)
             {
                 var result = response.Content.ReadAsStringAsync().Result;
-                bookings = JsonConvert.DeserializeObject<List<Booking>>(result);
+                bookings = JsonConvert.DeserializeObject<List<BookingViewModel>>(result);
             }
             return View(bookings);
         }
@@ -86,7 +59,6 @@ namespace EventBookingApp.Web.Controllers
         [HttpPost]
         public async Task<IActionResult> InsertBooking(BookingViewModel vm, int TypeName)
         {
-
             HttpClient client = new HttpClient();
             var data = HttpContext.Session.GetString("UserId");
             vm.EventId = TypeName;

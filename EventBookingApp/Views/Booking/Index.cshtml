@@ -1,9 +1,8 @@
-﻿@model IEnumerable<DataAcessLayer.Booking>
+﻿@model IEnumerable<DataAcessLayer.ViewModel.BookingViewModel>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var data = ViewBag.EventType;
 }
 <!DOCTYPE html>
 <html>
@@ -28,7 +27,7 @@
                                 @Html.DisplayNameFor(model => model.Id)
                             </th>*@
                         <th class="font-weight-bold">
-                            EventType
+                            @Html.DisplayNameFor(model => model.EventName)
                         </th>
                         <th class="font-weight-bold">
                             @Html.DisplayNameFor(model => model.EventDate)
@@ -52,14 +51,9 @@
                     @foreach (var item in Model)
                     {
                         <tr style="border:groove;border-color:black">
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.Id)
-                                </td>*@
+                           
                             <td class="font-weight-bold">
-                                @foreach (var i in data)
-                                {
-                                    @i
-                                }
+                                @Html.DisplayFor(modelItem => item.EventName)
                             </td>
                             <td class="font-weight-bold">
                                 @Html.DisplayFor(modelItem => item.EventDate)

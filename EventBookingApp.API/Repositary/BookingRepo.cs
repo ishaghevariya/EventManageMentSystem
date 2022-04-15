@@ -45,25 +45,54 @@ namespace EventBookingApp.API.Repositary
             return await _context.Bookings.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<Booking>> GetBookings(int userid)
+        public async Task<IEnumerable<BookingViewModel>> GetBookings(int userid)
         {
-            return await _context.Bookings.Where(x => x.UserId == userid).ToListAsync();
+            List<BookingViewModel> lvm = new List<BookingViewModel>();
+            var data = await _context.Bookings.Where(x => x.UserId == userid).ToListAsync();
+            foreach (var item in data) 
+            {
+                BookingViewModel vm = new BookingViewModel();
+                vm.Address = item.Address;
+                vm.AreapinCode = item.AreapinCode;
+                vm.BookingStatusId = item.BookingStatusId;
+                vm.EventDate = item.EventDate;
+                vm.EventId = item.EventId;
+                vm.NumberOfDays = item.NumberOfDays;
+                vm.NumberOfPerson = item.NumberOfPerson;
+                vm.VenuType = item.VenuType;
+                vm.UserId = userid;
+                var eventName = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefault();
+                vm.EventName = eventName;
+                lvm.Add(vm);
+            }
+            return lvm;
         }
 
-        public async Task<string> GetEventName(int id)
+        public async Task<IEnumerable<BookingViewModel>> AllBookings()
         {
-            var query = await _context.Bookings.Where(x => x.EventId == id).Include("Event").Select(x => x.Event.EventTypes).FirstOrDefaultAsync();
-            return query;
-        }
-        public async Task<int> GetCurrentRecordId()
-        {
-            var data = await _context.Bookings.OrderByDescending(x => x.EventId).Take(1).Select(x => x.EventId).FirstOrDefaultAsync();
-            return data;
-        }
-
-        public async Task<IEnumerable<Booking>> AllBookings()
-        {
-            return await _context.Bookings.ToListAsync();
+            List<BookingViewModel> bvm = new List<BookingViewModel>();
+            var data = await _context.Bookings.ToListAsync();
+            foreach (var item in data)
+            {
+                BookingViewModel vm = new BookingViewModel();
+                vm.Id = item.Id;
+                vm.Address = item.Address;
+                vm.AreapinCode = item.AreapinCode;
+                vm.BookingStatusId = item.BookingStatusId;
+                vm.EventDate = item.EventDate;
+                vm.EventId = item.EventId;
+                vm.NumberOfDays = item.NumberOfDays;
+                vm.NumberOfPerson = item.NumberOfPerson;
+                vm.VenuType = item.VenuType;
+                var status = _context.BookingStatuses.Where(x => x.Id == item.BookingStatusId).Select(x => x.Status).FirstOrDefault();
+                vm.Status = status;
+                //var userid = _context.ApplicationUsers.Where(x => x.Id == item.UserId).Select(x => x.UserName).FirstOrDefault();
+                vm.UserId = (int)item.UserId;
+                var eventName = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefault();
+                vm.EventName = eventName;
+                bvm.Add(vm);
+            }
+            return bvm;
         }
 
         public async Task<BookingDetalis> AddBookingDetalis(BookingDetalis bookingDetalis)
@@ -137,10 +166,34 @@ namespace EventBookingApp.API.Repositary
             var data = await _context.Bookings.OrderByDescending(x => x.Id).Take(1).Select(x => x.Id).FirstOrDefaultAsync();
             return data;
         }
-        public async Task<IEnumerable<int>> GetAllEventId(int userid)
+        public IEnumerable<BookingStatus> GetBookingStatuses()
         {
-            var data = await _context.Bookings.Where(x=>x.UserId == userid).Select(x => x.EventId).ToListAsync();
-            return data;
+            List<BookingStatus> vm = new List<BookingStatus>();
+            var data = _context.BookingStatuses.Select(x => new
+            {
+                x.Id,
+                x.Status
+            }).ToList();
+            foreach (var item in data)
+            {
+                BookingStatus e = new BookingStatus();
+                e.Id = item.Id;
+                e.Status = item.Status;
+                vm.Add(e);
+            }
+            return vm;
+        }
+
+        public async Task<Booking> UpdateBookingStatus(int Bid, int statusid)
+        {
+            var result = await _context.Bookings.Where(x => x.Id == Bid).FirstOrDefaultAsync();
+            if (result != null)
+            {
+                result.BookingStatusId = statusid;
+                await _context.SaveChangesAsync();
+                return result;
+            }
+            return null;
         }
     }
 }

@@ -124,6 +124,13 @@ namespace EventBookingApp.API.Controllers
             var data = await _eventRepo.UpdateImage(id);
             return data;
         }
+
+        [HttpGet("GetEventImages")]
+        public async Task<IEnumerable<ImageViewModel>> GetEventImages()
+        {
+            var data = await _eventRepo.GetEventImages();
+            return data;
+        }
         [HttpGet("DeleteImage/{id}")]
         public void DeleteImage(string id)
         {

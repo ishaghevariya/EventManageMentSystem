@@ -9,6 +9,7 @@ namespace DataAcessLayer.ViewModel
 {
    public class BookingViewModel
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = "Please Select EventDate")]
         public DateTime EventDate { get; set; }
         [Required(ErrorMessage = "Please Enter Address")]
@@ -24,5 +25,7 @@ namespace DataAcessLayer.ViewModel
         public int NumberOfDays { get; set; }
         public int UserId { get; set; }
         public int EventId { get; set; }
+        public string EventName { get; set; }
+        public string Status { get; set; }
     }
 }

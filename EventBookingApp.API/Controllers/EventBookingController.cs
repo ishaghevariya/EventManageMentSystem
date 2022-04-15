@@ -57,7 +57,7 @@ namespace EventBookingApp.API.Controllers
         }
 
         [HttpGet("GetBookings/{id:int}")]
-        public async Task<ActionResult<IEnumerable<Booking>>> GetBookings(int id)
+        public async Task<ActionResult<IEnumerable<BookingViewModel>>> GetBookings(int id)
         {
             try
             {
@@ -69,25 +69,7 @@ namespace EventBookingApp.API.Controllers
             }
         }
 
-        [HttpGet("GetEventName/{id:int}")]
-        public async Task<string> GetEventName(int id)
-        {
-            try
-            {
-                var data = await _bookingRepo.GetEventName(id);
-                return data;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-        [HttpGet("GetCurrentRecordId")]
-        public async Task<int> GetCurrentRecordId()
-        {
-            var data = await _bookingRepo.GetCurrentRecordId();
-            return data;
-        }
+     
         [HttpGet("GetCurrentBookingId")]
         public async Task<int> GetCurrentBookingId()
         {
@@ -178,13 +160,26 @@ namespace EventBookingApp.API.Controllers
                 throw;
             }
         }
-        [HttpGet("GetAllEventId/{userid:int}")]
-        public async Task<IEnumerable<int>> GetAllEventId(int userid)
+        [HttpGet("GetBookingStatus")]
+        public IEnumerable<BookingStatus> GetBookingStatus()
         {
             try
             {
-                var result = await _bookingRepo.GetAllEventId(userid);
+                var result = _bookingRepo.GetBookingStatuses();
                 return result;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpGet("UpdateBookingStatus/{Bid}/{statusid}")]
+        public async Task<Booking> UpdateBookingStatus(int Bid, int statusid)
+        {
+            try
+            {
+                var data = await _bookingRepo.UpdateBookingStatus(Bid, statusid);
+                return data;
             }
             catch (Exception)
             {

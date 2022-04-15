@@ -1,4 +1,5 @@
-﻿@{
+﻿@model IEnumerable<EventBookingApp.API.ViewModel.ImageViewModel>
+@{
     ViewData["Title"] = "Gallery";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -7,8 +8,8 @@
     <title>Gallery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @*<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Events Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />*@
+        <meta name="keywords" content="Events Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+        SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />*@
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Custom Theme files -->
     <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
@@ -73,121 +74,127 @@
     <div class="gallery">
         <div class="container">
             <h2 class="heading-agileinfo">Gallery<span>Events is a professionally managed Event</span></h2>
+           
             <div class="gallery-grids">
-                <div class="col-md-4 gallery-grid">
-                    <div class="grid">
-                        <figure class="effect-apollo">
-                            <a class="example-image-link" href="~/plugins/images/g1.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
-                                <img src="~/plugins/images/g1.jpg" alt="" />
-                                <figcaption>
-                                    <p>Proin vitae luctus dui, sit amet ultricies leo</p>
-                                </figcaption>
-                            </a>
-                        </figure>
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 gallery-grid">
+                        <div class="grid">
+                            <figure class="effect-apollo">
+                                <a class="example-image-link" href="@item.URL" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+                                    <img src="@item.URL" alt="" />
+                                    <figcaption>
+                                        <p>Proin vitae luctus dui, sit amet ultricies leo</p>
+                                    </figcaption>
+                                </a>
+                            </figure>
+                        </div>
                     </div>
+                }
+
+                    @*<div class="col-md-4 gallery-grid">
+                <div class="grid">
+                    <figure class="effect-apollo">
+                        <a class="example-image-link" href="~/plugins/images/g2.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+                            <img src="@item.URL" alt="" />
+                            <figcaption>
+                                <p>Proin vitae luctus dui, sit amet ultricies leo</p>
+                            </figcaption>
+                        </a>
+                    </figure>
                 </div>
-                <div class="col-md-4 gallery-grid">
-                    <div class="grid">
-                        <figure class="effect-apollo">
-                            <a class="example-image-link" href="~/plugins/images/g2.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
-                                <img src="~/plugins/images/g2.jpg" alt="" />
-                                <figcaption>
-                                    <p>Proin vitae luctus dui, sit amet ultricies leo</p>
-                                </figcaption>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="col-md-4 gallery-grid">
-                    <div class="grid">
-                        <figure class="effect-apollo">
-                            <a class="example-image-link" href="~/plugins/images/g3.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
-                                <img src="~/plugins/images/g3.jpg" alt="" />
-                                <figcaption>
-                                    <p>Proin vitae luctus dui, sit amet ultricies leo</p>
-                                </figcaption>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="col-md-4 gallery-grid">
-                    <div class="grid">
-                        <figure class="effect-apollo">
-                            <a class="example-image-link" href="~/plugins/images/g4.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
-                                <img src="~/plugins/images/g4.jpg" alt="" />
-                                <figcaption>
-                                    <p>Proin vitae luctus dui, sit amet ultricies leo</p>
-                                </figcaption>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="col-md-4 gallery-grid">
-                    <div class="grid">
-                        <figure class="effect-apollo">
-                            <a class="example-image-link" href="~/plugins/images/g5.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
-                                <img src="~/plugins/images/g5.jpg" alt="" />
-                                <figcaption>
-                                    <p>Proin vitae luctus dui, sit amet ultricies leo</p>
-                                </figcaption>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="col-md-4 gallery-grid">
-                    <div class="grid">
-                        <figure class="effect-apollo">
-                            <a class="example-image-link" href="~/plugins/images/g6.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
-                                <img src="~/plugins/images/g6.jpg" alt="" />
-                                <figcaption>
-                                    <p>Proin vitae luctus dui, sit amet ultricies leo</p>
-                                </figcaption>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="col-md-4 gallery-grid">
-                    <div class="grid">
-                        <figure class="effect-apollo">
-                            <a class="example-image-link" href="~/plugins/images/g7.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
-                                <img src="~/plugins/images/g7.jpg" alt="" />
-                                <figcaption>
-                                    <p>Proin vitae luctus dui, sit amet ultricies leo</p>
-                                </figcaption>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="col-md-4 gallery-grid">
-                    <div class="grid">
-                        <figure class="effect-apollo">
-                            <a class="example-image-link" href="images/g8.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
-                                <img src="~/plugins/images/g8.jpg" alt="" />
-                                <figcaption>
-                                    <p>Proin vitae luctus dui, sit amet ultricies leo</p>
-                                </figcaption>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="col-md-4 gallery-grid">
-                    <div class="grid">
-                        <figure class="effect-apollo">
-                            <a class="example-image-link" href="~/plugins/images/g9.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
-                                <img src="~/plugins/images/g9.jpg" alt="" />
-                                <figcaption>
-                                    <p>Proin vitae luctus dui, sit amet ultricies leo</p>
-                                </figcaption>
-                            </a>
-                        </figure>
-                    </div>
-                </div>
-                <div class="clearfix"> </div>
-                <script src="~/plugins/js/lightbox-plus-jquery.min.js"></script>
             </div>
-        </div>
+            <div class="col-md-4 gallery-grid">
+                <div class="grid">
+                    <figure class="effect-apollo">
+                        <a class="example-image-link" href="~/plugins/images/g3.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+                            <img src="@item.URL" alt="" />
+                            <figcaption>
+                                <p>Proin vitae luctus dui, sit amet ultricies leo</p>
+                            </figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-4 gallery-grid">
+                <div class="grid">
+                    <figure class="effect-apollo">
+                        <a class="example-image-link" href="~/plugins/images/g4.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+                            <img src="@item.URL" alt="" />
+                            <figcaption>
+                                <p>Proin vitae luctus dui, sit amet ultricies leo</p>
+                            </figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-4 gallery-grid">
+                <div class="grid">
+                    <figure class="effect-apollo">
+                        <a class="example-image-link" href="~/plugins/images/g5.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+                            <img src="@item.URL" alt="" />
+                            <figcaption>
+                                <p>Proin vitae luctus dui, sit amet ultricies leo</p>
+                            </figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-4 gallery-grid">
+                <div class="grid">
+                    <figure class="effect-apollo">
+                        <a class="example-image-link" href="~/plugins/images/g6.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+                            <img src="@item.URL" alt="" />
+                            <figcaption>
+                                <p>Proin vitae luctus dui, sit amet ultricies leo</p>
+                            </figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-4 gallery-grid">
+                <div class="grid">
+                    <figure class="effect-apollo">
+                        <a class="example-image-link" href="~/plugins/images/g7.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+                            <img src="@item.URL" alt="" />
+                            <figcaption>
+                                <p>Proin vitae luctus dui, sit amet ultricies leo</p>
+                            </figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-4 gallery-grid">
+                <div class="grid">
+                    <figure class="effect-apollo">
+                        <a class="example-image-link" href="images/g8.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+                            <img src="@item.URL" alt="" />
+                            <figcaption>
+                                <p>Proin vitae luctus dui, sit amet ultricies leo</p>
+                            </figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>
+            <div class="col-md-4 gallery-grid">
+                <div class="grid">
+                    <figure class="effect-apollo">
+                        <a class="example-image-link" href="~/plugins/images/g9.jpg" data-lightbox="example-set" data-title="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ut sem ac lectus mattis sagittis. Donec pulvinar quam sit amet est vestibulum volutpat. Phasellus sed nibh odio. Phasellus posuere at purus sit amet porttitor. Cras euismod egestas enim eget molestie. Aenean ornare condimentum odio, in lacinia felis finibus non. Nam faucibus libero et lectus finibus, sed porttitor velit pellentesque.">
+                            <img src="@item.URL" alt="" />
+                            <figcaption>
+                                <p>Proin vitae luctus dui, sit amet ultricies leo</p>
+                            </figcaption>
+                        </a>
+                    </figure>
+                </div>
+            </div>*@
+                    <div class="clearfix"> </div>
+                    <script src="~/plugins/js/lightbox-plus-jquery.min.js"></script>
+                </div>
+          
+            </div>
     </div>
     @*<script src="~/plugins/js/jquery-2.2.3.min.js"></script>
-    <script src="~/plugins/js/bootstrap.js"></script>*@
+        <script src="~/plugins/js/bootstrap.js"></script>*@
     <!-- //gallery -->
 </body>

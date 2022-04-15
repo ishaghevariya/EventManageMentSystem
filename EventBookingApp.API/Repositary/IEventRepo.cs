@@ -24,6 +24,7 @@ namespace EventBookingApp.API.Repositary
         public Task<int> GetCurrentRecordId();
         public void DeleteImage(string id);
         public Task<IEnumerable<ImageViewModel>> UpdateImage(int Eventid);
+        public Task<IEnumerable<ImageViewModel>> GetEventImages();
 
     }
 }

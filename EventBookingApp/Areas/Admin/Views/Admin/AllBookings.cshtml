@@ -1,39 +1,41 @@
-﻿@model IEnumerable<DataAcessLayer.Booking>
+﻿@model IEnumerable<DataAcessLayer.ViewModel.BookingViewModel>
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "List";
-    var EventName = ViewBag.EventType;
+    var data = ViewBag.BookingStatus;
 }
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Index</title>
 </head>
 <body>
-    <form method="post">
+    <form id="myform" method="post">
+
         <div class="card">
             <div class="card-header">
                 <div class="pull-left" style="font-weight:bold;font-size:medium">Booking Detalis</div>
             </div>
-            <table class="table">
-                <tr>
-                    <td>
-                        <input type="text" value="" name="UserName" class="form-control" id="Name" placeholder="UserName" />
-                    </td>
-                    <td>
-                        <button type="submit" class="btn btn-outline-primary text-dark form-control" id="btnSearch" value="Search">Search</button>
-                    </td>
-                </tr>
-            </table>
+            @*<table class="table">
+                    <tr>
+                        <td>
+                            <input type="text" value="" name="UserName" class="form-control" id="Name" placeholder="UserName" />
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-outline-primary text-dark form-control" id="btnSearch" value="Search">Search</button>
+                        </td>
+                    </tr>
+                </table>*@
+
             <table class="table">
                 <thead>
                     <tr>
                         <th>
-                            EventType
+                            @Html.DisplayNameFor(model => model.EventName)
                         </th>
-                       
                         <th>
                             @Html.DisplayNameFor(model => model.NumberOfDays)
                         </th>
@@ -44,26 +46,28 @@
                             @Html.DisplayNameFor(model => model.Address)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.BookingStatusId)
-                        </th>
-                        <th>
                             @Html.DisplayNameFor(model => model.NumberOfPerson)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.VenuType)
-                        <th>Action</th>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        @*<th>Action</th>*@
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
+
                         var tm = "#myModal" + item.Id;
                         var mid = "myModal" + item.Id;
                         <tr>
                             <td>
-                               @EventName
+                                @Html.DisplayFor(modelItem => item.Id)
+                                @Html.DisplayFor(modelItem => item.EventName)
                             </td>
-                          
                             <td>
                                 @Html.DisplayFor(modelItem => item.NumberOfDays)
                             </td>
@@ -74,36 +78,52 @@
                                 @Html.DisplayFor(modelItem => item.Address)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.BookingStatusId)
-                            </td>
-                            <td>
                                 @Html.DisplayFor(modelItem => item.NumberOfPerson)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.VenuType)
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
-                                    Delete
-                                </button>
-                                <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">
+                                @if (item.Status == "Approved")
+                                {
+                                    <button type="button" class="btn btn-success" onclick="getId(@item.Id)" data-target="#bookingStatus" data-toggle="modal" value="@item.Status">@item.Status</button>
+                                }
+                                @if (item.Status == "Rejected")
+                                {
+                                    <button type="button" class="btn btn-danger" onclick="getId(@item.Id)" data-target="#bookingStatus" data-toggle="modal" value="@item.Status">@item.Status</button>
+                                }
+                                @if (item.Status == "Pendding")
+                                {
+                                    <button type="button" class="btn btn-warning" onclick="getId(@item.Id)" data-target="#bookingStatus" data-toggle="modal" value="@item.Status">@item.Status</button>
+                                }
+                            </td>
+                            <td>
+                                <div class="modal" id="bookingStatus" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title">Delete Confirmation</h4>
+                                                <h4 class="modal-title">Booking Status</h4>
+                                                <button class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                                Are you sure want to delete this item?
+                                                <div class="form-group">
+                                                    <label class="control-label">Status</label>
+                                                    <select class="form-control" name="StatusId" id="status">
+                                                        <option value="">--Select Status--</option>
+                                                        @foreach (var i in data)
+                                                        {
+                                                            <option value="@i.Id"> @i.Status</option>
+                                                        }
+                                                    </select>
+                                                </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <a asp-action="Delete" asp-route-Id="@item.Id" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <input type="button" value="Save" class="btn btn-primary"  onclick="updateStatus()" />
+                                                <button class="btn btn-danger" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </td>
                         </tr>
                     }
@@ -111,5 +131,32 @@
             </table>
         </div>
     </form>
+
+    <script>
+        var bookinid = 0;
+        function getId(id) {
+            bookinid = id;
+            console.log(bookinid);
+        }
+        function updateStatus()
+        {
+           
+                console.log("From update:" + bookinid);
+            //var bookingid = document.getElementById("booking").value;
+            var statusid = document.getElementById("status").value;
+            //alert(userid + " status " + statusid);
+            $.ajax({
+                url: "/Admin/Admin/AllBookings",
+                type: "POST",
+                data: { StatusId: statusid, Id: bookinid },
+                success: (response) => {
+                    if (response == "true") {
+                        window.location = "/Admin/Admin/AllBookings";
+                    }
+                    console.log(response);
+                }
+            })
+       }
+    </script>
 </body>
 </html>

@@ -150,5 +150,20 @@ namespace EventBookingApp.API.Repositary
             }
             return model;
         }
+        public async Task<IEnumerable<ImageViewModel>> GetEventImages()
+        {
+            List<ImageViewModel> model = new List<ImageViewModel>();
+            var data = await _context.EventGalleries.ToListAsync();
+            foreach (var item in data)
+            {
+                ImageViewModel imagemodel = new ImageViewModel();
+                imagemodel.ImageName = item.ImageName;
+                imagemodel.Id = item.Id;
+                imagemodel.EventId = item.EventId;
+                imagemodel.URL = item.URL;
+                model.Add(imagemodel);
+            }
+            return model;
+        }
     }
 }

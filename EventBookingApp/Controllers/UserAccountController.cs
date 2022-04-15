@@ -198,9 +198,18 @@ namespace EventBookingApp.Controllers
         {
             return View();
         }
-        public IActionResult Gallery()
+        public async Task<IActionResult> Gallery()
         {
-            return View();
+            List<ImageViewModel> imagemodel = new List<ImageViewModel>();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.GetAsync($"api/AddEvent/GetEventImages");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                imagemodel = JsonConvert.DeserializeObject<List<ImageViewModel>>(result);
+            }
+            return View(imagemodel);
         }
         public IActionResult LogOut()
         {
