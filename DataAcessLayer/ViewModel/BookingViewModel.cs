@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace DataAcessLayer.ViewModel
 {
-   public class BookingViewModel
+    public class BookingViewModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Please Select EventDate")]
+        [DataType(DataType.Date)]
         public DateTime EventDate { get; set; }
         [Required(ErrorMessage = "Please Enter Address")]
         public string Address { get; set; }
@@ -24,6 +25,7 @@ namespace DataAcessLayer.ViewModel
         [Required(ErrorMessage = "Please Enter NumberofDays")]
         public int NumberOfDays { get; set; }
         public int UserId { get; set; }
+        [Required(ErrorMessage ="Please Select Event")]
         public int EventId { get; set; }
         public string EventName { get; set; }
         public string Status { get; set; }

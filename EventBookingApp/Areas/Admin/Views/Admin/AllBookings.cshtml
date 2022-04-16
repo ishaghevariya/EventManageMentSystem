@@ -14,7 +14,6 @@
 </head>
 <body>
     <form id="myform" method="post">
-
         <div class="card">
             <div class="card-header">
                 <div class="pull-left" style="font-weight:bold;font-size:medium">Booking Detalis</div>
@@ -54,18 +53,13 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Status)
                         </th>
-                        @*<th>Action</th>*@
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
-
-                        var tm = "#myModal" + item.Id;
-                        var mid = "myModal" + item.Id;
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.Id)
                                 @Html.DisplayFor(modelItem => item.EventName)
                             </td>
                             <td>
@@ -118,7 +112,7 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <input type="button" value="Save" class="btn btn-primary"  onclick="updateStatus()" />
+                                                <input type="button" value="Save" class="btn btn-primary" onclick="updateStatus()" />
                                                 <button class="btn btn-danger" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
@@ -138,25 +132,25 @@
             bookinid = id;
             console.log(bookinid);
         }
-        function updateStatus()
-        {
-           
+        function updateStatus() {
+            if (bookinid != 0) {
                 console.log("From update:" + bookinid);
-            //var bookingid = document.getElementById("booking").value;
-            var statusid = document.getElementById("status").value;
-            //alert(userid + " status " + statusid);
-            $.ajax({
-                url: "/Admin/Admin/AllBookings",
-                type: "POST",
-                data: { StatusId: statusid, Id: bookinid },
-                success: (response) => {
-                    if (response == "true") {
-                        window.location = "/Admin/Admin/AllBookings";
+                //var bookingid = document.getElementById("booking").value;
+                var statusid = document.getElementById("status").value;
+                //alert(userid + " status " + statusid);
+                $.ajax({
+                    url: "/Admin/Admin/AllBookings",
+                    type: "POST",
+                    data: { StatusId: statusid, Id: bookinid },
+                    success: (response) => {
+                        if (response == "true") {
+                            window.location = "/Admin/Admin/AllBookings";
+                        }
+                        console.log(response);
                     }
-                    console.log(response);
-                }
-            })
-       }
+                })
+            }
+        }
     </script>
 </body>
 </html>

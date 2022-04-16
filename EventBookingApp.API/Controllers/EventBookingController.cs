@@ -76,6 +76,7 @@ namespace EventBookingApp.API.Controllers
             var data = await _bookingRepo.GetCurrentBookingId();
             return data;
         }
+
         [HttpGet("AllBooking")]
         public async Task<ActionResult> AllBooking()
         {

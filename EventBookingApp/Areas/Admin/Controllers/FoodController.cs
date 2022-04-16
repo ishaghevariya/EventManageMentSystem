@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 namespace EventBookingApp.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class FoodController : Controller
     {
         private readonly IConfiguration _configuration;

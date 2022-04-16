@@ -63,9 +63,9 @@ namespace EventBookingApp.Controllers
                     HttpContext.Session.SetString("UserId", result);
                     return RedirectToAction("Index");
                 }
-                return RedirectToAction("Login");
+               // return RedirectToAction("Login");
             }
-            return View();
+            return RedirectToAction("Login");
         }
 
         [HttpGet]
@@ -190,9 +190,36 @@ namespace EventBookingApp.Controllers
         {
             return View();
         }
-        public IActionResult Events()
+        public async Task<IActionResult> Events()
         {
+            List<eventTypeViewModel> vm1 = new List<eventTypeViewModel>();
+            HttpClient client1 = new HttpClient();
+            client1.BaseAddress = new Uri(AdminApiString);
+            var response1 = await client1.GetAsync($"api/AddEvent/GetEventByTypes");
+            if (response1.IsSuccessStatusCode)
+            {
+                var result = response1.Content.ReadAsStringAsync().Result;
+                vm1 = JsonConvert.DeserializeObject<List<eventTypeViewModel>>(result);
+                ViewBag.type = vm1;
+
+            }
             return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Events(BookingViewModel vm,int eventid)
+        {
+            HttpClient client = new HttpClient();
+            var data = HttpContext.Session.GetString("UserId");
+            vm.UserId = Convert.ToInt32(data);
+            vm.EventId = eventid;
+           
+            client.BaseAddress = new Uri(AdminApiString);
+            var response = await client.PostAsJsonAsync($"api/EventBooking/AddBooking", vm);
+            if (response.IsSuccessStatusCode)
+            {
+                return Json("True");
+            }
+            return Json("false");
         }
         public IActionResult Privacy()
         {

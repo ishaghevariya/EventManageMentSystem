@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -42,24 +43,23 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             var response = await client.GetAsync($"api/Account/Login?email={email}&password={password}");
             if (response.IsSuccessStatusCode)
             {
+                ClaimsIdentity identity = null;
                 var result = response.Content.ReadAsStringAsync().Result;
+                
                 if (Convert.ToUInt32(result) > 0)
                 {
-                    var cliams = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name,email)
-                    };
-                    var identity = new ClaimsIdentity(
-                        cliams, CookieAuthenticationDefaults.AuthenticationScheme);
+                    identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name,email),
+                                                              new Claim(ClaimTypes.Role,"Admin")
+                    }, CookieAuthenticationDefaults.AuthenticationScheme);
+
                     var principal = new ClaimsPrincipal(identity);
-                    var props = new AuthenticationProperties();
-                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, props).Wait();
+                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal).Wait();
                     HttpContext.Session.SetString("UserId", result);
                     return RedirectToAction("Index");
+
                 }
-                return RedirectToAction("AdminLogin");
             }
-            return View();
+            return RedirectToAction("AdminLogin");
         }
 
         [HttpGet]
@@ -103,6 +103,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Index()
         {
             return View();
@@ -123,6 +124,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             return user;
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Profile()
         {
             var data = HttpContext.Session.GetString("UserId");
@@ -156,6 +158,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UserDetalis()
         {
             List<ApplicationUser> users = new List<ApplicationUser>();
@@ -184,6 +187,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             return View(users);
         }
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AllBookings()
         {
             List<BookingStatus> vm1 = new List<BookingStatus>();
@@ -208,7 +212,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             return View(Booking);
         }
         [HttpPost]
-        public async Task<JsonResult> AllBookings(int StatusId,int Id)
+        public async Task<JsonResult> AllBookings(int StatusId, int Id)
         {
             HttpClient client1 = new HttpClient();
             client1.BaseAddress = new Uri(AdminApiString);
