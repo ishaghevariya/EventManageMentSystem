@@ -63,7 +63,7 @@ namespace EventBookingApp.Controllers
                     HttpContext.Session.SetString("UserId", result);
                     return RedirectToAction("Index");
                 }
-               // return RedirectToAction("Login");
+                // return RedirectToAction("Login");
             }
             return RedirectToAction("Login");
         }
@@ -78,7 +78,7 @@ namespace EventBookingApp.Controllers
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
-            var response = await client.PostAsJsonAsync<ApplicationUser>($"api/Account/Registration", applicationUser);
+            var response = await client.PostAsJsonAsync($"api/Account/Registration", applicationUser);
             if (response.IsSuccessStatusCode)
             {
                 var MsgBody = "Hello  We have registred you on our portal sucessfully,Thank you.";
@@ -92,7 +92,7 @@ namespace EventBookingApp.Controllers
             }
             return View();
         }
-       
+
         private async Task<ApplicationUser> GetUserById(int id)
         {
             var data = HttpContext.Session.GetString("UserId");
@@ -140,7 +140,6 @@ namespace EventBookingApp.Controllers
             {
                 var data = HttpContext.Session.GetString("UserId");
                 user.id = Convert.ToInt32(data);
-
                 if (user.id != 0)
                 {
                     HttpClient client = new HttpClient();
@@ -160,7 +159,77 @@ namespace EventBookingApp.Controllers
                     return RedirectToAction("Login");
                 }
             }
-            return View(user);
+            return View();
+        }
+        
+        [HttpGet]
+        public IActionResult ForgotPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel user)
+        {
+            if (ModelState.IsValid)
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(AdminApiString);
+                HttpResponseMessage response = await client.PostAsJsonAsync($"api/Account/ForgotPassword", user);
+                if (response.IsSuccessStatusCode)
+                {
+                //    string link = HtmlHelper.GenerateLink(this.ControllerContext.RequestContext, System.Web.Routing.RouteTable.Routes, "My link", "Root", "About", "Home", null, null);
+                    var linkurl = Url.Action("ResetPassword", "UserAccount",new { email = user.Email});
+                    var MsgBody = "Hello<br/> Please Click <a href='https://localhost:5001" + linkurl +"'>here<a/> to Reset your password<br/> Thank you,<br/>EMS";
+                    var message = new Message(user.Email, "No Reply", MsgBody);
+                    _emailSender.SendEmail(message);
+                    return RedirectToAction("Login");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Please enter your valid Email Id.");
+                }
+            }
+            else
+            {
+                return RedirectToAction("ForgotPassword");
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult ResetPassword(string email)
+        {
+            if(email == null)
+            {
+                ModelState.AddModelError("", "Invalid Link PLease try to contact admin");
+            }
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                ApplicationUser user = new ApplicationUser();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(AdminApiString);
+                HttpResponseMessage response = await client.GetAsync($"api/Account/GetUserByEmail/{model.Email}");
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = response.Content.ReadAsStringAsync().Result;
+                    user = JsonConvert.DeserializeObject<ApplicationUser>(result);
+                    if(user!= null)
+                    {
+                        HttpClient client1 = new HttpClient();
+                        client1.BaseAddress = new Uri(AdminApiString);
+                        HttpResponseMessage response1 = await client1.PostAsJsonAsync($"api/Account/ResetPassword", model);
+                        if (response1.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("Login");
+                        }
+                    }
+                }
+            }
+            return View();
         }
         //[HttpPost]
         //public async Task<JsonResult> GetEmail(string email)
@@ -203,21 +272,35 @@ namespace EventBookingApp.Controllers
                 ViewBag.type = vm1;
 
             }
+            List<ImageViewModel> imagemodel = new List<ImageViewModel>();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.GetAsync($"api/AddEvent/GetEventImages");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                imagemodel = JsonConvert.DeserializeObject<List<ImageViewModel>>(result);
+                ViewBag.images = imagemodel;
+            }
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Events(BookingViewModel vm,int eventid)
+        public async Task<JsonResult> Events(BookingViewModel vm, int eventid)
         {
             HttpClient client = new HttpClient();
             var data = HttpContext.Session.GetString("UserId");
-            vm.UserId = Convert.ToInt32(data);
-            vm.EventId = eventid;
-           
-            client.BaseAddress = new Uri(AdminApiString);
-            var response = await client.PostAsJsonAsync($"api/EventBooking/AddBooking", vm);
-            if (response.IsSuccessStatusCode)
+            if (data != null)
             {
-                return Json("True");
+                vm.UserId = Convert.ToInt32(data);
+                vm.EventId = eventid;
+
+                client.BaseAddress = new Uri(AdminApiString);
+                var response = await client.PostAsJsonAsync($"api/EventBooking/AddBooking", vm);
+                if (response.IsSuccessStatusCode)
+                {
+                    return Json("True");
+                }
+                return Json("false");
             }
             return Json("false");
         }

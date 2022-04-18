@@ -24,7 +24,7 @@ namespace EmailServices
             emailMessage.From.Add(new MailboxAddress(_emailConfig.From));
             emailMessage.To.Add(MailboxAddress.Parse(message.To));
             emailMessage.Subject = message.Subject;
-            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text) { Text = message.Content };
+            emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Html) { Text = string.Format(message.Content) };
             return emailMessage;
         }
         private void SendEmail(MimeMessage mailMessage)

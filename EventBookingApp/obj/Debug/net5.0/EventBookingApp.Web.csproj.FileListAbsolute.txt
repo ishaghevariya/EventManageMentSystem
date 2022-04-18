@@ -197,3 +197,5 @@ C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\EventList\AddImage.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Admin\AllBookings.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Booking\InsertBooklingDetalis.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\UserAccount\ForgotPassword.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\UserAccount\ResetPassword.cshtml.g.cs

@@ -286,6 +286,9 @@ h6 {
   background: #4dae3c;
 }
 
+.btn--danger{
+    background:#f20d0d;
+}
 .btn--blue {
   background: #4272d7;
 }

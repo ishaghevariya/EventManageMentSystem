@@ -97,9 +97,9 @@ namespace EventBookingApp.API.Repositary
             }
             return null;
         }
-        public bool GetUserByEmail(string email)
+        public async Task<ApplicationUser>GetUserByEmail(string email)
         {
-            var isEmaliExist = _context.ApplicationUsers.Any(x => x.Email == email);
+            var isEmaliExist = await _context.ApplicationUsers.Where(x => x.Email == email).FirstOrDefaultAsync();
             return isEmaliExist;
         }
         public async Task<IEnumerable<ApplicationUser>> Search(string UserName)
@@ -125,6 +125,23 @@ namespace EventBookingApp.API.Repositary
                 result.State = User.State;
                 await _context.SaveChangesAsync();
                 return result;
+            }
+            return null;
+        }
+        public async Task<ApplicationUser> ForgotPassword(ForgotPasswordViewModel forgetPassword)
+        {
+            var data = await _context.ApplicationUsers.Where(x => x.Email == forgetPassword.Email).FirstOrDefaultAsync();
+            return data;
+        }
+
+        public async Task<ApplicationUser> ResetPassword(ResetPasswordViewModel viewModel)
+        {
+            var user = await _context.ApplicationUsers.Where(x => x.Email == viewModel.Email).FirstOrDefaultAsync();
+            if(user!=null)
+            {
+                user.Password = viewModel.NewPassword;
+                await _context.SaveChangesAsync();
+                return user;
             }
             return null;
         }

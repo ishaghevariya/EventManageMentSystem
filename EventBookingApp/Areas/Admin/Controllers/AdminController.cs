@@ -38,25 +38,34 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> AdminLogin(string email, string password)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(AdminApiString);
-            var response = await client.GetAsync($"api/Account/Login?email={email}&password={password}");
-            if (response.IsSuccessStatusCode)
+            if (ModelState.IsValid)
             {
-                ClaimsIdentity identity = null;
-                var result = response.Content.ReadAsStringAsync().Result;
-                
-                if (Convert.ToUInt32(result) > 0)
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(AdminApiString);
+                var response = await client.GetAsync($"api/Account/Login?email={email}&password={password}");
+                if (response.IsSuccessStatusCode)
                 {
-                    identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name,email),
+                    if (email == "ishaghevariya09@gmail.com" && password == "Isha1234")
+                    {
+                        ClaimsIdentity identity = null;
+                        var result = response.Content.ReadAsStringAsync().Result;
+
+                        if (Convert.ToUInt32(result) > 0)
+                        {
+                            identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name,email),
                                                               new Claim(ClaimTypes.Role,"Admin")
                     }, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    var principal = new ClaimsPrincipal(identity);
-                    HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal).Wait();
-                    HttpContext.Session.SetString("UserId", result);
-                    return RedirectToAction("Index");
-
+                            var principal = new ClaimsPrincipal(identity);
+                            HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal).Wait();
+                            HttpContext.Session.SetString("UserId", result);
+                            return RedirectToAction("Index");
+                        }
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "You are Not Admin!!!");
+                    }
                 }
             }
             return RedirectToAction("AdminLogin");
@@ -74,7 +83,6 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             {
                 var data = HttpContext.Session.GetString("UserId");
                 user.id = Convert.ToInt32(data);
-
                 if (user.id != 0)
                 {
                     HttpClient client = new HttpClient();
@@ -94,7 +102,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                     return RedirectToAction("AdminLogin");
                 }
             }
-            return View(user);
+            return View();
         }
         public IActionResult LogOut()
         {

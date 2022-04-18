@@ -53,11 +53,11 @@ namespace EventBookingApp.API.Controllers
             }
         }
         [HttpGet("GetUserByEmail/{email}")]
-        public bool GetUserByEmail(string email)
+        public async Task<ApplicationUser> GetUserByEmail(string email)
         {
             try
             {
-                var result = _registrationRepo.GetUserByEmail(email);
+                var result = await _registrationRepo.GetUserByEmail(email);
                 return result;
             }
             catch (Exception)
@@ -96,7 +96,8 @@ namespace EventBookingApp.API.Controllers
                 {
                     return BadRequest();
                 }
-                if (_registrationRepo.GetUserByEmail(applicationUser.Email)) 
+                var email = _registrationRepo.GetUserByEmail(applicationUser.Email);
+                if (email != null) 
                 {
                     return StatusCode(409, $"User '{applicationUser.Email}' already exists.");
                 }
@@ -145,6 +146,24 @@ namespace EventBookingApp.API.Controllers
             }
         }
 
+        [HttpPost("ForgotPassword")]
+        public async Task<ActionResult<ApplicationUser>> ForgotPassword(ForgotPasswordViewModel model)
+        {
+            try
+            {
+                var email = await _registrationRepo.GetUserByEmail(model.Email);
+                if (email!=null)
+                {
+                    return await _registrationRepo.ForgotPassword(model);
+                }
+                return BadRequest("Email is not matched!!!");
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when forgot password");
+            }
+        }
+
         [HttpGet("{email,password}")]
         public int Login(string email,string password)
         {
@@ -176,7 +195,18 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
             }
         }
-
+        [HttpPost("ResetPassword")]
+        public async Task<ActionResult<ApplicationUser>> ResetPassword(ResetPasswordViewModel model)
+        {
+            try
+            {
+                return await _registrationRepo.ResetPassword(model);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when Reset password");
+            }
+        }
         //[HttpGet("{email,password}")]
         //public string Login(string email, string password)
         //{
@@ -189,6 +219,6 @@ namespace EventBookingApp.API.Controllers
         //    }
         //    return result;
         //}
-     
+
     }
 }
