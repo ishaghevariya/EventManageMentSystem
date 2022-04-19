@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace DataAcessLayer.ViewModel
 {
-    public class BookingViewModel
+    public class BookingViewModel: IValidatableObject
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Please Select EventDate")]
         [DataType(DataType.Date)]
+        //[DateLessThanOrEqualToToday]
         public DateTime EventDate { get; set; }
         [Required(ErrorMessage = "Please Enter Address")]
         public string Address { get; set; }
@@ -29,5 +30,16 @@ namespace DataAcessLayer.ViewModel
         public int EventId { get; set; }
         public string EventName { get; set; }
         public string Status { get; set; }
+
+        IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
+        {
+            List<ValidationResult> res = new List<ValidationResult>();
+            if (EventDate < DateTime.Today)
+            {
+                ValidationResult mss = new ValidationResult("Event date must be greater than to Today");
+                res.Add(mss);
+            }
+            return res;
+        }
     }
 }

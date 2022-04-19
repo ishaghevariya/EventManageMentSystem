@@ -247,8 +247,18 @@ namespace EventBookingApp.Controllers
         //}
 
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            List<eventTypeViewModel> vm1 = new List<eventTypeViewModel>();
+            HttpClient client1 = new HttpClient();
+            client1.BaseAddress = new Uri(AdminApiString);
+            var response1 = await client1.GetAsync($"api/AddEvent/GetEventByTypes");
+            if (response1.IsSuccessStatusCode)
+            {
+                var result = response1.Content.ReadAsStringAsync().Result;
+                vm1 = JsonConvert.DeserializeObject<List<eventTypeViewModel>>(result);
+                ViewBag.type = vm1;
+            }
             return View();
         }
         public IActionResult About()

@@ -2,13 +2,14 @@
 @{
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var data = ViewBag.type;
 }
 <head>
     <title>Home Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @*<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content="Events Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />*@
+        <meta name="keywords" content="Events Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+        SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />*@
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Custom Theme files -->
     <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
@@ -85,75 +86,139 @@
         <div class="container">
             <h2 class="heading-agileinfo">Welcome<span>Events is a professionally managed Event</span></h2>
             <p>Masagni dolores eoquie int Basmodi temporant, ut laboreas dolore magnam aliquam kuytase uaeraquis autem vel eum iure reprehend.Unicmquam eius, Basmodi temurer sehsMunim.Masagni dolores eoquie int Basmodi temporant, ut laboreas dolore magnam aliquam kuytase uaeraquis autem vel eum iure reprehend.</p>
-            <div class="ser_w3l">
-                <div class="outer-wrapper">
-                    <div class="inner-wrapper">
-                        <div class="icon-wrapper">
-                            <i class="fa fa-birthday-cake" aria-hidden="true"></i>
-                        </div>
-                        <div class="content-wrapper">
-                            <h4>Birthday</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, magni.</p>
+            @foreach (var item in data)
+            {
+                <div class="ser_w3l">
+
+                    <div class="outer-wrapper">
+
+                        <div class="inner-wrapper">
+
+                            @if (item.EventTypes == "Birthday")
+                            {
+                                <div class="icon-wrapper">
+                                    <i class="fa fa-birthday-cake" aria-hidden="true"></i>
+                                </div>
+                            }
+                            @if (item.EventTypes == "Sangeet")
+                            {
+                                <div class="icon-wrapper">
+                                    <i class="fa fa-headphones" aria-hidden="true"></i>
+                                </div>
+                            }
+                            @if (item.EventTypes == "Wedding")
+                            {
+                                <div class="icon-wrapper">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                </div>
+                            }
+                            @if (item.EventTypes == "Photography")
+                            {
+                                <div class="icon-wrapper">
+                                    <i class="fa fa-camera" aria-hidden="true"></i>
+                                </div>
+                            }
+                            @if (item.EventTypes == "Catering")
+                            {
+                                <div class="icon-wrapper">
+                                    <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                </div>
+                            }
+                            @if (item.EventTypes == "Baby Shower")
+                            {
+                                <div class="icon-wrapper">
+                                    <i class="fa fa-gift" aria-hidden="true"></i>
+                                </div>
+                            }
+                            <div class="content-wrapper">
+                                <h4>@item.EventTypes</h4>
+                                @if (item.EventTypes == "Birthday")
+                                {
+                                    <p>It has been another year of life for your or your loved one and that is certainly reason to party.</p>
+                                }
+                                @if (item.EventTypes == "Sangeet")
+                                {
+                                    <p>The Sangeet ceremony holds two or three days before the wedding, usually before the Mehndi ceremony.</p>
+                                }
+                                @if (item.EventTypes == "Wedding")
+                                {
+                                    <p>This wedding planning checklist will help you organize and make decisions without all the unnecessary stress.</p>
+                                }
+                                @if (item.EventTypes == "Photography")
+                                {
+                                    <p>Even though you’ll be interacting with people and saying, ‘Hey, do you mind if I get a photo?.</p>
+                                }
+                                @if (item.EventTypes == "Catering")
+                                {
+                                    <p>The planning of food and drink at an event is an important process,the events success can rise of fall on the catering.</p>
+                                }
+                                @if (item.EventTypes == "Baby Shower")
+                                {
+                                    <p>When it’s time to pamper the parents and baby, let guests know all the specifics with the best baby shower invitation wording for every kind of occasion.</p>
+                                }
+                            </div>
                         </div>
                     </div>
+
+                    @*<div class="outer-wrapper">
+                            <div class="inner-wrapper">
+                                <div class="icon-wrapper">
+                                    <i class="fa fa-headphones" aria-hidden="true"></i>
+                                </div>
+                                <div class="content-wrapper">
+                                    <h4>Sangeet</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, magni.</p>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*<div class="outer-wrapper">
+                            <div class="inner-wrapper">
+                                <div class="icon-wrapper">
+                                    <i class="fa fa-globe" aria-hidden="true"></i>
+                                </div>
+                                <div class="content-wrapper">
+                                    <h4>Weddings</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, magni.</p>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*<div class="outer-wrapper">
+                            <div class="inner-wrapper">
+                                <div class="icon-wrapper">
+                                    <i class="fa fa-camera" aria-hidden="true"></i>
+                                </div>
+                                <div class="content-wrapper">
+                                    <h4>Photography</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, magni.</p>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*<div class="outer-wrapper">
+                            <div class="inner-wrapper">
+                                <div class="icon-wrapper">
+                                    <i class="fa fa-cutlery" aria-hidden="true"></i>
+                                </div>
+                                <div class="content-wrapper">
+                                    <h4>Catering</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, magni.</p>
+                                </div>
+                            </div>
+                        </div>*@
+                    @*<div class="outer-wrapper">
+                            <div class="inner-wrapper">
+                                <div class="icon-wrapper">
+                                    <i class="fa fa-tasks" aria-hidden="true"></i>
+                                </div>
+                                <div class="content-wrapper">
+                                    <h4>Promotions</h4>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, magni.</p>
+                                </div>
+                            </div>
+                        </div>*@
+
                 </div>
-                <div class="outer-wrapper">
-                    <div class="inner-wrapper">
-                        <div class="icon-wrapper">
-                            <i class="fa fa-headphones" aria-hidden="true"></i>
-                        </div>
-                        <div class="content-wrapper">
-                            <h4>Sangeet</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, magni.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="outer-wrapper">
-                    <div class="inner-wrapper">
-                        <div class="icon-wrapper">
-                            <i class="fa fa-globe" aria-hidden="true"></i>
-                        </div>
-                        <div class="content-wrapper">
-                            <h4>Weddings</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, magni.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="outer-wrapper">
-                    <div class="inner-wrapper">
-                        <div class="icon-wrapper">
-                            <i class="fa fa-camera" aria-hidden="true"></i>
-                        </div>
-                        <div class="content-wrapper">
-                            <h4>Photography</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, magni.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="outer-wrapper">
-                    <div class="inner-wrapper">
-                        <div class="icon-wrapper">
-                            <i class="fa fa-cutlery" aria-hidden="true"></i>
-                        </div>
-                        <div class="content-wrapper">
-                            <h4>Catering</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, magni.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="outer-wrapper">
-                    <div class="inner-wrapper">
-                        <div class="icon-wrapper">
-                            <i class="fa fa-tasks" aria-hidden="true"></i>
-                        </div>
-                        <div class="content-wrapper">
-                            <h4>Promotions</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, magni.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
+            }
+            <div class="clearfix"></div>
         </div>
     </div>
     <!-- //ser_agile -->
@@ -302,7 +367,7 @@
             </div>
         </section>*@
     <!--testimonials-->
-    <div class="testimonials">
+    @*<div class="testimonials">
         <div class="container">
             <h3 class="heading-agileinfo">Event Manager Says<span>Events is a professionally managed Event</span></h3>
             <div class="flex-slider">
@@ -348,7 +413,7 @@
             </div>
 
         </div>
-    </div>
+    </div>*@
     <!--//testimonials-->
 
     <a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>

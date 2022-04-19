@@ -24,7 +24,7 @@
                     </div>
                     <div class="abt-form text-center">
                         <form asp-action="InsertBooking" asp-controller="Booking" method="post">
-                            <div asp-validation-summary="ModelOnly" style="color:red"></div>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
                                 <div class="w3ls-pr">
                                     <select class="sel" name="TypeName">
@@ -33,23 +33,24 @@
                                         {
                                             <option value="@item.Id"> @item.EventTypes</option>
                                         }
+
                                     </select>
-                                    <span asp-validation-for="EventId" style="color:red"></span>
+                                    <span asp-validation-for="EventName"></span>                
                                     <input asp-for="Address" type="text" name="Address" placeholder="Address" value="">
-                                    <span asp-validation-for="Address" style="color:red"></span>
+                                    <span asp-validation-for="Address"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <input asp-for="EventDate" type="date" name="EventDate" value="" required>
+                                    <input asp-for="EventDate" type="date" name="EventDate" value="" required placeholder="Please select date after two days of today's date'">
                                     <span asp-validation-for="EventDate" class="text-danger"></span>
-                                    <input asp-for="AreapinCode" name="Areapincode" type="text" placeholder="pincode" required="required" value="">
-                                    <span asp-validation-for="AreapinCode" style="color:red"></span>
+                                    <input asp-for="AreapinCode" name="AreapinCode" type="text" placeholder="pincode" required value="">
+                                    <span asp-validation-for="AreapinCode"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <select class="sel" required="" asp-for="VenuType">
+                                    <select class="sel" required asp-for="VenuType">
                                         <option value="">Venue Type</option>
                                         <option value="Hall">Hall</option>
                                         <option value="OutDoor">OutDoor</option>
@@ -57,14 +58,14 @@
                                         <option value="Lake Terrace">Lake Terrace</option>
                                         <option value="The Village Venue">The Village Venue</option>
                                     </select>
-                                    <input asp-for="NumberOfPerson" type="text" name="NumberOfPerson" placeholder="NumberOfPerson" value="" required="required">
-                                    <span asp-validation-for="NumberOfPerson" style="color:red"></span>
+                                    <input asp-for="NumberOfPerson" type="text" name="NumberOfPerson" placeholder="NumberOfPerson" value="" required>
+                                    <span asp-validation-for="NumberOfPerson"></span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-xs-12 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <input asp-for="NumberOfDays" type="text" name="NumberOfDays" placeholder="NumberOfDays" value="" required="required">
-                                    <span asp-validation-for="NumberOfDays" style="color:red"></span>
+                                    <input asp-for="NumberOfDays" type="text" name="NumberOfDays" placeholder="NumberOfDays" value="" required>
+                                    <span asp-validation-for="NumberOfDays"></span>
                                 </div>
                             </div>
                             <div class="clearfix"></div>

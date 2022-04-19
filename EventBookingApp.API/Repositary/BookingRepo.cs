@@ -52,6 +52,7 @@ namespace EventBookingApp.API.Repositary
             foreach (var item in data) 
             {
                 BookingViewModel vm = new BookingViewModel();
+                vm.Id = item.Id;
                 vm.Address = item.Address;
                 vm.AreapinCode = item.AreapinCode;
                 vm.BookingStatusId = item.BookingStatusId;
@@ -61,6 +62,8 @@ namespace EventBookingApp.API.Repositary
                 vm.NumberOfPerson = item.NumberOfPerson;
                 vm.VenuType = item.VenuType;
                 vm.UserId = userid;
+                var status = _context.BookingStatuses.Where(x => x.Id == item.BookingStatusId).Select(x => x.Status).FirstOrDefault();
+                vm.Status = status;
                 var eventName = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefault();
                 vm.EventName = eventName;
                 lvm.Add(vm);
@@ -194,6 +197,34 @@ namespace EventBookingApp.API.Repositary
                 return result;
             }
             return null;
+        }
+
+        public async Task<IEnumerable<BookingDetalisViewModel>> AllBookingDetalis(int Id)
+        {
+            List<BookingDetalisViewModel> model = new List<BookingDetalisViewModel>();
+            var data = await _context.BookingDetalis.Where(x=>x.BookingId == Id).ToListAsync();
+            foreach (var item in data)
+            {
+                BookingDetalisViewModel vm = new BookingDetalisViewModel();
+                vm.BookingDetalisId = item.BookingDetalisId;
+                vm.BookingId = item.BookingId;
+                //vm.EquipmentId = item.EquipmentId;
+                var EquipmentName = _context.Equipments.Where(x => x.EquipmentId == item.EquipmentId).Select(x => x.EquipmentType).FirstOrDefault();
+                vm.EquipmentType = EquipmentName;
+                //vm.FoodId = item.FoodId;
+                var FoodName = _context.Foods.Where(x => x.FoodId == item.FoodId).Select(x => x.FoodType).FirstOrDefault();
+                vm.FoodType = FoodName;
+                //vm.FlowerId = item.FlowerId;
+                var FlowerName = _context.Flowers.Where(x => x.FlowerId == item.FlowerId).Select(x => x.FlowerType).FirstOrDefault();
+                vm.FlowerType = FlowerName;
+                model.Add(vm);
+           }
+            return model;
+        }
+        public async Task<IEnumerable<int>> AllBookingId()
+        {
+            var data = await _context.BookingDetalis.Select(x => x.BookingId).ToListAsync();
+            return data;
         }
     }
 }

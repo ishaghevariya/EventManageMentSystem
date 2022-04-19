@@ -38,6 +38,9 @@ body a:focus {
     outline: none;
 	text-decoration:none;
 }
+.text-red{
+	color:red;
+}
 /*-- banner --*/ 
 .w3ls-banner{
 	position: relative;
@@ -667,7 +670,7 @@ select.sel{
 }
 
 span {
-	color: #000;
+	color:red;
 }
 
 .top-middle li {

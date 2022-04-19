@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DataAcessLayer.ViewModel.BookingDetalisViewModel>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "List";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <div class="pull-left" style="font-weight:bold;font-size:medium">Decorations</div>
+            <div style="float:right">
+                <a href='@Url.Action("AllBookings","Admin")' class="btn btn-primary float-right">Back</a>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EquipmentType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FlowerType)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FoodType)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EquipmentType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FlowerType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FoodType)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

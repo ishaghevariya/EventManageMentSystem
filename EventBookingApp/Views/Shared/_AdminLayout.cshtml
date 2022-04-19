@@ -248,48 +248,52 @@
 
                         {
                     <li class="nav-item">
-                        <a href="@Url.Action("Index", "EventList", new { area = "Admin" })" data-name="/Admin/EventList" class="nav-link">
+                        <a href="@Url.Action("Index", "Admin", new { area = "Admin" })" data-name="/Admin/EventList" class="nav-link">
                             <i class="nav-icon fas fa-book-reader"></i>
-                            <p>Events</p>
+                            <p>Dashboard</p>
                         </a>
                     </li>
                                     <li class="nav-item">
-                                        <a href="@Url.Action("Index", "Equipment", new { area = "Admin" })" data-name="/Admin/Equipment" class="nav-link">
+                                        <a href="@Url.Action("Index", "EventList", new { area = "Admin" })" data-name="/Admin/EventList" class="nav-link">
                                             <i class="nav-icon fas fa-book-reader"></i>
-                                            <p>Equipment</p>
+                                            <p>Events</p>
                                         </a>
                                     </li>
                                                     <li class="nav-item">
-                                                        <a href="@Url.Action("Index", "Food", new { area = "Admin" })" data-name="/Admin/Food" class="nav-link">
+                                                        <a href="@Url.Action("Index", "Equipment", new { area = "Admin" })" data-name="/Admin/Equipment" class="nav-link">
                                                             <i class="nav-icon fas fa-book-reader"></i>
-                                                            <p>Food</p>
+                                                            <p>Equipment</p>
                                                         </a>
                                                     </li>
                                                                     <li class="nav-item">
-                                                                        <a href="@Url.Action("Index", "Flower", new { area = "Admin" })" data-name="/Admin/Flower" class="nav-link">
+                                                                        <a href="@Url.Action("Index", "Food", new { area = "Admin" })" data-name="/Admin/Food" class="nav-link">
                                                                             <i class="nav-icon fas fa-book-reader"></i>
-                                                                            <p>Flower</p>
+                                                                            <p>Food</p>
                                                                         </a>
                                                                     </li>
                                                                                     <li class="nav-item">
-                                                                                        <a href="@Url.Action("UserDetalis", "Admin", new { area = "Admin" })" data-name="/Admin/UserDetalis" class="nav-link">
-                                                                                            <i class="nav-icon fas fa-user"></i>
-                                                                                            <p>Users</p>
+                                                                                        <a href="@Url.Action("Index", "Flower", new { area = "Admin" })" data-name="/Admin/Flower" class="nav-link">
+                                                                                            <i class="nav-icon fas fa-book-reader"></i>
+                                                                                            <p>Flower</p>
                                                                                         </a>
                                                                                     </li>
                                                                                                     <li class="nav-item">
-                                                                                                        <a href="@Url.Action("AllBookings", "Admin", new { area = "Admin" })" data-name="/Admin/AllBookings" class="nav-link">
-                                                                                                            <i class="nav-icon fas fa-book-reader"></i>
-                                                                                                            <p>Boking Detalis</p>
+                                                                                                        <a href="@Url.Action("UserDetalis", "Admin", new { area = "Admin" })" data-name="/Admin/UserDetalis" class="nav-link">
+                                                                                                            <i class="nav-icon fas fa-user"></i>
+                                                                                                            <p>Users</p>
                                                                                                         </a>
                                                                                                     </li>
- }
-                                                                                                                else
-                                                                                                                {
-                                                                                                    <li class="nav-item">
-                                                                                                        <a href="@Url.Action("AdminLogin", "Admin", new { area = "Admin" })" data-name="/Admin" class="nav-link"></a>
-                                                                                                    </li>
-}
+                                                                                                                    <li class="nav-item">
+                                                                                                                        <a href="@Url.Action("AllBookings", "Admin", new { area = "Admin" })" data-name="/Admin/AllBookings" class="nav-link">
+                                                                                                                            <i class="nav-icon fas fa-book-reader"></i>
+                                                                                                                            <p>Boking Detalis</p>
+                                                                                                                        </a>
+                                                                                                                    </li> }
+                                                                                                                                else
+                                                                                                                                {
+                                                                                                                    <li class="nav-item">
+                                                                                                                        <a href="@Url.Action("AdminLogin", "Admin", new { area = "Admin" })" data-name="/Admin" class="nav-link"></a>
+                                                                                                                    </li>}
                         @*<li class="nav-item">
             <a href="../widgets.html" class="nav-link">
                 <i class="nav-icon fas fa-th"></i>

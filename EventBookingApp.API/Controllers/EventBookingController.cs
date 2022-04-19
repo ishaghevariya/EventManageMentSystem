@@ -20,7 +20,6 @@ namespace EventBookingApp.API.Controllers
         public EventBookingController(IBookingRepo bookingRepo)
         {
             _bookingRepo = bookingRepo;
-        
         }
         public async Task<ActionResult<Booking>> GetBookingById(int id)
         {
@@ -77,6 +76,12 @@ namespace EventBookingApp.API.Controllers
             return data;
         }
 
+        [HttpGet("GetAllBookingId")]
+        public async Task<IEnumerable<int>> GetAllBookingId()
+        {
+            var data = await _bookingRepo.AllBookingId();
+            return data;
+        }
         [HttpGet("AllBooking")]
         public async Task<ActionResult> AllBooking()
         {
@@ -185,6 +190,18 @@ namespace EventBookingApp.API.Controllers
             catch (Exception)
             {
                 throw;
+            }
+        }
+        [HttpGet("AllBookingDetalis/{Id:int}")]
+        public async Task<ActionResult> AllBookingDetalis(int Id)
+        {
+            try
+            {
+                return Ok(await _bookingRepo.AllBookingDetalis(Id));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
             }
         }
     }

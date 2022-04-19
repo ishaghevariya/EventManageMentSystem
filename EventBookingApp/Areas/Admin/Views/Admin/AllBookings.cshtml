@@ -53,6 +53,9 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Status)
                         </th>
+                        <th>
+                            Booking Detalis
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -92,6 +95,9 @@
                                 }
                             </td>
                             <td>
+                                <a asp-action="AllBookingDecoration" asp-route-Id="@item.Id" class="btn btn-primary">Show Decoration</a>
+                            </td>
+                            <td>
                                 <div class="modal" id="bookingStatus" tabindex="-1">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -125,7 +131,7 @@
             </table>
         </div>
     </form>
-
+   
     <script>
         var bookinid = 0;
         function getId(id) {

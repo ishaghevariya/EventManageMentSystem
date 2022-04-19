@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var data = ViewBag.id;
 }
 <!DOCTYPE html>
 <html>
@@ -44,15 +45,19 @@
                         <th class="font-weight-bold">
                             @Html.DisplayNameFor(model => model.NumberOfPerson)
                         </th>
-                        <th class="font-weight-bold">Action</th>
+                        <th class="font-weight-bold">
+                            @Html.DisplayNameFor(model => model.Status)
+                        </th>
+                        <th class="font-weight-bold">Booking</th>
                     </tr>
                 </thead>
                 <tbody style="border:groove;border-color:black">
                     @foreach (var item in Model)
                     {
                         <tr style="border:groove;border-color:black">
-                           
+
                             <td class="font-weight-bold">
+                                @Html.DisplayFor(modelItem => item.Id)
                                 @Html.DisplayFor(modelItem => item.EventName)
                             </td>
                             <td class="font-weight-bold">
@@ -71,11 +76,49 @@
                                 @Html.DisplayFor(modelItem => item.NumberOfPerson)
                             </td>
                             <td class="font-weight-bold">
-
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-success">Edit</a>
-                                @*<a onclick="showInPopup('@Url.Action("InsertBooklingDetalis","Booking",null,Context.Request.Scheme)', 'Book Decoration')" asp-route-id="@item.Id" class="btn btn-success">BookDecoration</a>*@
-                                <a asp-action="InsertBooklingDetalis" asp-route-id="@item.Id" class="btn btn-success">BookDecoration</a>
+                                @if (item.Status == "Approved")
+                                {
+                                    <button type="button" class="btn btn-success" value="@item.Status">@item.Status</button>
+                                }
+                                @if (item.Status == "Rejected")
+                                {
+                                    <button type="button" class="btn btn-danger" value="@item.Status">@item.Status</button>
+                                }
+                                @if (item.Status == "Pendding")
+                                {
+                                    <button type="button" class="btn btn-warning" value="@item.Status">@item.Status</button>
+                                }
                             </td>
+                            @foreach (var i in data)
+                            {
+                                @if (i != item.Id)
+                                {
+                                    <td class="font-weight-bold">
+                                        <a asp-action="InsertBooklingDetalis" asp-route-id="@item.Id" class="btn btn-success">BookDecoration</a>
+                                    </td>
+                                }
+                                else
+                                {
+                                    <td class="font-weight-bold">
+                                        <a asp-action="ShowBookingDetalis" asp-route-id="@item.Id" class="btn" style="background-color:hotpink">ShowDecoration</a>
+                                    </td>
+                                    @*<td>
+                                            <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            Booked Decorations
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>*@
+                                }
+                            }
                         </tr>
                     }
                 </tbody>

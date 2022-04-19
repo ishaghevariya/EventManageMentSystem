@@ -232,5 +232,19 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return Json("false");
         }
+        [HttpGet]
+        public async Task<IActionResult> AllBookingDecoration(int Id)
+        {
+            List<BookingDetalisViewModel> vm = new List<BookingDetalisViewModel>();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            var response1 = await client.GetAsync($"api/EventBooking/AllBookingDetalis/{Id}");
+            if (response1.IsSuccessStatusCode)
+            {
+                var result = response1.Content.ReadAsStringAsync().Result;
+                vm = JsonConvert.DeserializeObject<List<BookingDetalisViewModel>>(result);
+            }
+            return View(vm);
+        }
     }
 }
