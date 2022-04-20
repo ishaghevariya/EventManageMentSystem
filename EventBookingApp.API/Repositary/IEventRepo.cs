@@ -19,6 +19,7 @@ namespace EventBookingApp.API.Repositary
         Task<Event> AddEvent(EventViewModel eventmodel);
         Task<Event> UpdateEvent(EventViewModel eventmodel);
         Task<Event> DeleteEvent(int id);
+        Task<IEnumerable<int>> AllEventId();
         public Task<int> StoringImages(EventGalleryModel pm);
         public string AddImgLink(string imgName, EventGalleryModel pvm);
         public Task<int> GetCurrentRecordId();

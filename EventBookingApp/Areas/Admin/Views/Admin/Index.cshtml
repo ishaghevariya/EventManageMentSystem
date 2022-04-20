@@ -2,8 +2,83 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Index";
-  
-
+    var data = ViewBag.count;
 }
-   
-<h5>WelCome Admin Area.</h5>
+<br />
+<div class="container">
+    <div class="row">
+        @foreach (var item in data)
+        {
+            <div class="col-sm-4">
+                <div class="info-box">
+                    @if (item.EventName == "Birthday")
+                    {
+                        <span class="info-box-icon bg-red"><i class="fa fa-birthday-cake"></i></span>
+                    }
+                    @if (item.EventName == "Sangeet")
+                    {
+                        <span class="info-box-icon bg-red"><i class="fa fa-headphones"></i></span>
+                    }
+                    @if (item.EventName == "Wedding")
+                    {
+                        <span class="info-box-icon bg-red"><i class="fa fa-globe"></i></span>
+                    }
+                    @if (item.EventName == "Photography")
+                    {
+                        <span class="info-box-icon bg-red"><i class="fa fa-camera"></i></span>
+                    }
+                    @if (item.EventName == "Catering")
+                    {
+                        <span class="info-box-icon bg-red"><i class="fa fa-coffee"></i></span>
+                    }
+                    @if (item.EventName == "Baby Shower")
+                    {
+                        <span class="info-box-icon bg-red"><i class="fa fa-glass-cheers"></i></span>
+                    }
+                    <div class="info-box-content">
+                        <span class="info-box-text">@item.EventName</span>
+                        <span class="info-box-number">@item.Count</span>
+                    </div><!-- /.info-box-content -->
+                </div><!-- /.info-box -->
+            </div>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header">
+                Bar Chart
+            </div>
+            <div class="card-body">
+                <canvas class="my-4 h-25" id="bar"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+<script type="text/javascript">
+    var chart = document.getElementById('bar').getContext('2d');
+    var mychart = new Chart(chart, {
+        type: 'bar',
+        data: {
+            labels: ['001', '002', '003'],
+            datasets: [{
+                lable: 'Bar Chart',
+                data: ['100', '200', '300'],
+                backgroundcolor: 'rgba(6,128,240)',
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    })
+</script>

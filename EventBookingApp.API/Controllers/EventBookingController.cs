@@ -76,10 +76,16 @@ namespace EventBookingApp.API.Controllers
             return data;
         }
 
-        [HttpGet("GetAllBookingId")]
-        public async Task<IEnumerable<int>> GetAllBookingId()
+        [HttpGet("GetBookingCount")]
+        public async Task<IEnumerable<EventCountViewModel>> GetBookingCount()
         {
-            var data = await _bookingRepo.AllBookingId();
+            var data = await _bookingRepo.GetTotalBooking();
+            return data;
+        }
+        [HttpGet("GetAllBookingId")]
+        public async Task<BookingDetalis> GetAllBookingId(int Id)
+        {
+            var data = await _bookingRepo.AllBookingId(Id);
             return data;
         }
         [HttpGet("AllBooking")]

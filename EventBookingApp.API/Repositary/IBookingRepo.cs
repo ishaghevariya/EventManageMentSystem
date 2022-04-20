@@ -14,10 +14,11 @@ namespace EventBookingApp.API.Repositary
         Task<BookingDetalis> AddBookingDetalis(BookingDetalis bookingDetalis);
         Task<BookingDetalis> AddBookingId(int id);
         Task<Booking> GetBooking(int id);
-        Task<IEnumerable<int>> AllBookingId();
+        Task<BookingDetalis> AllBookingId(int Id);
         Task<IEnumerable<BookingViewModel>> GetBookings(int userid);
         Task<Booking> UpdateBookingStatus(int Bid,int statusid);
         Task<int> GetCurrentBookingId();
+        Task<IEnumerable<EventCountViewModel>> GetTotalBooking();
         Task<IEnumerable<BookingViewModel>> AllBookings();
         Task<IEnumerable<BookingDetalisViewModel>> AllBookingDetalis(int Id);
         IEnumerable<FlowerTypeViewModel> GetFlowerType();

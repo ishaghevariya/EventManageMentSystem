@@ -49,7 +49,7 @@ namespace EventBookingApp.API.Repositary
         {
             List<BookingViewModel> lvm = new List<BookingViewModel>();
             var data = await _context.Bookings.Where(x => x.UserId == userid).ToListAsync();
-            foreach (var item in data) 
+            foreach (var item in data)
             {
                 BookingViewModel vm = new BookingViewModel();
                 vm.Id = item.Id;
@@ -202,7 +202,7 @@ namespace EventBookingApp.API.Repositary
         public async Task<IEnumerable<BookingDetalisViewModel>> AllBookingDetalis(int Id)
         {
             List<BookingDetalisViewModel> model = new List<BookingDetalisViewModel>();
-            var data = await _context.BookingDetalis.Where(x=>x.BookingId == Id).ToListAsync();
+            var data = await _context.BookingDetalis.Where(x => x.BookingId == Id).ToListAsync();
             foreach (var item in data)
             {
                 BookingDetalisViewModel vm = new BookingDetalisViewModel();
@@ -218,13 +218,30 @@ namespace EventBookingApp.API.Repositary
                 var FlowerName = _context.Flowers.Where(x => x.FlowerId == item.FlowerId).Select(x => x.FlowerType).FirstOrDefault();
                 vm.FlowerType = FlowerName;
                 model.Add(vm);
-           }
+            }
             return model;
         }
-        public async Task<IEnumerable<int>> AllBookingId()
+        public async Task<BookingDetalis> AllBookingId(int Id)
         {
-            var data = await _context.BookingDetalis.Select(x => x.BookingId).ToListAsync();
+            var data = await _context.BookingDetalis.Where(x => x.BookingId == Id).FirstOrDefaultAsync();
             return data;
+        }
+
+        public async Task<IEnumerable<EventCountViewModel>> GetTotalBooking()
+        {
+            List<EventCountViewModel> model = new List<EventCountViewModel>();
+            var countData = _context.Events.ToList();
+            foreach (var item in countData)
+            {
+                EventCountViewModel evm = new EventCountViewModel();
+                var data = await _context.Bookings.Where(x => x.EventId == item.Id).CountAsync();
+                evm.EventId = item.Id;
+                var eventname = _context.Events.Where(x => x.Id == item.Id).Select(x => x.EventTypes).FirstOrDefault();
+                evm.EventName = eventname;
+                evm.Count = data;
+                model.Add(evm);
+            }
+            return model;
         }
     }
 }

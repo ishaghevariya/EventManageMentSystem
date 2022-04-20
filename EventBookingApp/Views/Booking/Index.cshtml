@@ -3,13 +3,22 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var data = ViewBag.id;
+    var flower = ViewBag.Flowertype;
+    var equipment = ViewBag.Equipmenttype;
+    var food = ViewBag.Foodtype;
+}
 }
 <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>MyBooking</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/plugins/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/plugins/css/font-awesome.css" rel="stylesheet">		<!-- font-awesome icons -->
+    <!-- //Custom Theme files -->
+    <!-- js -->
     <script src="~/plugins/js/jquery-2.2.3.min.js"></script>
     <script src="~/plugins/js/bootstrap.js"></script>
 </head>
@@ -48,7 +57,7 @@
                         <th class="font-weight-bold">
                             @Html.DisplayNameFor(model => model.Status)
                         </th>
-                        <th class="font-weight-bold">Booking</th>
+                        @*<th class="font-weight-bold">Booking</th>*@
                     </tr>
                 </thead>
                 <tbody style="border:groove;border-color:black">
@@ -89,36 +98,82 @@
                                     <button type="button" class="btn btn-warning" value="@item.Status">@item.Status</button>
                                 }
                             </td>
-                            @foreach (var i in data)
+                            @*@foreach (var i in data)
                             {
                                 @if (i != item.Id)
-                                {
+                                {*@
                                     <td class="font-weight-bold">
-                                        <a asp-action="InsertBooklingDetalis" asp-route-id="@item.Id" class="btn btn-success">BookDecoration</a>
+                                        @*<a asp-action="InsertBooklingDetalis" class="btn btn-success" data-id="@item.Id">BookDecoration</a>*@
+                                        <button data-toggle="modal" type="button" class="btn btn-success" data-target="#myModal" onclick="getId(@item.Id)">BookDecoration</button>
                                     </td>
-                                }
+                                @*}
                                 else
-                                {
+                                {*@
                                     <td class="font-weight-bold">
                                         <a asp-action="ShowBookingDetalis" asp-route-id="@item.Id" class="btn" style="background-color:hotpink">ShowDecoration</a>
                                     </td>
-                                    @*<td>
-                                            <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            Booked Decorations
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                @*}
+                            }*@
+                            <td>
+                                <form id="myform" method="post">
+                                    <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    Book Decorations
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Equipment</label>
+                                                                <select class="form-control" name="Equipment" id="Eid">
+                                                                    <option value="">--Select Equipment--</option>
+                                                                    @foreach (var i in equipment)
+                                                                    {
+                                                                        <option value="@i.EquipmentId"> @i.EquipmentType</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                        <div class="modal-body">
-
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Flower</label>
+                                                                <select class="form-control" name="Flower" id="Fowerid">
+                                                                    <option value="">--Select Flower--</option>
+                                                                    @foreach (var i in flower)
+                                                                    {
+                                                                        <option value="@i.FlowerId"> @i.FlowerType</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Food</label>
+                                                                <select class="form-control" name="Food" id="FoodId">
+                                                                    <option value="">--Select Food--</option>
+                                                                    @foreach (var i in food)
+                                                                    {
+                                                                        <option value="@i.FoodId"> @i.FoodType</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="card-footer ">
+                                                            <div class="text-center">
+                                                                <input type="submit" class="btn" style="background-color:deeppink" onclick="BookDecoration()" value="Save">
+                                                                <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </td>*@
-                                }
-                            }
+                                        </div>
+                                    </div>
+                                </form>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -132,5 +187,31 @@
         <br />
         <br />
     </div>
+    <script>
+        var bookinid = 0;
+        function getId(id) {
+            bookinid = id;
+            /*alert(bookinid);*/
+        }
+        function BookDecoration() {
+            if (bookinid != 0) {
+                console.log("From update:" + bookinid);
+                var Eid = document.getElementById("Eid").value;
+                var Foodid = document.getElementById("FoodId").value;
+                var Fowerid = document.getElementById("Fowerid").value;
+                $.ajax({
+                    url: "/Booking",
+                    type: "POST",
+                    data: { BookingId: bookinid, Flower: Fowerid, Food: Foodid, Equipment: Eid },
+                    success: (response) => {
+                        if (response == "true") {
+                            window.location = "/Booking";
+                        }
+                        console.log(response);
+                    }
+                })
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 ﻿using DataAcessLayer;
 using DataAcessLayer.ViewModel;
+using EventBookingApp.API.ViewModel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -112,8 +113,28 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            //List<int> EventId = new List<int>();
+            //HttpClient client = new HttpClient();
+            //client.BaseAddress = new Uri(AdminApiString);
+            //var response = await client.GetAsync($"api/AddEvent/AllEventId");
+            //if(response.IsSuccessStatusCode)
+            //{
+            //    var id = response.Content.ReadAsStringAsync().Result;
+            //    EventId = JsonConvert.DeserializeObject<List<int>>(id);
+            //    foreach(var Id in EventId)
+            //    {
+            List<EventCountViewModel> model = new List<EventCountViewModel>();
+            HttpClient client2 = new HttpClient();
+            client2.BaseAddress = new Uri(AdminApiString);
+            var response2 = await client2.GetAsync($"api/EventBooking/GetBookingCount");
+            if (response2.IsSuccessStatusCode)
+            {
+                var count = response2.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<List<EventCountViewModel>>(count);
+                ViewBag.count = model;
+            }
             return View();
         }
         private async Task<ApplicationUser> GetUserById(int id)

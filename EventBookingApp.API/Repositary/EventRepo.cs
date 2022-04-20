@@ -165,5 +165,10 @@ namespace EventBookingApp.API.Repositary
             }
             return model;
         }
+        public async Task<IEnumerable<int>> AllEventId()
+        {
+            var data = await _context.Events.Select(x => x.Id).ToListAsync();
+            return data;
+        }
     }
 }
