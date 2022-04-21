@@ -4,7 +4,6 @@
     ViewData["Title"] = "List";
 }
 <!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -22,19 +21,16 @@
             <table class="table">
                 <tr>
                     <td>
-                        <input type="text" value="" name="FoodType" class="form-control" id="Name" placeholder="EquipmentType" />
+                        <input type="text" value="" name="FoodType" class="form-control" id="Name" placeholder="FoodType" />
                     </td>
                     <td>
-                        <button type="submit" class="btn btn-outline-primary text-dark form-control" id="btnSearch" value="Search">Search</button>
+                        <button type="submit" class="btn btn-outline-primary text-dark form-control fa fa-search" id="btnSearch" value="Search">Search</button>
                     </td>
                 </tr>
             </table>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.FoodId)
-                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.FoodType)
                         </th>
@@ -52,20 +48,15 @@
                         var mid = "myModal" + item.FoodId;
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.FoodId)
-                            </td>
-                            <td>
                                 @Html.DisplayFor(modelItem => item.FoodType)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.FoodCost)
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.FoodId" class="btn btn-success">Edit</a> |
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
-                                    Delete
+                                <a asp-action="Edit" asp-route-id="@item.FoodId" class="btn btn-success fa fa-edit"></a> |
+                                <button type="button" class="btn btn-danger fa fa-trash-alt" data-toggle="modal" data-target="@tm">
                                 </button>
-
                                 <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -77,13 +68,12 @@
                                                 Are you sure want to delete this item?
                                             </div>
                                             <div class="modal-footer">
-                                                <a asp-action="Delete" asp-route-Id="@item.FoodId" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                                <a asp-action="Delete" asp-route-Id="@item.FoodId" id="deleteBtn" class="btn bg-danger mr-1 fa fa-trash">Delete</a>
                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
                             </td>
                         </tr>
                     }

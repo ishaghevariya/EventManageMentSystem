@@ -21,7 +21,7 @@
                         <input asp-for="FlowerImage" class="form-control" />
                         <span asp-validation-for="FlowerImage" class="text-danger"></span>
                         <input type="hidden" asp-for="@Model.FileName" value="@Model.FileName" />
-                        <img src="~/Images/@Model.FileName" height="100" width="100" /><br />
+                        <img src="~/FlowerImages/@Model.FileName" height="100" width="100" /><br />
                     </div>
                 </div>
                 <div class="col-sm-12">

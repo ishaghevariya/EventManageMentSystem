@@ -26,16 +26,13 @@
                         <input type="text" value="" name="EquipmentType" class="form-control" id="Name" placeholder="EquipmentType" />
                     </td>
                     <td>
-                        <button type="submit" class="btn btn-outline-primary text-dark form-control" id="btnSearch" value="Search">Search</button>
+                        <button type="submit" class="btn btn-outline-primary text-dark form-control fa fa-search" id="btnSearch" value="Search">Search</button>
                     </td>
                 </tr>
             </table>
             <table class="table">
                 <thead>
                     <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.EquipmentId)
-                        </th>
                         <th>
                             @Html.DisplayNameFor(model => model.EquipmentType)
                         </th>
@@ -53,18 +50,14 @@
                         var mid = "myModal" + item.EquipmentId;
                         <tr>
                             <td>
-                                @Html.DisplayFor(modelItem => item.EquipmentId)
-                            </td>
-                            <td>
                                 @Html.DisplayFor(modelItem => item.EquipmentType)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.EquipmentCost)
                             </td>
                             <td>
-                                <a asp-action="Edit" asp-route-id="@item.EquipmentId" class="btn btn-success">Edit</a> |
-                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="@tm">
-                                    Delete
+                                <a asp-action="Edit" asp-route-id="@item.EquipmentId" class="btn btn-success fa fa-edit"></a> |
+                                <button type="button" class="btn btn-danger fa fa-trash-alt" data-toggle="modal" data-target="@tm">
                                 </button>
 
                                 <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">

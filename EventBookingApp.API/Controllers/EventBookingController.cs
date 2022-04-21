@@ -77,10 +77,57 @@ namespace EventBookingApp.API.Controllers
         }
 
         [HttpGet("GetBookingCount")]
-        public async Task<IEnumerable<EventCountViewModel>> GetBookingCount()
+        public async Task<ActionResult<IEnumerable<EventCountViewModel>>> GetBookingCount()
         {
-            var data = await _bookingRepo.GetTotalBooking();
-            return data;
+            try 
+            {
+                var data = await _bookingRepo.GetTotalBooking();
+                return Ok(data);
+            }
+            catch(Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
+            }
+            
+        }
+        [HttpGet("GetTotalEquipmentBooking")]
+        public async Task<ActionResult<IEnumerable<EquipmentCountViewModel>>> GetTotalEquipmentBooking()
+        {
+            try
+            {
+                var data = await _bookingRepo.GetTotalEquipmentBooking();
+                return Ok(data);
+            }
+            catch(Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
+            }
+        }
+        [HttpGet("GetTotalFlowerBooking")]
+        public async Task<ActionResult<IEnumerable<FlowerCountViewModel>>> GetTotalFlowerBooking()
+        {
+            try
+            {
+                var data = await _bookingRepo.GetTotalFlowerBooking();
+                return Ok(data);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
+            }
+        }
+        [HttpGet("GetTotalFoodBooking")]
+        public async Task<ActionResult<IEnumerable<FlowerCountViewModel>>> GetTotalFoodBooking()
+        {
+            try
+            {
+                var data = await _bookingRepo.GetTotalFoodBooking();
+                return Ok(data);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
+            }
         }
         [HttpGet("GetAllBookingId")]
         public async Task<BookingDetalis> GetAllBookingId(int Id)

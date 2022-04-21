@@ -19,6 +19,9 @@ namespace EventBookingApp.API.Repositary
         Task<Booking> UpdateBookingStatus(int Bid,int statusid);
         Task<int> GetCurrentBookingId();
         Task<IEnumerable<EventCountViewModel>> GetTotalBooking();
+        Task<IEnumerable<EquipmentCountViewModel>> GetTotalEquipmentBooking();
+        Task<IEnumerable<FlowerCountViewModel>> GetTotalFlowerBooking();
+        Task<IEnumerable<FoodCountViewModel>> GetTotalFoodBooking();
         Task<IEnumerable<BookingViewModel>> AllBookings();
         Task<IEnumerable<BookingDetalisViewModel>> AllBookingDetalis(int Id);
         IEnumerable<FlowerTypeViewModel> GetFlowerType();

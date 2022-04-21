@@ -193,11 +193,5 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
             }
         }
-        [HttpGet("AllEventId")]
-        public async Task<IEnumerable<int>> AllEventId()
-        {
-            var data = await _eventRepo.AllEventId();
-            return data;
-        }
     }
 }

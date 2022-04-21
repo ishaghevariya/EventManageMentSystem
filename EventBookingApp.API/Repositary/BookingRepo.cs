@@ -243,5 +243,56 @@ namespace EventBookingApp.API.Repositary
             }
             return model;
         }
+
+        public async Task<IEnumerable<EquipmentCountViewModel>> GetTotalEquipmentBooking()
+        {
+            List<EquipmentCountViewModel> model = new List<EquipmentCountViewModel>();
+            var countData = await _context.Equipments.ToListAsync();
+            foreach (var item in countData)
+            {
+                EquipmentCountViewModel evm = new EquipmentCountViewModel();
+                var data = await _context.BookingDetalis.Where(x => x.EquipmentId == item.EquipmentId).CountAsync();
+                evm.EquipmentId = item.EquipmentId;
+                var equipmentName = _context.Equipments.Where(x => x.EquipmentId == item.EquipmentId).Select(x => x.EquipmentType).FirstOrDefault();
+                evm.EquipmentName = equipmentName;
+                evm.Count = data;
+                model.Add(evm);
+            }
+            return model;
+        }
+
+        public async Task<IEnumerable<FlowerCountViewModel>> GetTotalFlowerBooking()
+        {
+            List<FlowerCountViewModel> model = new List<FlowerCountViewModel>();
+            var countData = await _context.Flowers.ToListAsync();
+            foreach (var item in countData)
+            {
+                FlowerCountViewModel evm = new FlowerCountViewModel();
+                var data = await _context.BookingDetalis.Where(x => x.FlowerId == item.FlowerId).CountAsync();
+                evm.FlowerId = item.FlowerId;
+                var FloweName = _context.Flowers.Where(x => x.FlowerId == item.FlowerId).Select(x => x.FlowerType).FirstOrDefault();
+                evm.FlowerName = FloweName;
+                evm.Count = data;
+                model.Add(evm);
+            }
+            return model;
+        }
+
+        public async Task<IEnumerable<FoodCountViewModel>> GetTotalFoodBooking()
+        {
+            List<FoodCountViewModel> model = new List<FoodCountViewModel>();
+            var countData = await _context.Foods.ToListAsync();
+            foreach (var item in countData)
+            {
+                FoodCountViewModel evm = new FoodCountViewModel();
+                var data = await _context.BookingDetalis.Where(x => x.FoodId == item.FoodId).CountAsync();
+                evm.FoodId = item.FoodId;
+                var foodname = _context.Foods.Where(x => x.FoodId == item.FoodId).Select(x => x.FoodType).FirstOrDefault();
+                evm.FoodName = foodname;
+                evm.Count = data;
+                model.Add(evm);
+            }
+            return model;
+        }
     }
 }

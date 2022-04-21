@@ -115,25 +115,74 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
-            //List<int> EventId = new List<int>();
-            //HttpClient client = new HttpClient();
-            //client.BaseAddress = new Uri(AdminApiString);
-            //var response = await client.GetAsync($"api/AddEvent/AllEventId");
-            //if(response.IsSuccessStatusCode)
-            //{
-            //    var id = response.Content.ReadAsStringAsync().Result;
-            //    EventId = JsonConvert.DeserializeObject<List<int>>(id);
-            //    foreach(var Id in EventId)
-            //    {
+            //TotalBookedEvent
             List<EventCountViewModel> model = new List<EventCountViewModel>();
-            HttpClient client2 = new HttpClient();
-            client2.BaseAddress = new Uri(AdminApiString);
-            var response2 = await client2.GetAsync($"api/EventBooking/GetBookingCount");
-            if (response2.IsSuccessStatusCode)
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            var response = await client.GetAsync($"api/EventBooking/GetBookingCount");
+            if (response.IsSuccessStatusCode)
             {
-                var count = response2.Content.ReadAsStringAsync().Result;
+                var count = response.Content.ReadAsStringAsync().Result;
                 model = JsonConvert.DeserializeObject<List<EventCountViewModel>>(count);
                 ViewBag.count = model;
+            }
+            //TotalBookedEquipment
+            List<string> name = new List<string>();
+            List<int> Ecount = new List<int>();
+            List<EquipmentCountViewModel> model2 = new List<EquipmentCountViewModel>();
+            HttpClient client1 = new HttpClient();
+            client1.BaseAddress = new Uri(AdminApiString);
+            var response1 = await client1.GetAsync($"api/EventBooking/GetTotalEquipmentBooking");
+            if (response1.IsSuccessStatusCode)
+            {
+                var count2 = response1.Content.ReadAsStringAsync().Result;
+                model2 = JsonConvert.DeserializeObject<List<EquipmentCountViewModel>>(count2);
+                foreach (var item in model2)
+                {
+                    name.Add(item.EquipmentName);
+                    Ecount.Add(item.Count);
+                    
+                }
+                ViewBag.Ename = JsonConvert.SerializeObject(name);
+                ViewBag.ECount = JsonConvert.SerializeObject(Ecount);
+            }
+            //TotalBookedflower
+            List<string> fname = new List<string>();
+            List<int> fcount = new List<int>();
+            List<FlowerCountViewModel> Flowermodel = new List<FlowerCountViewModel>();
+            HttpClient client2 = new HttpClient();
+            client2.BaseAddress = new Uri(AdminApiString);
+            var response2 = await client2.GetAsync($"api/EventBooking/GetTotalFlowerBooking");
+            if (response2.IsSuccessStatusCode) 
+            {
+                var count3 = response2.Content.ReadAsStringAsync().Result;
+                Flowermodel = JsonConvert.DeserializeObject<List<FlowerCountViewModel>>(count3);
+                foreach (var item in Flowermodel)
+                {
+                    fname.Add(item.FlowerName);
+                    fcount.Add(item.Count);
+                }
+                ViewBag.fname = JsonConvert.SerializeObject(fname);
+                ViewBag.fcount = JsonConvert.SerializeObject(fcount);
+            }
+            //TotalBookedFood
+            List<string> foname = new List<string>();
+            List<int> focount = new List<int>();
+            List<FoodCountViewModel> Foodmodel = new List<FoodCountViewModel>();
+            HttpClient client3 = new HttpClient();
+            client3.BaseAddress = new Uri(AdminApiString);
+            var response3 = await client2.GetAsync($"api/EventBooking/GetTotalFoodBooking");
+            if (response3.IsSuccessStatusCode)
+            {
+                var count4 = response3.Content.ReadAsStringAsync().Result;
+                Foodmodel = JsonConvert.DeserializeObject<List<FoodCountViewModel>>(count4);
+                foreach (var item in Foodmodel)
+                {
+                    foname.Add(item.FoodName);
+                    focount.Add(item.Count);
+                }
+                ViewBag.foname = JsonConvert.SerializeObject(foname);
+                ViewBag.focount = JsonConvert.SerializeObject(focount);
             }
             return View();
         }

@@ -1,84 +1,225 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Index";
     var data = ViewBag.count;
 }
-<br />
-<div class="container">
-    <div class="row">
-        @foreach (var item in data)
-        {
-            <div class="col-sm-4">
-                <div class="info-box">
-                    @if (item.EventName == "Birthday")
-                    {
-                        <span class="info-box-icon bg-red"><i class="fa fa-birthday-cake"></i></span>
-                    }
-                    @if (item.EventName == "Sangeet")
-                    {
-                        <span class="info-box-icon bg-red"><i class="fa fa-headphones"></i></span>
-                    }
-                    @if (item.EventName == "Wedding")
-                    {
-                        <span class="info-box-icon bg-red"><i class="fa fa-globe"></i></span>
-                    }
-                    @if (item.EventName == "Photography")
-                    {
-                        <span class="info-box-icon bg-red"><i class="fa fa-camera"></i></span>
-                    }
-                    @if (item.EventName == "Catering")
-                    {
-                        <span class="info-box-icon bg-red"><i class="fa fa-coffee"></i></span>
-                    }
-                    @if (item.EventName == "Baby Shower")
-                    {
-                        <span class="info-box-icon bg-red"><i class="fa fa-glass-cheers"></i></span>
-                    }
-                    <div class="info-box-content">
-                        <span class="info-box-text">@item.EventName</span>
-                        <span class="info-box-number">@item.Count</span>
-                    </div><!-- /.info-box-content -->
-                </div><!-- /.info-box -->
-            </div>
-        }
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-6">
-        <div class="card">
-            <div class="card-header">
-                Bar Chart
-            </div>
+<br />
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Charts</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.bundle.min.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.4.0/dist/chartjs-plugin-datalabels.min.js"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script>
+                 var barChartData =
+                 {
+                        labels: @Html.Raw(ViewBag.Ename),
+                        datasets:[{
+                             label: 'Eqiupment BookingCount Count',
+                            backgroundColor:[
+                                "#f990a7",
+                                "#aad2ed",
+                                "#9966FF",
+                                "#99e5e5",
+                                "#f7bd83",
+                            ],
+                            borderWidth: 2,
+                            data: @ViewBag.ECount,
+                        }]
+                 };
+                 var pieChartData =
+                 {
+                        labels: @Html.Raw(ViewBag.fname),
+                        datasets:[{
+                             label: 'Flower BookingCount Count',
+                            backgroundColor:[
+                                "#f990a7",
+                                "#aad2ed",
+                                "#9966FF",
+                                "#99e5e5",
+                                "#f7bd83",
+                            ],
+                            borderWidth: 2,
+                            data: @ViewBag.fcount,
+                        }]
+                 };
+                 var bar2ChartData =
+                 {
+                        labels: @Html.Raw(ViewBag.foname),
+                        datasets:[{
+                             label: 'Food BookingCount Count',
+                            backgroundColor:[
+                                "#f990a7",
+                                "#aad2ed",
+                                "#9966FF",
+                                "#99e5e5",
+                                "#f7bd83",
+                            ],
+                            borderWidth: 2,
+                            data: @ViewBag.focount,
+                        }]
+                 };
+                     window.onload = function () {
+                         var ctx1 = document.getElementById("barcanvas").getContext("2d");
+                         window.myBar = new Chart(ctx1,
+                             {
+                                type: 'bar',
+                                data: barChartData,
+                                options:
+                                    {
+                                   title:
+                                      {
+                                           display: true,
+                                           text: "Flower BookingCount Count"
+                                      },
+                                        responsive: true,
+                                        maintainAspectRatio: true
+                                    }
+                             });
+                         var ctx2 = document.getElementById("piecanvas").getContext("2d");
+                         window.myPie = new Chart(ctx2,
+                             {
+                                 type: 'pie',
+                                 data: pieChartData,
+                                 options:
+                                 {
+                                     title:
+                                     {
+                                         display: true,
+                                         text: "Flower BookingCount Count"
+                                     },
+                                     responsive: true,
+                                     maintainAspectRatio: false
+                                 }
+                             });
+                         var ctx3 = document.getElementById("barcanvasfood").getContext("2d");
+                         window.myBar = new Chart(ctx3,
+                             {
+                                 type: 'bar',
+                                 data: bar2ChartData,
+                                 options:
+                                 {
+                                     title:
+                                     {
+                                         display: true,
+                                         text: "Food BookingCount Count"
+                                     },
+                                     responsive: true,
+                                     maintainAspectRatio: true
+                                 }
+                             });
+                    }
+    </script>
+</head>
+<body>
+    <div class="card">
+        <div class="container">
+            <div class="card-header"><b>Booked Event Detalis</b></div>
             <div class="card-body">
-                <canvas class="my-4 h-25" id="bar"></canvas>
+                <div class="row">
+                    @foreach (var item in data)
+                    {
+                        <div class="col-sm-4">
+                            <div class="info-box">
+                                @if (item.EventName == "Birthday")
+                                {
+                                    <span class="info-box-icon bg-red"><i class="fa fa-birthday-cake"></i></span>
+                                }
+                                @if (item.EventName == "Sangeet")
+                                {
+                                    <span class="info-box-icon bg-red"><i class="fa fa-headphones"></i></span>
+                                }
+                                @if (item.EventName == "Wedding")
+                                {
+                                    <span class="info-box-icon bg-red"><i class="fa fa-globe"></i></span>
+                                }
+                                @if (item.EventName == "Photography")
+                                {
+                                    <span class="info-box-icon bg-red"><i class="fa fa-camera"></i></span>
+                                }
+                                @if (item.EventName == "Catering")
+                                {
+                                    <span class="info-box-icon bg-red"><i class="fa fa-coffee"></i></span>
+                                }
+                                @if (item.EventName == "Baby Shower")
+                                {
+                                    <span class="info-box-icon bg-red"><i class="fa fa-glass-cheers"></i></span>
+                                }
+                                <div class="info-box-content">
+                                    <span class="info-box-text">@item.EventName</span>
+                                    <span class="info-box-number">@item.Count</span>
+                                </div><!-- /.info-box-content -->
+                            </div><!-- /.info-box -->
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
-<script type="text/javascript">
-    var chart = document.getElementById('bar').getContext('2d');
-    var mychart = new Chart(chart, {
-        type: 'bar',
-        data: {
-            labels: ['001', '002', '003'],
-            datasets: [{
-                lable: 'Bar Chart',
-                data: ['100', '200', '300'],
-                backgroundcolor: 'rgba(6,128,240)',
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
+    @*<div id="chartContainer" ></div>*@
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <b>Equipment Booking Count</b>
+                </div>
+                <div class="card-body">
+                    <canvas id="barcanvas" style="height:250px; width: 100%;"></canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <b>Flower Booking Count</b>
+                </div>
+                <div class="card-body">
+                    <canvas id="piecanvas" style="height: 250px; width: 100%;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <b>Food Booking Count</b>
+                </div>
+                <div class="card-body">
+                    <canvas id="barcanvasfood" style="height:250px; width: 100%;"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+@*@section Scripts {
+    <script type="text/javascript">
+            var chart = document.getElementById('barcanvas').getContext('2d');
+            var mychart = new Chart(chart, {
+                type: 'bar',
+                data: {
+                    labels: [@Html.Raw(ViewBag.Ename)],
+                    datasets: [{
+                        lable: 'Bar Chart',
+                        data: [@ViewBag.ECount],
+                        backgroundcolor: 'rgba(6,128,240)',
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
                     }
-                }]
-            }
-        }
-    })
-</script>
+                }
+            })
+    </script>
+    }*@
+
+
