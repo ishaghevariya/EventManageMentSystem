@@ -294,5 +294,23 @@ namespace EventBookingApp.API.Repositary
             }
             return model;
         }
+
+        public async Task<Booking> DeleteBooking(int id)
+        {
+            var result = await _context.Bookings.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (result != null)
+            {
+                var bookingId = await _context.BookingDetalis.Where(x => x.BookingId == result.Id).FirstOrDefaultAsync();
+                if (bookingId != null)
+                {
+                    _context.BookingDetalis.Remove(bookingId);
+                    await _context.SaveChangesAsync();
+                }
+                _context.Bookings.Remove(result);
+                await _context.SaveChangesAsync();
+                return result;
+            }
+            return null;
+        }
     }
 }

@@ -15,18 +15,18 @@
     <br />
     <br />
     <br />
-    <div class="card">
+    <div class="card" style="background-color:ghostwhite">
 
         <table class="table">
             <thead>
                 <tr>
-                    <th>
+                    <th style="font-weight:700;font-size:14px;color:deeppink">
                         @Html.DisplayNameFor(model => model.EquipmentType)
                     </th>
-                    <th>
+                    <th style="font-weight:700;font-size:14px;color:deeppink">
                         @Html.DisplayNameFor(model => model.FlowerType)
                     </th>
-                    <th>
+                    <th style="font-weight:700;font-size:14px;color:deeppink">
                         @Html.DisplayNameFor(model => model.FoodType)
                     </th>
                 </tr>
@@ -35,13 +35,13 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
+                        <td style="font-weight:700;font-size:14px;color:black">
                             @Html.DisplayFor(modelItem => item.EquipmentType)
                         </td>
-                        <td>
+                        <td style="font-weight:700;font-size:14px;color:black">
                             @Html.DisplayFor(modelItem => item.FlowerType)
                         </td>
-                        <td>
+                        <td style="font-weight:700;font-size:14px;color:black">
                             @Html.DisplayFor(modelItem => item.FoodType)
                         </td>
                     </tr>

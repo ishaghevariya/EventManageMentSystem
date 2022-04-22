@@ -55,8 +55,6 @@ namespace EventBookingApp.API.Repositary
         }
         public async Task<ApplicationUser> UserRegistration(ApplicationUser applicationUser)
         {
-            
-           
             ApplicationUser user = new ApplicationUser()
             {
                 UserName = applicationUser.UserName,
@@ -81,7 +79,7 @@ namespace EventBookingApp.API.Repositary
             //if(user.UserRole == "User")
             //{
             var result = await _context.ApplicationUsers.ToListAsync();
-                return result;
+            return result;
             //}
             //return null;
         }
@@ -144,6 +142,33 @@ namespace EventBookingApp.API.Repositary
                 return user;
             }
             return null;
+        }
+
+        public async Task<IEnumerable<ApplicationUser>> GetUsersByPaggination(int pageNo, int pageSize)
+        {
+            List<ApplicationUser> users = await _context.ApplicationUsers.Skip((pageNo - 1) * pageSize).Take(pageSize).ToListAsync();
+            return users;
+        }
+
+        public async Task<FeedBack> FeedBack(FeedbackViewModel feedBack)
+        {
+            FeedBack model = new FeedBack()
+            {
+                Id = feedBack.Id,
+                Email = feedBack.Email,
+                FeedbackType = feedBack.FeedbackType,
+                Subject = feedBack.Subject,
+                UserId = feedBack.UserId
+            };
+            var result = await _context.FeedBacks.AddAsync(model);
+            await _context.SaveChangesAsync();
+            return result.Entity;
+        }
+
+        public async Task<FeedBack> GetFeedBack(int id)
+        {
+            var data = await _context.FeedBacks.Where(x => x.Id == id).FirstOrDefaultAsync();
+            return data;
         }
     }
 }

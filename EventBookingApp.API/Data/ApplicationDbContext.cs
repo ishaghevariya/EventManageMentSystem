@@ -23,6 +23,7 @@ namespace EventBookingApp.API.Data
         public DbSet<BookingStatus> BookingStatuses { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<BookingDetalis> BookingDetalis  { get; set; }
+        public DbSet<FeedBack> FeedBacks { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

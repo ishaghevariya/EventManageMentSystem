@@ -18,9 +18,11 @@ namespace EventBookingApp.API.Repositary
         Task<ApplicationUser> ForgotPassword(ForgotPasswordViewModel forgetPassword);
         Task<ApplicationUser> ResetPassword(ResetPasswordViewModel viewModel);
         Task<IEnumerable<ApplicationUser>> GetUsers();
+        Task<IEnumerable<ApplicationUser>> GetUsersByPaggination(int pageNo,int pageSize);
         Task<ApplicationUser> DeleteUser(int id);
         Task<IEnumerable<ApplicationUser>> Search(string name);
         Task<ApplicationUser> Profile(ApplicationUser User);
-
+        Task<FeedBack> FeedBack(FeedbackViewModel feedBack);
+        Task<FeedBack> GetFeedBack(int id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using DataAcessLayer;
 using DataAcessLayer.ViewModel;
 using EventBookingApp.API.ViewModel;
+using EventBookingApp.Web.Helper;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -237,7 +238,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UserDetalis()
+        public async Task<IActionResult> UserDetalis(int pageNumber =1 )
         {
             List<ApplicationUser> users = new List<ApplicationUser>();
             HttpClient client = new HttpClient();
@@ -248,10 +249,12 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                 var result = response.Content.ReadAsStringAsync().Result;
                 users = JsonConvert.DeserializeObject<List<ApplicationUser>>(result);
             }
-            return View(users);
+            var resultdata = users.AsEnumerable();
+            int pageSize = 3;
+            return View(PaginatedList<ApplicationUser>.CreateAsync(resultdata, pageNumber, pageSize));
         }
         [HttpPost]
-        public async Task<IActionResult> UserDetalis(string UserName)
+        public async Task<IActionResult> UserDetalis(string UserName, int pageNumber = 1)
         {
             List<ApplicationUser> users = new List<ApplicationUser>();
             HttpClient client = new HttpClient();
@@ -262,7 +265,9 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                 var result = response.Content.ReadAsStringAsync().Result;
                 users = JsonConvert.DeserializeObject<List<ApplicationUser>>(result);
             }
-            return View(users);
+            var resultdata = users.AsEnumerable();
+            int pageSize = 3;
+            return View(PaginatedList<ApplicationUser>.CreateAsync(resultdata, pageNumber, pageSize));
         }
         [HttpGet]
         [Authorize(Roles = "Admin")]
@@ -316,5 +321,6 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View(vm);
         }
+
     }
 }

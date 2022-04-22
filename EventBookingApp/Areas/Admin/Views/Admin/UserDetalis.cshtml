@@ -1,57 +1,50 @@
-﻿@model IEnumerable<DataAcessLayer.ApplicationUser>
+﻿@model EventBookingApp.Web.Helper.PaginatedList<DataAcessLayer.ApplicationUser>
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "List";
 }
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <form method="post">
-        <div class="card">
-            <div class="card-header">
-                <div class="pull-left" style="font-weight:bold;font-size:medium">All User</div>
-            </div>
-            <table class="table">
-                <tr>
-                    <td>
-                        <input type="text" value="" name="UserName" class="form-control" id="Name" placeholder="UserName" />
-                    </td>
-                    <td>
-                        <button type="submit" class="btn btn-outline-primary text-dark form-control" id="btnSearch" value="Search">Search</button>
-                    </td>
-                </tr>
-            </table>
+<form method="post">
+    <div class="card">
+        <div class="card-header">
+            <div class="pull-left" style="font-weight:bold;font-size:medium">All User</div>
+        </div>
+        <table class="table">
+            <tr>
+                <td>
+                    <input type="text" value="" name="UserName" class="form-control" id="Name" placeholder="UserName" />
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-outline-primary text-dark form-control" id="btnSearch" value="Search">Search</button>
+                </td>
+            </tr>
+        </table>
             <table class="table">
                 <thead>
                     <tr>
                         <th>
-                            @Html.DisplayNameFor(model => model.UserName)
+                            UserName
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Email)
+                            Email
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.ContactNo)
+                            ContactNo
                         </th>
                         @*<th>
-                            @Html.DisplayNameFor(model => model.UserRole)
-                        </th>*@
+                                @Html.DisplayNameFor(model => model.UserRole)
+                            </th>*@
                         <th>
-                            @Html.DisplayNameFor(model => model.Gender)
+                            Gender
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Address)
+                            Address
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.City)
+                            City
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.State)
+                            State
                         </th>
                         <th>Action</th>
                     </tr>
@@ -72,8 +65,8 @@
                                 @Html.DisplayFor(modelItem => item.ContactNo)
                             </td>
                             @*<td>
-                                @Html.DisplayFor(modelItem => item.UserRole)
-                            </td>*@
+                                    @Html.DisplayFor(modelItem => item.UserRole)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Gender)
                             </td>
@@ -112,7 +105,24 @@
                     }
                 </tbody>
             </table>
-        </div>
-    </form>
-</body>
-</html>
+        
+    </div>
+</form>
+<div class="float-right">
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+    <a asp-action="UserDetalis"
+       asp-route-pageNumber="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-primary @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="UserDetalis"
+       asp-route-pageNumber="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-primary @nextDisabled">
+        Next
+    </a>
+</div>

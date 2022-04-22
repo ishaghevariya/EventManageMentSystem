@@ -28,5 +28,6 @@ namespace EventBookingApp.API.Repositary
         IEnumerable<FoodTypeViewModel> GetFoodType();
         IEnumerable<BookingStatus> GetBookingStatuses();
         IEnumerable<EquipmentTypeViewModel> GetEquipmentType();
+        Task<Booking> DeleteBooking(int id);
     }
 }

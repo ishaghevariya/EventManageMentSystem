@@ -207,6 +207,19 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when Reset password");
             }
         }
+
+        [HttpGet("GetUsersByPagging")]
+        public async Task<ActionResult> GetUsersByPagging(int pageNo, int pageSize)
+        {
+            try
+            {
+                return Ok(await _registrationRepo.GetUsersByPaggination(pageNo,pageSize));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
+            }
+        }
         //[HttpGet("{email,password}")]
         //public string Login(string email, string password)
         //{
@@ -219,6 +232,42 @@ namespace EventBookingApp.API.Controllers
         //    }
         //    return result;
         //}
+
+        [HttpGet("GetFeedback/{id:int}")]
+        public async Task<ActionResult<FeedBack>> GetFeedback(int id)
+        {
+            try
+            {
+                var result = await _registrationRepo.GetFeedBack(id);
+                if (result == null)
+                {
+                    return NotFound();
+                }
+                return result;
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
+            }
+        }
+        [HttpPost("AddFeedback")]
+        public async Task<ActionResult<FeedBack>> AddFeedback(FeedbackViewModel model)
+        {
+            try
+            {
+                if (model == null)
+                {
+                    return BadRequest();
+                }
+                var FeedbackCreate = await _registrationRepo.FeedBack(model);
+                return CreatedAtAction(nameof(GetFeedback), new { id = FeedbackCreate.Id }, FeedbackCreate);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when post data to database");
+
+            }
+        }
 
     }
 }

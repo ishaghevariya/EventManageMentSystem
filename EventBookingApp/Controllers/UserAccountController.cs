@@ -161,7 +161,7 @@ namespace EventBookingApp.Controllers
             }
             return View();
         }
-        
+
         [HttpGet]
         public IActionResult ForgotPassword()
         {
@@ -177,9 +177,8 @@ namespace EventBookingApp.Controllers
                 HttpResponseMessage response = await client.PostAsJsonAsync($"api/Account/ForgotPassword", user);
                 if (response.IsSuccessStatusCode)
                 {
-                //    string link = HtmlHelper.GenerateLink(this.ControllerContext.RequestContext, System.Web.Routing.RouteTable.Routes, "My link", "Root", "About", "Home", null, null);
-                    var linkurl = Url.Action("ResetPassword", "UserAccount",new { email = user.Email});
-                    var MsgBody = "Hello<br/> Please Click <a href='https://localhost:5001" + linkurl +"'>here<a/> to Reset your password<br/> Thank you,<br/>EMS";
+                    var linkurl = Url.Action("ResetPassword", "UserAccount", new { email = user.Email });
+                    var MsgBody = "Hello<br/> Please Click <a href='https://localhost:5001" + linkurl + "'>here<a/> to Reset your password<br/> Thank you,<br/>EMS";
                     var message = new Message(user.Email, "No Reply", MsgBody);
                     _emailSender.SendEmail(message);
                     return RedirectToAction("Login");
@@ -198,7 +197,7 @@ namespace EventBookingApp.Controllers
         [HttpGet]
         public IActionResult ResetPassword(string email)
         {
-            if(email == null)
+            if (email == null)
             {
                 ModelState.AddModelError("", "Invalid Link PLease try to contact admin");
             }
@@ -217,7 +216,7 @@ namespace EventBookingApp.Controllers
                 {
                     var result = response.Content.ReadAsStringAsync().Result;
                     user = JsonConvert.DeserializeObject<ApplicationUser>(result);
-                    if(user!= null)
+                    if (user != null)
                     {
                         HttpClient client1 = new HttpClient();
                         client1.BaseAddress = new Uri(AdminApiString);

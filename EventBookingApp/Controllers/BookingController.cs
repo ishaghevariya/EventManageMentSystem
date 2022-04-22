@@ -140,6 +140,38 @@ namespace EventBookingApp.Web.Controllers
             return View();
         }
 
+        public async Task<IActionResult> DeleteBooking(int id)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.DeleteAsync($"api/EventBooking/DeleteBooking/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        [HttpGet]
+        public IActionResult AddFeedback()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AddFeedback(FeedbackViewModel model)
+        {
+            var data = HttpContext.Session.GetString("UserId");
+            model.UserId = Convert.ToInt32(data);
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            var response = await client.PostAsJsonAsync($"api/Account/AddFeedback", model);
+            if (response.IsSuccessStatusCode)
+            {
+                ViewBag.message = "Your Feedback Add Sucessfully";
+
+            }
+            return View();
+        }
+
         //[HttpGet]
         //public async Task<IActionResult> InsertBooklingDetalis(int BookingId)
         //{

@@ -27,44 +27,44 @@
                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <select class="sel" name="TypeName">
+                                    <select class="sel" name="TypeName" style="font-weight: 700; font-size: 14px; color: black">
                                         <option value="">--Select Event Type--</option>
                                         @foreach (var item in data)
                                         {
-                                            <option value="@item.Id"> @item.EventTypes</option>
+                                            <option value="@item.Id" style="font-weight: 700; font-size: 14px; color: black"> @item.EventTypes</option>
                                         }
 
                                     </select>
                                     <span asp-validation-for="EventName"></span>                
-                                    <input asp-for="Address" type="text" name="Address" placeholder="Address" value="">
+                                    <input asp-for="Address" type="text" name="Address" placeholder="Address" value="" style="font-weight: 700; font-size: 14px; color: black">
                                     <span asp-validation-for="Address"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <input asp-for="EventDate" type="date" name="EventDate" value="" required placeholder="Please select date after two days of today's date'">
+                                    <input asp-for="EventDate" type="date" name="EventDate" value="" style="font-weight: 700; font-size: 14px; color: black" required placeholder="Please select date after two days of today's date'">
                                     <span asp-validation-for="EventDate" class="text-danger"></span>
-                                    <input asp-for="AreapinCode" name="AreapinCode" type="text" placeholder="pincode" required value="">
+                                    <input asp-for="AreapinCode" name="AreapinCode" type="text" placeholder="pincode" required value="" style="font-weight: 700; font-size: 14px; color: black">
                                     <span asp-validation-for="AreapinCode"></span>
                                 </div>
                             </div>
                             <div class="col-sm-4 col-xs-4 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <select class="sel" required asp-for="VenuType">
-                                        <option value="">Venue Type</option>
-                                        <option value="Hall">Hall</option>
-                                        <option value="OutDoor">OutDoor</option>
-                                        <option value="Open terrace">Open terrace</option>
-                                        <option value="Lake Terrace">Lake Terrace</option>
-                                        <option value="The Village Venue">The Village Venue</option>
+                                    <select class="sel" required asp-for="VenuType" style="font-weight: 700; font-size: 14px; color: black">
+                                        <option value="" style="font-weight: 700; font-size: 14px; color: black">Venue Type</option>
+                                        <option value="Hall" style="font-weight: 700; font-size: 14px; color: black">Hall</option>
+                                        <option value="OutDoor" style="font-weight: 700; font-size: 14px; color: black">OutDoor</option>
+                                        <option value="Open terrace" style="font-weight: 700; font-size: 14px; color: black">Open terrace</option>
+                                        <option value="Lake Terrace" style="font-weight: 700; font-size: 14px; color: black">Lake Terrace</option>
+                                        <option value="The Village Venue" style="font-weight: 700; font-size: 14px; color: black">The Village Venue</option>
                                     </select>
-                                    <input asp-for="NumberOfPerson" type="text" name="NumberOfPerson" placeholder="NumberOfPerson" value="" required>
+                                    <input asp-for="NumberOfPerson" type="text" name="NumberOfPerson" placeholder="NumberOfPerson" style="font-weight: 700; font-size: 14px; color: black" value="" required>
                                     <span asp-validation-for="NumberOfPerson"></span>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-xs-12 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <input asp-for="NumberOfDays" type="text" name="NumberOfDays" placeholder="NumberOfDays" value="" required>
+                                    <input asp-for="NumberOfDays" type="text" name="NumberOfDays" placeholder="NumberOfDays" value="" style="font-weight: 700; font-size: 14px; color: black" required>
                                     <span asp-validation-for="NumberOfDays"></span>
                                 </div>
                             </div>

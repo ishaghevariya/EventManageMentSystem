@@ -257,5 +257,23 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
             }
         }
+
+        [HttpDelete("DeleteBooking/{id:int}")]
+        public async Task<ActionResult<Booking>> DeleteBooking(int id)
+        {
+            try
+            {
+                var bookingDelete = await _bookingRepo.GetBooking(id);
+                if (bookingDelete == null)
+                {
+                    return NotFound($"Booking Id={id} not found");
+                }
+                return await _bookingRepo.DeleteBooking(id);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when Delete data from database");
+            }
+        }
     }
 }
