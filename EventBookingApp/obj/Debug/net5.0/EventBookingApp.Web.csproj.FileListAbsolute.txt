@@ -202,3 +202,4 @@ C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\UserAccount
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Admin\AllBookingDecoration.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Booking\ShowBookingDetalis.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Booking\AddFeedback.cshtml.g.cs
+C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Admin\AllFeedback.cshtml.g.cs

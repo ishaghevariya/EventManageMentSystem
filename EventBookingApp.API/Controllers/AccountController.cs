@@ -96,7 +96,7 @@ namespace EventBookingApp.API.Controllers
                 {
                     return BadRequest();
                 }
-                var email = _registrationRepo.GetUserByEmail(applicationUser.Email);
+                var email = await _registrationRepo.GetUserByEmail(applicationUser.Email);
                 if (email != null) 
                 {
                     return StatusCode(409, $"User '{applicationUser.Email}' already exists.");
@@ -268,6 +268,34 @@ namespace EventBookingApp.API.Controllers
 
             }
         }
-
+        [HttpGet("GetFeedback")]
+        public async Task<ActionResult> GetFeedback()
+        {
+            try
+            {
+                return Ok(await _registrationRepo.GetAllFeedBack());
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
+            }
+        }
+        [HttpDelete("DeleteFeedback/{id:int}")]
+        public async Task<ActionResult<FeedBack>> DeleteFeedback(int id)
+        {
+            try
+            {
+                var FeedbackDelete = await _registrationRepo.GetFeedBack(id);
+                if (FeedbackDelete == null)
+                {
+                    return NotFound($"Feedback Id={id} not found");
+                }
+                return await _registrationRepo.DeleteFeedback(id);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when Delete data from database");
+            }
+        }
     }
 }

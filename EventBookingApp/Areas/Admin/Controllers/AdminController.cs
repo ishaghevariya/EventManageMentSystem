@@ -321,6 +321,30 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View(vm);
         }
-
+        [HttpGet]
+        public async Task<IActionResult> AllFeedback()
+        {
+            List<FeedBack> vm = new List<FeedBack>();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            var response1 = await client.GetAsync($"api/Account/GetFeedback");
+            if (response1.IsSuccessStatusCode)
+            {
+                var result = response1.Content.ReadAsStringAsync().Result;
+                vm = JsonConvert.DeserializeObject<List<FeedBack>>(result);
+            }
+            return View(vm);
+        }
+        public async Task<IActionResult> DeleteFeedback(int id)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.DeleteAsync($"api/Account/DeleteFeedback/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("AllFeedback");
+            }
+            return View();
+        }
     }
 }

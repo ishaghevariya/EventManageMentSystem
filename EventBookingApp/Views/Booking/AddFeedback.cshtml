@@ -49,25 +49,25 @@
                                     <input asp-for="Subject" name="Subject" type="text" placeholder="subject" required value="" style="font-weight: 700; font-size: 14px; color: black">
                                     <span asp-validation-for="Subject"></span>
                                 </div>
-                            </div>
+                            </div><br/>
                             <div class="col-sm-12 col-xs-12 w3ls-lt-form">
                                 <div class="w3ls-pr">
-                                    <label asp-for="FeedbackType">Give Rating to our Services</label><br />
-                                    <label>
+                                    <label asp-for="FeedbackType" style="font-size:medium">Give Rating to our Services</label><br /><br />
+                                    &nbsp;&nbsp;&nbsp;<label>
                                         Bad
                                         <input type="radio" name="FeedbackType" value="Bad">
                                     </label>
-                                    <label>
+                                    &nbsp;&nbsp;<label>
                                         Avarage
                                         <input type="radio" name="FeedbackType" value="Avarage">
                                     </label>
-                                    <label>
+                                    &nbsp;&nbsp;<label>
                                         Good
                                         <input type="radio" name="FeedbackType" value="Good">
                                     </label>
-                                    <label>
-                                        Very God
-                                        <input type="radio" name="FeedbackType" value="Very God">
+                                    &nbsp;&nbsp;<label>
+                                        Very Good
+                                        <input type="radio" name="FeedbackType" value="VeryGood">
                                     </label>
                                 </div>
                             </div>

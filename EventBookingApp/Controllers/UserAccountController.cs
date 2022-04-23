@@ -78,7 +78,7 @@ namespace EventBookingApp.Controllers
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
-            var response = await client.PostAsJsonAsync($"api/Account/Registration", applicationUser);
+            var response = await client.PostAsJsonAsync<ApplicationUser>($"api/Account/Registration", applicationUser);
             if (response.IsSuccessStatusCode)
             {
                 var MsgBody = "Hello  We have registred you on our portal sucessfully,Thank you.";
@@ -294,22 +294,20 @@ namespace EventBookingApp.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<JsonResult> Events(BookingViewModel vm, int eventid)
+        public async Task<JsonResult> Events(BookingViewModel vm)
         {
             HttpClient client = new HttpClient();
             var data = HttpContext.Session.GetString("UserId");
             if (data != null)
             {
                 vm.UserId = Convert.ToInt32(data);
-                vm.EventId = eventid;
-
                 client.BaseAddress = new Uri(AdminApiString);
                 var response = await client.PostAsJsonAsync($"api/EventBooking/AddBooking", vm);
                 if (response.IsSuccessStatusCode)
                 {
                     return Json("True");
                 }
-                return Json("false");
+                return Json("false");                
             }
             return Json("false");
         }

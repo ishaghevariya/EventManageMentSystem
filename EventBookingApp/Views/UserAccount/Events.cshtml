@@ -93,72 +93,118 @@
                                 }
                             }
                             <div class="popular-text">
-                                <h5 class="text-black"><button data-toggle="modal" class="btn btn-block btn-secondary" style="color:deeppink" data-target="#myModal" onclick="getId(@item.Id)">@item.EventTypes</button></h5>
+                                <h5 class="text-black"><button data-toggle="modal" class="btn btn-block btn-secondary" style="color:deeppink;background-color:burlywood" data-target="#myModal" onclick="getId(@item.Id)">@item.EventTypes</button></h5>
                                 <div class="detail-bottom">
-                                    <ul>
-                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
-                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
-                                    </ul>
-                                    <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                    @if (item.EventTypes == "Birthday")
+                                    {
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
+                                        </ul>
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                    }
+                                    @if (item.EventTypes == "Sangeet")
+                                    {
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
+                                        </ul>
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                    }
+                                    @if (item.EventTypes == "Wedding")
+                                    {
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>25June</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>VENICE, ITALY</li>
+                                        </ul>
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                    }
+                                    @if (item.EventTypes == "Photography")
+                                    {
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>01 July</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>NEWYORK, USA</li>
+                                        </ul>
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                    }
+                                    @if (item.EventTypes == "Catering")
+                                    {
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
+                                        </ul>
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                    }
+                                    @if (item.EventTypes == "Baby Shower")
+                                    {
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
+                                        </ul>
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                    }
                                 </div>
-                                <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                Book Event
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            </div>
-                                            <div class="modal-body">
-
-                                                @*<img src="~/plugins/images/g8.jpg" alt=" " class="img-responsive" />*@
-                                                <p>
-                                                    @*<label>@item.Id</label>*@
-                                                    <div asp-validation-summary="ModelOnly" style="color:red"></div>
-                                                    <div class="col-sm-6 col-xs-6 w3ls-lt-form">
-                                                        <div class="w3ls-pr">
-                                                            <input asp-for="NumberOfDays" style="font-weight: 700; font-size: 14px; color: black" type="text" placeholder="NumberOfDays" id="ndays" value="">
-                                                            <span asp-validation-for="NumberOfDays" style="color:red"></span>
-                                                            <input asp-for="Address" type="text" placeholder="Address" id="address" value="" style="font-weight: 700; font-size: 14px; color: black">
-                                                            <span asp-validation-for="Address" style="color:red"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6 col-xs-6 w3ls-lt-form">
-                                                        <div class="w3ls-pr">
-                                                            <input asp-for="EventDate" type="date" value="" id="edate" style="font-weight: 700; font-size: 14px; color: black">
-                                                            <span asp-validation-for="EventDate" class="text-danger"></span>
-                                                            <input asp-for="AreapinCode" type="text" placeholder="pincode" id="acode" value="" style="font-weight: 700; font-size: 14px; color: black">
-                                                            <span asp-validation-for="AreapinCode" style="color:red"></span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-6 col-xs-6 w3ls-lt-form">
-                                                        <div class="w3ls-pr">
-                                                            <select class="sel" asp-for="VenuType" id="vtype" style="font-weight: 700; font-size: 14px; color: black">
-                                                                <option value="" style="font-weight: 700; font-size: 14px; color: black">Venue Type</option>
-                                                                <option value="Hall" style="font-weight: 700; font-size: 14px; color: black">Hall</option>
-                                                                <option value="OutDoor" style="font-weight: 700; font-size: 14px; color: black">OutDoor</option>
-                                                                <option value="Open terrace" style="font-weight: 700; font-size: 14px; color: black">Open terrace</option>
-                                                                <option value="Lake Terrace" style="font-weight: 700; font-size: 14px; color: black">Lake Terrace</option>
-                                                                <option value="The Village Venue" style="font-weight: 700; font-size: 14px; color: black">The Village Venue</option>
-                                                            </select>
-                                                            <input asp-for="NumberOfPerson" type="text" id="nper" placeholder="NumberOfPerson" value="" required style="font-weight: 700; font-size: 14px; color: black">
-                                                            <span asp-validation-for="NumberOfPerson" style="color:red"></span>
-                                                        </div>
-                                                    </div>
-                                                    @*<div class="col-sm-12 col-xs-12 w3ls-lt-form">
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    Book Event
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <input asp-for="EventId" type="hidden" id="hiddeneventId" value="" />
+                                                    @*<img src="~/plugins/images/g8.jpg" alt=" " class="img-responsive" />*@
+                                                    <p>
+                                                        @*<label>@item.Id</label>*@
+                                                        <div asp-validation-summary="ModelOnly" style="color:red"></div>
+                                                        <div class="col-sm-12 col-xs-12 w3ls-lt-form">
                                                             <div class="w3ls-pr">
-                                                                <input asp-for="NumberOfDays" type="text" name="NumberOfDays" placeholder="NumberOfDays" value="" required="required">
+                                                                <input asp-for="NumberOfDays" style="font-weight: 700; font-size: 14px; color: black" type="text" placeholder="NumberOfDays" id="ndays" value="" required>
                                                                 <span asp-validation-for="NumberOfDays" style="color:red"></span>
+                                                                <input asp-for="Address" type="text" placeholder="Address" id="address" value="" style="font-weight: 700; font-size: 14px; color: black">
+                                                                <span asp-validation-for="Address" style="color:red"></span>
                                                             </div>
-                                                        </div>*@
-                                                    <div class="clearfix"></div>
-                                                    <div class="text-center">
-                                                        <input type="submit" value="Book Now" class="btn btn-block" style="color:deeppink" onclick="BookEvent()">
-                                                    </div>
-                                                </p>
+                                                        </div>
+                                                        <div class="col-sm-12 col-xs-12 w3ls-lt-form">
+                                                            <div class="w3ls-pr">
+                                                                <input asp-for="EventDate" type="date" value="" id="edate" style="font-weight: 700; font-size: 14px; color: black" required>
+                                                                <span asp-validation-for="EventDate" class="text-danger"></span>
+                                                                <input asp-for="AreapinCode" type="text" placeholder="pincode" id="acode" value="" style="font-weight: 700; font-size: 14px; color: black">
+                                                                <span asp-validation-for="AreapinCode" style="color:red"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-sm-12 col-xs-12 w3ls-lt-form">
+                                                            <div class="w3ls-pr">
+                                                                <select class="sel" asp-for="VenuType" id="vtype" style="font-weight: 700; font-size: 14px; color: black">
+                                                                    <option value="" style="font-weight: 700; font-size: 14px; color: black">Venue Type</option>
+                                                                    <option value="Hall" style="font-weight: 700; font-size: 14px; color: black">Hall</option>
+                                                                    <option value="OutDoor" style="font-weight: 700; font-size: 14px; color: black">OutDoor</option>
+                                                                    <option value="Open terrace" style="font-weight: 700; font-size: 14px; color: black">Open terrace</option>
+                                                                    <option value="Lake Terrace" style="font-weight: 700; font-size: 14px; color: black">Lake Terrace</option>
+                                                                    <option value="The Village Venue" style="font-weight: 700; font-size: 14px; color: black">The Village Venue</option>
+                                                                </select>
+                                                                <input asp-for="NumberOfPerson" type="text" id="nper" placeholder="NumberOfPerson" value=""  style="font-weight: 700; font-size: 14px; color: black" required>
+                                                                <span asp-validation-for="NumberOfPerson" style="color:red"></span>
+                                                            </div>
+                                                        </div>
+                                                        @*<div class="col-sm-12 col-xs-12 w3ls-lt-form">
+                                                                <div class="w3ls-pr">
+                                                                    <input asp-for="NumberOfDays" type="text" name="NumberOfDays" placeholder="NumberOfDays" value="" required="required">
+                                                                    <span asp-validation-for="NumberOfDays" style="color:red"></span>
+                                                                </div>
+                                                            </div>*@
+                                                        <div class="clearfix"></div>
+                                                        <div class="text-center">
+                                                            <input type="submit" value="Book Now" class="btn btn-block" style="color:deeppink" onclick="BookEvent()">
+                                                        </div>
+                                                    </p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                }
                             </div>
                         </div>
                         @*<div class="col-md-4 popular-grid">
@@ -226,9 +272,6 @@
                                     </div>
                                 </div>
                             </div>*@
-
-
-
                     }
                     <div class="clearfix"></div>
                 </div>
@@ -236,19 +279,17 @@
         </div>
     </form>
     <script>
-        var eventid = 0;
+
+        var eventid;
         function getId(id) {
             eventid = id;
-            alert(eventid);
+            document.querySelector("#hiddeneventId").value = id;
         }
         function BookEvent() {
             var data = $("#insertform").serialize();
-            /*console.log(data);*/
-            alert(data);
             if (eventid != 0) {
-                alert(eventid);
                 $.ajax({
-                    url: `/UserAccount/Events/${eventid}`,
+                    url: `/UserAccount/Events/`,
                     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                     type: "POST",
                     data: data,
@@ -262,6 +303,7 @@
             }
         }
     </script>
+
     <!-- //Events -->
     @*<script src="~/plugins/js/jquery-2.2.3.min.js"></script>
         <script src="~/plugins/js/bootstrap.js"></script>*@

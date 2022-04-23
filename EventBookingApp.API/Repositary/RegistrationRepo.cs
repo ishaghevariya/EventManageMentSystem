@@ -97,8 +97,8 @@ namespace EventBookingApp.API.Repositary
         }
         public async Task<ApplicationUser>GetUserByEmail(string email)
         {
-            var isEmaliExist = await _context.ApplicationUsers.Where(x => x.Email == email).FirstOrDefaultAsync();
-            return isEmaliExist;
+            return await _context.ApplicationUsers.Where(x => x.Email == email).FirstOrDefaultAsync();
+            
         }
         public async Task<IEnumerable<ApplicationUser>> Search(string UserName)
         {
@@ -169,6 +169,24 @@ namespace EventBookingApp.API.Repositary
         {
             var data = await _context.FeedBacks.Where(x => x.Id == id).FirstOrDefaultAsync();
             return data;
+        }
+
+        public async Task<IEnumerable<FeedBack>> GetAllFeedBack()
+        {
+            var data = await _context.FeedBacks.ToListAsync();
+            return data;
+        }
+
+        public async Task<FeedBack> DeleteFeedback(int id)
+        {
+            var result = await _context.FeedBacks.FirstOrDefaultAsync(x => x.Id == id);
+            if (result != null)
+            {
+                _context.FeedBacks.Remove(result);
+                await _context.SaveChangesAsync();
+                return result;
+            }
+            return null;
         }
     }
 }

@@ -34,9 +34,9 @@ namespace DataAcessLayer.ViewModel
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             List<ValidationResult> res = new List<ValidationResult>();
-            if (EventDate < DateTime.Today)
+            if (EventDate <= DateTime.Today.AddDays(3))
             {
-                ValidationResult mss = new ValidationResult("Event date must be greater than to Today");
+                ValidationResult mss = new ValidationResult("Event date must be 2 day after");
                 res.Add(mss);
             }
             return res;
