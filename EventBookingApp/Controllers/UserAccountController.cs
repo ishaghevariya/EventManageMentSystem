@@ -294,7 +294,7 @@ namespace EventBookingApp.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<JsonResult> Events(BookingViewModel vm)
+        public async Task<IActionResult> Events(BookingViewModel vm)
         {
             HttpClient client = new HttpClient();
             var data = HttpContext.Session.GetString("UserId");
@@ -305,11 +305,11 @@ namespace EventBookingApp.Controllers
                 var response = await client.PostAsJsonAsync($"api/EventBooking/AddBooking", vm);
                 if (response.IsSuccessStatusCode)
                 {
-                    return Json("True");
+                    return RedirectToAction("Event");
                 }
                 return Json("false");                
             }
-            return Json("false");
+            return View("Login");
         }
         public IActionResult Privacy()
         {

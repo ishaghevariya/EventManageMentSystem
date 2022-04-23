@@ -83,7 +83,6 @@
                 <div class="popular-grids">
                     @foreach (var item in data)
                     {
-
                         <div class="col-md-4 popular-grid">
                             @foreach (var i in images)
                             {
@@ -279,7 +278,6 @@
         </div>
     </form>
     <script>
-
         var eventid;
         function getId(id) {
             eventid = id;
@@ -289,13 +287,13 @@
             var data = $("#insertform").serialize();
             if (eventid != 0) {
                 $.ajax({
-                    url: `/UserAccount/Events/`,
+                    url: `/UserAccount/Events`,
                     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                     type: "POST",
                     data: data,
                     success: (response) => {
                         if (response == "true") {
-                            window.location = `/UserAccount/Events/`;
+                            window.location = `/UserAccount/Events`;
                         }
                         console.log(response);
                     }
@@ -303,7 +301,6 @@
             }
         }
     </script>
-
     <!-- //Events -->
     @*<script src="~/plugins/js/jquery-2.2.3.min.js"></script>
         <script src="~/plugins/js/bootstrap.js"></script>*@
