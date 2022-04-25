@@ -44,16 +44,16 @@ namespace EventBookingApp.API.Repositary
             return await _context.Foods.ToListAsync();
         }
 
-        public async Task<IEnumerable<Food>> Search(string FoodType)
-        {
-            IQueryable<Food> query = _context.Foods;
-            if (!string.IsNullOrEmpty(FoodType))
-            {
+        //public async Task<IEnumerable<Food>> Search(string FoodType)
+        //{
+        //    IQueryable<Food> query = _context.Foods;
+        //    if (!string.IsNullOrEmpty(FoodType))
+        //    {
                 
-                query = query.Where(o => o.FoodType.ToLower().Contains(FoodType.Trim().ToLower()));
-            }
-            return await query.ToListAsync();
-        }
+        //        query = query.Where(o => o.FoodType.ToLower().Contains(FoodType.Trim().ToLower()));
+        //    }
+        //    return await query.ToListAsync();
+        //}
 
         public async Task<Food> UpdateFood(Food food)
         {

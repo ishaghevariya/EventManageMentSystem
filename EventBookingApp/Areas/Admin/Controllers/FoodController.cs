@@ -38,20 +38,20 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View(food);
         }
-        [HttpPost]
-        public async Task<IActionResult> Index(string FoodType)
-        {
-            List<Food> food = new List<Food>();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(AdminApiString);
-            HttpResponseMessage response = await client.GetAsync($"/api/Food/Search/{FoodType}");
-            if (response.IsSuccessStatusCode)
-            {
-                var result = response.Content.ReadAsStringAsync().Result;
-                food = JsonConvert.DeserializeObject<List<Food>>(result);
-            }
-            return View(food);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Index(string FoodType)
+        //{
+        //    List<Food> food = new List<Food>();
+        //    HttpClient client = new HttpClient();
+        //    client.BaseAddress = new Uri(AdminApiString);
+        //    HttpResponseMessage response = await client.GetAsync($"/api/Food/Search/{FoodType}");
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var result = response.Content.ReadAsStringAsync().Result;
+        //        food = JsonConvert.DeserializeObject<List<Food>>(result);
+        //    }
+        //    return View(food);
+        //}
         private static async Task<Food> GetFoodById(int id)
         {
             Food food = new Food();

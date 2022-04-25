@@ -164,11 +164,11 @@ namespace EventBookingApp.API.Repositary
             return vm;
         }
 
-        public async Task<int> GetCurrentBookingId()
-        {
-            var data = await _context.Bookings.OrderByDescending(x => x.Id).Take(1).Select(x => x.Id).FirstOrDefaultAsync();
-            return data;
-        }
+        //public async Task<int> GetCurrentBookingId()
+        //{
+        //    var data = await _context.Bookings.OrderByDescending(x => x.Id).Take(1).Select(x => x.Id).FirstOrDefaultAsync();
+        //    return data;
+        //}
         public IEnumerable<BookingStatus> GetBookingStatuses()
         {
             List<BookingStatus> vm = new List<BookingStatus>();
@@ -221,11 +221,11 @@ namespace EventBookingApp.API.Repositary
             }
             return model;
         }
-        public async Task<BookingDetalis> AllBookingId(int Id)
-        {
-            var data = await _context.BookingDetalis.Where(x => x.BookingId == Id).FirstOrDefaultAsync();
-            return data;
-        }
+        //public async Task<BookingDetalis> AllBookingId(int Id)
+        //{
+        //    var data = await _context.BookingDetalis.Where(x => x.BookingId == Id).FirstOrDefaultAsync();
+        //    return data;
+        //}
 
         public async Task<IEnumerable<EventCountViewModel>> GetTotalBooking()
         {

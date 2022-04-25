@@ -69,12 +69,12 @@ namespace EventBookingApp.API.Controllers
         }
 
      
-        [HttpGet("GetCurrentBookingId")]
-        public async Task<int> GetCurrentBookingId()
-        {
-            var data = await _bookingRepo.GetCurrentBookingId();
-            return data;
-        }
+        //[HttpGet("GetCurrentBookingId")]
+        //public async Task<int> GetCurrentBookingId()
+        //{
+        //    var data = await _bookingRepo.GetCurrentBookingId();
+        //    return data;
+        //}
 
         [HttpGet("GetBookingCount")]
         public async Task<ActionResult<IEnumerable<EventCountViewModel>>> GetBookingCount()
@@ -129,12 +129,12 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
             }
         }
-        [HttpGet("GetAllBookingId")]
-        public async Task<BookingDetalis> GetAllBookingId(int Id)
-        {
-            var data = await _bookingRepo.AllBookingId(Id);
-            return data;
-        }
+        //[HttpGet("GetAllBookingId")]
+        //public async Task<BookingDetalis> GetAllBookingId(int Id)
+        //{
+        //    var data = await _bookingRepo.AllBookingId(Id);
+        //    return data;
+        //}
         [HttpGet("AllBooking")]
         public async Task<ActionResult> AllBooking()
         {

@@ -47,11 +47,10 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                 var response = await client.GetAsync($"api/Account/Login?email={email}&password={password}");
                 if (response.IsSuccessStatusCode)
                 {
-                    if (email == "ishaghevariya09@gmail.com" && password == "Isha1234")
+                    if (email == "ishaghevariya09@gmail.com")
                     {
                         ClaimsIdentity identity = null;
                         var result = response.Content.ReadAsStringAsync().Result;
-
                         if (Convert.ToUInt32(result) > 0)
                         {
                             identity = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name,email),
@@ -70,7 +69,8 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                     }
                 }
             }
-            return RedirectToAction("AdminLogin");
+            ModelState.AddModelError("", "Inavalid Username and Password");
+            return View();
         }
 
         [HttpGet]
@@ -142,7 +142,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                 {
                     name.Add(item.EquipmentName);
                     Ecount.Add(item.Count);
-                    
+
                 }
                 ViewBag.Ename = JsonConvert.SerializeObject(name);
                 ViewBag.ECount = JsonConvert.SerializeObject(Ecount);
@@ -154,7 +154,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             HttpClient client2 = new HttpClient();
             client2.BaseAddress = new Uri(AdminApiString);
             var response2 = await client2.GetAsync($"api/EventBooking/GetTotalFlowerBooking");
-            if (response2.IsSuccessStatusCode) 
+            if (response2.IsSuccessStatusCode)
             {
                 var count3 = response2.Content.ReadAsStringAsync().Result;
                 Flowermodel = JsonConvert.DeserializeObject<List<FlowerCountViewModel>>(count3);
@@ -236,9 +236,27 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             return View();
         }
 
+        //[HttpGet]
+        //[Authorize(Roles = "Admin")]
+        //public async Task<IActionResult> UserDetalis(int pageNumber = 1)
+        //{
+        //    List<ApplicationUser> users = new List<ApplicationUser>();
+        //    HttpClient client = new HttpClient();
+        //    client.BaseAddress = new Uri(AdminApiString);
+        //    HttpResponseMessage response = await client.GetAsync($"api/Account/GetUsers");
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var result = response.Content.ReadAsStringAsync().Result;
+        //        users = JsonConvert.DeserializeObject<List<ApplicationUser>>(result);
+        //    }
+        //    var resultdata = users.AsEnumerable();
+        //    int pageSize = 3;
+        //    return View(PaginatedList<ApplicationUser>.CreateAsync(resultdata, pageNumber, pageSize));
+        //}
+
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> UserDetalis(int pageNumber =1 )
+        public async Task<IActionResult> UserDetalis()
         {
             List<ApplicationUser> users = new List<ApplicationUser>();
             HttpClient client = new HttpClient();
@@ -249,26 +267,24 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                 var result = response.Content.ReadAsStringAsync().Result;
                 users = JsonConvert.DeserializeObject<List<ApplicationUser>>(result);
             }
-            var resultdata = users.AsEnumerable();
-            int pageSize = 3;
-            return View(PaginatedList<ApplicationUser>.CreateAsync(resultdata, pageNumber, pageSize));
+            return View(users);
         }
-        [HttpPost]
-        public async Task<IActionResult> UserDetalis(string UserName, int pageNumber = 1)
-        {
-            List<ApplicationUser> users = new List<ApplicationUser>();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(AdminApiString);
-            HttpResponseMessage response = await client.GetAsync($"api/Account/Search/{UserName}");
-            if (response.IsSuccessStatusCode)
-            {
-                var result = response.Content.ReadAsStringAsync().Result;
-                users = JsonConvert.DeserializeObject<List<ApplicationUser>>(result);
-            }
-            var resultdata = users.AsEnumerable();
-            int pageSize = 3;
-            return View(PaginatedList<ApplicationUser>.CreateAsync(resultdata, pageNumber, pageSize));
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> UserDetalis(string UserName, int pageNumber = 1)
+        //{
+        //    List<ApplicationUser> users = new List<ApplicationUser>();
+        //    HttpClient client = new HttpClient();
+        //    client.BaseAddress = new Uri(AdminApiString);
+        //    HttpResponseMessage response = await client.GetAsync($"api/Account/Search/{UserName}");
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var result = response.Content.ReadAsStringAsync().Result;
+        //        users = JsonConvert.DeserializeObject<List<ApplicationUser>>(result);
+        //    }
+        //    var resultdata = users.AsEnumerable();
+        //    int pageSize = 3;
+        //    return View(PaginatedList<ApplicationUser>.CreateAsync(resultdata, pageNumber, pageSize));
+        //}
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AllBookings()

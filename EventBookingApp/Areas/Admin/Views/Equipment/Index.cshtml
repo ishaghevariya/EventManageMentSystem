@@ -8,11 +8,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
     <title>Index</title>
 </head>
 <body>
-    <form method="post">
-
+    @*<form method="post">*@
         <div class="card">
             <div class="card-header">
                 <div class="pull-left" style="font-weight:bold;font-size:medium">Available Equipment</div>
@@ -20,17 +23,17 @@
                     <a href='@Url.Action("Create","Equipment")' class="btn btn-primary float-right"><i class="fa fa-plus"></i>AddEquipment</a>
                 </div>
             </div>
-            <table class="table">
-                <tr>
-                    <td>
-                        <input type="text" value="" name="EquipmentType" class="form-control" id="Name" placeholder="EquipmentType" />
-                    </td>
-                    <td>
-                        <button type="submit" class="btn btn-outline-primary text-dark form-control fa fa-search" id="btnSearch" value="Search">Search</button>
-                    </td>
-                </tr>
-            </table>
-            <table class="table">
+            @*<table class="table">
+                    <tr>
+                        <td>
+                            <input type="text" value="" name="EquipmentType" class="form-control" id="Name" placeholder="EquipmentType" />
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-outline-primary text-dark form-control fa fa-search" id="btnSearch" value="Search">Search</button>
+                        </td>
+                    </tr>
+                </table>*@
+            <table class="table" id="table_id">
                 <thead>
                     <tr>
                         <th>
@@ -77,13 +80,17 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
-    </form>
+    @*</form>*@
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
+    </script>
 </body>
 </html>

@@ -1,128 +1,109 @@
-﻿@model EventBookingApp.Web.Helper.PaginatedList<DataAcessLayer.ApplicationUser>
+﻿@model IEnumerable<DataAcessLayer.ApplicationUser>
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "List";
 }
+<!DOCTYPE html>
 
-<form method="post">
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+</head>
+<body>
+    
     <div class="card">
         <div class="card-header">
             <div class="pull-left" style="font-weight:bold;font-size:medium">All User</div>
         </div>
-        <table class="table">
-            <tr>
-                <td>
-                    <input type="text" value="" name="UserName" class="form-control" id="Name" placeholder="UserName" />
-                </td>
-                <td>
-                    <button type="submit" class="btn btn-outline-primary text-dark form-control" id="btnSearch" value="Search">Search</button>
-                </td>
-            </tr>
-        </table>
-            <table class="table">
-                <thead>
+        <table class="table" id="table_id">
+            <thead>
+                <tr>
+                    <th>
+                        UserName
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        ContactNo
+                    </th>
+                   
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        City
+                    </th>
+                    <th>
+                        State
+                    </th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    var tm = "#myModal" + item.Id;
+                    var mid = "myModal" + item.Id;
                     <tr>
-                        <th>
-                            UserName
-                        </th>
-                        <th>
-                            Email
-                        </th>
-                        <th>
-                            ContactNo
-                        </th>
-                        @*<th>
-                                @Html.DisplayNameFor(model => model.UserRole)
-                            </th>*@
-                        <th>
-                            Gender
-                        </th>
-                        <th>
-                            Address
-                        </th>
-                        <th>
-                            City
-                        </th>
-                        <th>
-                            State
-                        </th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        var tm = "#myModal" + item.Id;
-                        var mid = "myModal" + item.Id;
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UserName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.ContactNo)
-                            </td>
-                            @*<td>
-                                    @Html.DisplayFor(modelItem => item.UserRole)
-                                </td>*@
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Gender)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.City)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.State)
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger fa fa-trash-alt" data-toggle="modal" data-target="@tm">
-                                </button>
-                                <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title">Delete Confirmation</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure want to delete this item?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a asp-action="Delete" asp-route-Id="@item.Id" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                            </div>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UserName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ContactNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.City)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.State)
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger fa fa-trash-alt" data-toggle="modal" data-target="@tm">
+                            </button>
+                            <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title">Delete Confirmation</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure want to delete this item?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <a asp-action="Delete" asp-route-Id="@item.Id" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
-</form>
-<div class="float-right">
-    @{
-        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-    }
-    <a asp-action="UserDetalis"
-       asp-route-pageNumber="@(Model.PageIndex - 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-primary @prevDisabled">
-        Previous
-    </a>
-    <a asp-action="UserDetalis"
-       asp-route-pageNumber="@(Model.PageIndex + 1)"
-       asp-route-currentFilter="@ViewData["CurrentFilter"]"
-       class="btn btn-primary @nextDisabled">
-        Next
-    </a>
-</div>
+    <script>
+        $(document).ready(function () {
+            $('#table_id').DataTable();
+        });
+    </script>
+</body>
+</html>

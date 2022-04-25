@@ -1,0 +1,60 @@
+﻿@model IEnumerable<DataAcessLayer.Flower>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "ShowFlower";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MyBooking</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/plugins/css/style.css" type="text/css" rel="stylesheet" media="all">
+    <link href="~/plugins/css/font-awesome.css" rel="stylesheet">		<!-- font-awesome icons -->
+    <!-- //Custom Theme files -->
+    <!-- js -->
+    <script src="~/plugins/js/jquery-2.2.3.min.js"></script>
+    <script src="~/plugins/js/bootstrap.js"></script>
+</head>
+<body>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="card" style="background-color:ghostwhite">
+        <div class="text-right">
+            <a asp-action="Index" class="btn" style="background-color:deeppink">Back</a>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="font-weight:700;font-size:14px;color:deeppink">
+                            @Html.DisplayNameFor(model => model.FlowerType)
+                        </th>
+                        <th style="font-weight: 700; font-size: 14px; color: deeppink">
+                            @Html.DisplayNameFor(model => model.FlowerImage)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="font-weight:700;font-size:14px;color:black">
+                                @Html.DisplayFor(modelItem => item.FlowerType)
+                            </td>
+                            <td>
+                                <img src="~/FlowerImages/@item.FlowerImage" height="200" width="200" asp-append-version="true" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

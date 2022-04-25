@@ -40,20 +40,20 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View(equipment);
         }
-        [HttpPost]
-        public async Task<IActionResult> Index(string EquipmentType)
-        {
-            List<Equipment> equipment = new List<Equipment>();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(AdminApiString);
-            HttpResponseMessage response = await client.GetAsync($"/api/Equipment/Search/{EquipmentType}");
-            if (response.IsSuccessStatusCode)
-            {
-                var result = response.Content.ReadAsStringAsync().Result;
-                equipment = JsonConvert.DeserializeObject<List<Equipment>>(result);
-            }
-            return View(equipment);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Index(string EquipmentType)
+        //{
+        //    List<Equipment> equipment = new List<Equipment>();
+        //    HttpClient client = new HttpClient();
+        //    client.BaseAddress = new Uri(AdminApiString);
+        //    HttpResponseMessage response = await client.GetAsync($"/api/Equipment/Search/{EquipmentType}");
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var result = response.Content.ReadAsStringAsync().Result;
+        //        equipment = JsonConvert.DeserializeObject<List<Equipment>>(result);
+        //    }
+        //    return View(equipment);
+        //}
         private static async Task<Equipment> GetEquipmentById(int id)
         {
             Equipment equipment = new Equipment();

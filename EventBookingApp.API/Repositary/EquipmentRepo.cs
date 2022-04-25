@@ -57,14 +57,14 @@ namespace EventBookingApp.API.Repositary
             return null;
         }
         
-        public async Task<IEnumerable<Equipment>> Search(string EquipmentType)
-        {
-            IQueryable<Equipment> query = _context.Equipments;
-            if (!string.IsNullOrEmpty(EquipmentType))
-            {
-                query = query.Where(o => o.EquipmentType.ToLower().Contains(EquipmentType.Trim().ToLower()));
-            }
-            return await query.ToListAsync();
-        }
+        //public async Task<IEnumerable<Equipment>> Search(string EquipmentType)
+        //{
+        //    IQueryable<Equipment> query = _context.Equipments;
+        //    if (!string.IsNullOrEmpty(EquipmentType))
+        //    {
+        //        query = query.Where(o => o.EquipmentType.ToLower().Contains(EquipmentType.Trim().ToLower()));
+        //    }
+        //    return await query.ToListAsync();
+        //}
     }
 }

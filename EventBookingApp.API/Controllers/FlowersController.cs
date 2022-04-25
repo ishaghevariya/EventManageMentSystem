@@ -109,22 +109,22 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
             }
         }
-        [HttpGet("Search/{FlowerType}")]
-        public async Task<ActionResult<IEnumerable<Flower>>> Search(string FlowerType)
-        {
-            try
-            {
-                var result = await _flowerRepo.Search(FlowerType);
-                if (result.Any())
-                {
-                    return Ok(result);
-                }
-                return NotFound();
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
-            }
-        }
+        //[HttpGet("Search/{FlowerType}")]
+        //public async Task<ActionResult<IEnumerable<Flower>>> Search(string FlowerType)
+        //{
+        //    try
+        //    {
+        //        var result = await _flowerRepo.Search(FlowerType);
+        //        if (result.Any())
+        //        {
+        //            return Ok(result);
+        //        }
+        //        return NotFound();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
+        //    }
+        //}
     }
 }

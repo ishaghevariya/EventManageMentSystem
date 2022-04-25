@@ -42,20 +42,20 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View(flower);
         }
-        [HttpPost]
-        public async Task<IActionResult> Index(string FlowerType)
-        {
-            List<Flower> flower = new List<Flower>();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(AdminApiString);
-            HttpResponseMessage response = await client.GetAsync($"/api/Flowers/Search/{FlowerType}");
-            if (response.IsSuccessStatusCode)
-            {
-                var result = response.Content.ReadAsStringAsync().Result;
-                flower = JsonConvert.DeserializeObject<List<Flower>>(result);
-            }
-            return View(flower);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Index(string FlowerType)
+        //{
+        //    List<Flower> flower = new List<Flower>();
+        //    HttpClient client = new HttpClient();
+        //    client.BaseAddress = new Uri(AdminApiString);
+        //    HttpResponseMessage response = await client.GetAsync($"/api/Flowers/Search/{FlowerType}");
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var result = response.Content.ReadAsStringAsync().Result;
+        //        flower = JsonConvert.DeserializeObject<List<Flower>>(result);
+        //    }
+        //    return View(flower);
+        //}
         [HttpGet]
         public IActionResult Create()
         {

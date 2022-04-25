@@ -9,7 +9,7 @@ namespace EventBookingApp.API.Repositary
 {
     public interface IFlowerRepo
     {
-        Task<IEnumerable<Flower>> Search(string FlowerType);
+        //Task<IEnumerable<Flower>> Search(string FlowerType);
         Task<Flower> GetFlower(int id);
         Task<IEnumerable<Flower>> GetFlowers();
         Task<Flower> AddFlower(FlowerViewModel flower);

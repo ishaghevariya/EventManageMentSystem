@@ -105,22 +105,22 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when update data to database");
             }
         }
-        [HttpGet("Search/{EquipmentType}")]
-        public async Task<ActionResult<IEnumerable<Equipment>>> Search(string EquipmentType)
-        {
-            try
-            {
-                var result = await _equipmentRepo.Search(EquipmentType);
-                if (result.Any())
-                {
-                    return Ok(result);
-                }
-                return NotFound();
-            }
-            catch (Exception)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
-            }
-        }
+        //[HttpGet("Search/{EquipmentType}")]
+        //public async Task<ActionResult<IEnumerable<Equipment>>> Search(string EquipmentType)
+        //{
+        //    try
+        //    {
+        //        var result = await _equipmentRepo.Search(EquipmentType);
+        //        if (result.Any())
+        //        {
+        //            return Ok(result);
+        //        }
+        //        return NotFound();
+        //    }
+        //    catch (Exception)
+        //    {
+        //        return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
+        //    }
+        //}
     }
 }

@@ -17,7 +17,6 @@ namespace EventBookingApp.API.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-
     public class AddEventController : ControllerBase
     {
         private readonly IEventRepo _eventRepo;

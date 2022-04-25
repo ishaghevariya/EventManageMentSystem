@@ -1,6 +1,7 @@
 ﻿using DataAcessLayer;
 using DataAcessLayer.ViewModel;
 using EventBookingApp.API.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -14,6 +15,7 @@ using System.Threading.Tasks;
 
 namespace EventBookingApp.Web.Controllers
 {
+    [Authorize]
     public class BookingController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -74,8 +76,9 @@ namespace EventBookingApp.Web.Controllers
             return View(bookings);
         }
         [HttpPost]
-        public async Task<JsonResult> Index(BookingDetalis vm, int BookingId, int Flower, int Food, int Equipment)
+        public async Task<JsonResult> Index( int BookingId, int Flower, int Food, int Equipment)
         {
+            BookingDetalis vm = new BookingDetalis();
             HttpClient client = new HttpClient();
             vm.BookingId = BookingId;
             vm.FoodId = Food;
@@ -149,7 +152,6 @@ namespace EventBookingApp.Web.Controllers
                     vm1 = JsonConvert.DeserializeObject<List<eventTypeViewModel>>(result);
                     ViewBag.type = vm1;
                 }
-                //ModelState.AddModelError("", "Please enter after 2 days date.");
             }
             return View();
         }
@@ -185,7 +187,20 @@ namespace EventBookingApp.Web.Controllers
             }
             return View();
         }
-
+        [HttpGet]
+        public async Task<IActionResult> ShowFlower()
+        {
+            List<Flower> flower = new List<Flower>();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.GetAsync("/api/Flowers");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = response.Content.ReadAsStringAsync().Result;
+                flower = JsonConvert.DeserializeObject<List<Flower>>(result);
+            }
+            return View(flower);
+        }
         //[HttpGet]
         //public async Task<IActionResult> InsertBooklingDetalis(int BookingId)
         //{
@@ -246,6 +261,5 @@ namespace EventBookingApp.Web.Controllers
         //    }
         //    return View();
         //}
-
     }
 }

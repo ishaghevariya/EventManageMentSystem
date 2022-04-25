@@ -74,77 +74,78 @@
     <!-- events -->
     <!--Events -->
     <br />
-    <form method="post" id="insertform">
 
-        <div class="events-agileits-w3layouts">
-            <div class="container">
 
-                <h2 class="heading-agileinfo">Events<span>Events is a professionally managed Event</span></h2>
-                <div class="popular-grids">
-                    @foreach (var item in data)
-                    {
-                        <div class="col-md-4 popular-grid">
-                            @foreach (var i in images)
+    <div class="events-agileits-w3layouts">
+        <div class="container">
+
+            <h2 class="heading-agileinfo">Events<span>Events is a professionally managed Event</span></h2>
+            <div class="popular-grids">
+                @foreach (var item in data)
+                {
+                    <div class="col-md-4 popular-grid">
+                        @foreach (var i in images)
+                        {
+                            @if (item.Id == i.EventId)
                             {
-                                @if (item.Id == i.EventId)
-                                {
-                                    <img src="@i.URL" class="img-responsive" alt="" />
-                                }
+                                <img src="@i.URL" class="img-responsive" alt="" />
                             }
-                            <div class="popular-text">
-                                <h5 class="text-black"><button data-toggle="modal" class="btn btn-block btn-secondary" style="color:deeppink;background-color:burlywood" data-target="#myModal" onclick="getId(@item.Id)">@item.EventTypes</button></h5>
-                                <div class="detail-bottom">
-                                    @if (item.EventTypes == "Birthday")
-                                    {
-                                        <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
-                                        </ul>
-                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
-                                    }
-                                    @if (item.EventTypes == "Sangeet")
-                                    {
-                                        <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
-                                        </ul>
-                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
-                                    }
-                                    @if (item.EventTypes == "Wedding")
-                                    {
-                                        <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>25June</li>
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>VENICE, ITALY</li>
-                                        </ul>
-                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
-                                    }
-                                    @if (item.EventTypes == "Photography")
-                                    {
-                                        <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>01 July</li>
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>NEWYORK, USA</li>
-                                        </ul>
-                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
-                                    }
-                                    @if (item.EventTypes == "Catering")
-                                    {
-                                        <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
-                                        </ul>
-                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
-                                    }
-                                    @if (item.EventTypes == "Baby Shower")
-                                    {
-                                        <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
-                                        </ul>
-                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
-                                    }
-                                </div>
-                                @if (User.Identity.IsAuthenticated)
+                        }
+                        <div class="popular-text">
+                            <h5 class="text-black"><button data-toggle="modal" class="btn btn-block btn-secondary" style="color:deeppink;background-color:burlywood" data-target="#myModal" onclick="getId(@item.Id)">@item.EventTypes</button></h5>
+                            <div class="detail-bottom">
+                                @if (item.EventTypes == "Birthday")
                                 {
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
+                                    </ul>
+                                    <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                }
+                                @if (item.EventTypes == "Sangeet")
+                                {
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
+                                    </ul>
+                                    <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                }
+                                @if (item.EventTypes == "Wedding")
+                                {
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>25June</li>
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>VENICE, ITALY</li>
+                                    </ul>
+                                    <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                }
+                                @if (item.EventTypes == "Photography")
+                                {
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>01 July</li>
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>NEWYORK, USA</li>
+                                    </ul>
+                                    <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                }
+                                @if (item.EventTypes == "Catering")
+                                {
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
+                                    </ul>
+                                    <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                }
+                                @if (item.EventTypes == "Baby Shower")
+                                {
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
+                                    </ul>
+                                    <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                }
+                            </div>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <form method="post" id="insertform">
                                     <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -184,7 +185,7 @@
                                                                     <option value="Lake Terrace" style="font-weight: 700; font-size: 14px; color: black">Lake Terrace</option>
                                                                     <option value="The Village Venue" style="font-weight: 700; font-size: 14px; color: black">The Village Venue</option>
                                                                 </select>
-                                                                <input asp-for="NumberOfPerson" type="text" id="nper" placeholder="NumberOfPerson" value=""  style="font-weight: 700; font-size: 14px; color: black" required>
+                                                                <input asp-for="NumberOfPerson" type="text" id="nper" placeholder="NumberOfPerson" value="" style="font-weight: 700; font-size: 14px; color: black" required>
                                                                 <span asp-validation-for="NumberOfPerson" style="color:red"></span>
                                                             </div>
                                                         </div>
@@ -203,80 +204,81 @@
                                             </div>
                                         </div>
                                     </div>
-                                }
-                            </div>
+                                </form>
+                            }
                         </div>
-                        @*<div class="col-md-4 popular-grid">
-                                <img src="~/plugins/images/g8.jpg" class="img-responsive" alt="" />
-                                <div class="popular-text">
-                                    <h5><a href="#" data-toggle="modal" data-target="#myModal" value="@item.Id">@item.EventTypes</a></h5>
-                                    <div class="detail-bottom">
-                                        <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore sed do eiusmod tempor incididunt ut labore</p>
-                                    </div>
+                    </div>
+                    @*<div class="col-md-4 popular-grid">
+                            <img src="~/plugins/images/g8.jpg" class="img-responsive" alt="" />
+                            <div class="popular-text">
+                                <h5><a href="#" data-toggle="modal" data-target="#myModal" value="@item.Id">@item.EventTypes</a></h5>
+                                <div class="detail-bottom">
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
+                                    </ul>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore sed do eiusmod tempor incididunt ut labore</p>
                                 </div>
-                            </div>*@
-                        @*<div class="col-md-4 popular-grid">
-                                <img src="~/plugins/images/g9.jpg" class="img-responsive" alt="" />
-                                <div class="popular-text">
-                                    <h5><a href="#" data-toggle="modal" data-target="#myModal" value="@item.Id">@item.EventTypes</a></h5>
-                                    <div class="detail-bottom">
-                                        <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>25June</li>
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>VENICE, ITALY</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore sed do eiusmod tempor incididunt ut labore</p>
-                                    </div>
+                            </div>
+                        </div>*@
+                    @*<div class="col-md-4 popular-grid">
+                            <img src="~/plugins/images/g9.jpg" class="img-responsive" alt="" />
+                            <div class="popular-text">
+                                <h5><a href="#" data-toggle="modal" data-target="#myModal" value="@item.Id">@item.EventTypes</a></h5>
+                                <div class="detail-bottom">
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>25June</li>
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>VENICE, ITALY</li>
+                                    </ul>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore sed do eiusmod tempor incididunt ut labore</p>
                                 </div>
-                            </div>*@
-                        @*<div class="col-md-4 popular-grid">
-                                <img src="~/plugins/images/g6.jpg" class="img-responsive" alt="" />
-                                <div class="popular-text">
-                                    <h5><a href="#" data-toggle="modal" data-target="#myModal" value="@item.Id">@item.EventTypes</a></h5>
-                                    <div class="detail-bottom">
-                                        <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>01 July</li>
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>NEWYORK, USA</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore sed do eiusmod tempor incididunt ut labore</p>
-                                    </div>
+                            </div>
+                        </div>*@
+                    @*<div class="col-md-4 popular-grid">
+                            <img src="~/plugins/images/g6.jpg" class="img-responsive" alt="" />
+                            <div class="popular-text">
+                                <h5><a href="#" data-toggle="modal" data-target="#myModal" value="@item.Id">@item.EventTypes</a></h5>
+                                <div class="detail-bottom">
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>01 July</li>
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>NEWYORK, USA</li>
+                                    </ul>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore sed do eiusmod tempor incididunt ut labore</p>
                                 </div>
-                            </div>*@
-                        @*<div class="col-md-4 popular-grid">
-                                <img src="~/plugins/images/g3.jpg" class="img-responsive" alt="" />
-                                <div class="popular-text">
-                                    <h5><a href="#" data-toggle="modal" data-target="#myModal">Promotions</a></h5>
-                                    <div class="detail-bottom">
-                                        <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore sed do eiusmod tempor incididunt ut labore</p>
-                                    </div>
+                            </div>
+                        </div>*@
+                    @*<div class="col-md-4 popular-grid">
+                            <img src="~/plugins/images/g3.jpg" class="img-responsive" alt="" />
+                            <div class="popular-text">
+                                <h5><a href="#" data-toggle="modal" data-target="#myModal">Promotions</a></h5>
+                                <div class="detail-bottom">
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
+                                    </ul>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore sed do eiusmod tempor incididunt ut labore</p>
                                 </div>
-                            </div>*@
-                        @*<div class="col-md-4 popular-grid">
-                                <img src="~/plugins/images/g2.jpg" class="img-responsive" alt="" />
-                                <div class="popular-text">
-                                    <h5><a href="#" data-toggle="modal" data-target="#myModal" value="@item.Id">@item.EventTypes</a></h5>
-                                    <div class="detail-bottom">
-                                        <ul>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
-                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
-                                        </ul>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore sed do eiusmod tempor incididunt ut labore</p>
-                                    </div>
+                            </div>
+                        </div>*@
+                    @*<div class="col-md-4 popular-grid">
+                            <img src="~/plugins/images/g2.jpg" class="img-responsive" alt="" />
+                            <div class="popular-text">
+                                <h5><a href="#" data-toggle="modal" data-target="#myModal" value="@item.Id">@item.EventTypes</a></h5>
+                                <div class="detail-bottom">
+                                    <ul>
+                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
+                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
+                                    </ul>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore sed do eiusmod tempor incididunt ut labore</p>
                                 </div>
-                            </div>*@
-                    }
-                    <div class="clearfix"></div>
-                </div>
+                            </div>
+                        </div>*@
+                }
+                <div class="clearfix"></div>
             </div>
         </div>
-    </form>
+    </div>
+
     <script>
         var eventid;
         function getId(id) {
@@ -287,13 +289,13 @@
             var data = $("#insertform").serialize();
             if (eventid != 0) {
                 $.ajax({
-                    url: `/UserAccount/Events`,
+                    url: "/UserAccount/Events",
                     contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
                     type: "POST",
                     data: data,
                     success: (response) => {
                         if (response == "true") {
-                            window.location = `/UserAccount/Events`;
+                            window.location = "/UserAccount/Events";
                         }
                         console.log(response);
                     }

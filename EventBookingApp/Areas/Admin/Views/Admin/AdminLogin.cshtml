@@ -29,8 +29,7 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
                 <form asp-action="AdminLogin" method="post" id="form">
-                    <input type="hidden" asp-for="UserRole"/>
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="input-group mb-3">
                         <input asp-for="Email" class="form-control" placeholder="Email" >
                         <div class="input-group-append">
