@@ -53,7 +53,7 @@ namespace EventBookingApp.API.Controllers
             }
         }
         [HttpGet("GetUserByEmail/{email}")]
-        public async Task<ApplicationUser> GetUserByEmail(string email)
+        public async Task<ActionResult<ApplicationUser>> GetUserByEmail(string email)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace EventBookingApp.API.Controllers
             }
             catch (Exception)
             {
-                throw;
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
             }
         }
 

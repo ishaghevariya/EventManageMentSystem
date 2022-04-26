@@ -312,5 +312,40 @@ namespace EventBookingApp.API.Repositary
             }
             return null;
         }
+
+        public async Task<IEnumerable<InvoiceViewModel>> Invoice(int id)
+        {
+            List<InvoiceViewModel> lvm = new List<InvoiceViewModel>();
+            var data = await _context.Bookings.Where(x => x.UserId == id).ToListAsync();
+            foreach (var item in data)
+            {
+                InvoiceViewModel model = new InvoiceViewModel();
+                model.BookingId = item.Id;
+                model.EventId = item.EventId;
+                int BookingCost = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventCost).Sum();
+                model.EventCost = BookingCost;
+                var eventname = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefault();
+                model.EventName = eventname;
+                var result = await _context.BookingDetalis.Where(x => x.BookingId == item.Id).ToListAsync();
+                foreach(var data2 in result)
+                {
+                    model.BookingDetalisId = data2.BookingDetalisId;
+                    int FlowerCost = _context.Flowers.Where(x => x.FlowerId == data2.FlowerId).Select(x => x.FlowerCost).Sum();
+                    model.FlowerCost = FlowerCost;
+                    model.FlowerId = data2.FlowerId;
+                    int EquipmentCost = _context.Equipments.Where(x => x.EquipmentId == data2.EquipmentId).Select(x => x.EquipmentCost).Sum();
+                    model.EquipmentCost = EquipmentCost;
+                    model.EquipmentId = data2.EquipmentId;
+                    int FoodCost = _context.Foods.Where(x => x.FoodId == data2.FoodId).Select(x => x.FoodCost).Sum();
+                    model.FoodCost = FoodCost;
+                    model.FoodId = data2.FoodId;
+                    int total = BookingCost +
+                           FlowerCost + EquipmentCost + FoodCost;
+                    model.total = total;
+                }
+                lvm.Add(model);
+            }
+            return lvm;
+        }
     }
 }

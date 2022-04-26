@@ -216,11 +216,11 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View();
         }
-        private static async Task<Event> GetEventById(int id)
+        private async Task<Event> GetEventById(int id)
         {
             Event events = new Event();
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.GetAsync($"api/AddEvent/{id}");
             if (response.IsSuccessStatusCode)
             {

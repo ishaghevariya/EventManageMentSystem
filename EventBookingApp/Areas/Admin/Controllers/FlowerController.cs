@@ -89,11 +89,11 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View();
         }
-        private static async Task<Flower> GetFlowerById(int id)
+        private  async Task<Flower> GetFlowerById(int id)
         {
             Flower flower = new Flower();
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.GetAsync($"api/Flowers/{id}");
             if (response.IsSuccessStatusCode)
             {

@@ -52,11 +52,11 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         //    }
         //    return View(food);
         //}
-        private static async Task<Food> GetFoodById(int id)
+        private async Task<Food> GetFoodById(int id)
         {
             Food food = new Food();
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.GetAsync($"api/Food/{id}");
             if (response.IsSuccessStatusCode)
             {

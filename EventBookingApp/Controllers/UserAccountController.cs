@@ -213,7 +213,7 @@ namespace EventBookingApp.Controllers
         {
             if (email == null)
             {
-                ModelState.AddModelError("", "Invalid Link PLease try to contact admin");
+                ModelState.AddModelError("", "Invalid Link Please try to contact admin");
             }
             return View();
         }
@@ -321,10 +321,8 @@ namespace EventBookingApp.Controllers
                 {
                     return Json("true");
                 }
-                return Json("false");                
             }
-                return Json("false");
-           // return Json("true");
+            return Json("false");
         }
         public IActionResult Privacy()
         {

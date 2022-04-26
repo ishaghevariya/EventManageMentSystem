@@ -54,11 +54,11 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         //    }
         //    return View(equipment);
         //}
-        private static async Task<Equipment> GetEquipmentById(int id)
+        private async Task<Equipment> GetEquipmentById(int id)
         {
             Equipment equipment = new Equipment();
             HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri("https://localhost:44362/");
+            client.BaseAddress = new Uri(AdminApiString);
             HttpResponseMessage response = await client.GetAsync($"api/Equipment/{id}");
             if (response.IsSuccessStatusCode)
             {

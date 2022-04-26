@@ -61,9 +61,31 @@ namespace EventBookingApp.Web.Controllers
                 vm3 = JsonConvert.DeserializeObject<List<FoodTypeViewModel>>(result3);
                 ViewBag.Foodtype = vm3;
             }
-            //GetBookingData
+            //invoice
+            List<int> totalAmount = new List<int>();
             var data = HttpContext.Session.GetString("UserId");
             int id = Convert.ToInt32(data);
+            List<InvoiceViewModel> invoice = new List<InvoiceViewModel>();
+            HttpClient client4 = new HttpClient();
+            client4.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response4 = await client4.GetAsync($"api/EventBooking/Invoice/{id}");
+            if (response4.IsSuccessStatusCode)
+            {
+                var result4 = response4.Content.ReadAsStringAsync().Result;
+                invoice = JsonConvert.DeserializeObject<List<InvoiceViewModel>>(result4);
+                foreach (var item in invoice)
+                {
+                    totalAmount.Add(item.EventCost);
+                    totalAmount.Add(item.FlowerCost);
+                    totalAmount.Add(item.FoodCost);
+                    totalAmount.Add(item.EquipmentCost);
+                }
+                ViewBag.total = totalAmount.Sum();
+                ViewBag.invoice = invoice;
+            }
+            //GetBookingData
+            //var data = HttpContext.Session.GetString("UserId");
+            //int id = Convert.ToInt32(data);
             List<BookingViewModel> bookings = new List<BookingViewModel>();
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
@@ -76,7 +98,7 @@ namespace EventBookingApp.Web.Controllers
             return View(bookings);
         }
         [HttpPost]
-        public async Task<JsonResult> Index( int BookingId, int Flower, int Food, int Equipment)
+        public async Task<JsonResult> Index(int BookingId, int Flower, int Food, int Equipment)
         {
             BookingDetalis vm = new BookingDetalis();
             HttpClient client = new HttpClient();
@@ -92,6 +114,22 @@ namespace EventBookingApp.Web.Controllers
             }
             return Json("false");
         }
+        //[HttpGet]
+        //public async Task<IActionResult> Invoice()
+        //{
+        //    var data = HttpContext.Session.GetString("UserId");
+        //    int id = Convert.ToInt32(data);
+        //    List<InvoiceViewModel> invoice = new List<InvoiceViewModel>();
+        //    HttpClient client = new HttpClient();
+        //    client.BaseAddress = new Uri(AdminApiString);
+        //    HttpResponseMessage response = await client.GetAsync($"api/EventBooking/Invoice/{id}");
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var result1 = response.Content.ReadAsStringAsync().Result;
+        //        invoice = JsonConvert.DeserializeObject<List<InvoiceViewModel>>(result1);
+        //    }
+        //    return View(invoice);
+        //}
         [HttpGet]
         public async Task<IActionResult> ShowBookingDetalis(int Id)
         {
@@ -182,7 +220,7 @@ namespace EventBookingApp.Web.Controllers
             var response = await client.PostAsJsonAsync($"api/Account/AddFeedback", model);
             if (response.IsSuccessStatusCode)
             {
-                ViewBag.message = "Your Feedback Add Sucessfully";
+                ViewBag.message = "Your Feedback Add Sucessfully!!!";
 
             }
             return View();
