@@ -16,6 +16,7 @@
     <title>MyBooking</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">*@
     <link href="~/plugins/css/style.css" type="text/css" rel="stylesheet" media="all">
     <link href="~/plugins/css/font-awesome.css" rel="stylesheet">		<!-- font-awesome icons -->
     <!-- //Custom Theme files -->
@@ -29,174 +30,163 @@
     <br />
     <br />
     <br />
-    <div class="card" style="background-color:ghostwhite">
-        <div class="card-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="font-weight:700;font-size:14px;color:deeppink">
-                            @Html.DisplayNameFor(model => model.EventName)
-                        </th>
-                        <th style="font-weight: 700; font-size: 14px; color: deeppink">
-                            @Html.DisplayNameFor(model => model.EventDate)
-                        </th>
-                        <th style="font-weight: 700; font-size: 14px; color: deeppink">
-                            @Html.DisplayNameFor(model => model.Address)
-                        </th>
-                        <th style="font-weight: 700; font-size: 14px; color: deeppink">
-                            @Html.DisplayNameFor(model => model.AreapinCode)
-                        </th>
-                        <th style="font-weight: 700; font-size: 14px; color: deeppink">
-                            @Html.DisplayNameFor(model => model.VenuType)
-                        </th>
-                        <th style="font-weight: 700; font-size: 14px; color: deeppink">
-                            @Html.DisplayNameFor(model => model.NumberOfPerson)
-                        </th>
-                        <th style="font-weight: 700; font-size: 14px; color: deeppink">
-                            @Html.DisplayNameFor(model => model.Status)
-                        </th>
-                        <th style="font-weight: 700; font-size: 14px; color: deeppink">
-                            BookingDecoration
-                        </th>
-                        <th style="font-weight: 700; font-size: 14px; color: deeppink">
-                            ShowDecoration
-                        </th>
-                        <th style="font-weight: 700; font-size: 14px; color: deeppink">
-                            Delete
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        var tm = "#myModal" + item.Id;
-                        var mid = "myModal" + item.Id;
-                        <tr>
-                            <td style="font-weight:700;font-size:14px;color:black">
-                                @Html.DisplayFor(modelItem => item.EventName)
-                            </td>
-                            <td style="font-weight:700;font-size:14px;color:black">
-                                @Html.DisplayFor(modelItem => item.EventDate)
-                            </td>
-                            <td style="font-weight:700;font-size:14px;color:black">
-                                @Html.DisplayFor(modelItem => item.Address)
-                            </td>
-                            <td style="font-weight:700;font-size:14px;color:black">
-                                @Html.DisplayFor(modelItem => item.AreapinCode)
-                            </td>
-                            <td style="font-weight:700;font-size:14px;color:black">
-                                @Html.DisplayFor(modelItem => item.VenuType)
-                            </td>
-                            <td style="font-weight:700;font-size:14px;color:black" class="text-center">
-                                @Html.DisplayFor(modelItem => item.NumberOfPerson)
-                            </td>
-                            <td style="font-weight:700;font-size:14px;color:black">
-                                @if (item.Status == "Approved")
-                                {
-                                    <span class="badge badge-pill inv-badge" style="background-color: #5cb85c; width: 100px; height: 31px; padding-top: 10px;">@item.Status</span>
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card" style="background-color:ghostwhite;width:400px;border:groove;border-color:black">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">
+                            @Html.DisplayFor(modelItem => item.EventName)
+                        </h5>
+                        <table class="table">
+                            @*<thead>
+                                <tr>
+                                    <th style="font-weight:700;font-size:14px;color:deeppink">
+                                        @Html.DisplayNameFor(model => model.EventName)
+                                    </th>
+                                    <th style="font-weight: 700; font-size: 14px; color: deeppink">
+                                        @Html.DisplayNameFor(model => model.FromDate)
+                                    </th>
+                                    <th style="font-weight: 700; font-size: 14px; color: deeppink">
+                                        @Html.DisplayNameFor(model => model.ToDate)
+                                    </th>
+                                    <th style="font-weight: 700; font-size: 14px; color: deeppink">
+                                        @Html.DisplayNameFor(model => model.Address)
+                                    </th>
+                                    <th style="font-weight: 700; font-size: 14px; color: deeppink">
+                                        @Html.DisplayNameFor(model => model.AreapinCode)
+                                    </th>
+                                    <th style="font-weight: 700; font-size: 14px; color: deeppink">
+                                        @Html.DisplayNameFor(model => model.VenuType)
+                                    </th>
+                                    <th style="font-weight: 700; font-size: 14px; color: deeppink">
+                                        @Html.DisplayNameFor(model => model.NumberOfPerson)
+                                    </th>
+                                    <th style="font-weight: 700; font-size: 14px; color: deeppink">
+                                        @Html.DisplayNameFor(model => model.Status)
+                                    </th>
+                                    <th style="font-weight: 700; font-size: 14px; color: deeppink">
+                                        BookingDecoration
+                                    </th>
+                                    <th style="font-weight: 700; font-size: 14px; color: deeppink">
+                                        ShowDecoration
+                                    </th>
+                                    <th style="font-weight: 700; font-size: 14px; color: deeppink">
+                                        Delete
+                                    </th>
+                                </tr>
+                            </thead>*@
+                            <tbody>
+                                @*var tm = "#myModal" + item.Id;
+                                var mid = "myModal" + item.Id;*@
+                                @*<tr>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayNameFor(model => model.EventName)
+                                    </td>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayFor(modelItem => item.EventName)
+                                    </td>
+                                </tr>*@
+                                <tr>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayNameFor(model => model.FromDate)
+                                    </td>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayFor(modelItem => item.FromDate)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayNameFor(model => model.ToDate)
+                                    </td>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayFor(modelItem => item.ToDate)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayNameFor(model => model.Address)
+                                    </td>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayNameFor(model => model.AreapinCode)
+                                    </td>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayFor(modelItem => item.AreapinCode)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayNameFor(model => model.VenuType)
+                                    </td>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayFor(modelItem => item.VenuType)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayNameFor(model => model.NumberOfPerson)
+                                    </td>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayFor(modelItem => item.NumberOfPerson)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @Html.DisplayNameFor(model => model.Status)
+                                    </td>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        @if (item.Status == "Approved")
+                                        {
+                                            <span class="badge badge-pill inv-badge" style="background-color: #5cb85c; width: 100px; height: 31px; padding-top: 10px;">@item.Status</span>
 
-                                }
-                                @if (item.Status == "Rejected")
-                                {
-                                    <span class="badge badge-pill inv-badge" style="background-color: #dc3545; width: 100px; height: 31px; padding-top: 10px;">@item.Status</span>
-                                }
-                                @if (item.Status == "Pendding")
-                                {
-                                    <span class="badge badge-pill inv-badge" style="background-color: #ffc107; width: 100px; height: 31px; padding-top: 10px;">@item.Status</span>
-                                }
-                            </td>
-                            @*@foreach (var i in data)
-                                {
-                                    @if (i != item.Id)
-                                    {*@
-                            <td style="font-weight:700;font-size:14px;color:black">
-                                @*<a asp-action="InsertBooklingDetalis" class="btn btn-success" data-id="@item.Id">BookDecoration</a>*@
-                                <button data-toggle="modal" type="button" class="btn btn-success" style="border-radius:100px" data-target="#myModal" onclick="getId(@item.Id)">BookDecoration</button>
-                            </td>
-                            @*}
+                                        }
+                                        @if (item.Status == "Rejected")
+                                        {
+                                            <span class="badge badge-pill inv-badge" style="background-color: #dc3545; width: 100px; height: 31px; padding-top: 10px;">@item.Status</span>
+                                        }
+                                        @if (item.Status == "Pendding")
+                                        {
+                                            <span class="badge badge-pill inv-badge" style="background-color: #ffc107; width: 100px; height: 31px; padding-top: 10px;">@item.Status</span>
+                                        }
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        <button data-toggle="modal" type="button" class="btn btn-success" style="border-radius:100px" data-target="#myModal" onclick="getId(@item.Id)">BookDecoration</button>
+                                    </td>
+                                </tr>
+                                @*}
                                 else
                                 {*@
-                            <td style="font-weight:700;font-size:14px;color:black">
-                                <a asp-action="ShowBookingDetalis" asp-route-id="@item.Id" class="btn" style="background-color: hotpink; border-radius: 100px;">ShowDecoration</a>
-                            </td>
-                            <td style="font-weight:700;font-size:14px;color:black">
-                                <button type="button" class="btn btn-danger fa fa-trash-o" data-toggle="modal" style="border-radius:100px" data-target="@tm">
-                                </button>
+                                <tr>
+                                    <td style="font-weight:700;font-size:14px;color:black">
+                                        <a asp-action="ShowBookingDetalis" asp-route-id="@item.Id" class="btn" style="background-color: hotpink; border-radius: 100px;">ShowDecoration</a>
+                                    </td>
+                                </tr>
+                                @*<td style="font-weight:700;font-size:14px;color:black">
+                                    <button type="button" class="btn btn-danger fa fa-trash-o" data-toggle="modal" style="border-radius:100px" data-target="@tm">
+                                    </button>
 
-                                <div class="modal video-modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="mymodal2">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                Book Decorations
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row text-center">
-                                                    &nbsp;&nbsp;&nbsp;<div style="font-weight:700;font-size:14px;color:black">Are you sure you want to delete?</div>
-                                                    <br />
-                                                    <div class="card-footer ">
-                                                        <div>
-                                                            <a asp-action="DeleteBooking" asp-route-Id="@item.Id" id="deleteBtn" class="btn" style="background-color:red">Delete</a>
-                                                            <button type="button" class="btn" style="background-color:deeppink" data-dismiss="modal">Close</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <form id="myform" method="post">
-                                    <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+                                    <div class="modal video-modal fade" id="@mid" tabindex="-1" role="dialog" aria-labelledby="mymodal2">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    Book Decorations
                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <div class="row">
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label class="control-label" style="font-weight: 700; font-size: 14px; color: black">Equipment</label>
-                                                                <select class="form-control" name="Equipment" id="Eid">
-                                                                    <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Equipment--</option>
-                                                                    @foreach (var i in equipment)
-                                                                    {
-                                                                        <option value="@i.EquipmentId" style="font-weight: 700; font-size: 14px; color: black"> @i.EquipmentType</option>
-                                                                    }
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label class="control-label" style="font-weight: 700; font-size: 14px; color: black">Flower</label>
-                                                                <select class="form-control" name="Flower" id="Fowerid">
-                                                                    <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Flower--</option>
-                                                                    @foreach (var i in flower)
-                                                                    {
-                                                                        <option value="@i.FlowerId" style="font-weight: 700; font-size: 14px; color: black"> @i.FlowerType</option>
-                                                                    }
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-sm-12">
-                                                            <div class="form-group">
-                                                                <label class="control-label" style="font-weight: 700; font-size: 14px; color: black">Food</label>
-                                                                <select class="form-control" name="Food" id="FoodId">
-                                                                    <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Food--</option>
-                                                                    @foreach (var i in food)
-                                                                    {
-                                                                        <option value="@i.FoodId" style="font-weight: 700; font-size: 14px; color: black"> @i.FoodType</option>
-                                                                    }
-                                                                </select>
-                                                            </div>
-                                                        </div>
+                                                    <div class="row text-center">
+                                                        &nbsp;&nbsp;&nbsp;<div style="font-weight:700;font-size:14px;color:black">Are you sure you want to delete?</div>
+                                                        <br />
                                                         <div class="card-footer ">
-                                                            <div class="text-center">
-                                                                <input type="submit" class="btn" style="background-color:deeppink" onclick="BookDecoration()" value="Save">
-                                                                <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                            <div>
+                                                                <a asp-action="DeleteBooking" asp-route-Id="@item.Id" id="deleteBtn" class="btn" style="background-color:red">Delete</a>
+                                                                <button type="button" class="btn" style="background-color:deeppink" data-dismiss="modal">Close</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -204,101 +194,165 @@
                                             </div>
                                         </div>
                                     </div>
-                                </form>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div class="text-center">
-            <a asp-action="ShowFlower" class="btn btn-primary" style="border-radius:100px" >ShowFlowerDecoration</a>
-            <button data-toggle="modal" type="button" class="btn btn-success" style="border-radius:100px" data-target="#myModalin">ShowInvoice</button>
-            <div class="modal video-modal fade" id="myModalin" tabindex="-1" role="dialog" aria-labelledby="myModal">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content" style="width:710px">
-                        <div class="modal-header">
-                            Invoice
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="row">
-                                <div class="card" style="background-color:ghostwhite">
-                                    <div class="card-body">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                        EventName
-                                                    </th>
-                                                    <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                        EventCost
-                                                    </th>
-                                                    <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                        FlowerCost
-                                                    </th>
-                                                    <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                        FoodCost
-                                                    </th>
-                                                    <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                        EquipmentCost
-                                                    </th>
-                                                    <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                        TotalAmount
-                                                    </th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach (var item in invoice)
-                                                {
-                                                    <tr>
-                                                        <td style="font-weight:700;font-size:14px;color:black">
-                                                            @item.EventName
-                                                        </td>
-                                                        <td style="font-weight:700;font-size:14px;color:black">
-                                                            @item.EventCost
-                                                        </td>
-                                                        <td style="font-weight:700;font-size:14px;color:black">
-                                                            @item.FlowerCost
-                                                        </td>
-                                                        <td style="font-weight:700;font-size:14px;color:black">
-                                                            @item.FoodCost
-                                                        </td>
-                                                        <td style="font-weight:700;font-size:14px;color:black">
-                                                            @item.EquipmentCost
-                                                        </td>
-                                                        <td style="font-weight:700;font-size:14px;color:black">
-                                                            @item.total
-                                                        </td>
-                                                    </tr>
-                                                }
-                                            </tbody>
-                                        </table>
-                                        <div style="font-weight:700;font-size:14px;color:black;float:right;padding-right:3em">
-                                            Total Payable Amount: @ViewBag.total
-                                        </div><br />
+                                </td>*@
+                                <tr>
+                                    <td>
+                                        <form id="myform" method="post">
+                                            <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            Book Decorations
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="row">
+                                                                <div class="col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" style="font-weight: 700; font-size: 14px; color: black">Equipment</label>
+                                                                        <select class="form-control" name="Equipment" id="Eid">
+                                                                            <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Equipment--</option>
+                                                                            @foreach (var i in equipment)
+                                                                            {
+                                                                                <option value="@i.EquipmentId" style="font-weight: 700; font-size: 14px; color: black"> @i.EquipmentType</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" style="font-weight: 700; font-size: 14px; color: black">Flower</label>
+                                                                        <select class="form-control" name="Flower" id="Fowerid">
+                                                                            <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Flower--</option>
+                                                                            @foreach (var i in flower)
+                                                                            {
+                                                                                <option value="@i.FlowerId" style="font-weight: 700; font-size: 14px; color: black"> @i.FlowerType</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-12">
+                                                                    <div class="form-group">
+                                                                        <label class="control-label" style="font-weight: 700; font-size: 14px; color: black">Food</label>
+                                                                        <select class="form-control" name="Food" id="FoodId">
+                                                                            <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Food--</option>
+                                                                            @foreach (var i in food)
+                                                                            {
+                                                                                <option value="@i.FoodId" style="font-weight: 700; font-size: 14px; color: black"> @i.FoodType</option>
+                                                                            }
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="card-footer ">
+                                                                    <div class="text-center">
+                                                                        <input type="submit" class="btn" style="background-color:deeppink" onclick="BookDecoration()" value="Save">
+                                                                        <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="text-center">
+                        <a asp-action="ShowFlower" class="btn btn-primary" style="border-radius:100px">FlowerDecoration</a>
+                        <button data-toggle="modal" type="button" class="btn btn-success" style="border-radius:100px" data-target="#myModalin">Invoice</button>
+                        <div class="modal video-modal fade" id="myModalin" tabindex="-1" role="dialog" aria-labelledby="myModal">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content" style="width:710px">
+                                    <div class="modal-header">
+                                        Invoice
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     </div>
-                                </div>
-                                <div class="card-footer ">
-                                    <div class="text-center">
-                                        <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="card" style="background-color:ghostwhite">
+                                                <div class="card-body">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                    EventName
+                                                                </th>
+                                                                <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                    EventCost
+                                                                </th>
+                                                                <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                    FlowerCost
+                                                                </th>
+                                                                <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                    FoodCost
+                                                                </th>
+                                                                <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                    EquipmentCost
+                                                                </th>
+                                                                <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                    TotalAmount
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach (var item1 in invoice)
+                                                            {
+                                                                <tr>
+                                                                    <td style="font-weight:700;font-size:14px;color:black">
+                                                                        @item1.EventName
+                                                                    </td>
+                                                                    <td style="font-weight:700;font-size:14px;color:black">
+                                                                        @item1.EventCost
+                                                                    </td>
+                                                                    <td style="font-weight:700;font-size:14px;color:black">
+                                                                        @item1.FlowerCost
+                                                                    </td>
+                                                                    <td style="font-weight:700;font-size:14px;color:black">
+                                                                        @item1.FoodCost
+                                                                    </td>
+                                                                    <td style="font-weight:700;font-size:14px;color:black">
+                                                                        @item1.EquipmentCost
+                                                                    </td>
+                                                                    <td style="font-weight:700;font-size:14px;color:black">
+                                                                        @item1.total
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                    <div style="font-weight:700;font-size:14px;color:black;float:right;padding-right:3em">
+                                                        Total Payable Amount: @ViewBag.total
+                                                    </div><br />
+                                                </div>
+                                            </div>
+                                            <div class="card-footer ">
+                                                <div class="text-center">
+                                                    <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
                 </div>
             </div>
-        </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-
+        }
     </div>
+    
     <script>
         var bookinid = 0;
         function getId(id) {

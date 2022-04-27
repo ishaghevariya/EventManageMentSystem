@@ -23,8 +23,12 @@ namespace DataAcessLayer.ViewModel
         public string VenuType { get; set; }
         [Required(ErrorMessage = "Please Enter NumberOfPerson")]
         public int NumberOfPerson { get; set; }
-        [Required(ErrorMessage = "Please Enter NumberofDays")]
-        public int NumberOfDays { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime FromDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime ToDate { get; set; }
+        [DataType(DataType.Time)]
+        public DateTime EventTime { get; set; }
         public int UserId { get; set; }
         [Required(ErrorMessage ="Please Select Event")]
         public int EventId { get; set; }
@@ -34,9 +38,9 @@ namespace DataAcessLayer.ViewModel
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             List<ValidationResult> res = new List<ValidationResult>();
-            if (EventDate <= DateTime.Today.AddDays(3))
+            if (FromDate <= DateTime.Today.AddDays(2))
             {
-                ValidationResult mss = new ValidationResult("Event date must be 2 day after");
+                ValidationResult mss = new ValidationResult("From date must be 2 day after");
                 res.Add(mss);
             }
             return res;

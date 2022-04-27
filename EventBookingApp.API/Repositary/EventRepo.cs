@@ -31,7 +31,9 @@ namespace EventBookingApp.API.Repositary
             Event events = new Event
             {
                 EventTypes = eventmodel.EventTypes,
-                EventCost = eventmodel.EventCost
+                EventCost = eventmodel.EventCost,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
             };
             var result = await _context.AddAsync(events);
             await _context.SaveChangesAsync();
@@ -129,6 +131,7 @@ namespace EventBookingApp.API.Repositary
             {
                 result.EventTypes = eventmodel.EventTypes;
                 result.EventCost = eventmodel.EventCost;
+                result.UpdatedDate = DateTime.Now;
                 await _context.SaveChangesAsync();
                 return result;
             }

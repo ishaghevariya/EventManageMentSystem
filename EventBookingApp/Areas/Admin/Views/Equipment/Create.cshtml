@@ -9,14 +9,21 @@
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label asp-for="EquipmentType" class="control-label"></label>
                         <input asp-for="EquipmentType" class="form-control" />
                         <span asp-validation-for="EquipmentType" class="text-danger"></span>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label asp-for="Quantity" class="control-label"></label>
+                        <input asp-for="Quantity" class="form-control" />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label asp-for="EquipmentCost" class="control-label"></label>
                         <input asp-for="EquipmentCost" class="form-control" />

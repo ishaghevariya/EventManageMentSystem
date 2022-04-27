@@ -88,7 +88,7 @@ namespace EventBookingApp.API.Controllers
             }
         }
         [HttpPost("Registration")]
-        public async Task<ActionResult<ApplicationUser>> Registration(ApplicationUser applicationUser)
+        public async Task<ActionResult<ApplicationUser>> Registration(ApplicationUserViewModel applicationUser)
         {
             try
             {

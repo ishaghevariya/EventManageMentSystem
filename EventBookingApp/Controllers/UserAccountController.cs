@@ -85,11 +85,11 @@ namespace EventBookingApp.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Registration(ApplicationUser applicationUser)
+        public async Task<IActionResult> Registration(ApplicationUserViewModel applicationUser)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
-            var response = await client.PostAsJsonAsync<ApplicationUser>($"api/Account/Registration", applicationUser);
+            var response = await client.PostAsJsonAsync($"/api/Account/Registration", applicationUser);
             if (response.IsSuccessStatusCode)
             {
                 var MsgBody = "Hello  We have registred you on our portal sucessfully,Thank you.";

@@ -53,7 +53,7 @@ namespace EventBookingApp.API.Repositary
             var user = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).Select(x=>x.Id).SingleOrDefault();
             return user;
         }
-        public async Task<ApplicationUser> UserRegistration(ApplicationUser applicationUser)
+        public async Task<ApplicationUser> UserRegistration(ApplicationUserViewModel applicationUser)
         {
             ApplicationUser user = new ApplicationUser()
             {
@@ -65,7 +65,9 @@ namespace EventBookingApp.API.Repositary
                 Address = applicationUser.Address,
                 Gender = applicationUser.Gender,
                 City = applicationUser.City,
-                State = applicationUser.State
+                State = applicationUser.State,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
             };
            
                 var result = await _context.ApplicationUsers.AddAsync(user);
@@ -89,8 +91,8 @@ namespace EventBookingApp.API.Repositary
             var result = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Id == id);
             if (result != null)
             {
-                _context.ApplicationUsers.Remove(result);
-                await _context.SaveChangesAsync();
+                 _context.ApplicationUsers.Remove(result);
+                 _context.SaveChanges();
                 return result;
             }
             return null;
@@ -121,6 +123,7 @@ namespace EventBookingApp.API.Repositary
                 result.Address = User.Address;
                 result.City = User.City;
                 result.State = User.State;
+                result.UpdatedDate = DateTime.Now;
                 await _context.SaveChangesAsync();
                 return result;
             }
@@ -158,7 +161,9 @@ namespace EventBookingApp.API.Repositary
                 Email = feedBack.Email,
                 FeedbackType = feedBack.FeedbackType,
                 Subject = feedBack.Subject,
-                UserId = feedBack.UserId
+                UserId = feedBack.UserId,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
             };
             var result = await _context.FeedBacks.AddAsync(model);
             await _context.SaveChangesAsync();

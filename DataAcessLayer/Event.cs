@@ -15,7 +15,8 @@ namespace DataAcessLayer
         [Required(ErrorMessage ="EventType is required")]
         public string EventTypes { get; set; }
         public int EventCost { get; set; }
-   
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
         public ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();
         public ICollection<EventGallery> EventGallery { get; set; } = new HashSet<EventGallery>();
     

@@ -26,14 +26,19 @@ namespace EventBookingApp.API.Repositary
             Booking Book = new Booking
             {
                 EventId = booking.EventId,
-                NumberOfDays = booking.NumberOfDays,
-                EventDate = booking.EventDate,
+                FromDate = booking.FromDate,
+                ToDate = booking.ToDate,
+                EventTime = booking.EventTime,
                 BookingStatusId = 2,
                 Address = booking.Address,
                 AreapinCode = booking.AreapinCode,
                 NumberOfPerson = booking.NumberOfPerson,
                 UserId = booking.UserId,
                 VenuType = booking.VenuType,
+                IsCancle = false,
+                IsDeleted = false,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
             };
             var result = await _context.Bookings.AddAsync(Book);
             await _context.SaveChangesAsync();
@@ -56,9 +61,10 @@ namespace EventBookingApp.API.Repositary
                 vm.Address = item.Address;
                 vm.AreapinCode = item.AreapinCode;
                 vm.BookingStatusId = item.BookingStatusId;
-                vm.EventDate = item.EventDate;
+                vm.FromDate = item.FromDate;
+                vm.ToDate = item.ToDate;
                 vm.EventId = item.EventId;
-                vm.NumberOfDays = item.NumberOfDays;
+                vm.EventTime = item.EventTime;
                 vm.NumberOfPerson = item.NumberOfPerson;
                 vm.VenuType = item.VenuType;
                 vm.UserId = userid;
@@ -82,9 +88,10 @@ namespace EventBookingApp.API.Repositary
                 vm.Address = item.Address;
                 vm.AreapinCode = item.AreapinCode;
                 vm.BookingStatusId = item.BookingStatusId;
-                vm.EventDate = item.EventDate;
+                vm.FromDate = item.FromDate;
+                vm.ToDate = item.ToDate;
                 vm.EventId = item.EventId;
-                vm.NumberOfDays = item.NumberOfDays;
+                vm.EventTime = item.EventTime;
                 vm.NumberOfPerson = item.NumberOfPerson;
                 vm.VenuType = item.VenuType;
                 var status = _context.BookingStatuses.Where(x => x.Id == item.BookingStatusId).Select(x => x.Status).FirstOrDefault();
@@ -100,6 +107,14 @@ namespace EventBookingApp.API.Repositary
 
         public async Task<BookingDetalis> AddBookingDetalis(BookingDetalis bookingDetalis)
         {
+            BookingDetalis model = new BookingDetalis()
+            {
+                FlowerId = bookingDetalis.FlowerId,
+                EquipmentId = bookingDetalis.EquipmentId,
+                FoodId = bookingDetalis.FoodId,
+                UpdatedDate = DateTime.Now,
+                CreatedDate = DateTime.Now
+            };
             var result = await _context.BookingDetalis.AddAsync(bookingDetalis);
             await _context.SaveChangesAsync();
             return result.Entity;

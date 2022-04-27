@@ -9,7 +9,7 @@ namespace EventBookingApp.API.Repositary
 {
     public interface IRegistrationRepo
     {
-        Task<ApplicationUser> UserRegistration(ApplicationUser applicationUser);
+        Task<ApplicationUser> UserRegistration(ApplicationUserViewModel applicationUser);
         Task<ApplicationUser> GetUser(int id);
         Task<ApplicationUser> GetUserByEmail(string email);
         // public int SignInMethod(string email, string password);

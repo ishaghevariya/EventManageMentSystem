@@ -31,6 +31,10 @@ namespace DataAcessLayer
         public string City { get; set; }
         [Required(ErrorMessage = "State is Required")]
         public string State { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime CreatedDate { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime UpdatedDate { get; set; }
         public ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();
         public ICollection<FeedBack> FeedBacks { get; set; } = new HashSet<FeedBack>();
 

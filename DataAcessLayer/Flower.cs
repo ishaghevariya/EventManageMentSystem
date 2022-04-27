@@ -15,6 +15,8 @@ namespace DataAcessLayer
         public string FlowerImage { get; set; }
         [Required(ErrorMessage = "Flowercost is required")]
         public int FlowerCost { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
         public ICollection<BookingDetalis> BookingDetalis { get; set; } = new HashSet<BookingDetalis>();
     }
 }

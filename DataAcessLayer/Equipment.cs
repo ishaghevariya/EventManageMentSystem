@@ -13,7 +13,10 @@ namespace DataAcessLayer
         [Required(ErrorMessage = "EquipmentType is required")]
         public string EquipmentType { get; set; }
         [Required(ErrorMessage ="EquipmentCost is required")]
+        public int Quantity { get; set; }
         public int EquipmentCost { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
         public ICollection<BookingDetalis> BookingDetalis { get; set; } = new HashSet<BookingDetalis>();
     }
 }

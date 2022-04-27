@@ -14,22 +14,24 @@ namespace EventBookingApp.API.Repositary
     public class FlowerRepo : IFlowerRepo
     {
         private readonly ApplicationDbContext _context;
-    
+
         public FlowerRepo(ApplicationDbContext context)
         {
             _context = context;
-          
+
         }
         public async Task<Flower> AddFlower(FlowerViewModel flower)
         {
-          
+
             Flower flowers = new Flower
             {
-               FlowerType = flower.FlowerType,
-               FlowerImage = flower.FileName,
-               FlowerCost = flower.FlowerCost
+                FlowerType = flower.FlowerType,
+                FlowerImage = flower.FileName,
+                FlowerCost = flower.FlowerCost,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
             };
-           var result= await _context.AddAsync(flowers);
+            var result = await _context.AddAsync(flowers);
             await _context.SaveChangesAsync();
             return result.Entity;
         }
@@ -47,7 +49,7 @@ namespace EventBookingApp.API.Repositary
         }
         public async Task<Flower> GetFlower(int id)
         {
-            return await _context.Flowers.FirstOrDefaultAsync(x=>x.FlowerId == id);
+            return await _context.Flowers.FirstOrDefaultAsync(x => x.FlowerId == id);
         }
         //public async Task<IEnumerable<Flower>> Search(string FlowerType)
         //{
@@ -71,12 +73,13 @@ namespace EventBookingApp.API.Repositary
                 result.FlowerType = flower.FlowerType;
                 result.FlowerImage = flower.FileName;
                 result.FlowerCost = flower.FlowerCost;
+                result.UpdatedDate = DateTime.Now;
                 await _context.SaveChangesAsync();
                 return result;
             }
             return null;
         }
-       
+
 
     }
 }

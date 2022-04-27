@@ -17,7 +17,15 @@ namespace EventBookingApp.API.Repositary
         }
         public async Task<Food> AddFood(Food food)
         {
-            var result = await _context.Foods.AddAsync(food);
+            Food model = new Food()
+            {
+                FoodType = food.FoodType,
+                Quantity = food.Quantity,
+                FoodCost = food.FoodCost,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
+            };
+            var result = await _context.Foods.AddAsync(model);
             await _context.SaveChangesAsync();
             return result.Entity;
         }
@@ -61,7 +69,9 @@ namespace EventBookingApp.API.Repositary
             if (result != null)
             {
                 result.FoodType = food.FoodType;
+                result.Quantity = food.Quantity;
                 result.FoodCost = food.FoodCost;
+                result.UpdatedDate = food.UpdatedDate;
                 await _context.SaveChangesAsync();
                 return result;
             }

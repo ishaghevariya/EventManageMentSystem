@@ -12,8 +12,11 @@ namespace DataAcessLayer
         public int FoodId { get; set; }
         [Required(ErrorMessage = "FoodType is required")]
         public string FoodType { get; set; }
+        public int Quantity { get; set; }
         [Required(ErrorMessage = "FoodCost is required")]
         public int FoodCost { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
         public ICollection<BookingDetalis> BookingDetalis { get; set; } = new HashSet<BookingDetalis>();
     }
 }

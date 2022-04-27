@@ -10,15 +10,22 @@
         <form asp-action="Edit" method="post">
             @Html.HiddenFor(m => m.FoodId, new { @class = "foodid" })
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label asp-for="FoodType" class="control-label"></label>
                         <input asp-for="FoodType" class="form-control" />
                         <span asp-validation-for="FoodType" class="text-danger"></span>
                     </div>
                 </div>
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label asp-for="Quantity" class="control-label"></label>
+                        <input asp-for="Quantity" class="form-control" />
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+                </div>
 
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label asp-for="FoodCost" class="control-label"></label>
                         <input asp-for="FoodCost" class="form-control" />

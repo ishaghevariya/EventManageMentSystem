@@ -17,7 +17,15 @@ namespace EventBookingApp.API.Repositary
         }
         public async Task<Equipment> AddEquipment(Equipment equipment)
         {
-            var result = await _context.Equipments.AddAsync(equipment);
+            Equipment model = new Equipment()
+            {
+                EquipmentType = equipment.EquipmentType,
+                EquipmentCost = equipment.EquipmentCost,
+                Quantity = equipment.Quantity,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now
+            };
+            var result = await _context.Equipments.AddAsync(model);
             await _context.SaveChangesAsync();
             return result.Entity;
         }
@@ -51,6 +59,8 @@ namespace EventBookingApp.API.Repositary
             {
                 result.EquipmentType = equipment.EquipmentType;
                 result.EquipmentCost = equipment.EquipmentCost;
+                result.Quantity = equipment.Quantity;
+                result.UpdatedDate = DateTime.Now;
                 await _context.SaveChangesAsync();
                 return result;
             }
