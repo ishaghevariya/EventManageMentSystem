@@ -11,7 +11,7 @@ namespace DataAcessLayer.ViewModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "FeedbackType is required")]
-        public string FeedbackType { get; set; }
+        public int Rating { get; set; }
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Subject is required")]

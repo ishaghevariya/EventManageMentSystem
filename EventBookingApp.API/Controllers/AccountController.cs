@@ -164,7 +164,7 @@ namespace EventBookingApp.API.Controllers
             }
         }
 
-        [HttpGet("{email,password}")]
+        [HttpGet("Login/{email}/{password}")]
         public int Login(string email,string password)
         {
             var user = _registrationRepo.SignInMethod(email, password);
@@ -177,7 +177,6 @@ namespace EventBookingApp.API.Controllers
             //}
             return user;
         }
-
         [HttpGet("Search/{UserName}")]
         public async Task<ActionResult<IEnumerable<ApplicationUser>>>Search(string UserName)
         {

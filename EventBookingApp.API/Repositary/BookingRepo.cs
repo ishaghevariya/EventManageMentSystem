@@ -35,7 +35,7 @@ namespace EventBookingApp.API.Repositary
                 NumberOfPerson = booking.NumberOfPerson,
                 UserId = booking.UserId,
                 VenuType = booking.VenuType,
-                IsCancle = false,
+                IsCancle = 1,
                 IsDeleted = false,
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now
@@ -56,23 +56,26 @@ namespace EventBookingApp.API.Repositary
             var data = await _context.Bookings.Where(x => x.UserId == userid).ToListAsync();
             foreach (var item in data)
             {
-                BookingViewModel vm = new BookingViewModel();
-                vm.Id = item.Id;
-                vm.Address = item.Address;
-                vm.AreapinCode = item.AreapinCode;
-                vm.BookingStatusId = item.BookingStatusId;
-                vm.FromDate = item.FromDate;
-                vm.ToDate = item.ToDate;
-                vm.EventId = item.EventId;
-                vm.EventTime = item.EventTime;
-                vm.NumberOfPerson = item.NumberOfPerson;
-                vm.VenuType = item.VenuType;
-                vm.UserId = userid;
-                var status = _context.BookingStatuses.Where(x => x.Id == item.BookingStatusId).Select(x => x.Status).FirstOrDefault();
-                vm.Status = status;
-                var eventName = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefault();
-                vm.EventName = eventName;
-                lvm.Add(vm);
+                if (item.IsCancle == 1)
+                {
+                    BookingViewModel vm = new BookingViewModel();
+                    vm.Id = item.Id;
+                    vm.Address = item.Address;
+                    vm.AreapinCode = item.AreapinCode;
+                    vm.BookingStatusId = item.BookingStatusId;
+                    vm.FromDate = item.FromDate;
+                    vm.ToDate = item.ToDate;
+                    vm.EventId = item.EventId;
+                    vm.EventTime = item.EventTime;
+                    vm.NumberOfPerson = item.NumberOfPerson;
+                    vm.VenuType = item.VenuType;
+                    vm.UserId = userid;
+                    var status = _context.BookingStatuses.Where(x => x.Id == item.BookingStatusId).Select(x => x.Status).FirstOrDefault();
+                    vm.Status = status;
+                    var eventName = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefault();
+                    vm.EventName = eventName;
+                    lvm.Add(vm);
+                }
             }
             return lvm;
         }
@@ -94,6 +97,7 @@ namespace EventBookingApp.API.Repositary
                 vm.EventTime = item.EventTime;
                 vm.NumberOfPerson = item.NumberOfPerson;
                 vm.VenuType = item.VenuType;
+                vm.IsCancle = item.IsCancle;
                 var status = _context.BookingStatuses.Where(x => x.Id == item.BookingStatusId).Select(x => x.Status).FirstOrDefault();
                 vm.Status = status;
                 //var userid = _context.ApplicationUsers.Where(x => x.Id == item.UserId).Select(x => x.UserName).FirstOrDefault();
@@ -258,7 +262,22 @@ namespace EventBookingApp.API.Repositary
             }
             return model;
         }
-
+        public async Task<IEnumerable<EventCountViewModel>> GetCancleBooking()
+        {
+            List<EventCountViewModel> model = new List<EventCountViewModel>();
+            var countData = _context.Events.ToList();
+            foreach (var item in countData)
+            {
+                EventCountViewModel evm = new EventCountViewModel();
+                var data = await _context.Bookings.Where(x => x.EventId == item.Id && x.IsCancle == 0).CountAsync();
+                evm.EventId = item.Id;
+                var eventname = _context.Events.Where(x => x.Id == item.Id).Select(x => x.EventTypes).FirstOrDefault();
+                evm.EventName = eventname;
+                evm.Count = data;
+                model.Add(evm);
+            }
+            return model;
+        }
         public async Task<IEnumerable<EquipmentCountViewModel>> GetTotalEquipmentBooking()
         {
             List<EquipmentCountViewModel> model = new List<EquipmentCountViewModel>();
@@ -334,33 +353,50 @@ namespace EventBookingApp.API.Repositary
             var data = await _context.Bookings.Where(x => x.UserId == id).ToListAsync();
             foreach (var item in data)
             {
-                InvoiceViewModel model = new InvoiceViewModel();
-                model.BookingId = item.Id;
-                model.EventId = item.EventId;
-                int BookingCost = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventCost).Sum();
-                model.EventCost = BookingCost;
-                var eventname = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefault();
-                model.EventName = eventname;
-                var result = await _context.BookingDetalis.Where(x => x.BookingId == item.Id).ToListAsync();
-                foreach(var data2 in result)
+                if (item.IsCancle == 1)
                 {
-                    model.BookingDetalisId = data2.BookingDetalisId;
-                    int FlowerCost = _context.Flowers.Where(x => x.FlowerId == data2.FlowerId).Select(x => x.FlowerCost).Sum();
-                    model.FlowerCost = FlowerCost;
-                    model.FlowerId = data2.FlowerId;
-                    int EquipmentCost = _context.Equipments.Where(x => x.EquipmentId == data2.EquipmentId).Select(x => x.EquipmentCost).Sum();
-                    model.EquipmentCost = EquipmentCost;
-                    model.EquipmentId = data2.EquipmentId;
-                    int FoodCost = _context.Foods.Where(x => x.FoodId == data2.FoodId).Select(x => x.FoodCost).Sum();
-                    model.FoodCost = FoodCost;
-                    model.FoodId = data2.FoodId;
-                    int total = BookingCost +
-                           FlowerCost + EquipmentCost + FoodCost;
-                    model.total = total;
+                    InvoiceViewModel model = new InvoiceViewModel();
+                    model.BookingId = item.Id;
+                    model.EventId = item.EventId;
+                    int BookingCost = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventCost).Sum();
+                    model.EventCost = BookingCost;
+                    var eventname = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefault();
+                    model.EventName = eventname;
+                    var result = await _context.BookingDetalis.Where(x => x.BookingId == item.Id).ToListAsync();
+                    foreach (var data2 in result)
+                    {
+                        model.BookingDetalisId = data2.BookingDetalisId;
+                        int FlowerCost = _context.Flowers.Where(x => x.FlowerId == data2.FlowerId).Select(x => x.FlowerCost).Sum();
+                        model.FlowerCost = FlowerCost;
+                        model.FlowerId = data2.FlowerId;
+                        int EquipmentCost = _context.Equipments.Where(x => x.EquipmentId == data2.EquipmentId).Select(x => x.EquipmentCost).Sum();
+                        model.EquipmentCost = EquipmentCost;
+                        model.EquipmentId = data2.EquipmentId;
+                        int FoodCost = _context.Foods.Where(x => x.FoodId == data2.FoodId).Select(x => x.FoodCost).Sum();
+                        model.FoodCost = FoodCost;
+                        model.FoodId = data2.FoodId;
+                        int total = BookingCost +
+                               FlowerCost + EquipmentCost + FoodCost;
+                        model.total = total;
+                    }
+                    lvm.Add(model);
                 }
-                lvm.Add(model);
             }
             return lvm;
         }
+
+        public async Task<Booking> CancleBooking(int id)
+        {
+            var data = await _context.Bookings.Where(x => x.Id == id).FirstOrDefaultAsync();
+            if (data != null)
+            {
+                data.IsCancle = 0;
+                await _context.SaveChangesAsync();
+                return data;
+            }
+            return null;
+        }
+
+
     }
 }

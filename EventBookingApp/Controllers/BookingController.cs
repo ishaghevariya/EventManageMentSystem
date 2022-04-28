@@ -163,7 +163,7 @@ namespace EventBookingApp.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertBooking(BookingViewModel vm, int TypeName)
+        public async Task<IActionResult> InsertBooking(BookingViewModel vm, int TypeName,int Id)
         {
             if (ModelState.IsValid)
             {
@@ -193,18 +193,21 @@ namespace EventBookingApp.Web.Controllers
             }
             return View();
         }
-
-        public async Task<IActionResult> DeleteBooking(int id)
+        
+        public async Task<IActionResult> IsCancle(int Id)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(AdminApiString);
-            HttpResponseMessage response = await client.DeleteAsync($"api/EventBooking/DeleteBooking/{id}");
-            if (response.IsSuccessStatusCode)
+            HttpClient client1 = new HttpClient();
+            client1.BaseAddress = new Uri(AdminApiString);
+            var response1 = await client1.GetAsync($"api/EventBooking/IsCancle/{Id}");
+            if (response1.IsSuccessStatusCode)
             {
+                var result = response1.Content.ReadAsStringAsync().Result;
                 return RedirectToAction("Index");
             }
-            return View();
+            return RedirectToAction("Index");
         }
+
+      
         [HttpGet]
         public IActionResult AddFeedback()
         {

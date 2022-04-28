@@ -47,7 +47,7 @@ namespace EventBookingApp.Controllers
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(AdminApiString);
-                var response = await client.GetAsync($"api/Account/Login?email={email}&password={password}");
+                var response = await client.GetAsync($"api/Account/Login/{email}/{password}");
                 if (response.IsSuccessStatusCode)
                 {
                     if (email != "ishaghevariya09@gmail.com")

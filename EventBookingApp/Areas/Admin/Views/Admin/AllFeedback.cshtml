@@ -28,7 +28,7 @@
                             @Html.DisplayNameFor(model => model.Subject)
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.FeedbackType)
+                            @Html.DisplayNameFor(model => model.Rating)
                         </th>
                         <th>
                             Delete
@@ -48,7 +48,7 @@
                                 @Html.DisplayFor(modelItem => item.Subject)
                             </td>
                             <td>
-                                @Html.DisplayFor(modelItem => item.FeedbackType)
+                                @Html.DisplayFor(modelItem => item.Rating)
                             </td>
                             <td>
                                 <button type="button" class="btn btn-danger fa fa-trash-alt" data-toggle="modal" data-target="@tm">

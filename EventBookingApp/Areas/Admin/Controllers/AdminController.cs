@@ -39,12 +39,12 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         }
 
         public async Task<IActionResult> AdminLogin(string email, string password)
-        {
+         {
             if (ModelState.IsValid)
             {
                 HttpClient client = new HttpClient();
                 client.BaseAddress = new Uri(AdminApiString);
-                var response = await client.GetAsync($"api/Account/Login?email={email}&password={password}");
+                var response = await client.GetAsync($"api/Account/Login/{email}/{password}");
                 if (response.IsSuccessStatusCode)
                 {
                     if (email == "ishaghevariya09@gmail.com")
@@ -126,6 +126,25 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                 var count = response.Content.ReadAsStringAsync().Result;
                 model = JsonConvert.DeserializeObject<List<EventCountViewModel>>(count);
                 ViewBag.count = model;
+            }
+            //TotalCancleBooking
+            List<string> Cname = new List<string>();
+            List<int> CCount = new List<int>();
+            List<EventCountViewModel> model4 = new List<EventCountViewModel>();
+            HttpClient client4 = new HttpClient();
+            client4.BaseAddress = new Uri(AdminApiString);
+            var response4 = await client4.GetAsync($"api/EventBooking/GetCancleBooking");
+            if (response.IsSuccessStatusCode)
+            {
+                var count4 = response4.Content.ReadAsStringAsync().Result;
+                model4 = JsonConvert.DeserializeObject<List<EventCountViewModel>>(count4);
+                foreach (var item in model4)
+                {
+                    Cname.Add(item.EventName);
+                    CCount.Add(item.Count);
+                }
+                ViewBag.Cname = JsonConvert.SerializeObject(Cname);
+                ViewBag.Ccount = JsonConvert.SerializeObject(CCount);
             }
             //TotalBookedEquipment
             List<string> name = new List<string>();
@@ -322,6 +341,17 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                 return Json("true");
             }
             return Json("false");
+        }
+        public async Task<IActionResult> DeleteBooking(int id)
+        {
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage response = await client.DeleteAsync($"api/EventBooking/DeleteBooking/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("AllBookings");
+            }
+            return View();
         }
         [HttpGet]
         public async Task<IActionResult> AllBookingDecoration(int Id)

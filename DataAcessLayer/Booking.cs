@@ -23,7 +23,7 @@ namespace DataAcessLayer
         public int AreapinCode { get; set; }
         public int NumberOfPerson { get; set; }
         public string VenuType { get; set; }
-        public bool IsCancle { get; set; }
+        public int IsCancle { get; set; }
         public bool IsDeleted { get; set; }
         [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }

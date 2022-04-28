@@ -129,7 +129,20 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
             }
         }
+        [HttpGet("GetCancleBooking")]
+        public async Task<ActionResult<IEnumerable<EventCountViewModel>>> GetCancleBooking()
+        {
+            try
+            {
+                var data = await _bookingRepo.GetCancleBooking();
+                return Ok(data);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
+            }
 
+        }
         [HttpGet("Invoice/{id:int}")]
         public async Task<ActionResult<IEnumerable<BookingDetalisViewModel>>> Invoice(int id)
         {
@@ -252,6 +265,19 @@ namespace EventBookingApp.API.Controllers
             try
             {
                 var data = await _bookingRepo.UpdateBookingStatus(Bid, statusid);
+                return data;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        [HttpGet("IsCancle/{id}")]
+        public async Task<Booking> IsCancle(int id)
+        {
+            try
+            {
+                var data = await _bookingRepo.CancleBooking(id);
                 return data;
             }
             catch (Exception)

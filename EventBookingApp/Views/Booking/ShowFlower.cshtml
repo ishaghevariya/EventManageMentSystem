@@ -9,7 +9,6 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>MyBooking</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
     <link href="~/plugins/css/style.css" type="text/css" rel="stylesheet" media="all">
     <link href="~/plugins/css/font-awesome.css" rel="stylesheet">		<!-- font-awesome icons -->
@@ -24,37 +23,34 @@
     <br />
     <br />
     <br />
-    <div class="card" style="background-color:ghostwhite">
-        <div class="text-left">
-            <a asp-action="Index" class="btn fa fa-arrow-circle-left" style="background-color:deeppink;border-radius:100px"></a>
-        </div>
-        <div class="card-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th style="font-weight:700;font-size:14px;color:deeppink" class="text-center">
-                            @Html.DisplayNameFor(model => model.FlowerType)
-                        </th>
-                        <th style="font-weight: 700; font-size: 14px; color: deeppink" class="text-center">
-                            @Html.DisplayNameFor(model => model.FlowerImage)
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td style="font-weight:700;font-size:14px;color:black" class="text-center">
-                                @Html.DisplayFor(modelItem => item.FlowerType)
-                            </td>
-                            <td class="text-center">
-                                <img src="~/FlowerImages/@item.FlowerImage" height="200" width="200" asp-append-version="true" />
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+    <div class="text-left">
+        <a asp-action="Index" class="btn fa fa-arrow-circle-left" style="background-color:deeppink;border-radius:100px"></a>
+    </div>
+    <div class="container">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-sm-4">
+                <div class="card" style="background-color:ghostwhite">
+                    <div class="card-body text-center">
+                        <table class="table" id="table_id">
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight:700;font-size:14px;color:black" class="text-center">
+                                        @Html.DisplayFor(modelItem => item.FlowerType)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="text-center">
+                                        <img src="~/FlowerImages/@item.FlowerImage" height="200" width="200" asp-append-version="true" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        }
     </div>
 </body>
 </html>

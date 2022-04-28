@@ -19,6 +19,7 @@ namespace EventBookingApp.API.Repositary
         Task<Booking> UpdateBookingStatus(int Bid,int statusid);
         //Task<int> GetCurrentBookingId();
         Task<IEnumerable<EventCountViewModel>> GetTotalBooking();
+        Task<IEnumerable<EventCountViewModel>> GetCancleBooking();
         Task<IEnumerable<EquipmentCountViewModel>> GetTotalEquipmentBooking();
         Task<IEnumerable<FlowerCountViewModel>> GetTotalFlowerBooking();
         Task<IEnumerable<FoodCountViewModel>> GetTotalFoodBooking();
@@ -30,5 +31,6 @@ namespace EventBookingApp.API.Repositary
         IEnumerable<EquipmentTypeViewModel> GetEquipmentType();
         Task<IEnumerable<InvoiceViewModel>> Invoice(int id);
         Task<Booking> DeleteBooking(int id);
+        Task<Booking> CancleBooking(int id);
     }
 }

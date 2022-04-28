@@ -29,6 +29,7 @@ namespace DataAcessLayer.ViewModel
         public DateTime ToDate { get; set; }
         [DataType(DataType.Time)]
         public DateTime EventTime { get; set; }
+        public int IsCancle { get; set; }
         public int UserId { get; set; }
         [Required(ErrorMessage ="Please Select Event")]
         public int EventId { get; set; }
@@ -38,9 +39,9 @@ namespace DataAcessLayer.ViewModel
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             List<ValidationResult> res = new List<ValidationResult>();
-            if (FromDate <= DateTime.Today.AddDays(2))
+            if (FromDate <= DateTime.Today.AddDays(2) && ToDate <= DateTime.Today.AddDays(2))
             {
-                ValidationResult mss = new ValidationResult("From date must be 2 day after");
+                ValidationResult mss = new ValidationResult("FromDate and ToDate must be 2 day afters date");
                 res.Add(mss);
             }
             return res;

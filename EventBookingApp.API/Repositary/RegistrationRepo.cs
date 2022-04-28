@@ -53,6 +53,7 @@ namespace EventBookingApp.API.Repositary
             var user = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).Select(x=>x.Id).SingleOrDefault();
             return user;
         }
+       
         public async Task<ApplicationUser> UserRegistration(ApplicationUserViewModel applicationUser)
         {
             ApplicationUser user = new ApplicationUser()
@@ -159,7 +160,7 @@ namespace EventBookingApp.API.Repositary
             {
                 Id = feedBack.Id,
                 Email = feedBack.Email,
-                FeedbackType = feedBack.FeedbackType,
+                Rating = feedBack.Rating,
                 Subject = feedBack.Subject,
                 UserId = feedBack.UserId,
                 CreatedDate = DateTime.Now,
