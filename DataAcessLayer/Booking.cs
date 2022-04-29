@@ -11,7 +11,7 @@ namespace DataAcessLayer
     {
         public int Id{ get; set; }
         public int EventId { get; set; }
-        public int? UserId { get; set; }
+        public int UserId { get; set; }
         [DataType(DataType.Date)]
         public DateTime FromDate { get; set; }
         [DataType(DataType.Date)]

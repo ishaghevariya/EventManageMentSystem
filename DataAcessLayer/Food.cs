@@ -14,6 +14,7 @@ namespace DataAcessLayer
         public string FoodType { get; set; }
         public int Quantity { get; set; }
         [Required(ErrorMessage = "FoodCost is required")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
         public int FoodCost { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }

@@ -50,10 +50,10 @@ namespace EventBookingApp.API.Repositary
 
         public int SignInMethod(string email, string password)
         {
-            var user = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).Select(x=>x.Id).SingleOrDefault();
+            var user = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).Select(x => x.Id).SingleOrDefault();
             return user;
         }
-       
+
         public async Task<ApplicationUser> UserRegistration(ApplicationUserViewModel applicationUser)
         {
             ApplicationUser user = new ApplicationUser()
@@ -70,38 +70,38 @@ namespace EventBookingApp.API.Repositary
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now
             };
-           
-                var result = await _context.ApplicationUsers.AddAsync(user);
-                await _context.SaveChangesAsync();
-                return result.Entity;
+
+            var result = await _context.ApplicationUsers.AddAsync(user);
+            await _context.SaveChangesAsync();
+            return result.Entity;
         }
 
         public async Task<IEnumerable<ApplicationUser>> GetUsers()
         {
-            //ApplicationUser user = new ApplicationUser();
-            //if(user.UserRole == "User")
-            //{
-            var result = await _context.ApplicationUsers.ToListAsync();
+            var result = await _context.ApplicationUsers.Where(x=>x.UserRole == "User").ToListAsync();
             return result;
-            //}
-            //return null;
+            
         }
 
         public async Task<ApplicationUser> DeleteUser(int id)
         {
-            var result = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Id == id);
-            if (result != null)
+            var data = await _context.Bookings.Where(x => x.UserId == id && x.IsCancle == 1).FirstOrDefaultAsync();
+            if (data == null)
             {
-                 _context.ApplicationUsers.Remove(result);
-                 _context.SaveChanges();
-                return result;
+                var result = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Id == id);
+                if (result != null)
+                {
+                    _context.ApplicationUsers.Remove(result);
+                    _context.SaveChanges();
+                    return result;
+                }
             }
             return null;
         }
-        public async Task<ApplicationUser>GetUserByEmail(string email)
+        public async Task<ApplicationUser> GetUserByEmail(string email)
         {
             return await _context.ApplicationUsers.Where(x => x.Email == email).FirstOrDefaultAsync();
-            
+
         }
         public async Task<IEnumerable<ApplicationUser>> Search(string UserName)
         {
@@ -139,7 +139,7 @@ namespace EventBookingApp.API.Repositary
         public async Task<ApplicationUser> ResetPassword(ResetPasswordViewModel viewModel)
         {
             var user = await _context.ApplicationUsers.Where(x => x.Email == viewModel.Email).FirstOrDefaultAsync();
-            if(user!=null)
+            if (user != null)
             {
                 user.Password = viewModel.NewPassword;
                 await _context.SaveChangesAsync();

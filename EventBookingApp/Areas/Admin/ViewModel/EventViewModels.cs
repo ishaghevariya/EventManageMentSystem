@@ -14,6 +14,7 @@ namespace EventBookingApp.Web.Areas.Admin.ViewModel
         public string EventTypes { get; set; }
         [Required(ErrorMessage = "EventType is Required")]
         public int EventCost { get; set; }
+        [Required(ErrorMessage = "Please SelectImage")]
         public IList<IFormFile> images { get; set; }
     }
 }

@@ -199,11 +199,9 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             HttpResponseMessage httpResponse = await client.GetAsync($"/api/AddEvent/DeleteImage/{Id}");
             if (httpResponse.IsSuccessStatusCode)
             {
-                return "null";
+                return "true";
             }
             return "null";
-
-
         }
         public async Task<IActionResult> Delete(int id)
         {
@@ -212,7 +210,15 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             HttpResponseMessage response = await client.DeleteAsync($"api/AddEvent/{id}");
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    TempData["Message"] = "Event Is Already Booked You Can not Delete It!!.";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return RedirectToAction("Index");
+                }
             }
             return View();
         }

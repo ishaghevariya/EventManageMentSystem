@@ -14,6 +14,7 @@ namespace DataAcessLayer.ViewModel
         [Required(ErrorMessage ="EventType is Required")]
         public string EventTypes { get; set; }
         [Required(ErrorMessage = "EventType is Required")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than 0")]
         public int EventCost { get; set; }
      
     }

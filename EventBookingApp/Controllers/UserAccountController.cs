@@ -72,7 +72,6 @@ namespace EventBookingApp.Controllers
                     {
                         ModelState.AddModelError("", "You are Admin please registor first as a user!!!");
                     }
-                    // return RedirectToAction("Login");
                 }
             }
             ModelState.AddModelError("", "Inavalid Username and Password");
@@ -97,9 +96,10 @@ namespace EventBookingApp.Controllers
                 _emailSender.SendEmail(message);
                 return RedirectToAction("Login");
             }
-            else
+            if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
             {
                 ModelState.AddModelError("", "Email is already registor please use another email.");
+                return View();
             }
             return View();
         }
@@ -163,9 +163,10 @@ namespace EventBookingApp.Controllers
                     {
                         return RedirectToAction("Login");
                     }
-                    else
+                    if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
                     {
                         ModelState.AddModelError("", "Current password is not valid.");
+                        return View();
                     }
                 }
                 else
@@ -308,7 +309,7 @@ namespace EventBookingApp.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<JsonResult> Events(BookingViewModel vm)
+        public async Task<IActionResult> Events(BookingViewModel vm)
         {
             HttpClient client = new HttpClient();
             var data = HttpContext.Session.GetString("UserId");
@@ -322,7 +323,7 @@ namespace EventBookingApp.Controllers
                     return Json("true");
                 }
             }
-            return Json("false");
+            return RedirectToAction("Login");
         }
         public IActionResult Privacy()
         {

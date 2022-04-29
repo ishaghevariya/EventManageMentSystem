@@ -22,7 +22,6 @@ namespace EventBookingApp.API.Repositary
         public EventRepo(ApplicationDbContext context)
         {
             _context = context;
-
         }
 
         public async Task<Event> AddEvent(EventViewModel eventmodel)
@@ -50,12 +49,22 @@ namespace EventBookingApp.API.Repositary
 
         public async Task<Event> DeleteEvent(int id)
         {
-            var result = await _context.Events.Where(x => x.Id == id).FirstOrDefaultAsync();
-            if (result != null)
+            var eventid = _context.Bookings.Where(x => x.EventId == id).FirstOrDefault();
+            if (eventid == null)
             {
-                _context.Events.Remove(result);
-                await _context.SaveChangesAsync();
-                return result;
+                var result = await _context.Events.Where(x => x.Id == id).FirstOrDefaultAsync();
+                if (result != null)
+                {
+                    var eventgid = await _context.EventGalleries.Where(x => x.EventId == result.Id).FirstOrDefaultAsync();
+                    if(eventgid != null)
+                    {
+                        _context.EventGalleries.Remove(eventgid);
+                        await _context.SaveChangesAsync();
+                    }
+                    _context.Events.Remove(result);
+                    await _context.SaveChangesAsync();
+                    return result;
+                }
             }
             return null;
         }
@@ -119,6 +128,8 @@ namespace EventBookingApp.API.Repositary
             eventGallery.ImageName = pm.ImageName;
             eventGallery.EventId = pm.EventId;
             eventGallery.URL = pm.URL;
+            eventGallery.CreatedDate = DateTime.Now;
+            eventGallery.UpdatedDate = DateTime.Now;
             await _context.EventGalleries.AddAsync(eventGallery);
             await _context.SaveChangesAsync();
             return 1;
@@ -142,7 +153,7 @@ namespace EventBookingApp.API.Repositary
         {
             List<ImageViewModel> model = new List<ImageViewModel>();
             var data = await _context.EventGalleries.Where(x => x.EventId == Eventid).ToListAsync();
-            foreach(var item in data)
+            foreach (var item in data)
             {
                 ImageViewModel imagemodel = new ImageViewModel();
                 imagemodel.ImageName = item.ImageName;

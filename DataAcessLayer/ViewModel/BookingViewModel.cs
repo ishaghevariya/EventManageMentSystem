@@ -39,9 +39,19 @@ namespace DataAcessLayer.ViewModel
         IEnumerable<ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
             List<ValidationResult> res = new List<ValidationResult>();
-            if (FromDate <= DateTime.Today.AddDays(2) && ToDate <= DateTime.Today.AddDays(2))
+            if (FromDate <= DateTime.Today.AddDays(2))
             {
-                ValidationResult mss = new ValidationResult("FromDate and ToDate must be 2 day afters date");
+                ValidationResult mss = new ValidationResult("FromDate must be 2 day afters date");
+                res.Add(mss);
+            }
+            //if (ToDate <= DateTime.Today.AddDays(2))
+            //{
+            //    ValidationResult mss = new ValidationResult("ToDate must be 2 day afters date");
+            //    res.Add(mss);
+            //}
+            if(ToDate < FromDate)
+            {
+                ValidationResult mss = new ValidationResult("Todate is not less than FromDate");
                 res.Add(mss);
             }
             return res;

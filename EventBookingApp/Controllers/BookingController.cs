@@ -224,7 +224,6 @@ namespace EventBookingApp.Web.Controllers
             if (response.IsSuccessStatusCode)
             {
                 ViewBag.message = "Your Feedback Add Sucessfully!!!";
-
             }
             return View();
         }

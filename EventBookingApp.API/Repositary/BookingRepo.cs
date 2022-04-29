@@ -116,10 +116,10 @@ namespace EventBookingApp.API.Repositary
                 FlowerId = bookingDetalis.FlowerId,
                 EquipmentId = bookingDetalis.EquipmentId,
                 FoodId = bookingDetalis.FoodId,
+                CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
-                CreatedDate = DateTime.Now
             };
-            var result = await _context.BookingDetalis.AddAsync(bookingDetalis);
+            var result = await _context.BookingDetalis.AddAsync(model);
             await _context.SaveChangesAsync();
             return result.Entity;
         }

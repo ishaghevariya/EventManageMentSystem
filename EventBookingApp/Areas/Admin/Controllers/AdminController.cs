@@ -39,7 +39,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         }
 
         public async Task<IActionResult> AdminLogin(string email, string password)
-         {
+        {
             if (ModelState.IsValid)
             {
                 HttpClient client = new HttpClient();
@@ -250,9 +250,17 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             HttpResponseMessage response = await client.DeleteAsync($"api/Account/DeleteUser/{id}");
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("UserDetalis");
+                if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                {
+                    TempData["Message"] = "User Have a Booked Event You Can not Delete User!!.";
+                    return RedirectToAction("UserDetalis");
+                }
+                else
+                {
+                    return RedirectToAction("UserDetalis");
+                }
             }
-            return View();
+            return RedirectToAction("UserDetalis");
         }
 
         //[HttpGet]
@@ -351,7 +359,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             {
                 return RedirectToAction("AllBookings");
             }
-            return View();
+            return null;
         }
         [HttpGet]
         public async Task<IActionResult> AllBookingDecoration(int Id)

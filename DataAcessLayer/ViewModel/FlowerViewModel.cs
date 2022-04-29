@@ -16,6 +16,7 @@ namespace DataAcessLayer.ViewModel
         public string FileName { get; set; }
         public IFormFile FlowerImage { get; set; }
         [Required(ErrorMessage = "FlowerCost is Required")]
+        [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than 0")]
         public int FlowerCost { get; set; }
     }
 }
