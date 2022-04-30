@@ -111,15 +111,8 @@ namespace EventBookingApp.API.Repositary
 
         public async Task<BookingDetalis> AddBookingDetalis(BookingDetalis bookingDetalis)
         {
-            BookingDetalis model = new BookingDetalis()
-            {
-                FlowerId = bookingDetalis.FlowerId,
-                EquipmentId = bookingDetalis.EquipmentId,
-                FoodId = bookingDetalis.FoodId,
-                CreatedDate = DateTime.Now,
-                UpdatedDate = DateTime.Now,
-            };
-            var result = await _context.BookingDetalis.AddAsync(model);
+            
+            var result = await _context.BookingDetalis.AddAsync(bookingDetalis);
             await _context.SaveChangesAsync();
             return result.Entity;
         }

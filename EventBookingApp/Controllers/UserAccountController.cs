@@ -320,7 +320,7 @@ namespace EventBookingApp.Controllers
                 var response = await client.PostAsJsonAsync($"api/EventBooking/AddBooking", vm);
                 if (response.IsSuccessStatusCode)
                 {
-                    return Json("true");
+                    return RedirectToAction("Index","Booking");
                 }
             }
             return RedirectToAction("Login");

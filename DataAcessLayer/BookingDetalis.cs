@@ -14,9 +14,6 @@ namespace DataAcessLayer
         public int EquipmentId { get; set; }
         public int FoodId { get; set; }
         public int FlowerId { get; set; }
-        [DataType(DataType.Date)]
-        public DateTime CreatedDate { get; set; }
-        [DataType(DataType.Date)]
-        public DateTime UpdatedDate { get; set; }
+       
     }
 }

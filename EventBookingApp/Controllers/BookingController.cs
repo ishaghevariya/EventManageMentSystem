@@ -99,13 +99,14 @@ namespace EventBookingApp.Web.Controllers
         }
         [HttpPost]
         public async Task<JsonResult> Index(int BookingId, int Flower, int Food, int Equipment)
-        {
+            {
             BookingDetalis vm = new BookingDetalis();
             HttpClient client = new HttpClient();
             vm.BookingId = BookingId;
             vm.FoodId = Food;
             vm.FlowerId = Flower;
             vm.EquipmentId = Equipment;
+            
             client.BaseAddress = new Uri(AdminApiString);
             var response = await client.PostAsJsonAsync($"api/EventBooking/AddBookingDetalis", vm);
             if (response.IsSuccessStatusCode)

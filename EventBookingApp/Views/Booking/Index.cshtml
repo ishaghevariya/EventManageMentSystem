@@ -129,7 +129,7 @@
                                 <div class="col-md-1">
                                     <a asp-action="IsCancle" asp-route-id="@item.Id" style="color: red;" class="fa fa-close fa-2x text-right"></a>
                                 </div>
-                                </div>
+                            </div>
                         </div><br />
                         <table class="table text-center">
                             <tbody>
@@ -209,76 +209,84 @@
                                         }
                                     </td>
                                 </tr>
+                                
                                 <tr>
+
                                     <td>
-                                        <button data-toggle="modal" type="button" class="btn" style="border-radius:100px;background-color:lightslategray;color:black" data-target="#myModal" onclick="getId(@item.Id)">BookDecoration</button>
-                                    </td>
-                                    <td>
-                                        <a asp-action="ShowBookingDetalis" asp-route-id="@item.Id" class="btn" style="background-color: lightslategray; color: black; border-radius: 100px;">ShowDecoration</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div>
-                            <form id="myform" method="post">
-                                <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                Book Decorations
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group">
-                                                            <label style="font-weight: 700; font-size: 14px; color: black;">Equipment</label>
-                                                            <select class="form-control" name="Equipment" id="Eid">
-                                                                <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Equipment--</option>
-                                                                @foreach (var i in equipment)
-                                                                {
-                                                                    <option value="@i.EquipmentId" style="font-weight: 700; font-size: 14px; color: black"> @i.EquipmentType</option>
-                                                                }
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label" style="font-weight: 700; font-size: 14px; color: black">Flower</label>
-                                                            <select class="form-control" name="Flower" id="Fowerid">
-                                                                <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Flower--</option>
-                                                                @foreach (var i in flower)
-                                                                {
-                                                                    <option value="@i.FlowerId" style="font-weight: 700; font-size: 14px; color: black"> @i.FlowerType</option>
-                                                                }
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <div class="form-group">
-                                                            <label class="control-label" style="font-weight: 700; font-size: 14px; color: black">Food</label>
-                                                            <select class="form-control" name="Food" id="FoodId">
-                                                                <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Food--</option>
-                                                                @foreach (var i in food)
-                                                                {
-                                                                    <option value="@i.FoodId" style="font-weight: 700; font-size: 14px; color: black"> @i.FoodType</option>
-                                                                }
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="card-footer ">
-                                                        <div class="text-center">
-                                                            <input type="submit" class="btn" style="background-color:deeppink" onclick="BookDecoration()" value="Save">
-                                                            <button class="btn" style="background-color:red" data-dismiss="modal">Close</button>
+                                        <form id="myform" method="post">
+                                            <button data-toggle="modal" type="button" class="btn" style="border-radius:100px;background-color:lightslategray;color:black" data-target="#myModal" onclick="getId(@item.Id)">BookDecoration</button>
+
+                                            <div>
+
+                                                <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                Book Decorations
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row">
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+                                                                            <label style="font-weight: 700; font-size: 14px; color: black;">Equipment</label>
+                                                                            <select class="form-control" name="Equipment" id="Eid">
+                                                                                <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Equipment--</option>
+                                                                                @foreach (var i in equipment)
+                                                                                {
+                                                                                    <option value="@i.EquipmentId" style="font-weight: 700; font-size: 14px; color: black"> @i.EquipmentType</option>
+                                                                                }
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label" style="font-weight: 700; font-size: 14px; color: black">Flower</label>
+                                                                            <select class="form-control" name="Flower" id="Fowerid">
+                                                                                <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Flower--</option>
+                                                                                @foreach (var i in flower)
+                                                                                {
+                                                                                    <option value="@i.FlowerId" style="font-weight: 700; font-size: 14px; color: black"> @i.FlowerType</option>
+                                                                                }
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-12">
+                                                                        <div class="form-group">
+                                                                            <label class="control-label" style="font-weight: 700; font-size: 14px; color: black">Food</label>
+                                                                            <select class="form-control" name="Food" id="FoodId">
+                                                                                <option value="" style="font-weight: 700; font-size: 14px; color: black">--Select Food--</option>
+                                                                                @foreach (var i in food)
+                                                                                {
+                                                                                    <option value="@i.FoodId" style="font-weight: 700; font-size: 14px; color: black"> @i.FoodType</option>
+                                                                                }
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="card-footer ">
+                                                                        <div class="text-center">
+                                                                            <input type="submit" class="btn" style="background-color:deeppink" onclick="BookDecoration()" value="Save">
+                                                                            <button class="btn" style="background-color:red" data-dismiss="modal">Close</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+                                        </form>
+                                    </td>
+                                    <td>
+                                        <a asp-action="ShowBookingDetalis" asp-route-id="@item.Id" class="btn" style="background-color: lightslategray; color: black; border-radius: 100px;">ShowDecoration</a>
+
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                      
                     </div>
 
                     <br />
@@ -297,7 +305,6 @@
         var bookinid = 0;
         function getId(id) {
             bookinid = id;
-            /*alert(bookinid);*/
         }
         function BookDecoration() {
             if (bookinid != 0) {
