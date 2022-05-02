@@ -47,6 +47,10 @@ namespace EventBookingApp.API.Controllers
                     return BadRequest();
                 }
                 var userCreate = await _bookingRepo.AddBooking(booking);
+                if(userCreate == null)
+                {
+                    return null;
+                }
                 return CreatedAtAction(nameof(GetBookingById), new { id = userCreate.Id }, userCreate);
             }
             catch (Exception)

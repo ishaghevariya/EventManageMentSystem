@@ -5,6 +5,7 @@ using EventBookingApp.API.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,9 +19,11 @@ namespace EventBookingApp.API.Controllers
     public class AccountController : ControllerBase
     {
         private readonly IRegistrationRepo _registrationRepo;
-        public AccountController(IRegistrationRepo registrationRepo)
+        private readonly ILogger<AccountController> _logger;
+        public AccountController(IRegistrationRepo registrationRepo,ILogger<AccountController> logger)
         {
             _registrationRepo = registrationRepo;
+            _logger = logger;
            
         }
         [HttpGet("GetUser/{id:int}")]
@@ -31,6 +34,7 @@ namespace EventBookingApp.API.Controllers
                 var result = await _registrationRepo.GetUser(id);
                 if (result == null)
                 {
+                    _logger.LogWarning($"User Id {id} not found");
                     return NotFound();
                 }
                 return result;
@@ -73,11 +77,13 @@ namespace EventBookingApp.API.Controllers
             {
                 if (id != User.Id)
                 {
+                    _logger.LogError($"User Id {id} match");
                     return BadRequest("Id Mismathch");
                 }
                 var Update = await _registrationRepo.GetUser(id);
                 if (Update == null)
                 {
+                    _logger.LogWarning($"User Id {id} not found");
                     return NotFound($"User Id={id} not found ");
                 }
                 return await _registrationRepo.Profile(User);
@@ -187,6 +193,7 @@ namespace EventBookingApp.API.Controllers
                 {
                     return Ok(result);
                 }
+                _logger.LogWarning($"User name {UserName} not found");
                 return NotFound();
             }
             catch (Exception)

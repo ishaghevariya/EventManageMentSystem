@@ -8,7 +8,7 @@
     <div class="card-header"><b>Profile</b></div>
     <div class="card-body">
         <form asp-action="Profile" method="post">
-            <input type="hidden" asp-for="Id"/>
+            <input type="hidden" asp-for="Id" />
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -20,8 +20,8 @@
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label asp-for="Email" class="control-label"></label>
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <input asp-for="Email" class="form-control" id="email" />
+                        <input type="hidden" asp-for="Email" />
                     </div>
                 </div>
                 <div class="col-sm-6">
@@ -64,4 +64,9 @@
 </div>
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $("#email").prop("disabled", true);
+        });
+    </script>
 }

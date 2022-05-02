@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,11 @@ namespace EventBookingApp.API.Controllers
     public class AddEventController : ControllerBase
     {
         private readonly IEventRepo _eventRepo;
-        public AddEventController(IEventRepo eventRepo)
+        private readonly ILogger<AddEventController> _logger;
+        public AddEventController(IEventRepo eventRepo, ILogger<AddEventController> logger)
         {
             _eventRepo = eventRepo;
+            _logger = logger;
         }
         [HttpGet]
         public async Task<ActionResult> GetEvents()
@@ -57,6 +60,7 @@ namespace EventBookingApp.API.Controllers
                 var result = await _eventRepo.GetEvent(id);
                 if (result == null)
                 {
+                    _logger.LogWarning($"Event Id {id} not found");
                     return NotFound();
                 }
                 return result;
@@ -74,6 +78,7 @@ namespace EventBookingApp.API.Controllers
             {
                 if (evetmodel == null)
                 {
+                    _logger.LogWarning("Try to insert null data");
                     return BadRequest();
                 }
                 var eventCreate = await _eventRepo.AddEvent(evetmodel);
@@ -136,6 +141,13 @@ namespace EventBookingApp.API.Controllers
             _eventRepo.DeleteImage(id);
 
         }
+        [HttpGet("GetImageName/{id}")]
+        public string GetImageName(string id)
+        {
+            int Id = Convert.ToInt32(id);
+            return _eventRepo.GetImagename(Id);
+
+        }
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<Event>> DeleteEvent(int id)
         {
@@ -144,6 +156,7 @@ namespace EventBookingApp.API.Controllers
                 var eventDelete = await _eventRepo.GetEvent(id);
                 if (eventDelete == null)
                 {
+                   _logger.LogWarning($"Event Id {id} not found");
                     return NotFound($"Event Id={id} not found");
                 }
                 return await _eventRepo.DeleteEvent(id);
@@ -165,6 +178,7 @@ namespace EventBookingApp.API.Controllers
                 var eventUpdate = await _eventRepo.GetEvent(id);
                 if (eventUpdate == null)
                 {
+                    _logger.LogWarning($"Event Id {id} not found");
                     return NotFound($"Event Id={id} not found");
                 }
                 return await _eventRepo.UpdateEvent(eventmodel);
@@ -185,6 +199,7 @@ namespace EventBookingApp.API.Controllers
                 {
                     return Ok(result);
                 }
+
                 return NotFound();
             }
             catch (Exception)

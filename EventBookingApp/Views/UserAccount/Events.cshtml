@@ -75,7 +75,6 @@
     <!--Events -->
     <br />
 
-
     <div class="events-agileits-w3layouts">
         <div class="container">
 
@@ -88,7 +87,7 @@
                         {
                             @if (item.Id == i.EventId)
                             {
-                                <img src="@i.URL" class="img-responsive" alt="" />
+                                <img src="~/EventImages/@i.ImageName" class="img-responsive" alt="" />
                             }
                         }
                         <div class="popular-text">
@@ -144,7 +143,7 @@
                                 }
                             </div>
                         </div>
-                        <form method="post" id="insertform">
+                        <form method="post" id="insertform" asp-action="Events">
                             <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -202,7 +201,7 @@
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <div class="text-center">
-                                                    <input type="submit" value="Book Now" class="btn btn-block" style="color:deeppink" onclick="BookEvent()">
+                                                    <input type="submit" value="Book Now" class="btn btn-block" style="color:deeppink">
                                                 </div>
                                             </p>
                                         </div>
@@ -223,27 +222,24 @@
             eventid = id;
             document.querySelector("#hiddeneventId").value = id;
         }
-        function BookEvent() {
-            var data = $("#insertform").serialize();
-            if (eventid != 0) {
-                $.ajax({
-                    url: "/UserAccount/Events",
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    type: "POST",
-                    data: data,
-                    success: (response) => {
-                        if (response == "true") {
-                            window.location = "/UserAccount/Events";
-                        }
-                        console.log(response);
-                    }
-                });
-            }
-        }
+        //function BookEvent() {
+        //    var data = $("#insertform").serialize();
+        //    if (eventid != 0) {
+        //        $.ajax({
+        //            url: "/UserAccount/Events",
+        //            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+        //            type: "POST",
+        //            data: data,
+        //            success: (response) => {
+        //                if (response == "true") {
+        //                    window.location = "/UserAccount/Events";
+        //                }
+        //                console.log(response);
+        //            }
+        //        });
+        //    }
+        //}
     </script>
-    <!-- //Events -->
-    @*<script src="~/plugins/js/jquery-2.2.3.min.js"></script>
-        <script src="~/plugins/js/bootstrap.js"></script>*@
 </body>
 
 @section Scripts {

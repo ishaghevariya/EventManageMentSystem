@@ -8,8 +8,11 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -95,32 +98,48 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                         model.ImageName = uniqueFileName;
                         model.EventId = Convert.ToInt32(eventid);
                         string folderName = "EventImages/";
-                        model.URL = await UploadImage(folderName, item);
+                        model.URL = folderName + uniqueFileName;
                         HttpClient client3 = new HttpClient();
                         client3.BaseAddress = new Uri(AdminApiString);
                         HttpResponseMessage httpResponse1 = await client3.PostAsJsonAsync($"/api/AddEvent/StoringImage", model);
                         if (httpResponse1.IsSuccessStatusCode)
                         {
-                            string path = Path.Combine(_webHostEnvironment.WebRootPath, "EventImages");
+                            string path = Path.Combine(_webHostEnvironment.WebRootPath, $"{folderName}");
                             if (Directory.Exists(path))
                             {
+                                //string fullpath = Path.Combine(path, uniqueFileName);
+                                //using (var image = Image.Load(file.OpenReadStream()))
+                                //{
+                                //    string newSize = ResizeImage(image, 640, 465);
+                                //    string[] asize = newSize.Split(',');
+                                //    image.Mutate(h => h.Resize(Convert.ToInt32(asize[1]), Convert.ToInt32(asize[0])));
+                                //    image.Save(fullpath);
                                 using (fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Create))
                                 {
                                     await file.CopyToAsync(fs);
                                 }
+                                //}
                                 fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Open);
                             }
-                            model.URL =await UploadImage(folderName, item);
-                            HttpClient client4 = new HttpClient();
-                            client4.BaseAddress = new Uri(AdminApiString);
-                            HttpResponseMessage httpResponse2 = await client4.PutAsJsonAsync($"/api/AddEvent/imgLink/{uniqueFileName}",model);
-                            if (httpResponse2.IsSuccessStatusCode)
+                            try
                             {
-                                var result = httpResponse2.Content.ReadAsStringAsync().Result;
+                                model.URL = folderName + uniqueFileName;
+                                HttpClient client4 = new HttpClient();
+                                client4.BaseAddress = new Uri(AdminApiString);
+                                HttpResponseMessage httpResponse2 = await client4.PutAsJsonAsync($"/api/AddEvent/imgLink/{uniqueFileName}", model);
+                                if (httpResponse2.IsSuccessStatusCode)
+                                {
+                                    var result = httpResponse2.Content.ReadAsStringAsync().Result;
+                                }
+                                ViewBag.Link = folderName + uniqueFileName;
                             }
-                            ViewBag.Link = await UploadImage(folderName,item);
+                            catch (Exception ex)
+                            {
+
+                                Debug.WriteLine($"***************{ex}*************");
+                                throw;
+                            }
                         }
-                       
                     }
                     return RedirectToAction("Index");
                 }
@@ -161,7 +180,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                 model.ImageName = uniqueFileName;
                 model.EventId = gmodel.EventId;
                 string folderName = "EventImages/";
-                model.URL = await UploadImage(folderName, item);
+                model.URL = folderName + uniqueFileName;
                 HttpClient client3 = new HttpClient();
                 client3.BaseAddress = new Uri(AdminApiString);
                 HttpResponseMessage httpResponse1 = await client3.PostAsJsonAsync($"api/AddEvent/StoringImage", model);
@@ -170,21 +189,41 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                     string path = Path.Combine(_webHostEnvironment.WebRootPath, "EventImages");
                     if (Directory.Exists(path))
                     {
+                        //string fullpath = Path.Combine(path, uniqueFileName);
+                        //using (var image = Image.Load(file.OpenReadStream()))
+                        //{
+                        //    string newSize = ResizeImage(image, 640, 465);
+                        //    string[] asize = newSize.Split(',');
+                        //    image.Mutate(h => h.Resize(Convert.ToInt32(asize[1]), Convert.ToInt32(asize[0])));
+                        //    image.Save(fullpath);
+                        //    //using (fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Create))
+                        //    //{
+                        //    //    await file.CopyToAsync(fs);
+                        //    //}
+                        //}
                         using (fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Create))
                         {
                             await file.CopyToAsync(fs);
                         }
                         fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Open);
                     }
-                    model.URL = await UploadImage(folderName, item);
-                    HttpClient client4 = new HttpClient();
-                    client4.BaseAddress = new Uri(AdminApiString);
-                    HttpResponseMessage httpResponse2 = await client4.PutAsJsonAsync($"api/AddEvent/imgLink/{uniqueFileName}", model);
-                    if (httpResponse2.IsSuccessStatusCode)
+                    try
                     {
-                        var result = httpResponse2.Content.ReadAsStringAsync().Result;
+                        model.URL = folderName + uniqueFileName;
+                        HttpClient client4 = new HttpClient();
+                        client4.BaseAddress = new Uri(AdminApiString);
+                        HttpResponseMessage httpResponse2 = await client4.PutAsJsonAsync($"api/AddEvent/imgLink/{uniqueFileName}", model);
+                        if (httpResponse2.IsSuccessStatusCode)
+                        {
+                            var result = httpResponse2.Content.ReadAsStringAsync().Result;
+                        }
+                        ViewBag.Link = folderName + uniqueFileName;
                     }
-                    ViewBag.Link = await UploadImage(folderName, item);
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"***************{ex}*************");
+                        throw;
+                    }
                 }
 
             }
@@ -194,12 +233,26 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<string> DeleteImage(string Id)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(AdminApiString);
-            HttpResponseMessage httpResponse = await client.GetAsync($"/api/AddEvent/DeleteImage/{Id}");
-            if (httpResponse.IsSuccessStatusCode)
+            HttpClient client1 = new HttpClient();
+            client1.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage httpResponse1 = await client1.GetAsync($"/api/AddEvent/GetImageName/{Id}");
+            if (httpResponse1.IsSuccessStatusCode)
             {
-                return "true";
+                var result = httpResponse1.Content.ReadAsStringAsync().Result;
+                var imagedelete = Path.Combine(_webHostEnvironment.WebRootPath, "EventImages", result);
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(AdminApiString);
+                HttpResponseMessage httpResponse = await client.GetAsync($"/api/AddEvent/DeleteImage/{Id}");
+                if (httpResponse.IsSuccessStatusCode)
+                {
+                    FileInfo fi = new FileInfo(imagedelete);
+                    if (fi != null)
+                    {
+                        System.IO.File.Delete(imagedelete);
+                        fi.Delete();
+                    }
+                    return "true";
+                }
             }
             return "null";
         }
@@ -259,12 +312,28 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             }
             return View(eventmodel);
         }
-        private async Task<string> UploadImage(string folderPath,IFormFile file)
+        //private async Task<string> UploadImage(string folderPath, IFormFile file)
+        //{
+        //    folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
+        //    string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
+        //    await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+        //    return "/" + folderPath;
+        //}
+        public string ResizeImage(Image image, int maxwidth, int maxheight)
         {
-            folderPath += Guid.NewGuid().ToString() + "_" + file.FileName;
-            string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folderPath);
-            await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
-            return "/" + folderPath;
+            if (image.Width > maxwidth || image.Height > maxheight)
+            {
+                double widthRatio = (double)image.Width / (double)maxwidth;
+                double heightRatio = (double)image.Height / (double)maxheight;
+                double ratio = Math.Max(widthRatio, heightRatio);
+                int newWidth = (int)(image.Width / ratio);
+                int newHeight = (int)(image.Height / ratio);
+                return newHeight.ToString() + "," + newWidth.ToString();
+            }
+            else
+            {
+                return image.Height.ToString() + "," + image.Width.ToString();
+            }
         }
     }
 }

@@ -158,13 +158,12 @@ namespace EventBookingApp.Web.Controllers
                 var result = response1.Content.ReadAsStringAsync().Result;
                 vm1 = JsonConvert.DeserializeObject<List<eventTypeViewModel>>(result);
                 ViewBag.type = vm1;
-
             }
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertBooking(BookingViewModel vm, int TypeName,int Id)
+        public async Task<IActionResult> InsertBooking(BookingViewModel vm, int TypeName)
         {
             if (ModelState.IsValid)
             {
@@ -176,7 +175,25 @@ namespace EventBookingApp.Web.Controllers
                 var response = await client.PostAsJsonAsync($"api/EventBooking/AddBooking", vm);
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index");
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        List<eventTypeViewModel> vm1 = new List<eventTypeViewModel>();
+                        HttpClient client1 = new HttpClient();
+                        client1.BaseAddress = new Uri(AdminApiString);
+                        var response1 = await client1.GetAsync($"api/AddEvent/GetEventByTypes");
+                        if (response1.IsSuccessStatusCode)
+                        {
+                            var result = response1.Content.ReadAsStringAsync().Result;
+                            vm1 = JsonConvert.DeserializeObject<List<eventTypeViewModel>>(result);
+                            ViewBag.type = vm1;
+                        }
+                        ModelState.AddModelError("", "Event is Already Booked in this date Please select other date");
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index");
+                    }
                 }
             }
             else

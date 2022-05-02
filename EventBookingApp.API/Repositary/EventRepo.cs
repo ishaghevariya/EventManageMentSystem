@@ -76,7 +76,12 @@ namespace EventBookingApp.API.Repositary
             _context.EventGalleries.Remove(data);
             _context.SaveChanges();
         }
-
+        public string GetImagename(int id)
+        {
+            var Id = Convert.ToInt32(id);
+            var data = _context.EventGalleries.Where(x => x.Id == Id).Select(x => x.ImageName).FirstOrDefault();
+            return data;
+        }
         public async Task<int> GetCurrentRecordId()
         {
             var data = await _context.Events.OrderByDescending(x => x.Id).Take(1).Select(x => x.Id).FirstOrDefaultAsync();
@@ -179,5 +184,7 @@ namespace EventBookingApp.API.Repositary
             }
             return model;
         }
+
+       
     }
 }

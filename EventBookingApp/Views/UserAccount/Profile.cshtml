@@ -37,8 +37,8 @@
                             <div class="col-sm-6 col-xs-6 w3ls-lt-form">
                                 <div class="w3ls-pr">
                                     <label asp-for="Email" class="control-label"></label>
-                                    <input asp-for="Email" type="email" name="Email" placeholder="Email" style="font-weight: 700; font-size: 14px; color: black">
-                                    <span asp-validation-for="Email" style="color:red"></span>
+                                    <input asp-for="Email" type="email" name="Email" placeholder="Email" id="email" style="font-weight: 700; font-size: 14px; color: black">
+                                    <input type="hidden" asp-for="Email"/>
                                 </div>
                             </div>
                             <div class="col-sm-6 col-xs-6 w3ls-lt-form">
@@ -84,10 +84,15 @@
         </div>
     </div>
     @*<script src="~/plugins/js/jquery-2.2.3.min.js"></script>
-    <script src="~/plugins/js/bootstrap.js"></script>*@
+        <script src="~/plugins/js/bootstrap.js"></script>*@
 </body>
 </html>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function () {
+            $("#email").prop("disabled", true);
+        });
+    </script>
 }
