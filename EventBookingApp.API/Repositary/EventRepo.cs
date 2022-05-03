@@ -78,7 +78,7 @@ namespace EventBookingApp.API.Repositary
         }
         public string GetImagename(int id)
         {
-            var Id = Convert.ToInt32(id);
+            var Id = id;
             var data = _context.EventGalleries.Where(x => x.Id == Id).Select(x => x.ImageName).FirstOrDefault();
             return data;
         }

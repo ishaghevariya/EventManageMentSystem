@@ -65,6 +65,14 @@ namespace EventBookingApp.API.Repositary
         {
             return await _context.Flowers.ToListAsync();
         }
+
+        public string GetImagename(int id)
+        {
+            var Id = id;
+            var data = _context.Flowers.Where(x => x.FlowerId == Id).Select(x => x.FlowerImage).FirstOrDefault();
+            return data;
+        }
+
         public async Task<Flower> UpdateFlower(FlowerViewModel flower)
         {
             var result = await _context.Flowers.FirstOrDefaultAsync(x => x.FlowerId == flower.Id);

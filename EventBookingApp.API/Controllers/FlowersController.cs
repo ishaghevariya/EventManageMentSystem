@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,12 @@ namespace EventBookingApp.API.Controllers
     public class FlowersController : ControllerBase
     {
         private readonly IFlowerRepo _flowerRepo;
-      
-        public FlowersController(IFlowerRepo flowerRepo)
+        private readonly ILogger<FlowersController> _logger;
+
+        public FlowersController(IFlowerRepo flowerRepo, ILogger<FlowersController> logger)
         {
             _flowerRepo = flowerRepo;
+            _logger = logger;
         }
 
         [HttpGet]
@@ -45,6 +48,7 @@ namespace EventBookingApp.API.Controllers
                 var result = await _flowerRepo.GetFlower(id);
                 if (result == null)
                 {
+                    _logger.LogWarning($"Flower id {id} not found");
                     return NotFound();
                 }
                 return result;
@@ -55,7 +59,7 @@ namespace EventBookingApp.API.Controllers
             }
         }
         [HttpPost("AddFlower")]
-        public async Task<ActionResult<FlowerViewModel>> AddFlower( FlowerViewModel flowermodel)
+        public async Task<ActionResult<FlowerViewModel>> AddFlower(FlowerViewModel flowermodel)
         {
             try
             {
@@ -79,6 +83,7 @@ namespace EventBookingApp.API.Controllers
                 var flowerDelete = await _flowerRepo.GetFlower(id);
                 if (flowerDelete == null)
                 {
+                    _logger.LogWarning($"Flower id {id} not found");
                     return NotFound($"flower Id={id} not found");
                 }
                 return await _flowerRepo.DeleteFlower(id);
@@ -87,6 +92,11 @@ namespace EventBookingApp.API.Controllers
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when Delete data from database");
             }
+        }
+        [HttpGet("GetImageName/{id}")]
+        public string GetImageName(int id)
+        {
+            return _flowerRepo.GetImagename(id);
         }
         [HttpPut("{id:int}")]
         public async Task<ActionResult<Flower>> UpdateFlower(FlowerViewModel flower, int id)
@@ -100,6 +110,7 @@ namespace EventBookingApp.API.Controllers
                 var flowerUpdate = await _flowerRepo.GetFlower(id);
                 if (flowerUpdate == null)
                 {
+                    _logger.LogWarning($"Flower id {id} not found");
                     return NotFound($"Flower Id={id} not found");
                 }
                 return await _flowerRepo.UpdateFlower(flower);

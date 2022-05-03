@@ -7,6 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -22,7 +23,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         private readonly IConfiguration _configuration;
         public string AdminApiString;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public FlowerController(IWebHostEnvironment  webHostEnvironment, IConfiguration configuration)
+        public FlowerController(IWebHostEnvironment webHostEnvironment, IConfiguration configuration)
         {
             _webHostEnvironment = webHostEnvironment;
             _configuration = configuration;
@@ -80,16 +81,31 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(AdminApiString);
-            HttpResponseMessage response = await client.DeleteAsync($"api/Flowers/{id}");
-            if (response.IsSuccessStatusCode)
+            HttpClient client1 = new HttpClient();
+            client1.BaseAddress = new Uri(AdminApiString);
+            HttpResponseMessage httpResponse1 = await client1.GetAsync($"/api/Flowers/GetImageName/{id}");
+            if (httpResponse1.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                var result = httpResponse1.Content.ReadAsStringAsync().Result;
+                var imagedelete = Path.Combine(_webHostEnvironment.WebRootPath, "FlowerImages", result);
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(AdminApiString);
+                HttpResponseMessage response = await client.DeleteAsync($"api/Flowers/{id}");
+                if (response.IsSuccessStatusCode)
+                {
+
+                    FileInfo fi = new FileInfo(imagedelete);
+                    if (fi != null)
+                    {
+                        System.IO.File.Delete(imagedelete);
+                        fi.Delete();
+                    }
+                    return RedirectToAction("Index");
+                }
             }
-            return View();
+            return RedirectToAction("Index");
         }
-        private  async Task<Flower> GetFlowerById(int id)
+        private async Task<Flower> GetFlowerById(int id)
         {
             Flower flower = new Flower();
             HttpClient client = new HttpClient();
@@ -134,8 +150,8 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             return View(flowerViewModel);
         }
 
-       
-        private string UploadImage(FlowerViewModel flower)
+
+        public string UploadImage(FlowerViewModel flower)
         {
             string uniqueFileName = null;
 
@@ -143,11 +159,26 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             {
                 string uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "FlowerImages");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + flower.FlowerImage.FileName;
+                var file = flower.FlowerImage;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                if (Directory.Exists(uploadsFolder))
                 {
-                    flower.FlowerImage.CopyTo(fileStream);
+                    //    string fullpath = Path.Combine(uploadsFolder, uniqueFileName);
+                    //    int width = 640;
+                    //    int height = 425;
+                    //    Image image = Image.FromStream(file.OpenReadStream());
+                    //    var newImage = new Bitmap(width, height);
+                    //    using (var a = Graphics.FromImage(newImage))
+                    //    {
+                    //        a.DrawImage(image, 0, 0, width, height);
+                    //        newImage.Save(fullpath);
+                    //    }
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        flower.FlowerImage.CopyTo(fileStream);
+                    }
                 }
+
             }
             return uniqueFileName;
         }

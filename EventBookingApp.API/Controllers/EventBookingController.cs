@@ -4,6 +4,7 @@ using EventBookingApp.API.Repositary;
 using EventBookingApp.API.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,11 @@ namespace EventBookingApp.API.Controllers
     public class EventBookingController : ControllerBase
     {
         private readonly IBookingRepo _bookingRepo;
+        private readonly ILogger<EventBookingController> _logger;
      
-        public EventBookingController(IBookingRepo bookingRepo)
+        public EventBookingController(IBookingRepo bookingRepo, ILogger<EventBookingController> logger)
         {
+            _logger = logger;
             _bookingRepo = bookingRepo;
         }
         public async Task<ActionResult<Booking>> GetBookingById(int id)
@@ -28,6 +31,7 @@ namespace EventBookingApp.API.Controllers
                 var result = await _bookingRepo.GetBooking(id);
                 if (result == null)
                 {
+                    _logger.LogWarning($"booking Id {id} not found");
                     return NotFound();
                 }
                 return result;
@@ -185,6 +189,7 @@ namespace EventBookingApp.API.Controllers
                 var result = await _bookingRepo.AddBookingId(id);
                 if (result == null)
                 {
+                    _logger.LogWarning($"booking Id {id} not found");
                     return NotFound();
                 }
                 return result;
@@ -310,6 +315,7 @@ namespace EventBookingApp.API.Controllers
                 var bookingDelete = await _bookingRepo.GetBooking(id);
                 if (bookingDelete == null)
                 {
+                    _logger.LogWarning($"booking Id {id} not found");
                     return NotFound($"Booking Id={id} not found");
                 }
                 return await _bookingRepo.DeleteBooking(id);

@@ -129,7 +129,6 @@ namespace EventBookingApp.Controllers
             return View(user);
         }
         [HttpPost]
-
         public async Task<IActionResult> Profile(ApplicationUser user)
         {
             HttpClient client = new HttpClient();
@@ -137,7 +136,8 @@ namespace EventBookingApp.Controllers
             HttpResponseMessage response = await client.PutAsJsonAsync($"api/Account/UpdateProfile/{user.Id}", user);
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                ViewBag.Message = "Your Profile Updated Sucessfully";
+                return View(user);
             }
             return View(user);
         }

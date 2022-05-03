@@ -142,11 +142,9 @@ namespace EventBookingApp.API.Controllers
 
         }
         [HttpGet("GetImageName/{id}")]
-        public string GetImageName(string id)
+        public string GetImageName(int id)
         {
-            int Id = Convert.ToInt32(id);
-            return _eventRepo.GetImagename(Id);
-
+            return _eventRepo.GetImagename(id);
         }
         [HttpDelete("{id:int}")]
         public async Task<ActionResult<Event>> DeleteEvent(int id)

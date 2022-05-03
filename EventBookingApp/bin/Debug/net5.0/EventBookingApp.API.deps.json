@@ -33,6 +33,7 @@
     ".NETCoreApp,Version=v5.0": {
       "EventBookingApp.API/1.0.0": {
         "dependencies": {
+          "BCrypt.Net-Next": "4.0.3",
           "DataAcessLayer": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.0",
           "Microsoft.EntityFrameworkCore.Design": "5.0.0",
@@ -329,6 +330,17 @@
         },
         "compile": {
           "EventBookingApp.API.dll": {}
+        }
+      },
+      "BCrypt.Net-Next/4.0.3": {
+        "runtime": {
+          "lib/net5.0/BCrypt.Net-Next.dll": {
+            "assemblyVersion": "4.0.3.0",
+            "fileVersion": "4.0.3.0"
+          }
+        },
+        "compile": {
+          "lib/net5.0/BCrypt.Net-Next.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -3167,6 +3179,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "BCrypt.Net-Next/4.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-W+U9WvmZQgi5cX6FS5GDtDoPzUCV4LkBLkywq/kRZhuDwcbavOzcDAr3LXJFqHUi952Yj3LEYoWW0jbEUQChsA==",
+      "path": "bcrypt.net-next/4.0.3",
+      "hashPath": "bcrypt.net-next.4.0.3.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

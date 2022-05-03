@@ -3,6 +3,7 @@ using EventBookingApp.API.Repositary;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,11 @@ namespace EventBookingApp.API.Controllers
     public class FoodController : ControllerBase
     {
         private readonly IFoodRepo _foodRepo;
-        public FoodController(IFoodRepo foodRepo)
+        private readonly ILogger<FoodController> _logger;
+        public FoodController(IFoodRepo foodRepo, ILogger<FoodController> logger)
         {
             _foodRepo = foodRepo;
+            _logger = logger;
         }
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Food>> GetFood(int id)
@@ -28,6 +31,7 @@ namespace EventBookingApp.API.Controllers
                 var result = await _foodRepo.GetFood(id);
                 if (result == null)
                 {
+                    _logger.LogWarning($"Food id {id} not found");
                     return NotFound();
                 }
                 return result;
@@ -78,6 +82,7 @@ namespace EventBookingApp.API.Controllers
                 var foodUpdate = await _foodRepo.GetFood(id);
                 if (foodUpdate == null)
                 {
+                    _logger.LogWarning($"Food id {id} not found");
                     return NotFound($"Food Id={id} not found ");
                 }
                 return await _foodRepo.UpdateFood(food);
@@ -95,6 +100,7 @@ namespace EventBookingApp.API.Controllers
                 var foodDelete = await _foodRepo.GetFood(id);
                 if (foodDelete == null)
                 {
+                    _logger.LogWarning($"Food id {id} not found");
                     return NotFound($"Food Id = {id} not found");
                 }
                 return await _foodRepo.DeleteFood(id);

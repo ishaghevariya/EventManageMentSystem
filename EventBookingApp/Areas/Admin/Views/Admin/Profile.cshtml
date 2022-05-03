@@ -69,4 +69,12 @@
             $("#email").prop("disabled", true);
         });
     </script>
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                alert("@ViewBag.Message");
+            });
+        </script>
+    }
 }

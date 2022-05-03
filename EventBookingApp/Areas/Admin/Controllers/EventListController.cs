@@ -8,11 +8,10 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Processing;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -92,7 +91,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                     {
                         EventGalleryViewModel model = new EventGalleryViewModel();
                         var file = item;
-                        FileStream fs = null;
+                       // FileStream fs = null;
                         var guid = Guid.NewGuid().ToString();
                         var uniqueFileName = guid + '_' + file.FileName;
                         model.ImageName = uniqueFileName;
@@ -107,19 +106,21 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                             string path = Path.Combine(_webHostEnvironment.WebRootPath, $"{folderName}");
                             if (Directory.Exists(path))
                             {
-                                //string fullpath = Path.Combine(path, uniqueFileName);
-                                //using (var image = Image.Load(file.OpenReadStream()))
-                                //{
-                                //    string newSize = ResizeImage(image, 640, 465);
-                                //    string[] asize = newSize.Split(',');
-                                //    image.Mutate(h => h.Resize(Convert.ToInt32(asize[1]), Convert.ToInt32(asize[0])));
-                                //    image.Save(fullpath);
-                                using (fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Create))
+                                string fullpath = Path.Combine(path, uniqueFileName);
+                                int width = 640;
+                                int height = 425;
+                                Image image = Image.FromStream(file.OpenReadStream(), true, true);
+                                var newImage = new Bitmap(width, height);
+                                using (var a= Graphics.FromImage(newImage))
                                 {
-                                    await file.CopyToAsync(fs);
+                                    a.DrawImage(image, 0, 0, width, height);
+                                    newImage.Save(fullpath);
                                 }
+                                //using (fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Create))
+                                //{
+                                //    await file.CopyToAsync(fs);
                                 //}
-                                fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Open);
+                                //fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Open);
                             }
                             try
                             {
@@ -174,7 +175,7 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             foreach (var item in gmodel.Images)
             {
                 var file = item;
-                FileStream fs = null;
+                //FileStream fs = null;
                 var guid = Guid.NewGuid().ToString();
                 var uniqueFileName = guid + '_' + file.FileName;
                 model.ImageName = uniqueFileName;
@@ -189,23 +190,21 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                     string path = Path.Combine(_webHostEnvironment.WebRootPath, "EventImages");
                     if (Directory.Exists(path))
                     {
-                        //string fullpath = Path.Combine(path, uniqueFileName);
-                        //using (var image = Image.Load(file.OpenReadStream()))
-                        //{
-                        //    string newSize = ResizeImage(image, 640, 465);
-                        //    string[] asize = newSize.Split(',');
-                        //    image.Mutate(h => h.Resize(Convert.ToInt32(asize[1]), Convert.ToInt32(asize[0])));
-                        //    image.Save(fullpath);
-                        //    //using (fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Create))
-                        //    //{
-                        //    //    await file.CopyToAsync(fs);
-                        //    //}
-                        //}
-                        using (fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Create))
+                        string fullpath = Path.Combine(path, uniqueFileName);
+                        int width = 640;
+                        int height = 425;
+                        Image image = Image.FromStream(file.OpenReadStream(), true, true);
+                        var newImage = new Bitmap(width, height);
+                        using (var a = Graphics.FromImage(newImage))
                         {
-                            await file.CopyToAsync(fs);
+                            a.DrawImage(image, 0, 0, width, height);
+                            newImage.Save(fullpath);
                         }
-                        fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Open);
+                        //using (fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Create))
+                        //{
+                        //    await file.CopyToAsync(fs);
+                        //}
+                        //fs = new FileStream(Path.Combine(path, uniqueFileName), FileMode.Open);
                     }
                     try
                     {
@@ -319,21 +318,5 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         //    await file.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
         //    return "/" + folderPath;
         //}
-        public string ResizeImage(Image image, int maxwidth, int maxheight)
-        {
-            if (image.Width > maxwidth || image.Height > maxheight)
-            {
-                double widthRatio = (double)image.Width / (double)maxwidth;
-                double heightRatio = (double)image.Height / (double)maxheight;
-                double ratio = Math.Max(widthRatio, heightRatio);
-                int newWidth = (int)(image.Width / ratio);
-                int newHeight = (int)(image.Height / ratio);
-                return newHeight.ToString() + "," + newWidth.ToString();
-            }
-            else
-            {
-                return image.Height.ToString() + "," + image.Width.ToString();
-            }
-        }
     }
 }

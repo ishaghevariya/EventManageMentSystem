@@ -23,7 +23,7 @@ namespace EventBookingApp.API.Repositary
         }
         public async Task<Booking> AddBooking(BookingViewModel booking)
         {
-            var data = await _context.Bookings.Select(x => x.FromDate).FirstOrDefaultAsync();
+            var data = await _context.Bookings.Select(x => x.FromDate).ToListAsync();
             Booking Book = new Booking
             {
                 EventId = booking.EventId,
@@ -41,9 +41,12 @@ namespace EventBookingApp.API.Repositary
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now
             };
-            if(Book.FromDate == data)
+            foreach (var item in data)
             {
-                return null;
+                if (Book.FromDate == item)
+                {
+                    return null;
+                }
             }
             var result = await _context.Bookings.AddAsync(Book);
             await _context.SaveChangesAsync();

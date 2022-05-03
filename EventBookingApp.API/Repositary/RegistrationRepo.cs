@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BC = BCrypt.Net.BCrypt;
 
 namespace EventBookingApp.API.Repositary
 {
@@ -101,7 +102,6 @@ namespace EventBookingApp.API.Repositary
         public async Task<ApplicationUser> GetUserByEmail(string email)
         {
             return await _context.ApplicationUsers.Where(x => x.Email == email).FirstOrDefaultAsync();
-
         }
         public async Task<IEnumerable<ApplicationUser>> Search(string UserName)
         {

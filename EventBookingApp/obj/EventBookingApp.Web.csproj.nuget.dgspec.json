@@ -184,6 +184,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.0.3, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.0, )"
@@ -313,9 +317,9 @@
               "target": "Package",
               "version": "[5.0.2, )"
             },
-            "SixLabors.ImageSharp": {
+            "System.Drawing.Common": {
               "target": "Package",
-              "version": "[2.1.1, )"
+              "version": "[5.0.3, )"
             },
             "icheck-bootstrap": {
               "target": "Package",

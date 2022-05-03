@@ -59,3 +59,4 @@ C:\isha\EventBookingApp\EventBookingApp.API\obj\Debug\net5.0\EventBookingApp.API
 C:\isha\EventBookingApp\EventBookingApp.API\obj\Debug\net5.0\ref\EventBookingApp.API.dll
 C:\isha\EventBookingApp\EventBookingApp.API\obj\Debug\net5.0\EventBookingApp.API.pdb
 C:\isha\EventBookingApp\EventBookingApp.API\obj\Debug\net5.0\EventBookingApp.API.genruntimeconfig.cache
+C:\isha\EventBookingApp\EventBookingApp.API\bin\Debug\net5.0\BCrypt.Net-Next.dll

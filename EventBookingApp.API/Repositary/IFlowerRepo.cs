@@ -15,5 +15,6 @@ namespace EventBookingApp.API.Repositary
         Task<Flower> AddFlower(FlowerViewModel flower);
         Task<Flower> UpdateFlower(FlowerViewModel flower);
         Task<Flower> DeleteFlower(int id);
+        public string GetImagename(int Id);
     }
 }

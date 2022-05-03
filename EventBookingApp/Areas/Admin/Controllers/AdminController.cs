@@ -239,7 +239,8 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             HttpResponseMessage response = await client.PutAsJsonAsync($"api/Account/UpdateProfile/{user.Id}", user);
             if (response.IsSuccessStatusCode)
             {
-                return RedirectToAction("Index");
+                ViewBag.Message = "Your Profile Updated Sucessfully";
+                return View(user);
             }
             return View(user);
         }

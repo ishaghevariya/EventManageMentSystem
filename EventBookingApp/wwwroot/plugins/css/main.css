@@ -529,7 +529,7 @@ input {
 .rs-select2 .select2-container .select2-selection--single {
   outline: none;
   border: none;
-  height: 50px;
+  height: 100px;
   background: transparent;
 }
 

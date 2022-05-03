@@ -204,4 +204,7 @@ C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Booking\Sho
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Booking\AddFeedback.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Areas\Admin\Views\Admin\AllFeedback.cshtml.g.cs
 C:\isha\EventBookingApp\EventBookingApp\obj\Debug\net5.0\Razor\Views\Booking\ShowFlower.cshtml.g.cs
-C:\isha\EventBookingApp\EventBookingApp\bin\Debug\net5.0\SixLabors.ImageSharp.dll
+C:\isha\EventBookingApp\EventBookingApp\bin\Debug\net5.0\System.Drawing.Common.dll
+C:\isha\EventBookingApp\EventBookingApp\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\isha\EventBookingApp\EventBookingApp\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
+C:\isha\EventBookingApp\EventBookingApp\bin\Debug\net5.0\BCrypt.Net-Next.dll

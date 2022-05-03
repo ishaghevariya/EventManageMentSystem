@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "nYVODbIp43aKdilbp2BtqvS+ZcNupzvAAlKk12WZtIsBoTHNrEHjHHjuXRPYezgxQpZyjM2v0/j5ZLwlXPgwaA==",
+  "dgSpecHash": "OnHY6b3czW4Ucppx6HZi/l+Xsyh2ePnVKmvtOdIhdCDcSp0M2I/XyNMsXFsqn/kz/JQ+49wX9tJNPyqHOcjBjQ==",
   "success": true,
   "projectFilePath": "C:\\isha\\EventBookingApp\\EventBookingApp.API\\EventBookingApp.API.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Admin\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

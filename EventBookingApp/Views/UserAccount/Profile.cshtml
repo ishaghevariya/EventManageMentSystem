@@ -38,7 +38,7 @@
                                 <div class="w3ls-pr">
                                     <label asp-for="Email" class="control-label"></label>
                                     <input asp-for="Email" type="email" name="Email" placeholder="Email" id="email" style="font-weight: 700; font-size: 14px; color: black">
-                                    <input type="hidden" asp-for="Email"/>
+                                    <input type="hidden" asp-for="Email" />
                                 </div>
                             </div>
                             <div class="col-sm-6 col-xs-6 w3ls-lt-form">
@@ -95,4 +95,12 @@
             $("#email").prop("disabled", true);
         });
     </script>
+    @if (ViewBag.Message != null)
+    {
+        <script type="text/javascript">
+            $(document).ready(function () {
+                alert("@ViewBag.Message");
+            });
+        </script>
+    }
 }

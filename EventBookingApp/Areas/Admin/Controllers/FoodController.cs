@@ -60,7 +60,6 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
             HttpResponseMessage response = await client.GetAsync($"api/Food/{id}");
             if (response.IsSuccessStatusCode)
             {
-              
                 var result = response.Content.ReadAsStringAsync().Result;
                 food = JsonConvert.DeserializeObject<Food>(result);
             }

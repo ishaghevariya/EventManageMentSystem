@@ -3,6 +3,7 @@ using EventBookingApp.API.Repositary;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +11,18 @@ using System.Threading.Tasks;
 
 namespace EventBookingApp.API.Controllers
 {
- 
+
     [Route("api/[controller]")]
     [ApiController]
-  
+
     public class EquipmentController : ControllerBase
     {
         private readonly IEquipmentRepo _equipmentRepo;
-        public EquipmentController(IEquipmentRepo equipmentRepo)
+        private readonly ILogger<EquipmentController> _logger;
+        public EquipmentController(IEquipmentRepo equipmentRepo, ILogger<EquipmentController> logger)
         {
             _equipmentRepo = equipmentRepo;
+            _logger = logger;
         }
         [HttpGet("{id:int}")]
         public async Task<ActionResult<Equipment>> GetEquipment(int id)
@@ -29,6 +32,7 @@ namespace EventBookingApp.API.Controllers
                 var result = await _equipmentRepo.GetEquipment(id);
                 if (result == null)
                 {
+                    _logger.LogWarning($"Equipment Id {id} not found");
                     return NotFound();
                 }
                 return result;
@@ -55,7 +59,7 @@ namespace EventBookingApp.API.Controllers
         {
             try
             {
-                if(equipment == null)
+                if (equipment == null)
                 {
                     return BadRequest();
                 }
@@ -68,17 +72,18 @@ namespace EventBookingApp.API.Controllers
             }
         }
         [HttpPut("{id:int}")]
-        public async Task<ActionResult<Equipment>> UpdateEquipment(Equipment equipment,int id)
+        public async Task<ActionResult<Equipment>> UpdateEquipment(Equipment equipment, int id)
         {
             try
             {
-                if(id != equipment.EquipmentId)
+                if (id != equipment.EquipmentId)
                 {
                     return BadRequest("Id Mismathch");
                 }
                 var equipmentUpdate = await _equipmentRepo.GetEquipment(id);
-                if(equipmentUpdate == null)
+                if (equipmentUpdate == null)
                 {
+                    _logger.LogWarning($"Equipment Id {id} not found");
                     return NotFound($"Equipment Id={id} not found ");
                 }
                 return await _equipmentRepo.UpdateEquipment(equipment);
@@ -94,8 +99,9 @@ namespace EventBookingApp.API.Controllers
             try
             {
                 var equipmentDelete = await _equipmentRepo.GetEquipment(id);
-                if(equipmentDelete == null)
+                if (equipmentDelete == null)
                 {
+                    _logger.LogWarning($"Equipment Id {id} not found");
                     return NotFound($"Equipment Id = {id} not found");
                 }
                 return await _equipmentRepo.DeleteEquipment(id);
