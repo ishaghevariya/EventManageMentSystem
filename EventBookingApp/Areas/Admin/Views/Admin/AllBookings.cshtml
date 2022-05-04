@@ -12,156 +12,161 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="card">
-        <div class="card-header">
-            <div class="pull-left" style="font-weight:bold;font-size:medium">Booking Detalis</div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="pull-left" style="font-weight:bold;font-size:medium">Booking Details</div>
+                </div>
+                <div class="card-body">
+                    <table class="table" id="booktable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.EventName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FromDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.ToDate)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.EventTime)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Address)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.NumberOfPerson)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.VenueType)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Status)
+                                </th>
+                                <th>
+                                    Decorations Detalis
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.IsCancel)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                var tm = "#myModal" + item.Id;
+                                var mid = "myModal" + item.Id;
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EventName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FromDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ToDate)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.EventTime)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Address)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.NumberOfPerson)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.VenueType)
+                                    </td>
+                                    <td>
+                                        @if (item.Status == "Approved")
+                                        {
+                                            <button type="button" class="btn btn-success" onclick="getId(@item.Id)" data-target="#bookingStatus" data-toggle="modal" value="@item.Status">@item.Status</button>
+                                        }
+                                        @if (item.Status == "Rejected")
+                                        {
+                                            <button type="button" class="btn btn-danger" onclick="getId(@item.Id)" data-target="#bookingStatus" data-toggle="modal" value="@item.Status">@item.Status</button>
+                                        }
+                                        @if (item.Status == "Pending")
+                                        {
+                                            <button type="button" class="btn btn-warning" onclick="getId(@item.Id)" data-target="#bookingStatus" data-toggle="modal" value="@item.Status">@item.Status</button>
+                                        }
+                                    </td>
+                                    <td>
+                                        <a asp-action="AllBookingDecoration" asp-route-Id="@item.Id" class="btn btn-primary">Show Decoration</a>
+                                    </td>
+                                    <td>
+                                        @if (item.IsCancel == 0)
+                                        {
+                                            <div>
+                                                Yes
+                                                <button type="button" class="btn btn-danger fa fa-trash-alt" data-toggle="modal" style="border-radius:100px" data-target="@tm">
+                                                </button>
+                                                <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title">Delete Confirmation</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                Are you sure want to delete this item?
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a asp-action="DeleteBooking" asp-route-Id="@item.Id" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
+                                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                        @if (item.IsCancel == 1)
+                                        {
+                                            <div>No</div>
+                                        }
+                                    </td>
+                                    <td>
+                                        <form id="myform" method="post">
+                                            <div class="modal" id="bookingStatus" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title">Booking Status</h4>
+                                                            <button class="close" data-dismiss="modal">&times;</button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="form-group">
+                                                                <label class="control-label">Status</label>
+                                                                <select class="form-control" name="StatusId" id="status">
+                                                                    <option value="">--Select Status--</option>
+                                                                    @foreach (var i in data)
+                                                                    {
+                                                                        <option value="@i.Id"> @i.Status</option>
+                                                                    }
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <input type="button" value="Save" class="btn btn-primary" onclick="updateStatus()" />
+                                                            <button class="btn btn-danger" data-dismiss="modal">Close</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <table class="table" id="booktable">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.EventName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FromDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ToDate)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.EventTime)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Address)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.NumberOfPerson)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.VenuType)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Status)
-                    </th>
-                    <th>
-                        Decorations Detalis
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.IsCancle)
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    var tm = "#myModal" + item.Id;
-                    var mid = "myModal" + item.Id;
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EventName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FromDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ToDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EventTime)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Address)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NumberOfPerson)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.VenuType)
-                        </td>
-                        <td>
-                            @if (item.Status == "Approved")
-                            {
-                                <button type="button" class="btn btn-success" onclick="getId(@item.Id)" data-target="#bookingStatus" data-toggle="modal" value="@item.Status">@item.Status</button>
-                            }
-                            @if (item.Status == "Rejected")
-                            {
-                                <button type="button" class="btn btn-danger" onclick="getId(@item.Id)" data-target="#bookingStatus" data-toggle="modal" value="@item.Status">@item.Status</button>
-                            }
-                            @if (item.Status == "Pendding")
-                            {
-                                <button type="button" class="btn btn-warning" onclick="getId(@item.Id)" data-target="#bookingStatus" data-toggle="modal" value="@item.Status">@item.Status</button>
-                            }
-                        </td>
-                        <td>
-                            <a asp-action="AllBookingDecoration" asp-route-Id="@item.Id" class="btn btn-primary">Show Decoration</a>
-                        </td>
-                        <td>
-                            @if (item.IsCancle == 0)
-                            {
-                                <div>
-                                    Yes
-                                    <button type="button" class="btn btn-danger fa fa-trash-alt" data-toggle="modal" style="border-radius:100px" data-target="@tm">
-                                    </button>
-                                    <div class="modal fade" id="@mid" role="dialog" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                                    <h4 class="modal-title">Delete Confirmation</h4>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure want to delete this item?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <a asp-action="DeleteBooking" asp-route-Id="@item.Id" id="deleteBtn" class="btn bg-danger mr-1">Delete</a>
-                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                            @if (item.IsCancle == 1)
-                            {
-                                <div>No</div>
-                            }
-                        </td>
-                        <td>
-                            <form id="myform" method="post">
-                                <div class="modal" id="bookingStatus" tabindex="-1">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title">Booking Status</h4>
-                                                <button class="close" data-dismiss="modal">&times;</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="form-group">
-                                                    <label class="control-label">Status</label>
-                                                    <select class="form-control" name="StatusId" id="status">
-                                                        <option value="">--Select Status--</option>
-                                                        @foreach (var i in data)
-                                                        {
-                                                            <option value="@i.Id"> @i.Status</option>
-                                                        }
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <input type="button" value="Save" class="btn btn-primary" onclick="updateStatus()" />
-                                                <button class="btn btn-danger" data-dismiss="modal">Close</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
     </div>
-
 
     <script>
         var bookinid = 0;

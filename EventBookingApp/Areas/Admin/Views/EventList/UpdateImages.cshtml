@@ -12,25 +12,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
         #showImg {
-            height: 400px;
-            width: 500px;
+           /* height: 60%;
+            width: 80%;*/
         }
 
         .carousel-inner {
             border-radius: 10px;
         }
-
+        .container{
+            width:50%;
+        }
             .carousel-inner div img {
-                height: 400px;
-                width: 500px;
+                /*height: 60%;
+                width: 80%;*/
             }
 
         .btn-block {
-            width: 470px;
-        }
-
-        .py-1 {
-            padding-left: 23em;
+            width: 50%;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -39,7 +37,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         function DeleteImage(Eventid) {
-            alert(Eventid);
+            /*alert(Eventid);*/
             var elem = $(".active").attr("id");
             console.log(elem);
             $.ajax({
@@ -55,14 +53,14 @@
 </head>
 <body>
 
-    <div class="card">
+    <div class="card row">
         <div class="card-header">
             <div class="pull-left" style="font-weight:bold;font-size:medium">Update Images</div>
             <div style="float:right">
                 <a href='@Url.Action("Index","EventList")' class="btn btn-primary float-right fa fa-arrow-circle-left">Back</a>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body col-sm-12">
             <div id="showImg" class=" container carousel slide " data-ride="carousel">
                 <div class="carousel-inner">
                     @{var i = 0;
@@ -96,12 +94,18 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-            <div class="card-footer">
-                <div class="py-1">
-                    <button class="btn btn-outline-danger text-black text-center btn-block" asp-route="" onclick="DeleteImage(@Eventid)"> Delete Image</button>
-                </div>
-                <div class="py-1">
-                    <a class="btn btn-outline-primary text-black text-center btn-block" asp-route-Eventid="@Eventid" asp-action="AddImage" asp-controller="EventList" asp-area="Admin"> Add Image</a>
+            <div class="card-footer col-sm-12">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="py-1 "style="margin-left: 25%;width: 100%;">
+                            <button class="btn btn-outline-danger text-black text-center btn-block" asp-route="" onclick="DeleteImage(@Eventid); return confirm('Are you sure you want to delete Image');"> Delete Image</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="py-1" style="margin-left: 25%;width: 100%;">
+                            <a class="btn btn-outline-primary text-black text-center btn-block" asp-route-Eventid="@Eventid" asp-action="AddImage" asp-controller="EventList" asp-area="Admin" > Add Image</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

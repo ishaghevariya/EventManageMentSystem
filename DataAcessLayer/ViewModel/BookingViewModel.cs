@@ -20,7 +20,7 @@ namespace DataAcessLayer.ViewModel
         [Required(ErrorMessage = "Please Enter AreaPincode")]
         public int AreapinCode { get; set; }
         [Required(ErrorMessage = "Please Select VenuType")]
-        public string VenuType { get; set; }
+        public string VenueType { get; set; }
         [Required(ErrorMessage = "Please Enter NumberOfPerson")]
         public int NumberOfPerson { get; set; }
         [DataType(DataType.Date)]
@@ -29,7 +29,7 @@ namespace DataAcessLayer.ViewModel
         public DateTime ToDate { get; set; }
         [DataType(DataType.Time)]
         public DateTime EventTime { get; set; }
-        public int IsCancle { get; set; }
+        public int IsCancel { get; set; }
         public int UserId { get; set; }
         [Required(ErrorMessage ="Please Select Event")]
         public int EventId { get; set; }

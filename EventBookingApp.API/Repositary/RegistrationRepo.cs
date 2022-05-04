@@ -86,7 +86,7 @@ namespace EventBookingApp.API.Repositary
 
         public async Task<ApplicationUser> DeleteUser(int id)
         {
-            var data = await _context.Bookings.Where(x => x.UserId == id && x.IsCancle == 1).FirstOrDefaultAsync();
+            var data = await _context.Bookings.Where(x => x.UserId == id && x.IsCancel == 1).FirstOrDefaultAsync();
             if (data == null)
             {
                 var result = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Id == id);

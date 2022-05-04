@@ -22,8 +22,8 @@ namespace DataAcessLayer
         public int BookingStatusId { get; set; }
         public int AreapinCode { get; set; }
         public int NumberOfPerson { get; set; }
-        public string VenuType { get; set; }
-        public int IsCancle { get; set; }
+        public string VenueType { get; set; }
+        public int IsCancel { get; set; }
         public bool IsDeleted { get; set; }
         [DataType(DataType.Date)]
         public DateTime CreatedDate { get; set; }

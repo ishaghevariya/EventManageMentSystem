@@ -5,7 +5,6 @@
     var data = ViewBag.type;
     var images = ViewBag.images;
 }
-
 <head>
     <title>All Events</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -152,6 +151,7 @@
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         </div>
                                         <div class="modal-body">
+                                            <div style="color:red">*Note : You Have to Select FromDate is after 2 days and ToDate is not less then FromDate<br />Other Wise Your Event is Not Booked.. </div>
                                             <div asp-validation-summary="ModelOnly" style="color:red"></div>
                                             <input asp-for="EventId" type="hidden" id="hiddeneventId" value="" />
                                             <p>
@@ -185,8 +185,8 @@
 
                                                 <div class="col-sm-12 col-xs-12 w3ls-lt-form">
                                                     <div class="w3ls-pr">
-                                                        <label asp-for="VenuType">VenuType</label>
-                                                        <select class="sel" asp-for="VenuType" id="vtype" style="font-weight: 700; font-size: 14px; color: black">
+                                                        <label asp-for="VenueType">VenuType</label>
+                                                        <select class="sel" asp-for="VenueType" id="vtype" style="font-weight: 700; font-size: 14px; color: black">
                                                             <option value="" style="font-weight: 700; font-size: 14px; color: black">Venue Type</option>
                                                             <option value="Hall" style="font-weight: 700; font-size: 14px; color: black">Hall</option>
                                                             <option value="OutDoor" style="font-weight: 700; font-size: 14px; color: black">OutDoor</option>
@@ -240,6 +240,18 @@
         //    }
         //}
     </script>
+
+    @if (ViewBag.Error != null)
+    {
+        <script>
+            /*WriteLiteral("$('#myModal').modal('show');")*/
+              $(document).ready(function () {
+                alert("@ViewBag.Error");
+            });
+        </script>
+
+    }
+
 </body>
 
 @section Scripts {

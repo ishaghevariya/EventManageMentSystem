@@ -3,9 +3,9 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Create";
 }
-<div class="card">
+<div class="card row">
     <div class="card-header"><b>Add Equipment</b></div>
-    <div class="card-body">
+    <div class="card-body col-sm-12">
         <form asp-action="Create" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="row">

@@ -320,8 +320,37 @@ namespace EventBookingApp.Controllers
                 var response = await client.PostAsJsonAsync($"api/EventBooking/AddBooking", vm);
                 if (response.IsSuccessStatusCode)
                 {
-                    return RedirectToAction("Index","Booking");
+                    if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        List<eventTypeViewModel> vm1 = new List<eventTypeViewModel>();
+                        HttpClient client1 = new HttpClient();
+                        client1.BaseAddress = new Uri(AdminApiString);
+                        var response1 = await client1.GetAsync($"api/AddEvent/GetEventByTypes");
+                        if (response1.IsSuccessStatusCode)
+                        {
+                            var result = response1.Content.ReadAsStringAsync().Result;
+                            vm1 = JsonConvert.DeserializeObject<List<eventTypeViewModel>>(result);
+                            ViewBag.type = vm1;
+                        }
+                        List<ImageViewModel> imagemodel = new List<ImageViewModel>();
+                        HttpClient client2 = new HttpClient();
+                        client2.BaseAddress = new Uri(AdminApiString);
+                        HttpResponseMessage response2 = await client2.GetAsync($"api/AddEvent/GetEventImages");
+                        if (response2.IsSuccessStatusCode)
+                        {
+                            var result2 = response2.Content.ReadAsStringAsync().Result;
+                            imagemodel = JsonConvert.DeserializeObject<List<ImageViewModel>>(result2);
+                            ViewBag.images = imagemodel;
+                        }
+                        ViewBag.Error = "Event is Already Booked in this date Please select other date";
+                        return View();
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Booking");
+                    }
                 }
+             return RedirectToAction("Events");
             }
             return RedirectToAction("Login");
         }

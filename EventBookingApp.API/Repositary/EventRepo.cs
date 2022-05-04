@@ -110,9 +110,7 @@ namespace EventBookingApp.API.Repositary
                 eventTypeViewModel e = new eventTypeViewModel();
                 e.Id = item.Id;
                 e.EventTypes = item.EventTypes;
-
                 vm.Add(e);
-
             }
             return vm;
         }

@@ -35,8 +35,8 @@ namespace EventBookingApp.API.Repositary
                 AreapinCode = booking.AreapinCode,
                 NumberOfPerson = booking.NumberOfPerson,
                 UserId = booking.UserId,
-                VenuType = booking.VenuType,
-                IsCancle = 1,
+                VenueType = booking.VenueType,
+                IsCancel = 1,
                 IsDeleted = false,
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now
@@ -64,7 +64,7 @@ namespace EventBookingApp.API.Repositary
             var data = await _context.Bookings.Where(x => x.UserId == userid).ToListAsync();
             foreach (var item in data)
             {
-                if (item.IsCancle == 1)
+                if (item.IsCancel == 1)
                 {
                     BookingViewModel vm = new BookingViewModel();
                     vm.Id = item.Id;
@@ -76,7 +76,7 @@ namespace EventBookingApp.API.Repositary
                     vm.EventId = item.EventId;
                     vm.EventTime = item.EventTime;
                     vm.NumberOfPerson = item.NumberOfPerson;
-                    vm.VenuType = item.VenuType;
+                    vm.VenueType = item.VenueType;
                     vm.UserId = userid;
                     var status = _context.BookingStatuses.Where(x => x.Id == item.BookingStatusId).Select(x => x.Status).FirstOrDefault();
                     vm.Status = status;
@@ -104,8 +104,8 @@ namespace EventBookingApp.API.Repositary
                 vm.EventId = item.EventId;
                 vm.EventTime = item.EventTime;
                 vm.NumberOfPerson = item.NumberOfPerson;
-                vm.VenuType = item.VenuType;
-                vm.IsCancle = item.IsCancle;
+                vm.VenueType = item.VenueType;
+                vm.IsCancel = item.IsCancel;
                 var status = _context.BookingStatuses.Where(x => x.Id == item.BookingStatusId).Select(x => x.Status).FirstOrDefault();
                 vm.Status = status;
                 //var userid = _context.ApplicationUsers.Where(x => x.Id == item.UserId).Select(x => x.UserName).FirstOrDefault();
@@ -270,7 +270,7 @@ namespace EventBookingApp.API.Repositary
             foreach (var item in countData)
             {
                 EventCountViewModel evm = new EventCountViewModel();
-                var data = await _context.Bookings.Where(x => x.EventId == item.Id && x.IsCancle == 0).CountAsync();
+                var data = await _context.Bookings.Where(x => x.EventId == item.Id && x.IsCancel == 0).CountAsync();
                 evm.EventId = item.Id;
                 var eventname = _context.Events.Where(x => x.Id == item.Id).Select(x => x.EventTypes).FirstOrDefault();
                 evm.EventName = eventname;
@@ -354,7 +354,7 @@ namespace EventBookingApp.API.Repositary
             var data = await _context.Bookings.Where(x => x.UserId == id).ToListAsync();
             foreach (var item in data)
             {
-                if (item.IsCancle == 1)
+                if (item.IsCancel == 1)
                 {
                     InvoiceViewModel model = new InvoiceViewModel();
                     model.BookingId = item.Id;
@@ -391,7 +391,7 @@ namespace EventBookingApp.API.Repositary
             var data = await _context.Bookings.Where(x => x.Id == id).FirstOrDefaultAsync();
             if (data != null)
             {
-                data.IsCancle = 0;
+                data.IsCancel = 0;
                 await _context.SaveChangesAsync();
                 return data;
             }

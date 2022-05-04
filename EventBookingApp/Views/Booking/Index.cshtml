@@ -7,7 +7,6 @@
     var equipment = ViewBag.Equipmenttype;
     var food = ViewBag.Foodtype;
     var invoice = ViewBag.invoice;
-
 }
 <!DOCTYPE html>
 <html>
@@ -16,7 +15,6 @@
     <title>MyBooking</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="~/plugins/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
-    @*<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">*@
     <link href="~/plugins/css/style.css" type="text/css" rel="stylesheet" media="all">
     <link href="~/plugins/css/font-awesome.css" rel="stylesheet">		<!-- font-awesome icons -->
     <!-- //Custom Theme files -->
@@ -34,75 +32,77 @@
         <div class="text-right">
             <a asp-action="ShowFlower" class="btn" style="border-radius: 100px; background-color: #454545; color: white">FlowerDecoration</a>
             <button data-toggle="modal" type="button" class="btn" style="border-radius: 100px; background-color: #454545; color: white" data-target="#myModalin">Invoice</button>
-            <div class="text-center">
-                <div class="modal video-modal fade" id="myModalin" tabindex="-1" role="dialog" aria-labelledby="myModal">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content" style="width:710px">
-                            <div class="modal-header">
-                                Invoice
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="row">
-                                    <div class="card" style="background-color:ghostwhite">
-                                        <div class="card-body">
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                            EventName
-                                                        </th>
-                                                        <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                            EventCost
-                                                        </th>
-                                                        <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                            FlowerCost
-                                                        </th>
-                                                        <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                            FoodCost
-                                                        </th>
-                                                        <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                            EquipmentCost
-                                                        </th>
-                                                        <th style="font-weight:700;font-size:14px;color:deeppink">
-                                                            TotalAmount
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @foreach (var item1 in invoice)
-                                                    {
+            <div class="container">
+                <div class="text-center">
+                    <div class="modal video-modal fade" id="myModalin" tabindex="-1" role="dialog" aria-labelledby="myModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content" style="width:710px">
+                                <div class="modal-header">
+                                    Invoice
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="card" style="background-color:ghostwhite">
+                                            <div class="card-body">
+                                                <table class="table">
+                                                    <thead>
                                                         <tr>
-                                                            <td style="font-weight:700;font-size:14px;color:black">
-                                                                @item1.EventName
-                                                            </td>
-                                                            <td style="font-weight:700;font-size:14px;color:black">
-                                                                @item1.EventCost
-                                                            </td>
-                                                            <td style="font-weight:700;font-size:14px;color:black">
-                                                                @item1.FlowerCost
-                                                            </td>
-                                                            <td style="font-weight:700;font-size:14px;color:black">
-                                                                @item1.FoodCost
-                                                            </td>
-                                                            <td style="font-weight:700;font-size:14px;color:black">
-                                                                @item1.EquipmentCost
-                                                            </td>
-                                                            <td style="font-weight:700;font-size:14px;color:black">
-                                                                @item1.total
-                                                            </td>
+                                                            <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                EventName
+                                                            </th>
+                                                            <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                EventCost
+                                                            </th>
+                                                            <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                FlowerCost
+                                                            </th>
+                                                            <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                FoodCost
+                                                            </th>
+                                                            <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                EquipmentCost
+                                                            </th>
+                                                            <th style="font-weight:700;font-size:14px;color:deeppink">
+                                                                TotalAmount
+                                                            </th>
                                                         </tr>
-                                                    }
-                                                </tbody>
-                                            </table>
-                                            <div style="font-weight:700;font-size:14px;color:black;float:right;padding-right:3em">
-                                                Total Payable Amount: @ViewBag.total
-                                            </div><br />
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item1 in invoice)
+                                                        {
+                                                            <tr>
+                                                                <td style="font-weight:700;font-size:14px;color:black">
+                                                                    @item1.EventName
+                                                                </td>
+                                                                <td style="font-weight:700;font-size:14px;color:black">
+                                                                    @item1.EventCost
+                                                                </td>
+                                                                <td style="font-weight:700;font-size:14px;color:black">
+                                                                    @item1.FlowerCost
+                                                                </td>
+                                                                <td style="font-weight:700;font-size:14px;color:black">
+                                                                    @item1.FoodCost
+                                                                </td>
+                                                                <td style="font-weight:700;font-size:14px;color:black">
+                                                                    @item1.EquipmentCost
+                                                                </td>
+                                                                <td style="font-weight:700;font-size:14px;color:black">
+                                                                    @item1.total
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                                <div style="font-weight:700;font-size:14px;color:black;float:right;padding-right:3em">
+                                                    Total Payable Amount: @ViewBag.total
+                                                </div><br />
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="card-footer ">
-                                        <div class="text-center">
-                                            <button class="btn" style="background-color:red" data-dismiss="modal">Close</button>
+                                        <div class="card-footer ">
+                                            <div class="text-center">
+                                                <button class="btn" style="background-color:red" data-dismiss="modal">Close</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -112,7 +112,8 @@
                 </div>
             </div>
         </div>
-    </div><br />
+    </div>
+    <br />
     <div class="container">
         @foreach (var item in Model)
         {
@@ -126,9 +127,12 @@
                                         @Html.DisplayFor(modelItem => item.EventName)
                                     </h5>
                                 </div>
-                                <div class="col-md-1">
-                                    <a asp-action="IsCancle" asp-route-id="@item.Id" style="color: red;" class="fa fa-close fa-2x text-right"></a>
-                                </div>
+                                @if (item.Status != "Approved")
+                                {
+                                    <div class="col-md-1">
+                                        <a asp-action="IsCancle" asp-route-id="@item.Id" style="color: red;" class="fa fa-close fa-2x text-right"></a>
+                                    </div>
+                                }
                             </div>
                         </div><br />
                         <table class="table text-center">
@@ -175,10 +179,10 @@
                                 </tr>
                                 <tr>
                                     <td style="font-weight:700;font-size:14px;color:black">
-                                        @Html.DisplayNameFor(model => model.VenuType)
+                                        @Html.DisplayNameFor(model => model.VenueType)
                                     </td>
                                     <td style="font-weight:700;font-size:14px;color:black">
-                                        @Html.DisplayFor(modelItem => item.VenuType)
+                                        @Html.DisplayFor(modelItem => item.VenueType)
                                     </td>
                                 </tr>
                                 <tr>
@@ -197,27 +201,23 @@
                                         @if (item.Status == "Approved")
                                         {
                                             <span class="badge badge-pill inv-badge" style="background-color: #5cb85c; width: 100px; height: 31px; padding-top: 10px;">@item.Status</span>
-
                                         }
                                         @if (item.Status == "Rejected")
                                         {
                                             <span class="badge badge-pill inv-badge" style="background-color: #dc3545; width: 100px; height: 31px; padding-top: 10px;">@item.Status</span>
                                         }
-                                        @if (item.Status == "Pendding")
+                                        @if (item.Status == "Pending")
                                         {
                                             <span class="badge badge-pill inv-badge" style="background-color: #ffc107; width: 100px; height: 31px; padding-top: 10px;">@item.Status</span>
                                         }
                                     </td>
                                 </tr>
-                                
-                                <tr>
 
+                                <tr>
                                     <td>
                                         <form id="myform" method="post">
                                             <button data-toggle="modal" type="button" class="btn" style="border-radius:100px;background-color:lightslategray;color:black" data-target="#myModal" onclick="getId(@item.Id)">BookDecoration</button>
-
                                             <div>
-
                                                 <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
@@ -280,15 +280,11 @@
                                     </td>
                                     <td>
                                         <a asp-action="ShowBookingDetalis" asp-route-id="@item.Id" class="btn" style="background-color: lightslategray; color: black; border-radius: 100px;">ShowDecoration</a>
-
                                     </td>
-
                                 </tr>
                             </tbody>
                         </table>
-                      
                     </div>
-
                     <br />
                     <br />
                     <br />
