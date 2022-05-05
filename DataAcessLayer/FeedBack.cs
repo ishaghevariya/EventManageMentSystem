@@ -11,10 +11,9 @@ namespace DataAcessLayer
         public int Id { get; set; }
         public int Rating { get; set; }
         public string Email { get; set; }
-        public string Subject { get; set; }
+        public int EventId { get; set; }
         public int UserId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public ApplicationUser User { get; set; }
     }
 }

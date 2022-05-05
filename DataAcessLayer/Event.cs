@@ -19,6 +19,6 @@ namespace DataAcessLayer
         public DateTime UpdatedDate { get; set; }
         public ICollection<Booking> Bookings { get; set; } = new HashSet<Booking>();
         public ICollection<EventGallery> EventGallery { get; set; } = new HashSet<EventGallery>();
-    
+
     }
 }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DataAcessLayer.FeedBack>
+﻿@model IEnumerable<DataAcessLayer.ViewModel.FeedbackViewModel>
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "Feedback";
@@ -27,7 +27,7 @@
                                     @Html.DisplayNameFor(model => model.Email)
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Subject)
+                                    Events
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Rating)
@@ -47,7 +47,7 @@
                                         @Html.DisplayFor(modelItem => item.Email)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Subject)
+                                        @Html.DisplayFor(modelItem => item.EventName)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Rating)

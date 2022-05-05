@@ -1,0 +1,462 @@
+2022-05-05T11:10:03.7192652+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T11:10:03.7332908+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T11:10:03.7390381+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T11:10:23.8084089+05:30 80000102-0001-f500-b63f-84710c7967bb [WRN] Event Id 1 not found (76518173)2022-05-05T11:37:20.2193434+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T11:37:20.2302182+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T11:37:20.2321048+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T11:41:47.5334807+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T11:41:47.5449261+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T11:41:47.5473548+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T11:45:46.2546361+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T11:45:46.2671077+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T11:45:46.2750987+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T11:47:45.1595771+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T11:47:45.1698801+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T11:47:45.1722248+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T11:54:46.6914933+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T11:54:46.7072932+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T11:54:46.7108679+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T11:55:11.2839808+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T11:55:11.3082535+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T11:55:11.3260865+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T11:58:42.2421699+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T11:58:42.2551430+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T11:58:42.2582552+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T12:05:53.6594132+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T12:05:53.6741731+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T12:05:53.6768471+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T12:12:22.0163269+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T12:12:22.0301093+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T12:12:22.0340481+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T12:15:49.2798190+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T12:15:49.3121272+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T12:15:49.3189002+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T12:27:23.2220168+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T12:27:23.2321904+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T12:27:23.2351935+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T12:38:59.0325776+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T12:38:59.0432271+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T12:38:59.0453009+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T12:40:57.4817132+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T12:40:57.4956031+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T12:40:57.4981603+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T12:45:30.1093732+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T12:45:30.1223929+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T12:45:30.1250767+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T12:47:36.0698788+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T12:47:36.0812730+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T12:47:36.0832725+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T13:00:30.7393874+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T13:00:30.7548941+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T13:00:30.7619006+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T14:05:04.4702304+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T14:05:04.4828943+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T14:05:04.4869027+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T14:08:23.3857707+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T14:08:23.3987146+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T14:08:23.4024774+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T14:17:04.0711027+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T14:17:04.0889321+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T14:17:04.0911228+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T15:07:49.1207140+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T15:07:49.1372247+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T15:07:49.1418892+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T15:33:32.9574160+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T15:33:32.9740986+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T15:33:32.9935414+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T15:38:34.6479482+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T15:38:34.6725535+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T15:38:34.6785080+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T15:39:41.0506697+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T15:39:41.0592029+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T15:39:41.0614486+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T15:44:03.5737799+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T15:44:03.5873810+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T15:44:03.5901034+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T15:47:28.3550656+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T15:47:28.3687668+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T15:47:28.3710210+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T15:54:07.2894137+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T15:54:07.2977992+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T15:54:07.3004466+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T15:56:39.9438504+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T15:56:39.9620076+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T15:56:39.9644582+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T16:01:07.3527255+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T16:01:07.3610957+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T16:01:07.3629834+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T16:05:04.9448581+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T16:05:04.9591995+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T16:05:04.9622204+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T16:33:00.4259044+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T16:33:00.4398983+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T16:33:00.4424204+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T16:45:05.9156738+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T16:45:05.9646387+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T16:45:05.9745522+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T16:49:20.5455752+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T16:49:20.5645076+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T16:49:20.5695798+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T16:51:13.6317968+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T16:51:13.6427848+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T16:51:13.6450441+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T16:53:16.8419050+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T16:53:16.8577775+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T16:53:16.8638478+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T17:06:04.9615777+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T17:06:04.9702188+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T17:06:04.9719988+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T17:09:12.4146852+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T17:09:12.4275614+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T17:09:12.4315991+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T17:15:12.3166156+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T17:15:12.3290742+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T17:15:12.3314783+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T17:19:27.7509370+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T17:19:27.7629067+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T17:19:27.7687293+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T17:30:02.5414253+05:30 800000b8-0003-f700-b63f-84710c7967bb [ERR] Failed executing DbCommand ("14"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [BookingDetalis] ([BookingId], [EquipmentId], [FlowerId], [FoodId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [BookingDetalisId]
+FROM [BookingDetalis]
+WHERE @@ROWCOUNT = 1 AND [BookingDetalisId] = scope_identity();" (627a98df)
+2022-05-05T17:30:02.9739238+05:30 800000b8-0003-f700-b63f-84710c7967bb [ERR] An exception occurred in the database while saving changes for context type '"EventBookingApp.API.Data.ApplicationDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint \"FK_BookingDetalis_Bookings_BookingId\". The conflict occurred in database \"EventBookingDb\", table \"dbo.Bookings\", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:b1b902e7-37d3-485c-ac87-6929f4ff858c
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)" (170f029e)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_BookingDetalis_Bookings_BookingId". The conflict occurred in database "EventBookingDb", table "dbo.Bookings", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:b1b902e7-37d3-485c-ac87-6929f4ff858c
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at EventBookingApp.API.Repositary.BookingRepo.AddBookingDetalis(BookingDetalis bookingDetalis) in C:\isha\EventBookingApp\EventBookingApp.API\Repositary\BookingRepo.cs:line 124
+   at EventBookingApp.API.Controllers.EventBookingController.AddBookingDetalis(BookingDetalis booking) in C:\isha\EventBookingApp\EventBookingApp.API\Controllers\EventBookingController.cs:line 211
+2022-05-05T17:30:45.4963846+05:30 8000004f-0002-fd00-b63f-84710c7967bb [ERR] Failed executing DbCommand ("6"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [BookingDetalis] ([BookingId], [EquipmentId], [FlowerId], [FoodId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [BookingDetalisId]
+FROM [BookingDetalis]
+WHERE @@ROWCOUNT = 1 AND [BookingDetalisId] = scope_identity();" (627a98df)
+2022-05-05T17:30:45.5312999+05:30 8000004f-0002-fd00-b63f-84710c7967bb [ERR] An exception occurred in the database while saving changes for context type '"EventBookingApp.API.Data.ApplicationDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint \"FK_BookingDetalis_Bookings_BookingId\". The conflict occurred in database \"EventBookingDb\", table \"dbo.Bookings\", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:b1b902e7-37d3-485c-ac87-6929f4ff858c
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)" (170f029e)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_BookingDetalis_Bookings_BookingId". The conflict occurred in database "EventBookingDb", table "dbo.Bookings", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:b1b902e7-37d3-485c-ac87-6929f4ff858c
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+2022-05-05T17:31:02.1367609+05:30 80000068-0002-f700-b63f-84710c7967bb [ERR] Failed executing DbCommand ("27"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [BookingDetalis] ([BookingId], [EquipmentId], [FlowerId], [FoodId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [BookingDetalisId]
+FROM [BookingDetalis]
+WHERE @@ROWCOUNT = 1 AND [BookingDetalisId] = scope_identity();" (627a98df)
+2022-05-05T17:31:02.1583262+05:30 80000068-0002-f700-b63f-84710c7967bb [ERR] An exception occurred in the database while saving changes for context type '"EventBookingApp.API.Data.ApplicationDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint \"FK_BookingDetalis_Bookings_BookingId\". The conflict occurred in database \"EventBookingDb\", table \"dbo.Bookings\", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:b1b902e7-37d3-485c-ac87-6929f4ff858c
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)" (170f029e)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_BookingDetalis_Bookings_BookingId". The conflict occurred in database "EventBookingDb", table "dbo.Bookings", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:b1b902e7-37d3-485c-ac87-6929f4ff858c
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at EventBookingApp.API.Repositary.BookingRepo.AddBookingDetalis(BookingDetalis bookingDetalis) in C:\isha\EventBookingApp\EventBookingApp.API\Repositary\BookingRepo.cs:line 124
+   at EventBookingApp.API.Controllers.EventBookingController.AddBookingDetalis(BookingDetalis booking) in C:\isha\EventBookingApp\EventBookingApp.API\Controllers\EventBookingController.cs:line 211
+2022-05-05T17:40:34.9152907+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T17:40:34.9304972+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T17:40:34.9342584+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T17:41:04.5382757+05:30 800001bf-0001-f400-b63f-84710c7967bb [ERR] Failed executing DbCommand ("13"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [BookingDetalis] ([BookingId], [EquipmentId], [FlowerId], [FoodId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [BookingDetalisId]
+FROM [BookingDetalis]
+WHERE @@ROWCOUNT = 1 AND [BookingDetalisId] = scope_identity();" (627a98df)
+2022-05-05T17:41:04.6451678+05:30 800001bf-0001-f400-b63f-84710c7967bb [ERR] An exception occurred in the database while saving changes for context type '"EventBookingApp.API.Data.ApplicationDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint \"FK_BookingDetalis_Bookings_BookingId\". The conflict occurred in database \"EventBookingDb\", table \"dbo.Bookings\", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:112d7866-7f0a-46b7-8888-43874b65b1b4
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)" (170f029e)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_BookingDetalis_Bookings_BookingId". The conflict occurred in database "EventBookingDb", table "dbo.Bookings", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:112d7866-7f0a-46b7-8888-43874b65b1b4
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at EventBookingApp.API.Repositary.BookingRepo.AddBookingDetalis(BookingDetalis bookingDetalis) in C:\isha\EventBookingApp\EventBookingApp.API\Repositary\BookingRepo.cs:line 124
+2022-05-05T17:41:29.8786587+05:30 80000108-0003-f500-b63f-84710c7967bb [ERR] Failed executing DbCommand ("8"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [BookingDetalis] ([BookingId], [EquipmentId], [FlowerId], [FoodId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [BookingDetalisId]
+FROM [BookingDetalis]
+WHERE @@ROWCOUNT = 1 AND [BookingDetalisId] = scope_identity();" (627a98df)
+2022-05-05T17:41:29.9215655+05:30 80000108-0003-f500-b63f-84710c7967bb [ERR] An exception occurred in the database while saving changes for context type '"EventBookingApp.API.Data.ApplicationDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint \"FK_BookingDetalis_Bookings_BookingId\". The conflict occurred in database \"EventBookingDb\", table \"dbo.Bookings\", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:f01bf029-710f-4a27-a29f-244f5c53e865
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)" (170f029e)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_BookingDetalis_Bookings_BookingId". The conflict occurred in database "EventBookingDb", table "dbo.Bookings", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:f01bf029-710f-4a27-a29f-244f5c53e865
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at EventBookingApp.API.Repositary.BookingRepo.AddBookingDetalis(BookingDetalis bookingDetalis) in C:\isha\EventBookingApp\EventBookingApp.API\Repositary\BookingRepo.cs:line 124
+   at EventBookingApp.API.Controllers.EventBookingController.AddBookingDetalis(BookingDetalis booking) in C:\isha\EventBookingApp\EventBookingApp.API\Controllers\EventBookingController.cs:line 211
+2022-05-05T17:55:54.2923092+05:30  [INF] Application started. Press Ctrl+C to shut down. (dcaefe54)
+2022-05-05T17:55:54.3046475+05:30  [INF] Hosting environment: "Development" (c3307c92)
+2022-05-05T17:55:54.3069689+05:30  [INF] Content root path: "C:\isha\EventBookingApp\EventBookingApp.API" (b5d60022)
+2022-05-05T17:59:33.0391419+05:30 80000010-0001-e300-b63f-84710c7967bb [ERR] Failed executing DbCommand ("12"ms) [Parameters=["@p0='?' (DbType = Int32), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [BookingDetalis] ([BookingId], [EquipmentId], [FlowerId], [FoodId])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [BookingDetalisId]
+FROM [BookingDetalis]
+WHERE @@ROWCOUNT = 1 AND [BookingDetalisId] = scope_identity();" (627a98df)
+2022-05-05T17:59:33.2184475+05:30 80000010-0001-e300-b63f-84710c7967bb [ERR] An exception occurred in the database while saving changes for context type '"EventBookingApp.API.Data.ApplicationDbContext"'."
+""Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint \"FK_BookingDetalis_Bookings_BookingId\". The conflict occurred in database \"EventBookingDb\", table \"dbo.Bookings\", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:0270c8df-9827-47b7-af07-6511544f3894
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)" (170f029e)
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while updating the entries. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_BookingDetalis_Bookings_BookingId". The conflict occurred in database "EventBookingDb", table "dbo.Bookings", column 'Id'.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__169_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:0270c8df-9827-47b7-af07-6511544f3894
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(DbContext _, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at EventBookingApp.API.Repositary.BookingRepo.AddBookingDetalis(BookingDetalis bookingDetalis) in C:\isha\EventBookingApp\EventBookingApp.API\Repositary\BookingRepo.cs:line 124
+   at EventBookingApp.API.Controllers.EventBookingController.AddBookingDetalis(BookingDetalis booking) in C:\isha\EventBookingApp\EventBookingApp.API\Controllers\EventBookingController.cs:line 211

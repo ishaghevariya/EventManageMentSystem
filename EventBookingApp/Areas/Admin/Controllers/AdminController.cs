@@ -92,11 +92,12 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
                     HttpResponseMessage response = await client.PutAsJsonAsync($"api/Account/ChangePassword", user);
                     if (response.IsSuccessStatusCode)
                     {
+                        if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        {
+                            ModelState.AddModelError("", "Current password is not valid.");
+                            return View();
+                        }
                         return RedirectToAction("AdminLogin");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError("", "Current password is not valid.");
                     }
                 }
                 else
@@ -379,14 +380,14 @@ namespace EventBookingApp.Web.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> AllFeedback()
         {
-            List<FeedBack> vm = new List<FeedBack>();
+            List<FeedbackViewModel> vm = new List<FeedbackViewModel>();
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
-            var response1 = await client.GetAsync($"api/Account/GetFeedback");
+            var response1 = await client.GetAsync($"api/Account/GetFeedbacks");
             if (response1.IsSuccessStatusCode)
             {
                 var result = response1.Content.ReadAsStringAsync().Result;
-                vm = JsonConvert.DeserializeObject<List<FeedBack>>(result);
+                vm = JsonConvert.DeserializeObject<List<FeedbackViewModel>>(result);
             }
             return View(vm);
         }

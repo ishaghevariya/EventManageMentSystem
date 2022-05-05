@@ -15,7 +15,8 @@ namespace DataAcessLayer.ViewModel
         [Required(ErrorMessage = "Email is required")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Subject is required")]
-        public string Subject { get; set; }
+        public int EventId { get; set; }
+        public string EventName { get; set; }
         public int UserId { get; set; }
     }
 }

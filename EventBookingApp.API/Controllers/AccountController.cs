@@ -140,10 +140,10 @@ namespace EventBookingApp.API.Controllers
             try
             {
                 ApplicationUser user = await _registrationRepo.GetUser(model.id);
-                if(user.Password != model.CurrentPassword)
-                {
-                    return BadRequest("Current Password is not valid");
-                }
+                //if(user.Password != model.CurrentPassword)
+                //{
+                //    return BadRequest("Current Password is not valid");
+                //}
                 return await _registrationRepo.ChangePassword(model);
             }
             catch (Exception)
@@ -256,6 +256,7 @@ namespace EventBookingApp.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error in Retrieving data from database");
             }
         }
+
         [HttpPost("AddFeedback")]
         public async Task<ActionResult<FeedBack>> AddFeedback(FeedbackViewModel model)
         {
@@ -274,8 +275,8 @@ namespace EventBookingApp.API.Controllers
 
             }
         }
-        [HttpGet("GetFeedback")]
-        public async Task<ActionResult> GetFeedback()
+        [HttpGet("GetFeedbacks")]
+        public async Task<ActionResult> GetFeedbacks()
         {
             try
             {
@@ -301,6 +302,19 @@ namespace EventBookingApp.API.Controllers
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Error when Delete data from database");
+            }
+        }
+        [HttpGet("GetRating")]
+        public async Task<ActionResult<IEnumerable<RatingViewModel>>> GetRating()
+        {
+            try
+            {
+                var data = await _registrationRepo.Rating();
+                return Ok(data);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error when get data from database ");
             }
         }
     }

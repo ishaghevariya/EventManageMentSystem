@@ -99,14 +99,14 @@ namespace EventBookingApp.Web.Controllers
         }
         [HttpPost]
         public async Task<JsonResult> Index(int BookingId, int Flower, int Food, int Equipment)
-            {
+        {
             BookingDetalis vm = new BookingDetalis();
             HttpClient client = new HttpClient();
             vm.BookingId = BookingId;
             vm.FoodId = Food;
             vm.FlowerId = Flower;
             vm.EquipmentId = Equipment;
-            
+
             client.BaseAddress = new Uri(AdminApiString);
             var response = await client.PostAsJsonAsync($"api/EventBooking/AddBookingDetalis", vm);
             if (response.IsSuccessStatusCode)
@@ -211,7 +211,7 @@ namespace EventBookingApp.Web.Controllers
             }
             return View();
         }
-        
+
         public async Task<IActionResult> IsCancle(int Id)
         {
             HttpClient client1 = new HttpClient();
@@ -224,26 +224,46 @@ namespace EventBookingApp.Web.Controllers
             }
             return RedirectToAction("Index");
         }
-
-      
         [HttpGet]
-        public IActionResult AddFeedback()
+        public async Task<IActionResult> AddFeedback()
         {
+            List<eventTypeViewModel> vm1 = new List<eventTypeViewModel>();
+            HttpClient client1 = new HttpClient();
+            client1.BaseAddress = new Uri(AdminApiString);
+            var response1 = await client1.GetAsync($"api/AddEvent/GetEventByTypes");
+            if (response1.IsSuccessStatusCode)
+            {
+                var result = response1.Content.ReadAsStringAsync().Result;
+                vm1 = JsonConvert.DeserializeObject<List<eventTypeViewModel>>(result);
+                ViewBag.type = vm1;
+            }
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> AddFeedback(FeedbackViewModel model)
+        public async Task<IActionResult> AddFeedback(FeedbackViewModel model, int TypeName)
         {
             var data = HttpContext.Session.GetString("UserId");
             model.UserId = Convert.ToInt32(data);
+            model.EventId = TypeName;
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
             var response = await client.PostAsJsonAsync($"api/Account/AddFeedback", model);
             if (response.IsSuccessStatusCode)
             {
                 ViewBag.message = "Your Feedback Add Sucessfully!!!";
+                List<eventTypeViewModel> vm1 = new List<eventTypeViewModel>();
+                HttpClient client1 = new HttpClient();
+                client1.BaseAddress = new Uri(AdminApiString);
+                var response1 = await client1.GetAsync($"api/AddEvent/GetEventByTypes");
+                if (response1.IsSuccessStatusCode)
+                {
+                    var result = response1.Content.ReadAsStringAsync().Result;
+                    vm1 = JsonConvert.DeserializeObject<List<eventTypeViewModel>>(result);
+                    ViewBag.type = vm1;
+                }
             }
             return View();
+
         }
         [HttpGet]
         public async Task<IActionResult> ShowFlower()

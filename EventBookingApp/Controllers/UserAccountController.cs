@@ -161,13 +161,14 @@ namespace EventBookingApp.Controllers
                     HttpResponseMessage response = await client.PutAsJsonAsync($"api/Account/ChangePassword", user);
                     if (response.IsSuccessStatusCode)
                     {
+                        if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        {
+                            ModelState.AddModelError("", "Current password is not valid.");
+                            return View();
+                        }
                         return RedirectToAction("Login");
                     }
-                    if (response.StatusCode == System.Net.HttpStatusCode.BadRequest)
-                    {
-                        ModelState.AddModelError("", "Current password is not valid.");
-                        return View();
-                    }
+                  
                 }
                 else
                 {
@@ -296,6 +297,16 @@ namespace EventBookingApp.Controllers
                 ViewBag.type = vm1;
 
             }
+            List<RatingViewModel> vm2 = new List<RatingViewModel>();
+            HttpClient client2 = new HttpClient();
+            client2.BaseAddress = new Uri(AdminApiString);
+            var response2 = await client2.GetAsync($"api/Account/GetRating");
+            if (response1.IsSuccessStatusCode)
+            {
+                var result2 = response2.Content.ReadAsStringAsync().Result;
+                vm2 = JsonConvert.DeserializeObject<List<RatingViewModel>>(result2);
+                ViewBag.Rating = vm2;
+            }
             List<ImageViewModel> imagemodel = new List<ImageViewModel>();
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(AdminApiString);
@@ -341,6 +352,16 @@ namespace EventBookingApp.Controllers
                             var result2 = response2.Content.ReadAsStringAsync().Result;
                             imagemodel = JsonConvert.DeserializeObject<List<ImageViewModel>>(result2);
                             ViewBag.images = imagemodel;
+                        }
+                        List<RatingViewModel> vm2 = new List<RatingViewModel>();
+                        HttpClient client3 = new HttpClient();
+                        client3.BaseAddress = new Uri(AdminApiString);
+                        var response3 = await client3.GetAsync($"api/Account/GetRating");
+                        if (response3.IsSuccessStatusCode)
+                        {
+                            var result3 = response3.Content.ReadAsStringAsync().Result;
+                            vm2 = JsonConvert.DeserializeObject<List<RatingViewModel>>(result3);
+                            ViewBag.Rating = vm2;
                         }
                         ViewBag.Error = "Event is Already Booked in this date Please select other date";
                         return View();

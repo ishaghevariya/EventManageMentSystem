@@ -10,11 +10,11 @@
     <title>User Profile</title>
     <script src="~/plugins/js/jquery-2.2.3.min.js"></script>
     <script src="~/plugins/js/bootstrap.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
     <br />
     <br />
-
     <div class="container">
         <div class="about-grids">
             <div class="abt-rt-grid">
@@ -97,9 +97,11 @@
     </script>
     @if (ViewBag.Message != null)
     {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js">
+        </script>
         <script type="text/javascript">
             $(document).ready(function () {
-                alert("@ViewBag.Message");
+                bootbox.alert("@ViewBag.Message");
             });
         </script>
     }

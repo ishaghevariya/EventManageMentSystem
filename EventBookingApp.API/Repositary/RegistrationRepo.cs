@@ -26,20 +26,20 @@ namespace EventBookingApp.API.Repositary
         public async Task<ApplicationUser> ChangePassword(ChangePasswordModel chagePassword)
         {
             var user = await _context.ApplicationUsers.FirstOrDefaultAsync(x => x.Id == chagePassword.id);
-            if (user != null)
+            //if (user != null)
+            //{
+            if (user != null && BC.Verify(chagePassword.CurrentPassword, user.Password))
             {
-                if (user.Password == chagePassword.CurrentPassword)
-                {
-                    user.Password = chagePassword.NewPassword;
-                    await _context.SaveChangesAsync();
-                    return user;
-                }
-                else
-                {
-                    return null;
-                }
+                user.Password = BC.HashPassword(chagePassword.NewPassword);
+                await _context.SaveChangesAsync();
+                return user;
             }
-            return null;
+            else
+            {
+                return null;
+            }
+            //}
+            // return null;
         }
 
         //public int SignInMethod(string email, string password)
@@ -51,8 +51,12 @@ namespace EventBookingApp.API.Repositary
 
         public int SignInMethod(string email, string password)
         {
-            var user = _context.ApplicationUsers.Where(x => x.Email == email && x.Password == password).Select(x => x.Id).SingleOrDefault();
-            return user;
+            var user = _context.ApplicationUsers.Where(x => x.Email == email).FirstOrDefault();
+            if (user != null && BC.Verify(password, user.Password))
+            {
+                return user.Id;
+            }
+            return 0;
         }
 
         public async Task<ApplicationUser> UserRegistration(ApplicationUserViewModel applicationUser)
@@ -60,7 +64,7 @@ namespace EventBookingApp.API.Repositary
             ApplicationUser user = new ApplicationUser()
             {
                 UserName = applicationUser.UserName,
-                Password = applicationUser.Password,
+                Password = BC.HashPassword(applicationUser.Password),
                 Email = applicationUser.Email,
                 ContactNo = applicationUser.ContactNo,
                 UserRole = "User",
@@ -79,9 +83,9 @@ namespace EventBookingApp.API.Repositary
 
         public async Task<IEnumerable<ApplicationUser>> GetUsers()
         {
-            var result = await _context.ApplicationUsers.Where(x=>x.UserRole == "User").ToListAsync();
+            var result = await _context.ApplicationUsers.Where(x => x.UserRole == "User").ToListAsync();
             return result;
-            
+
         }
 
         public async Task<ApplicationUser> DeleteUser(int id)
@@ -141,7 +145,7 @@ namespace EventBookingApp.API.Repositary
             var user = await _context.ApplicationUsers.Where(x => x.Email == viewModel.Email).FirstOrDefaultAsync();
             if (user != null)
             {
-                user.Password = viewModel.NewPassword;
+                user.Password = BC.HashPassword(viewModel.NewPassword);
                 await _context.SaveChangesAsync();
                 return user;
             }
@@ -156,31 +160,80 @@ namespace EventBookingApp.API.Repositary
 
         public async Task<FeedBack> FeedBack(FeedbackViewModel feedBack)
         {
-            FeedBack model = new FeedBack()
+            var user = await _context.FeedBacks.Where(x => x.UserId == feedBack.UserId).FirstOrDefaultAsync();
+            var result = await _context.FeedBacks.Where(x => x.EventId == feedBack.EventId).FirstOrDefaultAsync();
+            if (user == null || result == null)
             {
-                Id = feedBack.Id,
-                Email = feedBack.Email,
-                Rating = feedBack.Rating,
-                Subject = feedBack.Subject,
-                UserId = feedBack.UserId,
-                CreatedDate = DateTime.Now,
-                UpdatedDate = DateTime.Now
-            };
-            var result = await _context.FeedBacks.AddAsync(model);
-            await _context.SaveChangesAsync();
-            return result.Entity;
+                FeedBack model = new FeedBack()
+                {
+                    Id = feedBack.Id,
+                    Email = feedBack.Email,
+                    Rating = feedBack.Rating,
+                    EventId = feedBack.EventId,
+                    UserId = feedBack.UserId,
+                    CreatedDate = DateTime.Now,
+                    UpdatedDate = DateTime.Now
+                };
+                var result2 = await _context.FeedBacks.AddAsync(model);
+                await _context.SaveChangesAsync();
+                return result2.Entity;
+            }
+            else
+            {
+                var data = await _context.FeedBacks.Where(x => x.UserId==feedBack.UserId  && x.EventId == feedBack.EventId).FirstOrDefaultAsync();
+                if (data != null)
+                {
+                    data.Email = feedBack.Email;
+                    data.EventId = feedBack.EventId;
+                    data.Rating = feedBack.Rating;
+                    data.UserId = feedBack.UserId;
+                    data.UpdatedDate = DateTime.Now;
+                    await _context.SaveChangesAsync();
+                    return data;
+                }
+            }
+            return null;
         }
-
+        //public IEnumerable<eventTypeViewModel> GetEventsType()
+        //{
+        //    List<eventTypeViewModel> vm = new List<eventTypeViewModel>();
+        //    var data = _context.Events.Select(x => new
+        //    {
+        //        x.Id,
+        //        x.EventTypes
+        //    }).ToList();
+        //    foreach (var item in data)
+        //    {
+        //        eventTypeViewModel e = new eventTypeViewModel();
+        //        e.Id = item.Id;
+        //        e.EventTypes = item.EventTypes;
+        //        vm.Add(e);
+        //    }
+        //    return vm;
+        //}
         public async Task<FeedBack> GetFeedBack(int id)
         {
             var data = await _context.FeedBacks.Where(x => x.Id == id).FirstOrDefaultAsync();
             return data;
         }
 
-        public async Task<IEnumerable<FeedBack>> GetAllFeedBack()
+       
+        public async Task<IEnumerable<FeedbackViewModel>> GetAllFeedBack()
         {
+            List<FeedbackViewModel> model = new List<FeedbackViewModel>();
             var data = await _context.FeedBacks.ToListAsync();
-            return data;
+            foreach (var item in data)
+            {
+                FeedbackViewModel vm = new FeedbackViewModel();
+                vm.Id = item.Id;
+                vm.Email = item.Email;
+                vm.UserId = item.UserId;
+                vm.EventId = item.EventId;
+                var ename = await _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefaultAsync();
+                vm.EventName = ename;
+                model.Add(vm);
+            }
+            return model;
         }
 
         public async Task<FeedBack> DeleteFeedback(int id)
@@ -193,6 +246,23 @@ namespace EventBookingApp.API.Repositary
                 return result;
             }
             return null;
+        }
+
+        public async Task<IEnumerable<RatingViewModel>> Rating()
+        {
+            List<RatingViewModel> model = new List<RatingViewModel>();
+            var data = await _context.FeedBacks.ToListAsync();
+            foreach (var item in data)
+            {
+                RatingViewModel vm = new RatingViewModel();
+                double rating = _context.FeedBacks.Where(x => x.EventId == item.EventId).Average(x => x.Rating);
+                vm.EventId = item.EventId;
+                vm.Rating = rating;
+                var eventname = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefault();
+                vm.EventName = eventname;
+                model.Add(vm);
+            }
+            return model;
         }
     }
 }

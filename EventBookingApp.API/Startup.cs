@@ -51,11 +51,10 @@ namespace EventBookingApp.API
        //     services.AddTransient<IUserService, UserService>();
             services.AddRazorPages();
             services.AddHttpClient();
-   
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             //if (env.IsDevelopment())
             //{
@@ -63,7 +62,7 @@ namespace EventBookingApp.API
             //    app.UseSwagger();
             //    app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "EventBookingApp.API v1"));
             //}
-            
+            loggerFactory.AddFile("Logs/myapp-{Date}.txt");
             app.UseHttpsRedirection();
             app.UseSession();
             app.UseRouting();

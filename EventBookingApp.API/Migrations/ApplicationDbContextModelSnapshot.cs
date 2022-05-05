@@ -271,11 +271,11 @@ namespace EventBookingApp.API.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Rating")
+                    b.Property<int>("EventId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Subject")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -284,8 +284,6 @@ namespace EventBookingApp.API.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("FeedBacks");
                 });
@@ -411,22 +409,9 @@ namespace EventBookingApp.API.Migrations
                     b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("DataAcessLayer.FeedBack", b =>
-                {
-                    b.HasOne("DataAcessLayer.ApplicationUser", "User")
-                        .WithMany("FeedBacks")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("DataAcessLayer.ApplicationUser", b =>
                 {
                     b.Navigation("Bookings");
-
-                    b.Navigation("FeedBacks");
                 });
 
             modelBuilder.Entity("DataAcessLayer.Booking", b =>

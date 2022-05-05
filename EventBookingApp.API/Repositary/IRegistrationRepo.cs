@@ -24,8 +24,8 @@ namespace EventBookingApp.API.Repositary
         Task<ApplicationUser> Profile(ApplicationUser User);
         Task<FeedBack> FeedBack(FeedbackViewModel feedBack);
         Task<FeedBack> GetFeedBack(int id);
-        Task<IEnumerable<FeedBack>> GetAllFeedBack();
+        Task<IEnumerable<FeedbackViewModel>> GetAllFeedBack();
         Task<FeedBack> DeleteFeedback(int id);
-
+        Task<IEnumerable<RatingViewModel>> Rating();
     }
 }
