@@ -9,9 +9,7 @@
 <head>
     <title>All Events</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    @*<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="keywords" content="Events Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
-        SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />*@
+    s
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Custom Theme files -->
@@ -32,6 +30,10 @@
     <link href="//fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <style>
         .glyphicon-minus-sign {
+            display: none;
+        }
+
+        .rating-md .caption {
             display: none;
         }
     </style>
@@ -97,108 +99,121 @@
                             @if (item.Id == i.EventId)
                             {
                                 <img src="~/EventImages/@i.ImageName" class="img-responsive" alt="" />
+                                break;
                             }
                         }
-
                         <div class="popular-text">
                             <h5 class="text-black"><button data-toggle="modal" class="btn btn-block btn-secondary" style="color:deeppink;background-color:burlywood" data-target="#myModal" onclick="getId(@item.Id)">@item.EventTypes</button></h5>
                             <div class="detail-bottom">
-                                @if (item.EventTypes == "Birthday")
+                                @foreach (var item2 in rating)
                                 {
-                                    <ul>
-                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
-                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
-                                    </ul>
-                                    @foreach (var item2 in rating)
+                                    @if (item2.EventId == item.Id)
                                     {
-                                        @if (item2.EventName == "Birthday")
-                                        {
-                                            <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
-                                        }
+                                        <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
                                     }
-                                    <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
                                 }
-                                @if (item.EventTypes == "Sangeet")
-                                {
-                                    <ul>
-                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
-                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
-                                    </ul>
-                                    @foreach (var item2 in rating)
-                                    {
-                                        @if (item2.EventName == "Sangeet")
-                                        {
-                                            <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
-                                        }
-                                    }
-                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
-                                    
-                                }
-                                @if (item.EventTypes == "Wedding")
-                                {
-                                    <ul>
-                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>25June</li>
-                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>VENICE, ITALY</li>
-                                    </ul>
-                                    @foreach (var item2 in rating)
-                                    {
-                                        @if (item2.EventName == "Wedding")
-                                        {
-                                            <input type="number" style="color:yellow;" class="rating" value="@item2.Rating"/>
-                                        }
-                                    }
-                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
-                                    
-                                }
-                                @if (item.EventTypes == "Photography")
-                                {
-
-                                    <ul>
-                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>01 July</li>
-                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>NEWYORK, USA</li>
-                                    </ul>
-                                    @foreach (var item2 in rating)
-                                    {
-                                        @if (item2.EventName == "Photography")
-                                        {
-                                            <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
-                                        }
-                                    }
-                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
-                                    
-                                }
-                                @if (item.EventTypes == "Catering")
-                                {
-                                    <ul>
-                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
-                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
-                                    </ul>
-                                    @foreach (var item2 in rating)
-                                    {
-                                        @if (item2.EventName == "Catering")
-                                        {
-                                            <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
-                                        }
-                                    }
-                                    <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
-                                }
-                                @if (item.EventTypes == "Baby Shower")
-                                {
-                                    <ul>
-                                        <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
-                                        <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
-                                    </ul>
-                                    @foreach (var item2 in rating)
-                                    {
-                                        @if (item2.EventName == "Baby Shower")
-                                        {
-                                            <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
-                                        }
-                                    }
-                                    <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
-                                }
+                                <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
                             </div>
                         </div>
+                        @*<div class="popular-text">
+                                <h5 class="text-black"><button data-toggle="modal" class="btn btn-block btn-secondary" style="color:deeppink;background-color:burlywood" data-target="#myModal" onclick="getId(@item.Id)">@item.EventTypes</button></h5>
+                                <div class="detail-bottom">
+                                    @if (item.EventTypes == "Birthday")
+                                    {
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
+                                        </ul>
+                                        @foreach (var item2 in rating)
+                                        {
+                                            @if (item2.EventName == "Birthday")
+                                            {
+                                                <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
+                                            }
+                                        }
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                    }
+                                    @if (item.EventTypes == "Sangeet")
+                                    {
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
+                                        </ul>
+                                        @foreach (var item2 in rating)
+                                        {
+                                            @if (item2.EventName == "Sangeet")
+                                            {
+                                                <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
+                                            }
+                                        }
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+
+                                    }
+                                    @if (item.EventTypes == "Wedding")
+                                    {
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>25June</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>VENICE, ITALY</li>
+                                        </ul>
+                                        @foreach (var item2 in rating)
+                                        {
+                                            @if (item2.EventName == "Wedding")
+                                            {
+                                                <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
+                                            }
+                                        }
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+
+                                    }
+                                    @if (item.EventTypes == "Photography")
+                                    {
+
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>01 July</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>NEWYORK, USA</li>
+                                        </ul>
+                                        @foreach (var item2 in rating)
+                                        {
+                                            @if (item2.EventName == "Photography")
+                                            {
+                                                <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
+                                            }
+                                        }
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+
+                                    }
+                                    @if (item.EventTypes == "Catering")
+                                    {
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>30 May</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>LONDON, UK</li>
+                                        </ul>
+                                        @foreach (var item2 in rating)
+                                        {
+                                            @if (item2.EventName == "Catering")
+                                            {
+                                                <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
+                                            }
+                                        }
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                    }
+                                    @if (item.EventTypes == "Baby Shower")
+                                    {
+                                        <ul>
+                                            <li><i class="fa fa-calendar" aria-hidden="true"></i>15 June</li>
+                                            <li><i class="fa fa-map-marker" aria-hidden="true"></i>BERLIN, GERMANY</li>
+                                        </ul>
+                                        @foreach (var item2 in rating)
+                                        {
+                                            @if (item2.EventName == "Baby Shower")
+                                            {
+                                                <input type="number" style="color:yellow;" class="rating" value="@item2.Rating" />
+                                            }
+                                        }
+                                        <p>We Organize @item.EventTypes. We are always fullfiled your expections.we always give our best for your events.</p>
+                                    }
+                                </div>
+                            </div>*@
 
                         <form method="post" id="insertform" asp-action="Events">
                             <div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">

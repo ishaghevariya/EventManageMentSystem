@@ -1,5 +1,4 @@
 ﻿@model IEnumerable<EventBookingApp.API.ViewModel.ImageViewModel>
-
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     ViewData["Title"] = "UpdateImages";
@@ -10,22 +9,25 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         #showImg {
-           /* height: 60%;
+            /* height: 60%;
             width: 80%;*/
         }
 
         .carousel-inner {
             border-radius: 10px;
         }
-        .container{
-            width:50%;
+
+        .container {
+            width: 50%;
         }
-            .carousel-inner div img {
-                /*height: 60%;
+
+        .carousel-inner div img {
+            /*height: 60%;
                 width: 80%;*/
-            }
+        }
 
         .btn-block {
             width: 50%;
@@ -57,7 +59,7 @@
         <div class="card-header">
             <div class="pull-left" style="font-weight:bold;font-size:medium">Update Images</div>
             <div style="float:right">
-                <a href='@Url.Action("Index","EventList")' class="btn btn-primary float-right fa fa-arrow-circle-left">Back</a>
+                <a href='@Url.Action("Index","EventList")' class="btn btn-primary float-right fa fa-arrow-left">Back</a>
             </div>
         </div>
         <div class="card-body col-sm-12">

@@ -160,27 +160,7 @@ namespace EventBookingApp.API.Repositary
 
         public async Task<FeedBack> FeedBack(FeedbackViewModel feedBack)
         {
-            var user = await _context.FeedBacks.Where(x => x.UserId == feedBack.UserId).FirstOrDefaultAsync();
-            var result = await _context.FeedBacks.Where(x => x.EventId == feedBack.EventId).FirstOrDefaultAsync();
-            if (user == null || result == null)
-            {
-                FeedBack model = new FeedBack()
-                {
-                    Id = feedBack.Id,
-                    Email = feedBack.Email,
-                    Rating = feedBack.Rating,
-                    EventId = feedBack.EventId,
-                    UserId = feedBack.UserId,
-                    CreatedDate = DateTime.Now,
-                    UpdatedDate = DateTime.Now
-                };
-                var result2 = await _context.FeedBacks.AddAsync(model);
-                await _context.SaveChangesAsync();
-                return result2.Entity;
-            }
-            else
-            {
-                var data = await _context.FeedBacks.Where(x => x.UserId==feedBack.UserId  && x.EventId == feedBack.EventId).FirstOrDefaultAsync();
+                var data = await _context.FeedBacks.Where(x => x.UserId == feedBack.UserId && x.EventId == feedBack.EventId).FirstOrDefaultAsync();
                 if (data != null)
                 {
                     data.Email = feedBack.Email;
@@ -191,33 +171,31 @@ namespace EventBookingApp.API.Repositary
                     await _context.SaveChangesAsync();
                     return data;
                 }
-            }
-            return null;
+                else
+                {
+                    FeedBack model = new FeedBack()
+                    {
+                        Id = feedBack.Id,
+                        Email = feedBack.Email,
+                        Rating = feedBack.Rating,
+                        EventId = feedBack.EventId,
+                        UserId = feedBack.UserId,
+                        CreatedDate = DateTime.Now,
+                        UpdatedDate = DateTime.Now
+                    };
+                    var result2 = await _context.FeedBacks.AddAsync(model);
+                    await _context.SaveChangesAsync();
+                    return result2.Entity;
+                }
         }
-        //public IEnumerable<eventTypeViewModel> GetEventsType()
-        //{
-        //    List<eventTypeViewModel> vm = new List<eventTypeViewModel>();
-        //    var data = _context.Events.Select(x => new
-        //    {
-        //        x.Id,
-        //        x.EventTypes
-        //    }).ToList();
-        //    foreach (var item in data)
-        //    {
-        //        eventTypeViewModel e = new eventTypeViewModel();
-        //        e.Id = item.Id;
-        //        e.EventTypes = item.EventTypes;
-        //        vm.Add(e);
-        //    }
-        //    return vm;
-        //}
+       
         public async Task<FeedBack> GetFeedBack(int id)
         {
             var data = await _context.FeedBacks.Where(x => x.Id == id).FirstOrDefaultAsync();
             return data;
         }
 
-       
+
         public async Task<IEnumerable<FeedbackViewModel>> GetAllFeedBack()
         {
             List<FeedbackViewModel> model = new List<FeedbackViewModel>();
@@ -228,6 +206,7 @@ namespace EventBookingApp.API.Repositary
                 vm.Id = item.Id;
                 vm.Email = item.Email;
                 vm.UserId = item.UserId;
+                vm.Rating = item.Rating;
                 vm.EventId = item.EventId;
                 var ename = await _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefaultAsync();
                 vm.EventName = ename;
@@ -251,15 +230,19 @@ namespace EventBookingApp.API.Repositary
         public async Task<IEnumerable<RatingViewModel>> Rating()
         {
             List<RatingViewModel> model = new List<RatingViewModel>();
-            var data = await _context.FeedBacks.ToListAsync();
+            var data = await _context.Events.ToListAsync();
             foreach (var item in data)
             {
+                double rating = 0;
+                int feedback = 0;
+                if ((feedback = _context.FeedBacks.Where(x => x.EventId == item.Id).Count()) > 0)
+                {
+                    rating = _context.FeedBacks.Where(x => x.EventId == item.Id).Average(x => x.Rating);
+                }
                 RatingViewModel vm = new RatingViewModel();
-                double rating = _context.FeedBacks.Where(x => x.EventId == item.EventId).Average(x => x.Rating);
-                vm.EventId = item.EventId;
+                vm.EventId = item.Id;
                 vm.Rating = rating;
-                var eventname = _context.Events.Where(x => x.Id == item.EventId).Select(x => x.EventTypes).FirstOrDefault();
-                vm.EventName = eventname;
+                vm.EventName = item.EventTypes;
                 model.Add(vm);
             }
             return model;

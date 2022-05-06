@@ -26,6 +26,5 @@ namespace EventBookingApp.API.Repositary
         public string GetImagename(int Id);
         public Task<IEnumerable<ImageViewModel>> UpdateImage(int Eventid);
         public Task<IEnumerable<ImageViewModel>> GetEventImages();
-
     }
 }

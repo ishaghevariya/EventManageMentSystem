@@ -14,7 +14,6 @@ namespace EventBookingApp.API.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-
     public class EquipmentController : ControllerBase
     {
         private readonly IEquipmentRepo _equipmentRepo;

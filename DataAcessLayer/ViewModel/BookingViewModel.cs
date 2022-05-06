@@ -9,6 +9,7 @@ namespace DataAcessLayer.ViewModel
 {
     public class BookingViewModel: IValidatableObject
     {
+        [Required(ErrorMessage = "Please Select EventType")]
         public int Id { get; set; }
         [Required(ErrorMessage = "Please Select EventDate")]
         [DataType(DataType.Date)]
